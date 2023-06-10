@@ -11,6 +11,12 @@ import { render } from "@react-email/render";
 
 const handler = NextAuth({
   adapter: PrismaAdapter(prisma) as Adapter,
+  pages: {
+    signIn: "/login",
+    error: "/auth-error",
+    verifyRequest: "/verify-request",
+    newUser: "/auth/new-user",
+  },
   providers: [
     EmailProvider({
       server: {
