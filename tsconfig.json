@@ -22,6 +22,7 @@
     "paths": {
       "@/lib/*": ["./app/(lib)/*"],
       "@/assets/*": ["./app/(assets)/*"],
+      "@/util": ["./app/(util)/index.ts"],
       "@/*": ["./*"]
     }
   },
