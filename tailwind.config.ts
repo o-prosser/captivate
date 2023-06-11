@@ -13,17 +13,19 @@ export default {
         DEFAULT: theme("colors.border"),
       }),
       colors: {
-        base: {
-          background: "hsl(var(--background) / <alpha-value>)",
-          foreground: "hsl(var(--foreground) / <alpha-value>)",
-        },
+        background: "hsl(var(--background) / <alpha-value>)",
+        foreground: "hsl(var(--foreground) / <alpha-value>)",
         muted: {
-          background: "hsl(var(--muted-background) / <alpha-value>)",
+          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
           foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
         },
         primary: {
-          accent: "hsl(var(--primary-accent) / <alpha-value>)",
           DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
         },
         border: "hsl(var(--border) / <alpha-value>)",
         ring: "hsl(var(--ring) / <alpha-value>)",

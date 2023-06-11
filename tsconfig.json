@@ -23,6 +23,7 @@
       "@/lib/*": ["./app/(lib)/*"],
       "@/assets/*": ["./app/(assets)/*"],
       "@/util": ["./app/(util)/index.ts"],
+      "@/ui": ["./app/(ui)/index.ts"],
       "@/*": ["./*"]
     }
   },
