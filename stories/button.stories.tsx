@@ -27,7 +27,7 @@ export const Primary: Story = {
 export const Outline: Story = {
   args: {
     variant: "outline",
-    children: "Button",
+    children: "Buttona",
   },
 };
 

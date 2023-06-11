@@ -7,7 +7,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        sans: [
+          ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+          {
+            fontFeatureSettings: "'ss01' on",
+          },
+        ],
       },
       borderColor: ({ theme }) => ({
         DEFAULT: theme("colors.border"),
