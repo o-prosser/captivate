@@ -6,6 +6,7 @@ import { useState } from "react";
 import * as z from "zod";
 import { LogInIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 const schema = z.object({
   email: z.string().min(3, { message: "Please provide an email." }).email(),
@@ -15,6 +16,7 @@ const LoginForm = () => {
   const form = Form.useForm({ schema });
 
   const [pending, setPending] = useState(false);
+  const pathname = usePathname();
 
   const onSubmit = async (values: z.infer<typeof schema>) => {
     setPending(true);
@@ -41,7 +43,7 @@ const LoginForm = () => {
 
       <Button className="w-full" type="submit" pending={pending}>
         <LogInIcon />
-        Log in with email
+        {pathname.includes("login") ? "Log in" : "Sign up"} with email
       </Button>
     </Form.Root>
   );
