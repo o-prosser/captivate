@@ -1,5 +1,6 @@
 import { generalSans } from "@/assets/fonts";
 import "./globals.css";
+import { cn } from "@/util";
 
 export const metadata = {
   title: {
@@ -16,7 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${generalSans.variable} font-sans`}>{children}</body>
+      <body
+        className={cn(
+          generalSans.variable,
+          "font-sans antialiased bg-background text-foreground min-h-screen w-screen",
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }

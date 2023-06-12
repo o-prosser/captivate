@@ -3,19 +3,21 @@ import LoginForm from "../login-form";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Login",
+  title: "Signup",
 };
 
 const Login = () => {
   return (
     <>
-      <Heading>Welcome back 👋</Heading>
-      <Text className="mt-3 mb-6">Enter your email to login to Captivate.</Text>
+      <Heading>Welcome to Captivate 👋</Heading>
+      <Text className="mt-3 mb-6">
+        Enter your email to signup to Captivate.
+      </Text>
       <LoginForm />
       <Text>
-        No account?{" "}
+        Already got an account?{" "}
         <Button variant="link" asChild>
-          <Link href="/signup">Create an account</Link>
+          <Link href="/login">Login</Link>
         </Button>{" "}
         now.
       </Text>

@@ -1,15 +1,16 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/util";
+import { Loader2Icon } from "lucide-react";
 
 const buttonVariants = cva(
   [
-    "inline-flex items-center justify-center rounded-2xl text-sm font-medium transition-colors font-sans",
+    "inline-flex items-center justify-center rounded-2xl text-sm font-medium transition-colors font-sans relative",
     "[&>svg]:h-4 [&>svg]:w-4 [&>svg]:mr-2",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-base-background",
-    "disabled:opacity-50 disabled:pointer-events-none",
+    "disabled:pointer-events-none",
   ],
   {
     variants: {
@@ -20,12 +21,16 @@ const buttonVariants = cva(
         outline:
           "border border-input hover:bg-muted hover:text-muted-foreground",
         ghost: "hover:bg-muted",
-        link: "underline-offset-4 hover:underline text-primary",
+        link: "underline-offset-4 hover:underline text-primary !h-auto !p-1 -m-1 text-base focus-visible:!ring-offset-0",
       },
       size: {
         default: "h-10 py-2 px-4",
         sm: "h-9 px-3 rounded-xl",
         lg: "h-11 px-8 rounded-3xl",
+      },
+      pending: {
+        true: "",
+        false: "disabled:opacity-50",
       },
     },
     defaultVariants: {
@@ -39,17 +44,39 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  pending?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, pending, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+    return asChild ? (
+      <Slot
+        className={cn(buttonVariants({ variant, size, pending }), className)}
         ref={ref}
         {...props}
-      />
+      >
+        {children}
+      </Slot>
+    ) : (
+      <button
+        className={cn(buttonVariants({ variant, size, pending }), className)}
+        ref={ref}
+        disabled={pending}
+        {...props}
+      >
+        {pending ? (
+          <div className="absolute rounded-xl inset-0 grid place-items-center bg-white/50">
+            <Loader2Icon className="animate-spin" />
+          </div>
+        ) : (
+          ""
+        )}
+        {children}
+      </button>
     );
   },
 );
