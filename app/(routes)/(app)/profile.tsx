@@ -11,6 +11,7 @@ import {
   SunIcon,
   UserIcon,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
@@ -85,7 +86,7 @@ const Profile = () => {
         <DropdownMenu.Separator />
 
         <DropdownMenu.Group>
-          <DropdownMenu.Item>
+          <DropdownMenu.Item onSelect={() => signOut()}>
             <LogOutIcon />
             <span>Logout</span>
           </DropdownMenu.Item>
