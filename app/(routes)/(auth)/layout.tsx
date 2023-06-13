@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import { Button, Text } from "@/ui";
 import { getCurrentUser } from "@/util/session";
-import ThemeToggle from "./theme";
+import ThemeToggle from "@/components/theme";
 
 const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getCurrentUser();

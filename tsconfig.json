@@ -25,6 +25,7 @@
       "@/util": ["./app/(util)/index.ts"],
       "@/ui": ["./app/(ui)/index.ts"],
       "@/components": ["./app/(components)/index.ts"],
+      "@/components/*": ["./app/(components)/*"],
       "@/util/*": ["./app/(util)/*"],
       "@/*": ["./*"]
     }

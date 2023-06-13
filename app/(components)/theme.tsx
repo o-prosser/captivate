@@ -7,17 +7,14 @@ import { useTheme } from "next-themes";
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
+  const Icon =
+    theme === "light" ? SunIcon : theme === "dark" ? MoonIcon : LaptopIcon;
+
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <Button variant="ghost" className="fixed right-2 bottom-4">
-          {theme === "light" ? (
-            <SunIcon />
-          ) : theme === "dark" ? (
-            <MoonIcon />
-          ) : (
-            <LaptopIcon />
-          )}
+          <Icon />
           Select theme
         </Button>
       </DropdownMenu.Trigger>
