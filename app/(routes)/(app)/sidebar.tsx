@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <aside className="hidden md:block row-span-2 border-r">
       <Button variant="link" asChild>
-        <Link href="/dashboard" className="ml-6 inline-flex mt-8">
+        <Link href="/dashboard" className="ml-6 inline-flex mt-4">
           <Image
             src="/logo.svg"
             alt="Captivate Logo"
