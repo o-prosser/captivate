@@ -8,7 +8,10 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between md:justify-end border-b">
       <Button variant="link" asChild>
-        <Link href="/dashboard" className="ml-6 inline-flex md:hidden">
+        <Link
+          href="/dashboard"
+          className="ml-6 inline-flex md:hidden dark:brightness-150"
+        >
           <Image
             src="/logo.svg"
             alt="Captivate Logo"

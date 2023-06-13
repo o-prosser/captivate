@@ -15,7 +15,7 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
       <Button variant="link" asChild size={null}>
         <Link
           href="/"
-          className="hover:opacity-80 fixed inset-x-0 sm:right-auto ml-6 top-6 block"
+          className="hover:opacity-80 fixed inset-x-0 sm:right-auto ml-6 top-6 block dark:brightness-150"
         >
           <Image src="/logo.svg" alt="Captivate Logo" height={28} width={162} />
         </Link>
