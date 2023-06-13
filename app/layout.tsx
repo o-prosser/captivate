@@ -1,6 +1,7 @@
 import { generalSans } from "@/assets/fonts";
 import "./globals.css";
 import { cn } from "@/util";
+import Providers from "./providers";
 
 export const metadata = {
   title: {
@@ -16,14 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           generalSans.variable,
           "font-sans antialiased bg-background text-foreground min-h-screen w-screen",
         )}
       >
-        {children}
+        <Providers attribute="class" disableTransitionOnChange>
+          {children}
+        </Providers>
       </body>
     </html>
   );
