@@ -9,7 +9,7 @@ import Sidebar from "./sidebar";
 
 const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getCurrentUser();
-  if (!user) redirect("/dashboard");
+  if (!user) redirect("/login");
 
   return (
     <div className="grid grid-cols-1 grid-rows-[4rem,1fr,6rem] h-screen w-screen overflow-hidden md:grid-rows-[4rem,1fr] md:grid-cols-[16rem,1fr]">
