@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { Button, Text } from "@/ui";
 import { getCurrentUser } from "@/util/session";
+import ThemeToggle from "./theme";
 
 const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getCurrentUser();
@@ -26,9 +27,10 @@ const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
         </main>
       </div>
 
-      <Text className="text-muted-foreground fixed text-center inset-x-0 bottom-6">
+      <Text className="text-muted-foreground fixed inset-x-6 bottom-6 md:text-center">
         &copy; Prosser Media {new Date().getFullYear()}
       </Text>
+      <ThemeToggle />
     </>
   );
 };
