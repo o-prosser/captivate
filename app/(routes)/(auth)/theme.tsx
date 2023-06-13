@@ -11,9 +11,13 @@ const ThemeToggle = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <Button variant="ghost" className="fixed right-2 bottom-4">
-          {theme === "light" && <SunIcon />}
-          {theme === "dark" && <MoonIcon />}
-          {theme === "system" && <LaptopIcon />}
+          {theme === "light" ? (
+            <SunIcon />
+          ) : theme === "dark" ? (
+            <MoonIcon />
+          ) : (
+            <LaptopIcon />
+          )}
           Select theme
         </Button>
       </DropdownMenu.Trigger>
