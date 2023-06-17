@@ -7,8 +7,7 @@ import { Loader2Icon } from "lucide-react";
 
 const buttonVariants = cva(
   [
-    "inline-flex items-center justify-center rounded-2xl text-sm font-medium transition-colors font-sans relative",
-    "[&>svg]:h-4 [&>svg]:w-4 [&>svg]:mr-2",
+    "inline-flex items-center justify-center rounded-2xl text-sm font-medium transition-colors font-sans relative group",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background",
     "disabled:pointer-events-none",
   ],
@@ -20,11 +19,12 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input hover:bg-muted hover:text-muted-foreground",
-        ghost: "hover:bg-muted",
+        ghost:
+          "hover:bg-muted [&>svg]:text-muted-foreground [&.group:hover>svg]:text-foreground [&>svg]:transition-colours",
         link: "underline-offset-4 hover:underline text-primary !h-auto !p-1 -m-1 text-base focus-visible:!ring-offset-0",
       },
       size: {
-        default: "h-10 py-2 px-4",
+        default: "h-10 [&>svg]:h-4 [&>svg]:w-4",
         sm: "h-9 px-3 rounded-xl",
         lg: "h-11 px-8 rounded-3xl",
       },
@@ -32,11 +32,28 @@ const buttonVariants = cva(
         true: "",
         false: "disabled:opacity-50",
       },
+      iconOnly: {
+        true: "",
+        false: "[&>svg]:mr-2",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      iconOnly: false,
     },
+    compoundVariants: [
+      {
+        iconOnly: true,
+        size: "default",
+        className: "p-3",
+      },
+      {
+        iconOnly: false,
+        size: "default",
+        className: "py-2 px-4",
+      },
+    ],
   },
 );
 
@@ -49,13 +66,25 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild = false, pending, children, ...props },
+    {
+      className,
+      variant,
+      size,
+      iconOnly,
+      asChild = false,
+      pending,
+      children,
+      ...props
+    },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
     return asChild ? (
       <Slot
-        className={cn(buttonVariants({ variant, size, pending }), className)}
+        className={cn(
+          buttonVariants({ variant, size, pending, iconOnly }),
+          className,
+        )}
         ref={ref}
         {...props}
       >
@@ -63,7 +92,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       </Slot>
     ) : (
       <button
-        className={cn(buttonVariants({ variant, size, pending }), className)}
+        className={cn(
+          buttonVariants({ variant, size, pending, iconOnly }),
+          className,
+        )}
         ref={ref}
         disabled={pending}
         {...props}

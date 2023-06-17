@@ -1,5 +1,5 @@
-import { Button, Label } from "@/ui";
-import { FlaskRoundIcon } from "lucide-react";
+import { Button, LogoIcon } from "@/ui";
+import { FlaskRoundIcon, MessageSquareIcon, SettingsIcon } from "lucide-react";
 import {
   AtomIcon,
   CalendarIcon,
@@ -7,63 +7,62 @@ import {
   HomeIcon,
   PiIcon,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 const Sidebar = () => {
   return (
-    <aside className="hidden md:block row-span-2 border-r">
-      <Button variant="link" asChild>
-        <Link
-          href="/dashboard"
-          className="ml-6 inline-flex mt-4 dark:brightness-150"
-        >
-          <Image
-            src="/logo.svg"
-            alt="Captivate Logo"
-            height={24}
-            width={138.86}
-          />
+    <aside className="hidden md:flex py-6 flex-col items-center">
+      <Button variant="default" size={null} asChild iconOnly>
+        <Link href="/dashboard" className="p-2.5">
+          <LogoIcon className="h-6 w-6" />
         </Link>
       </Button>
 
-      <div className="px-2 flex flex-col space-y-1 [&>a]:w-full [&>a]:!justify-start [&>label]:pl-4 [&>label]:pt-8 [&>label]:text-muted-foreground [&>label]:pb-2">
-        <Label>Pages</Label>
-        <Button variant="ghost" asChild>
+      <div className="flex flex-col space-y-1 [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a]:p-3 mt-4 flex-1">
+        <Button variant="ghost" size={null} iconOnly asChild>
           <Link href="/dashboard">
             <HomeIcon />
-            Dashboard
           </Link>
         </Button>
-        <Button variant="ghost" asChild>
+        <Button variant="ghost" size={null} iconOnly asChild>
           <Link href="/timetable">
             <CalendarIcon />
-            Timetable
           </Link>
         </Button>
-        <Button variant="ghost" asChild>
+        <Button variant="ghost" size={null} iconOnly asChild>
           <Link href="/tasks">
             <ClipboardIcon />
-            Tasks
           </Link>
         </Button>
-        <Label>Subjects</Label>
-        <Button variant="ghost" asChild>
-          <Link href="/dashboard">
+
+        <div className="h-2" />
+
+        <Button variant="ghost" size={null} iconOnly asChild>
+          <Link href="/subjects/maths">
             <PiIcon />
-            Maths
           </Link>
         </Button>
-        <Button variant="ghost" asChild>
-          <Link href="/timetable">
+        <Button variant="ghost" size={null} iconOnly asChild>
+          <Link href="/subjects/chemistry">
             <FlaskRoundIcon />
-            Chemistry
           </Link>
         </Button>
-        <Button variant="ghost" asChild>
-          <Link href="/tasks">
+        <Button variant="ghost" size={null} iconOnly asChild>
+          <Link href="/subjects/physics">
             <AtomIcon />
-            Physics
+          </Link>
+        </Button>
+
+        <div className="flex-1" />
+
+        <Button variant="ghost" size={null} iconOnly asChild>
+          <Link href="/support">
+            <MessageSquareIcon />
+          </Link>
+        </Button>
+        <Button variant="ghost" size={null} iconOnly asChild>
+          <Link href="/settings">
+            <SettingsIcon />
           </Link>
         </Button>
       </div>

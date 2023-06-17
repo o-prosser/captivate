@@ -1,0 +1,81 @@
+{
+  "sciences": {
+    "physics": {
+      "name": "Physics",
+      "fullName": "WJEC AS Physics",
+      "specificationLink": "https://www.wjec.co.uk/media/gxbjl243/wjec-gce-physics-spec-from-2015-e-22-09-22.pdf",
+      "practicals": [
+        {
+          "id": "u101-e1",
+          "name": "Measurement of the density of solids",
+          "unit": 1,
+          "reference": 1.1,
+          "bookletPages": [13, 15],
+          "questions": [
+            {
+              "reference": "Physics 3 2008 Question 3",
+              "download": ""
+            },
+            {
+              "reference": "Physics 2012 Task A1",
+              "download": ""
+            },
+            {
+              "reference": "Physics 3 2013 Task A1",
+              "download": "u101-e2-p3.pdf"
+            }
+          ]
+        },
+        {
+          "id": "u101-e2",
+          "name": "Determination of unknown masses by using the principle of moments",
+          "unit": 1,
+          "reference": 1.1,
+          "bookletPages": [8, 12],
+          "questions": [
+            {
+              "reference": "Physics 3 2004 Experiment 1",
+              "download": "u101-e1-p1.pdf"
+            },
+            {
+              "reference": "Physics 3 2009 Task A2",
+              "download": "u101-e1-p2.pdf"
+            },
+            {
+              "reference": "Physics 3 2013 Task A2",
+              "download": "u101-e1-p3.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    "chemistry": {
+      "name": "Chemistry",
+      "fullName": "WJEC AS Chemistry",
+      "specificationLink": "https://www.wjec.co.uk/media/akbbkvwh/wjec-gce-chemistry-spec-from-2015.pdf",
+      "practicals": [
+        {
+          "id": "u101-e1",
+          "name": "Measurement of the density of solids",
+          "unit": 1,
+          "reference": 1.1,
+          "bookletPages": [13, 15],
+          "questions": [
+            {
+              "reference": "Physics 3 2008 Question 3",
+              "download": ""
+            },
+            {
+              "reference": "Physics 2012 Task A1",
+              "download": ""
+            },
+            {
+              "reference": "Physics 3 2013 Task A1",
+              "download": "u101-e2-p3.pdf"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

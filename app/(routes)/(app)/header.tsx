@@ -1,26 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { Button } from "@/ui";
+import { Button, LogoIcon } from "@/ui";
 import Profile from "./profile";
+import { SearchIcon, SettingsIcon } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between md:justify-end border-b">
-      <Button variant="link" asChild>
-        <Link
-          href="/dashboard"
-          className="ml-6 inline-flex md:hidden dark:brightness-150"
-        >
-          <Image
-            src="/logo.svg"
-            alt="Captivate Logo"
-            height={24}
-            width={138.86}
-          />
+    <header className="flex items-center justify-between mx-6 border-b md:border-none md:absolute right-2 top-6 space-x-1">
+      <Button variant="default" size={null} asChild iconOnly>
+        <Link href="/dashboard" className="p-2.5 md:hidden">
+          <LogoIcon className="h-5 w-5"/>
         </Link>
       </Button>
 
+      <Button variant="ghost" iconOnly className="hidden md:inline-flex">
+        <SearchIcon />
+      </Button>
+      <Button variant="ghost" iconOnly className="hidden md:inline-flex">
+        <SettingsIcon />
+      </Button>
       <Profile />
     </header>
   );

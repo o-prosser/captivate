@@ -2,12 +2,12 @@ import { Text } from "@/ui";
 
 const Body = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="overflow-y-scroll p-6 md:px-8">
+    <div className="overflow-y-scroll p-6 md:px-8 h-full">
       {children}
 
-      <Text className="mt-10 text-muted-foreground">
+      {/* <Text className="mt-10 text-muted-foreground">
         &copy; Prosser Media {new Date().getFullYear()}
-      </Text>
+      </Text> */}
     </div>
   );
 };

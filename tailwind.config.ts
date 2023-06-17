@@ -20,6 +20,8 @@ export default {
       }),
       colors: {
         background: "hsl(var(--background) / <alpha-value>)",
+        "background-secondary":
+          "hsl(var(--background-secondary) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
         muted: {
           DEFAULT: "hsl(var(--muted) / <alpha-value>)",
@@ -35,6 +37,20 @@ export default {
         },
         border: "hsl(var(--border) / <alpha-value>)",
         ring: "hsl(var(--ring) / <alpha-value>)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
