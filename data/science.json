@@ -93,6 +93,400 @@
           "bookletPages": [31, 34],
           "questions": []
         }
+      ],
+      "pastPapers": [
+        {
+          "unit": 1,
+          "year": 2016,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s16-physics1.pdf",
+          "markscheme": "s16-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2016,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s16-physics2.pdf",
+          "markscheme": "s16-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2017,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s17-physics1.pdf",
+          "markscheme": "s17-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2017,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s17-physics2.pdf",
+          "markscheme": "s17-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2018,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s18-physics-1.pdf",
+          "markscheme": "s18-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2018,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s18-physics2.pdf",
+          "markscheme": "s18-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2019,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s19-physics-1.pdf",
+          "markscheme": "s19-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2019,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s19-physics2.pdf",
+          "markscheme": "s19-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2022,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s22-physics-1.pdf",
+          "markscheme": "s22-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2022,
+          "series": "summer",
+          "spec": "current",
+          "paper": "s22-physics2.pdf",
+          "markscheme": "s22-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2009,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w09-physics1.pdf",
+          "markscheme": "w09-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2009,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w09-physics2.pdf",
+          "markscheme": "w09-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2010,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w10-physics1.pdf",
+          "markscheme": "w10-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2010,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w10-physics2.pdf",
+          "markscheme": "w10-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2011,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w11-physics1.pdf",
+          "markscheme": "w11-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2011,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w11-physics2.pdf",
+          "markscheme": "w11-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2012,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w12-physics1.pdf",
+          "markscheme": "w12-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2012,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w12-physics2.pdf",
+          "markscheme": "w12-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2013,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w13-physics1.pdf",
+          "markscheme": "w13-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2013,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w13-physics2.pdf",
+          "markscheme": "w13-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2014,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w14-physics1.pdf",
+          "markscheme": "w14-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2014,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "w14-physics2.pdf",
+          "markscheme": "w14-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2009,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s09-physics1.pdf",
+          "markscheme": "s09-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2009,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s09-physics2.pdf",
+          "markscheme": "s09-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2010,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s10-physics1.pdf",
+          "markscheme": "s10-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2010,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s10-physics2.pdf",
+          "markscheme": "s10-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2011,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s11-physics1.pdf",
+          "markscheme": "s11-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2011,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s11-physics2.pdf",
+          "markscheme": "s11-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2012,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s12-physics1.pdf",
+          "markscheme": "s12-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2012,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s12-physics2.pdf",
+          "markscheme": "s12-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2013,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s13-physics1.pdf",
+          "markscheme": "s13-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2013,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s13-physics2.pdf",
+          "markscheme": "s13-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2014,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s14-physics1.pdf",
+          "markscheme": "s14-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2014,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s14-physics2.pdf",
+          "markscheme": "s14-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2015,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s15-physics1.pdf",
+          "markscheme": "s15-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2015,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s15-physics2.pdf",
+          "markscheme": "s15-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2016,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s16-physics1-legacy.pdf",
+          "markscheme": "s16-physics1-ms-legacy.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2016,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "s16-physics2-legacy.pdf",
+          "markscheme": "s16-physics2-ms-legacy.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2006,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "s06-physics2.pdf",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2007,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "s07-physics1.pdf",
+          "markscheme": "s07-physics1-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2008,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "s08-physics1.pdf",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2003,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w03-physics1.pdf",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2004,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w04-physics1.pdf",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2005,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w05-physics1.pdf",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2006,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w04-physics1.pdf",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2007,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w07-physics1.pdf",
+          "markscheme": "w07-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2007,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w07-physics2.pdf",
+          "markscheme": "w07-physics2-ms.pdf"
+        },
+        {
+          "unit": 1,
+          "year": 2008,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w08-physics1.pdf",
+          "markscheme": "w08-physics1-ms.pdf"
+        },
+        {
+          "unit": 2,
+          "year": 2008,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "w08-physics2.pdf",
+          "markscheme": "w08-physics2-ms.pdf"
+        }
       ]
     },
     "chemistry": {
@@ -121,7 +515,8 @@
             }
           ]
         }
-      ]
+      ],
+      "pastPapers": []
     }
   }
 }

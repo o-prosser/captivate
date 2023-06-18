@@ -1,7 +1,7 @@
 import { Breadcrumbs, Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
-import DataTable from "./data-table";
+import DataTable from "@/components/data-table";
 import { columns } from "./columns";
 
 const Practicals = ({ params }: { params: { science: string } }) => {
