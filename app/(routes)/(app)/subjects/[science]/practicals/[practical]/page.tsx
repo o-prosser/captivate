@@ -49,13 +49,16 @@ const Practical = ({
         />
         <div>
           <Heading level={4}>Lab book</Heading>
-          <Text className="!mt-0 mb-3">
+          <Text className="mb-3">
             Pages {practical.bookletPages[0]} &ndash;{" "}
             {practical.bookletPages[1]}
           </Text>
 
           <Button asChild>
-            <Link download href="#">
+            <Link
+              href={`/physics/practicals/${practical.id}.pdf`}
+              target="_blank"
+            >
               <DownloadIcon />
               Download pages
             </Link>
@@ -69,21 +72,30 @@ const Practical = ({
         </div>
       </div>
 
-      <Heading level={2} className="mt-8 mb-2">
-        Past paper downloads
-      </Heading>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-6">
-        {practical.questions.map((question, key) => (
-          <Link key={key} href="#" download className="block group">
-            <div className="bg-muted w-full aspect-[1/1.42] grid place-items-center group-hover:bg-muted/70">
-              <LogoIcon className="text-muted-foreground h-8 w-8" />
-            </div>
-            <span className="leading-6 font-medium mt-2 block group-hover:text-foreground/70">
-              {question.reference}
-            </span>
-          </Link>
-        ))}
-      </div>
+      {practical.questions.length > 0 && (
+        <>
+          <Heading level={2} className="mt-8 mb-2">
+            Past paper downloads
+          </Heading>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-6">
+            {practical.questions.map((question, key) => (
+              <Link
+                key={key}
+                href={`/physics/practicals/questions/${question.download}`}
+                target="_blank"
+                className="block group"
+              >
+                <div className="bg-muted w-full aspect-[1/1.42] grid place-items-center group-hover:bg-muted/70 transition duration-100">
+                  <LogoIcon className="text-muted-foreground h-8 w-8" />
+                </div>
+                <span className="leading-6 font-medium mt-2 block group-hover:text-foreground/70 transition duration-100">
+                  {question.reference}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { Heading } from "@/ui";
+import { Breadcrumbs, Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import DataTable from "./data-table";
@@ -15,6 +15,7 @@ const Practicals = ({ params }: { params: { science: string } }) => {
 
   return (
     <>
+      <Breadcrumbs pages={[science.name, "Practicals"]} />
       <Heading>Practicals</Heading>
 
       <DataTable columns={columns} data={practicals} />
