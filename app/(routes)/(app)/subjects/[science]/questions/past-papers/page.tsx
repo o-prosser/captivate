@@ -90,7 +90,7 @@ const PastPapers = async ({ params }: { params: { science: string } }) => {
           <Heading level={2}>{table.spec}</Heading>
           <Accordion.Root type="single" collapsible>
             {table.units.map((unit, key) => (
-              <Accordion.Item value={`${table.id}-${key + 1}`}>
+              <Accordion.Item key={key} value={`${table.id}-${key + 1}`}>
                 <Accordion.Trigger>{unit}</Accordion.Trigger>
                 <Accordion.Content>
                   <div className="pb-4 -mt-8">
