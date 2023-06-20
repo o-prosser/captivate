@@ -1,0 +1,242 @@
+{
+  "pastPapers": [
+    {
+      "unit": 1,
+      "year": 2018,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s18-maths1.pdf",
+      "markscheme": "s18-maths1-ms.pdf"
+    },
+    {
+      "unit": 2,
+      "year": 2018,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s18-maths2.pdf",
+      "markscheme": "s18-maths2-ms.pdf"
+    },
+    {
+      "unit": 3,
+      "year": 2018,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s18-maths3.pdf",
+      "markscheme": "s18-maths3-ms.pdf"
+    },
+    {
+      "unit": 4,
+      "year": 2018,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s18-maths4.pdf",
+      "markscheme": "s18-maths4-ms.pdf"
+    },
+    {
+      "unit": 1,
+      "year": 2019,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s19-maths1.pdf",
+      "markscheme": "s19-maths1-ms.pdf"
+    },
+    {
+      "unit": 2,
+      "year": 2019,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s19-maths2.pdf",
+      "markscheme": "s19-maths2-ms.pdf"
+    },
+    {
+      "unit": 3,
+      "year": 2019,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s19-maths3.pdf",
+      "markscheme": "s19-maths3-ms.pdf"
+    },
+    {
+      "unit": 4,
+      "year": 2019,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s19-maths4.pdf",
+      "markscheme": "s19-maths4-ms.pdf"
+    },
+    {
+      "unit": 1,
+      "year": 2022,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s22-maths1.pdf",
+      "markscheme": "s22-maths1-ms.pdf"
+    },
+    {
+      "unit": 2,
+      "year": 2022,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s22-maths2.pdf",
+      "markscheme": "s22-maths2-ms.pdf"
+    },
+    {
+      "unit": 3,
+      "year": 2022,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s22-maths3.pdf",
+      "markscheme": "s22-maths3-ms.pdf"
+    },
+    {
+      "unit": 4,
+      "year": 2022,
+      "series": "summer",
+      "spec": "current",
+      "paper": "s22-maths4.pdf",
+      "markscheme": "s22-maths4-ms.pdf"
+    },
+    {
+      "unit": 1,
+      "year": 2023,
+      "series": "summer",
+      "spec": "current",
+      "paper": "",
+      "markscheme": ""
+    },
+    {
+      "unit": 2,
+      "year": 2023,
+      "series": "summer",
+      "spec": "current",
+      "paper": "",
+      "markscheme": ""
+    },
+    {
+      "unit": 3,
+      "year": 2023,
+      "series": "summer",
+      "spec": "current",
+      "paper": "",
+      "markscheme": ""
+    },
+    {
+      "unit": 4,
+      "year": 2023,
+      "series": "summer",
+      "spec": "current",
+      "paper": "",
+      "markscheme": ""
+    }
+  ],
+  "topicPapers": [
+    {
+      "unit": 1.1,
+      "title": "Proof",
+      "paper": "101-proof.pdf",
+      "markscheme": "101-proof-ms.pdf"
+    },
+    {
+      "unit": 1.2,
+      "title": "Completing the square",
+      "paper": "102-completing-the-square.pdf",
+      "markscheme": "102-completing-the-square-ms.pdf"
+    },
+    {
+      "unit": 1.2,
+      "title": "Polynomials",
+      "paper": "102-polynomials.pdf",
+      "markscheme": "102-polynomials-ms.pdf"
+    },
+    {
+      "unit": 1.2,
+      "title": "Quadratics and inequalities",
+      "paper": "102-quadratics-inequalities.pdf",
+      "markscheme": "102-quadratics-inequalities-ms.pdf"
+    },
+    {
+      "unit": 1.2,
+      "title": "Surds",
+      "paper": "102-surds.pdf",
+      "markscheme": "102-surds-ms.pdf"
+    },
+    {
+      "unit": 1.2,
+      "title": "Transformation of functions",
+      "paper": "102-transformations-of-functions.pdf",
+      "markscheme": "102-transformations-of-functions-ms.pdf"
+    },
+    {
+      "unit": 1.3,
+      "title": "Coordinate geometry circles",
+      "paper": "103-coordinate-geometry-circles.pdf",
+      "markscheme": "103-coordinate-geometry-circles-ms.pdf"
+    },
+    {
+      "unit": 1.3,
+      "title": "Coordinate geometry lines",
+      "paper": "103-coordinate-geometry-lines.pdf",
+      "markscheme": "103-coordinate-geometry-lines-ms.pdf"
+    },
+    {
+      "unit": 1.4,
+      "title": "Binomial theorem",
+      "paper": "104-binomial-theorem.pdf",
+      "markscheme": "104-binomial-theorem-ms.pdf"
+    },
+    {
+      "unit": 1.5,
+      "title": "Trig triangles",
+      "paper": "105-trig-triangles.pdf",
+      "markscheme": "105-trig-triangles-ms.pdf"
+    },
+    {
+      "unit": 1.5,
+      "title": "Trigonometric equations",
+      "paper": "105-trigonometric-equations.pdf",
+      "markscheme": "105-trigonometric-equations-ms.pdf"
+    },
+    {
+      "unit": 1.6,
+      "title": "Logarithms and exponentials",
+      "paper": "106-logarithms-exponentials.pdf",
+      "markscheme": "106-logarithms-exponentials-ms.pdf"
+    },
+    {
+      "unit": 1.7,
+      "title": "Application of differentiation — optimisation",
+      "paper": "107-app-differentiation-optimisation.pdf",
+      "markscheme": "107-app-differentiation-optimisation-ms.pdf"
+    },
+    {
+      "unit": 1.7,
+      "title": "Application of differentiation — stationary points",
+      "paper": "107-app-differentiation-stationary-pts.pdf",
+      "markscheme": "107-app-differentiation-stationary-pts-ms.pdf"
+    },
+    {
+      "unit": 1.7,
+      "title": "Application of differentiation — tangents normals",
+      "paper": "107-app-differentiation-tangents-normals.pdf",
+      "markscheme": "107-app-differentiation-tangents-normals-ms.pdf"
+    },
+    {
+      "unit": 1.7,
+      "title": "Differentiation",
+      "paper": "107-differentiation.pdf",
+      "markscheme": "107-differentiation-ms.pdf"
+    },
+    {
+      "unit": 1.8,
+      "title": "Integration",
+      "paper": "108-integration.pdf",
+      "markscheme": "108-integration-ms.pdf"
+    },
+    {
+      "unit": 1.9,
+      "title": "Vectors",
+      "paper": "109-vectors.pdf",
+      "markscheme": "109-vectors-ms.pdf"
+    }
+  ]
+}

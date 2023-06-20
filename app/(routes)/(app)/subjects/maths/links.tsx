@@ -77,7 +77,7 @@ const Links = () => {
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <Link href={`/subjects/maths/questions/topic-questions`}>
+                <Link href={`/subjects/maths/questions/topic-papers`}>
                   Topic questions
                 </Link>
               </Button>
