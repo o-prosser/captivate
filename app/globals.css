@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.katex-display > .katex > .katex-html > .tag {
+  @apply !hidden;
+}

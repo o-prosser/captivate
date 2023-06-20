@@ -78,3 +78,14 @@ export const UnorderedList = ({ children }: React.ComponentProps<"ul">) => (
     {children}
   </ul>
 );
+
+export const Columns = ({
+  left,
+  children,
+  ...props
+}: { left: React.ReactNode } & React.ComponentProps<"div">) => (
+  <div className="flex mt-4 leading-7" {...props}>
+    <div className="mr-4 [&>p:not(:first-child)]:!mt-1">{left}</div>
+    <div className="[&>p:not(:first-child)]:!mt-1">{children}</div>
+  </div>
+);

@@ -4,6 +4,21 @@
       "name": "Physics",
       "fullName": "WJEC AS Physics",
       "specificationLink": "https://www.wjec.co.uk/media/gxbjl243/wjec-gce-physics-spec-from-2015-e-22-09-22.pdf",
+      "units": [
+        {
+          "number": 1,
+          "name": "Motion, Energy and Matter",
+          "topics": [
+            "Basic physics",
+            "Kinematics",
+            "Dynamics",
+            "Energy concepts",
+            "Solids under stress",
+            "Using radiation to investigate stars",
+            "Particles and nuclear structure"
+          ]
+        }
+      ],
       "practicals": [
         {
           "id": "u101-e1",
@@ -493,6 +508,7 @@
       "name": "Chemistry",
       "fullName": "WJEC AS Chemistry",
       "specificationLink": "https://www.wjec.co.uk/media/akbbkvwh/wjec-gce-chemistry-spec-from-2015.pdf",
+      "units": [],
       "practicals": [
         {
           "id": "u101-e1",

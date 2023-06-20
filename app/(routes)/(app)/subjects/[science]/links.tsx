@@ -46,12 +46,12 @@ const Links = ({ params }: { params: { science: string } }) => {
           <Accordion.Content asChild>
             <div className="ml-6 pr-1 border-l pl-2 flex flex-col [&>a]:justify-start">
               <Button variant="ghost" size="sm" asChild>
-                <Link href={`/subjects/${params.science}/notes/as-unit-1`}>
+                <Link href={`/subjects/${params.science}/notes/1`}>
                   AS Unit 1
                 </Link>
               </Button>
               <Button variant="ghost" size="sm" asChild>
-                <Link href={`/subjects/${params.science}/notes/as-unit-2`}>
+                <Link href={`/subjects/${params.science}/notes/2`}>
                   AS Unit 2
                 </Link>
               </Button>

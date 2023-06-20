@@ -1,6 +1,7 @@
 export * as Accordion from "./accordion";
 export * from "./breadcrumbs";
 export * from "./button";
+export * from "./callout";
 export * as DropdownMenu from "./dropdown-menu";
 export * from "./input";
 export { default as Label } from "./label";
