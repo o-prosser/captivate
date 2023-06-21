@@ -60,7 +60,7 @@ const PastPapers = async () => {
       <Breadcrumbs pages={["Maths", "Questions", "Topic papers"]} />
       <Heading>Topic papers</Heading>
 
-      <Accordion.Root type="single" collapsible>
+      <Accordion.Root className="mt-6" type="single" collapsible>
         {units.map((unit, key) => (
           <Accordion.Item key={key} value={`${key}`}>
             <Accordion.Trigger>{unit}</Accordion.Trigger>
