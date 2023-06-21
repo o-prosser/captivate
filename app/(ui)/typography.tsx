@@ -43,6 +43,7 @@ export const Text = ({ className, ...props }: React.ComponentProps<"p">) => (
 
 export const BasicTable = ({
   center = false,
+  className,
   ...props
 }: React.ComponentProps<"table"> & { center?: boolean }) => (
   <div
@@ -51,20 +52,29 @@ export const BasicTable = ({
       center ? "!text-center" : "text-left",
     )}
   >
-    <table className="w-full" {...props} />
+    <table className={twMerge("w-full", className)} {...props} />
   </div>
 );
 
-export const TableRow = (props: React.ComponentProps<"tr">) => (
-  <tr className="m-0 border-t p-0 even:bg-muted" {...props} />
+export const TableRow = ({
+  className,
+  ...props
+}: React.ComponentProps<"tr">) => (
+  <tr
+    className={twMerge("m-0 border-t p-0 even:bg-muted/50", className)}
+    {...props}
+  />
 );
 
 export const TableHeading = (props: React.ComponentProps<"th">) => (
   <th className="border px-4 py-2 font-bold" {...props} />
 );
 
-export const TableCell = (props: React.ComponentProps<"td">) => (
-  <td className="border px-4 py-2" {...props} />
+export const TableCell = ({
+  className,
+  ...props
+}: React.ComponentProps<"td">) => (
+  <td className={twMerge("border px-4 py-2", className)} {...props} />
 );
 
 export const OrderedList = ({ children }: React.ComponentProps<"ol">) => (

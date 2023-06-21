@@ -1,0 +1,68 @@
+{
+  "link": "https://www.wjec.co.uk/media/zklarj0h/summer-2024-wales-and-eduqas-as-a-level-provisional-exam-timetable-v7-03-05-23-clean.pdf",
+  "exams": [
+    {
+      "date": "2024-05-14",
+      "session": "am",
+      "subject": "chemistry",
+      "unit": 1,
+      "length": 90
+    },
+    {
+      "date": "2024-05-15",
+      "session": "am",
+      "subject": "maths",
+      "unit": 1,
+      "length": 150
+    },
+    {
+      "date": "2024-05-16",
+      "session": "pm",
+      "subject": "physics",
+      "unit": 1,
+      "length": 90
+    },
+    {
+      "date": "2024-05-22",
+      "session": "pm",
+      "subject": "physics",
+      "unit": 2,
+      "length": 90
+    },
+    {
+      "date": "2024-05-23",
+      "session": "am",
+      "subject": "chemistry",
+      "unit": 2,
+      "length": 90
+    },
+    {
+      "date": "2024-05-23",
+      "session": "pm",
+      "subject": "maths",
+      "unit": 2,
+      "length": 105
+    },
+    {
+      "date": "2024-05-23",
+      "session": "pm",
+      "subject": "maths",
+      "unit": 2,
+      "length": 105
+    },
+    {
+      "date": "2024-06-04",
+      "session": "am",
+      "subject": "maths",
+      "unit": 3,
+      "length": 150
+    },
+    {
+      "date": "2024-06-11",
+      "session": "pm",
+      "subject": "maths",
+      "unit": 4,
+      "length": 105
+    }
+  ]
+}
