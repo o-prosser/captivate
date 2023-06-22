@@ -57,7 +57,7 @@ const ExamsTimetable = () => {
           <TableHeading colSpan={3}>Exam details</TableHeading>
         </TableRow>
         <tbody>
-          {examsTimetable.exams.map((exam) => {
+          {examsTimetable.exams.map((exam, key) => {
             const date = new Date(exam.date);
             const dateString = `${weekday[date.getDay()]} ${date.getDate()} ${
               monthNames[date.getMonth()]
@@ -66,7 +66,7 @@ const ExamsTimetable = () => {
             const completed = new Date() > new Date(exam.date);
 
             return (
-              <TableRow className={cn(completed && "bg-muted")}>
+              <TableRow key={key} className={cn(completed && "bg-muted")}>
                 <TableCell className="capitalize py-4 w-60">
                   {dateString}
                 </TableCell>
