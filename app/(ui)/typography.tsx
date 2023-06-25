@@ -2,14 +2,15 @@ import { cn } from "@/util";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
+import GithubSlugger from "github-slugger";
 
 const headingVariants = cva("scroll-m-20", {
   variants: {
     level: {
       1: "text-3xl font-bold lg:text-4xl",
-      2: "text-2xl font-semibold [&:not(:first-child)]:mt-10",
-      3: "text-xl font-semibold [&:not(:first-child)]:mt-8 -mb-4",
-      4: "text-lg font-semibold tracking-tight [&:not(:first-child)]:mt-6 -mb-5",
+      2: "text-2xl font-semibold [&:not(:first-child)]:pt-10",
+      3: "text-xl font-semibold [&:not(:first-child)]:pt-8 -mb-4",
+      4: "text-lg font-semibold tracking-tight [&:not(:first-child)]:pt-6 -mb-5",
     },
   },
   defaultVariants: {
@@ -19,19 +20,49 @@ const headingVariants = cva("scroll-m-20", {
 
 interface HeadingProps
   extends React.ComponentProps<"h1">,
-    VariantProps<typeof headingVariants> {}
+    VariantProps<typeof headingVariants> {
+  link?: boolean;
+}
 
-export const Heading = ({ level, className, ...props }: HeadingProps) => {
-  const headingProps = {
-    className: twMerge(headingVariants({ level }), className),
-    ...props,
-  };
+export const Heading = ({
+  level,
+  link = false,
+  className,
+  children,
+  ...props
+}: HeadingProps) => {
+  const Component = `h${level || 1}`;
 
-  if (level == 1) return <h1 {...headingProps} />;
-  if (level == 2) return <h2 {...headingProps} />;
-  if (level == 3) return <h3 {...headingProps} />;
-  if (level == 4) return <h4 {...headingProps} />;
-  if (!level) return <h1 {...headingProps} />;
+  if (link) {
+    const slugs = new GithubSlugger();
+
+    return (
+      // @ts-expect-error
+      <Component
+        className={twMerge(headingVariants({ level }), className)}
+        {...props}
+        id={slugs.slug(children?.toString() || "")}
+      >
+        {children}
+      </Component>
+    );
+  }
+
+  return (
+    // @ts-expect-error
+    <Component
+      className={twMerge(headingVariants({ level }), className)}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+
+  // if (level == 1) return <h1 {...headingProps} />;
+  // if (level == 2) return <h2 {...headingProps} />;
+  // if (level == 3) return <h3 {...headingProps} />;
+  // if (level == 4) return <h4 {...headingProps} />;
+  // if (!level) return <h1 {...headingProps} />;
 };
 
 export const Text = ({ className, ...props }: React.ComponentProps<"p">) => (

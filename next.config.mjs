@@ -20,7 +20,7 @@ const withMdx = createMdx({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkGfm, remarkMath, remarkToc],
-    rehypePlugins: [rehypeKatex, rehypeAutolinkHeadings, rehypeSlug],
+    rehypePlugins: [rehypeKatex],
     // providerImportSource: "@mdx-js/react",
   },
 });

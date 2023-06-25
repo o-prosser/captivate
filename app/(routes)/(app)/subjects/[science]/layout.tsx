@@ -20,8 +20,8 @@ const ScienceLayout = ({
       : sciencesData.sciences.chemistry;
 
   return (
-    <div className="grid md:grid-cols-[15rem,1fr] h-[calc(100vh-3rem)]">
-      <aside className="hidden md:block overflow-x-hidden overflow-y-auto -my-4 rounded-2xl border py-4 -ml-8 mr-8 h-[calc(100vh-1rem)]">
+    <div className="">
+      <aside className="hidden md:block md:fixed overflow-x-hidden overflow-y-auto rounded-2xl w-60 border py-4 fixed inset-y-2 left-[5.5rem]">
         <Heading level={4} className="capitalize px-3 mb-0">
           {science.name}
         </Heading>
@@ -32,7 +32,7 @@ const ScienceLayout = ({
         <Links params={params} />
       </aside>
 
-      <main className="h-screen -my-6 py-6 overflow-y-auto -mr-6 pr-6 md:-mr-8 md:pr-8">
+      <main className="min-h-screen -my-6 py-6 -mr-6 pr-6 md:-mr-8 md:pr-8 pl-[17rem]">
         {children}
       </main>
     </div>

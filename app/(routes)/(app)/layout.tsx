@@ -14,7 +14,7 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   if (!user) redirect("/login");
 
   return (
-    <div className="grid grid-cols-1 grid-rows-[4rem,1fr,6rem] h-screen w-screen max-h-screen overflow-hidden md:grid-rows-1 md:grid-cols-[5.5rem,1fr]">
+    <div className="min-h-screen w-screen">
       <Sidebar />
       <Header />
       <Body>{children}</Body>
