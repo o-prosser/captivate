@@ -2,6 +2,7 @@ import { Breadcrumbs, Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import GetMarkdown from "./get-markdown";
+import { BackButton } from "@/components";
 
 const NoteTopic = ({
   params,
@@ -22,6 +23,7 @@ const NoteTopic = ({
   return (
     <>
       <Breadcrumbs pages={[science.name, "Notes", "AS Unit 1", topic]} />
+      <BackButton />
       <Heading>{topic}</Heading>
       <GetMarkdown
         science={params.science}

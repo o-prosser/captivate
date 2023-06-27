@@ -7,7 +7,7 @@ import GithubSlugger from "github-slugger";
 const headingVariants = cva("scroll-m-20", {
   variants: {
     level: {
-      1: "text-3xl font-bold lg:text-4xl",
+      1: "text-3xl font-bold lg:text-4xl mt-5",
       2: "text-2xl font-semibold [&:not(:first-child)]:pt-10",
       3: "text-xl font-semibold [&:not(:first-child)]:pt-8 -mb-4",
       4: "text-lg font-semibold tracking-tight [&:not(:first-child)]:pt-6 -mb-5",

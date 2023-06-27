@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import labBookCover from "../lab-book-cover.png";
 import { DownloadIcon } from "lucide-react";
+import { BackButton } from "@/components";
 
 export const generateMetadata = ({
   params,
@@ -31,6 +32,7 @@ const Practical = async ({
       <Breadcrumbs
         pages={[science.name, "Practicals", `Unit ${practical.unit}`]}
       />
+      <BackButton />
       <Heading>{practical.name}</Heading>
 
       <Text className="mt-6 font-semibold">
