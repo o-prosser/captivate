@@ -11,7 +11,7 @@ export const BackButton = () => {
     <Button
       onClick={() => router.back()}
       variant="ghost"
-      className="-ml-3"
+      className="-ml-3 print:hidden"
       size="sm"
     >
       <ArrowLeftIcon />

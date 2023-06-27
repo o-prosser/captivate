@@ -15,7 +15,7 @@ export const SubjectLayout = ({
 }) => {
   return (
     <div>
-      <nav className="flex items-center border-b fixed inset-x-6 top-16 bg-background h-12 z-10 md:hidden">
+      <nav className="flex items-center border-b fixed inset-x-6 top-16 bg-background h-12 z-10 md:hidden print:!hidden">
         <Sheet.Root>
           <Sheet.Trigger asChild>
             <Button
@@ -39,7 +39,7 @@ export const SubjectLayout = ({
         </Sheet.Root>
       </nav>
 
-      <aside className="hidden md:block md:fixed overflow-x-hidden overflow-y-auto rounded-2xl w-60 border py-4 fixed inset-y-2 left-[5.5rem]">
+      <aside className="hidden md:block md:fixed overflow-x-hidden overflow-y-auto rounded-2xl w-60 border py-4 fixed inset-y-2 left-[5.5rem] print:!hidden">
         <Heading level={4} className="capitalize px-3 mb-0">
           {title}
         </Heading>
@@ -52,7 +52,7 @@ export const SubjectLayout = ({
         </div>
       </aside>
 
-      <main className="min-h-screen md:pl-[17rem] pt-12 md:pt-0">
+      <main className="min-h-screen md:pl-[17rem] print:!p-0 pt-12 md:pt-0">
         {children}
       </main>
     </div>

@@ -10,7 +10,7 @@ const Breadcrumbs = ({ pages }: { pages: string[] }) => {
   return (
     <div
       className={cn(
-        "flex items-center space-x-1.5 text-muted-foreground text-sm",
+        "flex items-center space-x-1.5 text-muted-foreground text-sm print:hidden",
         hasSidebar
           ? "fixed md:static md:mb-3 top-16 h-12 md:h-auto left-14 z-[11]"
           : "mb-2",

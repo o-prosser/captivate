@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Sidebar = () => {
   return (
-    <aside className="hidden md:flex py-6 flex-col items-center w-[5.5rem] fixed left-0 inset-y-0 h-screen">
+    <aside className="hidden md:flex py-6 flex-col items-center w-[5.5rem] fixed left-0 inset-y-0 h-screen print:!hidden">
       <Button variant="default" size={null} asChild iconOnly>
         <Link href="/dashboard" className="p-2.5">
           <LogoIcon className="h-6 w-6" />
