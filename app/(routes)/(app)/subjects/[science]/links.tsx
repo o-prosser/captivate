@@ -9,14 +9,13 @@ import {
   FolderDownIcon,
   LayoutDashboardIcon,
   PaperclipIcon,
-  PlusIcon,
   PresentationIcon,
   StickyNoteIcon,
 } from "lucide-react";
 
 const Links = ({ params }: { params: { science: string } }) => {
   return (
-    <div className="space-y-1 flex flex-col [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a]:justify-start md:[&>a]:rounded-none mt-4">
+    <>
       <Button variant="ghost" asChild>
         <Link href={`/subjects/${params.science}/`}>
           <LayoutDashboardIcon />
@@ -105,7 +104,7 @@ const Links = ({ params }: { params: { science: string } }) => {
           Resources
         </Link>
       </Button>
-    </div>
+    </>
   );
 };
 

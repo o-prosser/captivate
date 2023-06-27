@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon } from "lucide-react";
+import Balancer from "react-wrap-balancer";
 
 import { Button, Heading } from "@/ui";
 import ThemeToggle from "@/components/theme";
@@ -38,18 +39,18 @@ const Index = async () => {
         </div>
       </div>
 
-      <Heading className="text-center text-4xl lg:text-5xl !leading-[1.2] bg-gradient-to-b to-[#1A2242] from-[#1F2C5C] dark:from-[#4065DD] dark:to-primary text-transparent bg-clip-text mt-20">
-        Captivate is a better
-        <br />
-        way to revise at A-level
+      <Heading className="text-center text-4xl lg:text-5xl !leading-[1.2] bg-gradient-to-b to-[#1A2242] from-[#1F2C5C] dark:from-[#4065DD] dark:to-primary text-transparent bg-clip-text mt-20 max-w-3xl lg:max-w-4xl mx-auto px-6">
+        <Balancer>Captivate is a better way to revise at A-level </Balancer>
       </Heading>
 
       <Heading
         level={2}
-        className="text-muted-foreground font-medium text-center leading-[1.5] mt-4"
+        className="text-muted-foreground font-medium text-center leading-[1.5] mt-4 max-w-3xl lg:max-w-4xl mx-auto px-6"
       >
-        Interactive flashcards, notes, daily question <br />
-        practise and testing, built by students.
+        <Balancer>
+          Interactive flashcards, notes, daily question practise and testing,
+          built by students.
+        </Balancer>
       </Heading>
 
       <div className="flex justify-center mt-10">
