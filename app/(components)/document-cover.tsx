@@ -85,11 +85,7 @@ export const DocumentCover = ({
         <text
           fill="#273F8B"
           xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          fontFamily="General Sans"
-          fontSize="14"
-          fontWeight="600"
-          letter-spacing="0em"
+          className="font-semibold text-[14px] font-sans whitespace-pre"
         >
           <tspan x="66.4664" y="166.54">
             WJEC {unit}
@@ -98,11 +94,7 @@ export const DocumentCover = ({
         <text
           fill="#ECF0FD"
           xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          font-family="General Sans"
-          fontSize="46.9"
-          fontWeight="bold"
-          letterSpacing="0em"
+          className="font-bold text-[46.9px] font-sans whitespace-pre"
         >
           <tspan x="55" y="236.756">
             {subject}
@@ -111,11 +103,7 @@ export const DocumentCover = ({
         <text
           fill="white"
           xmlSpace="preserve"
-          style={{ whiteSpace: "pre" }}
-          font-family="General Sans"
-          fontSize="42"
-          fontWeight="500"
-          letterSpacing="0em"
+          className="font-medium text-[42px] font-sans whitespace-pre"
         >
           <tspan x="55" y="332.502">
             {title.split(" ")[0]} {title.split(" ")[1]} {title.split(" ")[2]}{" "}
