@@ -15,7 +15,11 @@ import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
-const Profile = () => {
+const Profile = ({
+  setCommandOpen,
+}: {
+  setCommandOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { setTheme } = useTheme();
 
   return (
@@ -68,12 +72,10 @@ const Profile = () => {
         <DropdownMenu.Separator />
 
         <DropdownMenu.Group>
-          <DropdownMenu.Item asChild>
-            <Link href="/profile">
-              <KeyboardIcon />
-              <span>Keyboard shortcuts</span>
-              <DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
-            </Link>
+          <DropdownMenu.Item onSelect={() => setCommandOpen(true)}>
+            <KeyboardIcon />
+            <span>Keyboard shortcuts</span>
+            <DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
             <Link href="/profile">
