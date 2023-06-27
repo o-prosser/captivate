@@ -13,19 +13,19 @@ const Footer = () => {
         </Link>
       </Button>
       <Button variant="ghost" asChild>
-        <Link href="/dashboard">
+        <Link href="/subjects/maths">
           <PiIcon />
           Maths
         </Link>
       </Button>
       <Button variant="ghost" asChild>
-        <Link href="/timetable">
+        <Link href="/subjects/chemistry">
           <FlaskRoundIcon />
           Chemistry
         </Link>
       </Button>
       <Button variant="ghost" asChild>
-        <Link href="/tasks">
+        <Link href="/subjects/physics">
           <AtomIcon />
           Physics
         </Link>

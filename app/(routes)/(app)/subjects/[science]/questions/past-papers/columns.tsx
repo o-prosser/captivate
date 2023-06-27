@@ -14,8 +14,6 @@ export type Paper = {
   paper: string;
   markscheme: string | null;
   science: string;
-  paperLink: string;
-  msLink: string | null;
 };
 
 const SortHeader = ({
@@ -64,7 +62,7 @@ export const columns: ColumnDef<Paper>[] = [
 
       return (
         <Button className="-ml-4" variant="ghost" asChild>
-          <Link target="_blank" href={paper.paperLink}>
+          <Link target="_blank" href={paper.paper}>
             <DownloadIcon />
             Download
           </Link>
@@ -78,9 +76,9 @@ export const columns: ColumnDef<Paper>[] = [
     cell: ({ row }) => {
       const paper = row.original;
 
-      return paper.markscheme && paper.msLink ? (
+      return paper.markscheme ? (
         <Button className="-ml-4" variant="ghost" asChild>
-          <Link target="_blank" href={paper.msLink}>
+          <Link target="_blank" href={paper.markscheme}>
             <DownloadIcon />
             Download
           </Link>

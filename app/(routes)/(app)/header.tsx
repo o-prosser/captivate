@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 import { Button, LogoIcon } from "@/ui";
 import Profile from "./profile";

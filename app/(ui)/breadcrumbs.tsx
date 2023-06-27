@@ -3,8 +3,19 @@ import { ChevronRightIcon } from "lucide-react";
 import { Fragment } from "react";
 
 const Breadcrumbs = ({ pages }: { pages: string[] }) => {
+  const hasSidebar = pages.find(
+    (page) => page === "Physics" || page === "Chemistry" || page === "Maths",
+  );
+
   return (
-    <div className="flex items-center space-x-1.5 text-muted-foreground text-sm mb-6">
+    <div
+      className={cn(
+        "flex items-center space-x-1.5 text-muted-foreground text-sm",
+        hasSidebar
+          ? "fixed md:static md:mb-6 top-16 h-12 md:h-auto left-14 z-[11]"
+          : "mb-6",
+      )}
+    >
       {pages.map((page, key) => (
         <Fragment key={key}>
           <span

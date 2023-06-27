@@ -4,54 +4,10 @@ import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import { columns } from "./columns";
 import { Fragment } from "react";
-import dropbox from "@/lib/dropbox";
 
 const PastPapers = async ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
   if (!science) notFound();
-
-  const papers = await Promise.all(
-    science.pastPapers.map(async (paper) => {
-      let paperLink: string | null;
-
-      try {
-        const { result } = paper.paper
-          ? await dropbox.filesGetTemporaryLink({
-              path: `/Captivate Learning/${params.science}/papers/past-papers/${paper.paper}`,
-            })
-          : { result: { link: "" } };
-
-        paperLink = result.link;
-      } catch (error) {
-        console.log(error);
-
-        paperLink = "";
-      }
-
-      let msLink: string | null;
-
-      try {
-        const { result } = paper.markscheme
-          ? await dropbox.filesGetTemporaryLink({
-              path: `/Captivate Learning/${params.science}/papers/past-papers/${paper.markscheme}`,
-            })
-          : { result: { link: "" } };
-
-        msLink = result.link;
-      } catch (error) {
-        console.log(error);
-
-        msLink = "";
-      }
-
-      return {
-        science: params.science,
-        paperLink,
-        msLink,
-        ...paper,
-      };
-    }),
-  );
 
   const tables = [
     {
@@ -80,6 +36,11 @@ const PastPapers = async ({ params }: { params: { science: string } }) => {
     },
   ];
 
+  const pastPapers = science.pastPapers.map((paper) => ({
+    science: params.science,
+    ...paper,
+  }));
+
   return (
     <>
       <Breadcrumbs pages={[science.name, "Questions", "Past papers"]} />
@@ -95,7 +56,7 @@ const PastPapers = async ({ params }: { params: { science: string } }) => {
                 <Accordion.Content>
                   <div className="pb-4 -mt-8">
                     <DataTable
-                      data={papers.filter(
+                      data={pastPapers.filter(
                         (paper) =>
                           paper.spec === table.id && paper.unit === key + 1,
                       )}

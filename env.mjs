@@ -11,6 +11,5 @@ export const env = createEnv({
     EMAIL_SERVER_HOST: z.string().min(1),
     EMAIL_SERVER_PORT: z.string().min(1),
     EMAIL_FROM: z.string().min(1),
-    DROPBOX_ACCESS_TOKEN: z.string().min(1),
   },
 });

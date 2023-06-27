@@ -1,11 +1,10 @@
 import { Breadcrumbs, Button, Heading, LogoIcon, Text } from "@/ui";
-import { getPractical, getScience } from "@/util/pracitcals";
+import { getPractical } from "@/util/pracitcals";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import labBookCover from "../lab-book-cover.png";
 import { DownloadIcon } from "lucide-react";
-import dropbox from "@/lib/dropbox";
 
 export const generateMetadata = ({
   params,
@@ -26,10 +25,6 @@ const Practical = async ({
 }) => {
   const { science, practical } = getPractical(params.science, params.practical);
   if (!practical) notFound();
-
-  const practicalPages = await dropbox.filesGetTemporaryLink({
-    path: `/Captivate Learning/physics/practicals/${practical.id}.pdf`,
-  });
 
   return (
     <>
@@ -60,11 +55,7 @@ const Practical = async ({
           </Text>
 
           <Button asChild>
-            <Link
-              // href={`/physics/practicals/${practical.id}.pdf`}
-              href={practicalPages.result.link}
-              target="_blank"
-            >
+            <Link href={practical.download} target="_blank">
               <DownloadIcon />
               Download pages
             </Link>
@@ -84,29 +75,21 @@ const Practical = async ({
             Past paper downloads
           </Heading>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-6">
-            {practical.questions.map(async (question, key) => {
-              const {
-                result: { link },
-              } = await dropbox.filesGetTemporaryLink({
-                path: `/Captivate Learning/physics/practicals/questions/${question.download}`,
-              });
-
-              return (
-                <Link
-                  key={key}
-                  href={link}
-                  target="_blank"
-                  className="block group"
-                >
-                  <div className="bg-muted w-full aspect-[1/1.42] grid place-items-center group-hover:bg-muted/70 transition duration-100">
-                    <LogoIcon className="text-muted-foreground h-8 w-8" />
-                  </div>
-                  <span className="leading-6 font-medium mt-2 block group-hover:text-foreground/70 transition duration-100">
-                    {question.reference}
-                  </span>
-                </Link>
-              );
-            })}
+            {practical.questions.map(async (question, key) => (
+              <Link
+                key={key}
+                href={question.download}
+                target="_blank"
+                className="block group"
+              >
+                <div className="bg-muted w-full aspect-[1/1.42] grid place-items-center group-hover:bg-muted/70 transition duration-100">
+                  <LogoIcon className="text-muted-foreground h-8 w-8" />
+                </div>
+                <span className="leading-6 font-medium mt-2 block group-hover:text-foreground/70 transition duration-100">
+                  {question.reference}
+                </span>
+              </Link>
+            ))}
           </div>
         </>
       )}

@@ -16,7 +16,7 @@ import {
 
 const Links = ({ params }: { params: { science: string } }) => {
   return (
-    <div className="space-y-1 flex flex-col [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a]:justify-start [&>a]:rounded-none mt-4">
+    <div className="space-y-1 flex flex-col [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a]:justify-start md:[&>a]:rounded-none mt-4">
       <Button variant="ghost" asChild>
         <Link href={`/subjects/${params.science}/`}>
           <LayoutDashboardIcon />
@@ -38,7 +38,7 @@ const Links = ({ params }: { params: { science: string } }) => {
       <Accordion.Root type="single" collapsible>
         <Accordion.Item value="notes" className="border-none">
           <Button variant="ghost" asChild>
-            <Accordion.Trigger className="hover:no-underline [&[data-state=open]>svg:first-child]:rotate-0 rounded-none justify-start">
+            <Accordion.Trigger className="hover:no-underline [&[data-state=open]>svg:first-child]:rotate-0 md:rounded-none justify-start">
               <FileText className="!h-5 !w-5" />
               <span className="flex-1 text-left">Notes</span>
             </Accordion.Trigger>
@@ -68,7 +68,7 @@ const Links = ({ params }: { params: { science: string } }) => {
       <Accordion.Root type="single" collapsible>
         <Accordion.Item value="questions" className="border-none">
           <Button variant="ghost" asChild>
-            <Accordion.Trigger className="hover:no-underline [&[data-state=open]>svg:first-child]:rotate-0 rounded-none justify-start">
+            <Accordion.Trigger className="hover:no-underline [&[data-state=open]>svg:first-child]:rotate-0 md:rounded-none justify-start">
               <PaperclipIcon className="!h-5 !w-5" />
               <span className="flex-1 text-left">Questions</span>
             </Accordion.Trigger>
