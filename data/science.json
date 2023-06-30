@@ -539,7 +539,424 @@
           ]
         }
       ],
-      "pastPapers": []
+      "pastPapers": [
+        {
+          "unit": 1,
+          "year": 2006,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/a3h6hyjobhy0zrt/s06-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2006,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/ren0n0ticri4q87/s06-chemistry2.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2007,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/py6eo578uld9qgk/s07-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2007,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/k7x0odf9bejusza/s07-chemistry2.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2008,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/p2672rvuoree623/s08-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2008,
+          "series": "summer",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/us5tw1qtq0qi31u/s08-chemistry2.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2009,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/zfdws4bise4c00b/s09-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/zgy7modjnvatkr5/s09-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2009,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/dnm2br5o5ak685q/s09-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/kgurwojjc6ic1k5/s09-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2010,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/r4ao6f5iskfo0h7/s10-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/4wn9axxs34aq30z/s10-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2010,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/8ctg4obznnprfpq/s10-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/n574sahvkwdr5gz/s10-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2011,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/587i7nyqz54hb95/s11-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/q2dtemfo9n806ut/s11-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2011,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/9k37bts858k5voi/s11-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/vqvt16py8kw2ap6/s11-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2012,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/jtit8zegvluzpsk/s12-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/dcqyqd4e3mopmef/s12-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2012,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/9rfbegp93aubvof/s12-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/2b8ast8zotbtqk7/s12-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2013,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/ql85fjza1yucakq/s13-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/muzy75tsd4wco58/s13-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2013,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/osd9akkzunnrklv/s13-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/hxcareau23gjubl/s13-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2014,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/0ouqj2xg7w9xgob/s14-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/xeyst0xeyx0ei8s/s14-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2014,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/m9degrokpqyy7ab/s14-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/7cfmn6e6lblx8nb/s14-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2015,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/4yzckva4t2apkqn/s15-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/p9m4o5us0ghzd10/s15-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2015,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/oopz4882ekzoqmr/s15-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/qbkh3nwd1v43yz9/s15-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2016,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/w2djritjrn1ax7k/s16-chemistry1-legacy.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/xvbss1kf658s5oh/s16-chemistry1-ms-legacy.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2016,
+          "series": "summer",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/m709i3oroj8xzr0/s16-chemistry2-legacy.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/699nq7qr9q78f1h/s16-chemistry2-ms-legacy.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2016,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/2ttb9i3ctvv7fr7/s16-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/tuqizhicicw7719/s16-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2016,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/u3swzwbiwxfxdwg/s16-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/vxkxkyusl6bgjiw/s16-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2017,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/d87xa9t08vaja1i/s17-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/skvu4ghkkfinsqe/s17-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2017,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/sj1j67t4chlytmj/s17-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/omn0ytftf6521d6/s17-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2018,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/39x9v4n6es2yikt/s18-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2018,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/9f8tlyoq8awxr2z/s18-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/5x8o4ziplugmcxb/s18-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2019,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/vpmfgh3co90ws6z/s19-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/2a77lffzz0xj4me/s19-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2019,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/3a0cg0gr6aspm0a/s19-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/ns9x30mdjft9fyp/s19-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2022,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/ik5ggnkjqan140e/s22-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/39ov4ovbxkdx6wp/s22-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2022,
+          "series": "summer",
+          "spec": "current",
+          "paper": "https://www.dropbox.com/s/2c4puep2bjt7pnq/s22-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/xf9nfma1celyfee/s22-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2023,
+          "series": "summer",
+          "spec": "current",
+          "paper": "",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2023,
+          "series": "summer",
+          "spec": "current",
+          "paper": "",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2006,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/upc59cbid9dnalx/w06-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2006,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/76nzcaugf0x56fi/w06-chemistry2.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2007,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/wwn98vua52utnux/w07-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2007,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/5kofdftrxd2pvwm/w07-chemistry2.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2008,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/mijy9gprgc0iy4y/w08-chemistry1.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 2,
+          "year": 2008,
+          "series": "winter",
+          "spec": "2003",
+          "paper": "https://www.dropbox.com/s/lr9q9el7eblwlqf/w08-chemistry2.pdf?dl=1",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2009,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/zd2vkxuv4g6maqr/w09-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/b1qltf4x92za1tn/w09-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2009,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "",
+          "markscheme": ""
+        },
+        {
+          "unit": 1,
+          "year": 2010,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/idlnxkq8ok9eczh/w10-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/nk5hk3p3iycsk2k/w10-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2010,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/d3li71z0mm5qdni/w10-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/vzwq3yg1tf48b1l/w10-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2011,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/7v3a2oerw9e0ao0/w11-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/x3z7syb4tf16rde/w11-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2011,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/mom6mjy9iqn44d6/w11-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/qamwl0242ld6jic/w11-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2012,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/8otojb5aheavwoe/w12-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/bgkl4gh5pkalruz/w12-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2012,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/iheee335cgu28dg/w12-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/41tz4ck8vajihej/w12-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2013,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/r79e1vtuvay8b44/w13-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/51tdprhmm6vzhak/w13-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2013,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/cdo3qvzrj4zulyc/w13-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/7ihtj7y8tjmxsi7/w13-chemistry2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "year": 2014,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/pg72grvmjsnoyk9/w14-chemistry1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/tz4c4tn2j34kwii/w14-chemistry1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 2,
+          "year": 2014,
+          "series": "winter",
+          "spec": "2009",
+          "paper": "https://www.dropbox.com/s/bk6vy7mazvk2zvt/w14-chemistry2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/sw66s41gnk2quy3/w14-chemistry2-ms.pdf?dl=1"
+        }
+      ]
     }
   }
 }
