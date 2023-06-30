@@ -13,7 +13,7 @@ const Theme = () => {
         <Card.Title>App theme</Card.Title>
         <Card.Description>
           Select light mode or dark mode, or select system to automatically
-          follow your device's preferences.
+          follow your device&apos;s preferences.
         </Card.Description>
       </Card.Header>
 
