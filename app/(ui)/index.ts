@@ -11,3 +11,5 @@ export * from "./logo-icon";
 export * as Sheet from "./sheet";
 export * as Table from "./table";
 export * from "./typography";
+export * as Card from "./card";
+export * from "./skeleton";

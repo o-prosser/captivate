@@ -9,9 +9,10 @@ import "katex/dist/contrib/mhchem.mjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
-  // experimental: {
-  //   mdxRs: true,
-  // },
+  experimental: {
+    serverActions: true,
+    //   mdxRs: true,
+  },
 };
 
 const remarkToc = [remarkTocPlugin, { maxDepth: 3 }];
