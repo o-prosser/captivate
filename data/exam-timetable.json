@@ -23,25 +23,18 @@
       "length": 90
     },
     {
-      "date": "2024-05-22",
-      "session": "pm",
-      "subject": "physics",
-      "unit": 2,
-      "length": 90
-    },
-    {
-      "date": "2024-05-23",
+      "date": "2024-05-21",
       "session": "am",
       "subject": "chemistry",
       "unit": 2,
       "length": 90
     },
     {
-      "date": "2024-05-23",
+      "date": "2024-05-22",
       "session": "pm",
-      "subject": "maths",
+      "subject": "physics",
       "unit": 2,
-      "length": 105
+      "length": 90
     },
     {
       "date": "2024-05-23",
