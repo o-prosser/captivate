@@ -1,6 +1,6 @@
 "use client";
 
-import { Form } from "@/components";
+import * as Form from "@/components/form";
 import { Button } from "@/ui";
 import { useState } from "react";
 import * as z from "zod";

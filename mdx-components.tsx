@@ -9,6 +9,8 @@ import {
   TableHeading,
   TableRow,
   Text,
+  Callout,
+  Columns,
 } from "@/ui";
 import Link from "next/link";
 import MarkdownLink from "@/components/markdown-link";
@@ -51,6 +53,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     td: TableCell,
     ol: OrderedList,
     ul: UnorderedList,
+    Callout,
+    Columns,
     ...components,
   };
 }

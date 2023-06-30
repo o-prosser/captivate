@@ -12,7 +12,7 @@ import type {
 } from "react-hook-form";
 import { ItemContext } from "./item";
 import { Input } from "@/ui";
-import { Form } from "..";
+import * as Form from ".";
 
 export type FieldContextValue<
   TFieldValues extends FieldValues = FieldValues,

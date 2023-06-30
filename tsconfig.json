@@ -24,6 +24,7 @@
       "@/assets/*": ["./app/(assets)/*"],
       "@/util": ["./app/(util)/index.ts"],
       "@/ui": ["./app/(ui)/index.ts"],
+      "@/ui/*": ["./app/(ui)/*"],
       "@/components": ["./app/(components)/index.ts"],
       "@/components/*": ["./app/(components)/*"],
       "@/util/*": ["./app/(util)/*"],

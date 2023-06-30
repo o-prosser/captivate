@@ -6,7 +6,7 @@ const Callout = ({
   return (
     <div className="bg-muted space-x-2 font-medium rounded-lg px-4 py-2 flex items-start leading-7 [&:not(:first-child)]:mt-6">
       <span>{emoji}</span>
-      <p className="flex-1">{children}</p>
+      <div className="flex-1">{children}</div>
     </div>
   );
 };

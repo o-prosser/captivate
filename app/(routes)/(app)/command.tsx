@@ -9,6 +9,7 @@ import {
   StickyNoteIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Fragment } from "react";
 
 const commands = [
   {
@@ -173,8 +174,8 @@ const CommandBar = ({
       <Command.List>
         <Command.Empty>No results found.</Command.Empty>
         {commands.map((command, key) => (
-          <>
-            <Command.Group key={key} heading={command.heading}>
+          <Fragment key={key}>
+            <Command.Group heading={command.heading}>
               {command.items.map(({ href, label, icon: Icon }, key) => (
                 <Command.Item key={key} onSelect={() => router.push(href)}>
                   <Icon className="mr-2 h-4 w-4" />
@@ -183,7 +184,7 @@ const CommandBar = ({
               ))}
             </Command.Group>
             {commands.length - 1 == key && <Command.Separator />}
-          </>
+          </Fragment>
         ))}
       </Command.List>
     </Command.Dialog>
