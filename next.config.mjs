@@ -3,8 +3,8 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import remarkTocPlugin from "remark-toc";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
+
+import "katex/dist/contrib/mhchem.mjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
