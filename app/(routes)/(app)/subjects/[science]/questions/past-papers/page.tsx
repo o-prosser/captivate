@@ -49,7 +49,7 @@ const chemistryTables = [
   {
     id: "2003",
     spec: "Legacy specification (2003–2009)",
-    units: ["AS Unit 1", "AS Unit 2", "AS Unit 3a"],
+    units: ["AS Unit 1", "AS Unit 2"],
   },
 ];
 
