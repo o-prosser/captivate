@@ -60,13 +60,15 @@ export const columns: ColumnDef<Paper>[] = [
     cell: ({ row }) => {
       const paper = row.original;
 
-      return (
+      return paper.paper ? (
         <Button className="-ml-4" variant="ghost" asChild>
           <Link target="_blank" href={paper.paper}>
             <DownloadIcon />
             Download
           </Link>
         </Button>
+      ) : (
+        <span className="italic text-muted-foreground">No paper</span>
       );
     },
   },
