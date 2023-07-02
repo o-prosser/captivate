@@ -1,5 +1,6 @@
 import { Button, ButtonProps, Card } from "@/ui";
 import { cn } from "@/util";
+import { useSubjectStyles } from "@/util/subjects";
 import { ArrowRightIcon, AtomIcon, FlaskRoundIcon, PiIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -15,30 +16,8 @@ const Subject = ({
 }: {
   subject: "maths" | "chemistry" | "physics";
 }) => {
-  const subjectColor =
-    subject === "maths"
-      ? "text-maths"
-      : subject === "chemistry"
-      ? "text-chemistry"
-      : "text-physics";
-  const subjectBorder =
-    subject === "maths"
-      ? "border-maths"
-      : subject === "chemistry"
-      ? "border-chemistry"
-      : "border-physics";
-  const subjectBackground =
-    subject === "maths"
-      ? "bg-maths/10"
-      : subject === "chemistry"
-      ? "bg-chemistry/10"
-      : "bg-physics/10";
-  const SubjectIcon =
-    subject === "maths"
-      ? PiIcon
-      : subject === "chemistry"
-      ? FlaskRoundIcon
-      : AtomIcon;
+  const { subjectBorder, subjectBackground, subjectColor, SubjectIcon } =
+    useSubjectStyles(subject);
 
   return (
     <Card.Root className={cn(subjectBorder, subjectBackground)}>
