@@ -67,7 +67,7 @@ const EVENTS = [
 ];
 
 const Sidebar = () => (
-  <Card.Root className="w-[21.5rem] fixed top-20 right-6 bottom-8 overflow-y-auto">
+  <Card.Root className="md:w-[21.5rem] w-auto md:fixed top-20 right-6 bottom-8 overflow-y-auto">
     <Card.Header className="sticky top-0 z-10 bg-background">
       <Card.Description>
         It&apos;s {getCurrentWeek() === 0 ? "half term" : ""}

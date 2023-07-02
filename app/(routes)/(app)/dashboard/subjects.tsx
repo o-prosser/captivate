@@ -80,7 +80,7 @@ const Subject = ({
 
 const Subjects = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
       <Subject subject="maths" />
       <Subject subject="chemistry" />
       <Subject subject="physics" />
