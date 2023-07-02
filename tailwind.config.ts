@@ -5,5 +5,5 @@ import shadcnPlugin from "./shadcn-tailwindcss";
 export default {
   content: ["./app/**/*.{tsx,mdx}"],
   darkMode: "class",
-  plugins: [tailwindcssAnimate, shadcnPlugin],
+  plugins: [shadcnPlugin, tailwindcssAnimate],
 } satisfies Config;

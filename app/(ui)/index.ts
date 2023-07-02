@@ -13,3 +13,5 @@ export * as Table from "./table";
 export * from "./typography";
 export * as Card from "./card";
 export * from "./skeleton";
+export * from "./checkbox";
+export * from "./pill";

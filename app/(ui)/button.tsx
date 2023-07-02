@@ -22,6 +22,8 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-muted [&>svg]:text-muted-foreground [&.group:hover>svg]:text-foreground [&>svg]:transition-colours",
         link: "underline-offset-4 hover:underline text-primary !h-auto !p-1 -m-1 text-base focus-visible:!ring-offset-0",
+        arrow:
+          "!h-auto !p-1 -m-1 text-base focus-visible:!ring-offset-0 [&>svg]:ml-2 [&:hover>svg]:translate-x-1 [&>svg]:transition-all",
       },
       size: {
         default: "h-10 [&>svg]:h-4 [&>svg]:w-4",
