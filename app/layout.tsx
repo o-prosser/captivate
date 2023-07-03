@@ -2,6 +2,7 @@ import { generalSans } from "@/assets/fonts";
 import "./globals.css";
 import { cn } from "@/util";
 import Providers from "./providers";
+import Images from "./images";
 
 export const metadata = {
   title: {
@@ -18,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Images />
+      </head>
       <body
         className={cn(
           generalSans.variable,
