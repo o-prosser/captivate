@@ -6,7 +6,7 @@ export const DocumentCover = ({
 }: {
   unit: string;
   subject: string;
-  title: string;
+  title: string | string[];
   className?: string;
 }) => {
   return (
@@ -105,15 +105,26 @@ export const DocumentCover = ({
           xmlSpace="preserve"
           className="font-medium text-[42px] font-sans whitespace-pre"
         >
-          <tspan x="55" y="332.502">
-            {title.split(" ")[0]} {title.split(" ")[1]} {title.split(" ")[2]}{" "}
-            {title.split(" ")[3]}{" "}
-            {title.split(" ")[4]?.length <= 6 ? title.split(" ")[4] : ""}{" "}
-          </tspan>
-          <tspan x="55" y="389.502">
-            {title.split(" ")[4]?.length > 6 ? title.split(" ")[4] : ""}{" "}
-            {title.split(" ")[5]} {title.split(" ")[6]} {title.split(" ")[7]}{" "}
-          </tspan>
+          {typeof title === "string" ? (
+            <>
+              <tspan x="55" y="332.502">
+                {title.split(" ")[0]} {title.split(" ")[1]}{" "}
+                {title.split(" ")[2]} {title.split(" ")[3]}{" "}
+                {title.split(" ")[4]?.length <= 6 ? title.split(" ")[4] : ""}{" "}
+              </tspan>
+              <tspan x="55" y="389.502">
+                {title.split(" ")[4]?.length > 6 ? title.split(" ")[4] : ""}{" "}
+                {title.split(" ")[5]} {title.split(" ")[6]}{" "}
+                {title.split(" ")[7]}{" "}
+              </tspan>
+            </>
+          ) : (
+            title.map((line, key) => (
+              <tspan key={key} x="55" y={key === 0 ? "332.502" : "389.502"}>
+                {line}
+              </tspan>
+            ))
+          )}
         </text>
       </g>
       <defs>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import labBookCover from "../lab-book-cover.png";
 import { DownloadIcon } from "lucide-react";
-import { BackButton } from "@/components";
+import { BackButton, DocumentCover } from "@/components";
 
 export const generateMetadata = ({
   params,
@@ -38,16 +38,22 @@ const Practical = async ({
       <Text className="mt-6 font-semibold">
         Reference:{" "}
         <Button variant="link" size={null} asChild>
-          <Link href="#">AS Unit {practical.unit}</Link>
+          <Link
+            href={`/subjects/${params.science}/notes/${practical.unit}/${
+              practical.reference.toString().split(".")[1]
+            }`}
+          >
+            AS Unit {practical.reference}
+          </Link>
         </Button>
       </Text>
 
       <div className="flex mt-8 space-x-4">
-        <Image
-          height={59.5}
-          width={84.2}
-          src={labBookCover}
-          alt="Lab book cover"
+        <DocumentCover
+          unit="WJEC AS Unit 1/2"
+          subject={science.name}
+          title={["Specified practicals", "— student lab book"]}
+          className="w-20 h-auto"
         />
         <div>
           <Heading level={4}>Lab book</Heading>
@@ -63,7 +69,7 @@ const Practical = async ({
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link download href="#" className="ml-2">
+            <Link download href={science.labBook} className="ml-2">
               <DownloadIcon />
               Download booklet
             </Link>

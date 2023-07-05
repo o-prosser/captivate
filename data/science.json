@@ -19,6 +19,7 @@
           ]
         }
       ],
+      "labBook": "https://www.dropbox.com/s/v8owqqqo73bl1x5/lab-book.pdf?dl=1",
       "practicals": [
         {
           "id": "u101-e1",
@@ -113,6 +114,138 @@
           "reference": 1.5,
           "bookletPages": [31, 34],
           "questions": []
+        },
+        {
+          "id": "u202-e1",
+          "name": "Investigation of the I-V characteristics of a filament lamp and a metal wire at constant temperature",
+          "download": "",
+          "unit": 2,
+          "reference": 2.2,
+          "bookletPages": [35, 38],
+          "questions": [
+            {
+              "reference": "Physics 3 2005 Question 2",
+              "download": "https://www.dropbox.com/s/qrjkw2b9ogv1swt/u202-e1-p1.pdf?dl=1"
+            },
+            {
+              "reference": "Physics 3 2010 Task A3",
+              "download": "https://www.dropbox.com/s/d3ymyc33lw2a4az/u202-e1-p2.pdf?dl=1"
+            }
+          ]
+        },
+        {
+          "id": "u202-e2",
+          "name": "Determination of the resistivity of a metal wire",
+          "download": "",
+          "unit": 2,
+          "reference": 2.2,
+          "bookletPages": [39, 42],
+          "questions": [
+            {
+              "reference": "Physics 3 2009 Task A3",
+              "download": ""
+            },
+            {
+              "reference": "Physics 3 2014 Task B4",
+              "download": ""
+            }
+          ]
+        },
+        {
+          "id": "u202-e3",
+          "name": "Investigation of the variation of resistance with temperature for a metal wire",
+          "download": "",
+          "unit": 2,
+          "reference": 2.2,
+          "bookletPages": [43, 46],
+          "questions": [
+            {
+              "reference": "Physics 6 2014 Data analysis task",
+              "download": ""
+            }
+          ]
+        },
+        {
+          "id": "u203-e1",
+          "name": "Determination of the internal resistance of a cell",
+          "download": "",
+          "unit": 2,
+          "reference": 2.3,
+          "bookletPages": [47, 50],
+          "questions": [
+            {
+              "reference": "Physics 3 2007 Question 2",
+              "download": ""
+            },
+            {
+              "reference": "Physics 3 2011 Task B4",
+              "download": ""
+            }
+          ]
+        },
+        {
+          "id": "u204-e1",
+          "name": "Measurement of the intensity variations for polarisation",
+          "download": "",
+          "unit": 2,
+          "reference": 2.4,
+          "bookletPages": [51, 53],
+          "questions": []
+        },
+        {
+          "id": "u205-e1",
+          "name": "Determination of w!velength using Young's double slits",
+          "download": "",
+          "unit": 2,
+          "reference": 2.5,
+          "bookletPages": [54, 57],
+          "questions": []
+        },
+        {
+          "id": "u205-e2",
+          "name": "Determination of wavelength using a diffraction grating",
+          "download": "",
+          "unit": 2,
+          "reference": 2.5,
+          "bookletPages": [58, 60],
+          "questions": []
+        },
+        {
+          "id": "u205-e3",
+          "name": "Determination of the speed of sound using stationary waves",
+          "download": "",
+          "unit": 2,
+          "reference": 2.5,
+          "bookletPages": [61, 64],
+          "questions": []
+        },
+        {
+          "id": "u206-e1",
+          "name": "Measurement of the refractive index of a material",
+          "download": "",
+          "unit": 2,
+          "reference": 2.6,
+          "bookletPages": [65, 68],
+          "questions": [
+            {
+              "reference": "Physics 3 2012 Task A2",
+              "download": ""
+            }
+          ]
+        },
+        {
+          "id": "u207-e1",
+          "name": "Determination of h using LEDs",
+          "download": "",
+          "unit": 2,
+          "reference": 2.7,
+          "bookletPages": [69, 71],
+          "questions": [
+            {
+              "reference": "Physics 3 2006 Question 2",
+              "download": ""
+            }
+          ]
         }
       ],
       "pastPapers": [
@@ -539,6 +672,7 @@
           ]
         }
       ],
+      "labBook": "",
       "pastPapers": [
         {
           "unit": 1,
