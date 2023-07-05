@@ -14,7 +14,8 @@ export const SubjectLayout = ({
   children: ReactNode;
 }) => {
   return (
-    <div>
+    // @ts-ignore
+    <div style={{ "--primary": `var(--${title.toLowerCase()})` }}>
       <nav className="flex items-center border-b fixed inset-x-6 top-16 bg-background h-12 z-10 md:hidden print:!hidden">
         <Sheet.Root>
           <Sheet.Trigger asChild>
