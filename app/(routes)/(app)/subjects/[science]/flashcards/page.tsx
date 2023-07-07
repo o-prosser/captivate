@@ -1,6 +1,5 @@
 import DataTable from "@/components/data-table";
 import { Breadcrumbs, Button, Heading } from "@/ui";
-import { getFlashcards } from "@/util/flashcards";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import { columns } from "./columns";
