@@ -63,7 +63,7 @@ const shadcnPlugin = plugin(
             foreground: "hsl(var(--destructive-foreground))",
           },
           border: "hsl(var(--border))",
-          ring: "hsl(var(--ring))",
+          ring: "hsl(var(--primary))",
           maths: "hsl(var(--maths))",
           chemistry: "hsl(var(--chemistry))",
           physics: "hsl(var(--physics))",

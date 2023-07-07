@@ -29,6 +29,7 @@ const buttonVariants = cva(
         default: "h-10 [&>svg]:h-4 [&>svg]:w-4",
         sm: "h-9 px-3 rounded-xl [&>svg]:h-4 [&>svg]:w-4",
         lg: "h-11 px-8 rounded-3xl",
+        icon: "h-10 w-10 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:!mr-0",
       },
       pending: {
         true: "",

@@ -42,13 +42,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id                     String                  @id @default(cuid())
+  name                   String?
+  email                  String?                 @unique
+  emailVerified          DateTime?
+  image                  String?
+  accounts               Account[]
+  sessions               Session[]
+  flashcardStudySessions FlashcardStudySession[]
 }
 
 model VerificationToken {
@@ -57,4 +58,72 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum Subject {
+  Maths
+  Chemistry
+  Physics
+}
+
+model FlashcardGroup {
+  id         String      @id @default(uuid())
+  unit       Int
+  topic      Int
+  subject    Subject
+  flashcards Flashcard[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime?   @updatedAt
+}
+
+model Flashcard {
+  id        String           @id @default(uuid())
+  groupId   String
+  group     FlashcardGroup   @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  front     String           @db.LongText
+  back      String           @db.LongText
+  studies   FlashcardStudy[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime?        @updatedAt
+
+  @@index([groupId])
+}
+
+enum StudyScope {
+  Subject
+  Unit
+  Group
+}
+
+enum StudyType {
+  All
+  Spaced
+}
+
+model FlashcardStudySession {
+  id                String           @id @default(uuid())
+  userId            String
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  flashcardsStudies FlashcardStudy[]
+  start             DateTime         @default(now())
+  end               DateTime?
+  scope             StudyScope
+  scopeId           String?
+  type              StudyType
+
+  @@index([userId])
+}
+
+model FlashcardStudy {
+  id          String                @id @default(uuid())
+  sessionId   String
+  session     FlashcardStudySession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  flashcardId String
+  flashcard   Flashcard             @relation(fields: [flashcardId], references: [id], onDelete: Cascade)
+  score       Int // 1-5
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime?             @updatedAt
+
+  @@index([sessionId])
+  @@index([flashcardId])
 }

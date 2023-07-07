@@ -53,7 +53,7 @@ export const SubjectLayout = ({
         </div>
       </aside>
 
-      <main className="min-h-screen md:pl-[17rem] print:!p-0 pt-12 md:pt-0">
+      <main className="min-h-scree md:pl-[17rem] print:!p-0 pt-12 md:pt-0">
         {children}
       </main>
     </div>

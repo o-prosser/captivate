@@ -1,3 +1,4 @@
+import { Subject } from "@prisma/client";
 import { AtomIcon, FlaskRoundIcon, PiIcon } from "lucide-react";
 
 export const parseSubjectName = (name: string) => {
@@ -52,4 +53,15 @@ export const useSubjectStyles = (subject: string) => {
     subjectBackground,
     SubjectIcon,
   };
+};
+
+export const getSubjectEnum = (value: string) => {
+  if (value === "maths") return Subject.Maths;
+  if (value === "Maths") return Subject.Maths;
+  if (value === "chemistry") return Subject.Chemistry;
+  if (value === "Chemistry") return Subject.Chemistry;
+  if (value === "physics") return Subject.Physics;
+  if (value === "Physics") return Subject.Physics;
+
+  return null;
 };
