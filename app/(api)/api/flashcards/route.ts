@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
-export const createFlashcardSchema = z.object({
+const createFlashcardSchema = z.object({
   unit: z.string(),
   topic: z.string(),
   subject: z.string().min(1),
