@@ -8,7 +8,7 @@ const routeContextSchema = z.object({
   }),
 });
 
-export const editFlashcardSchema = z.object({
+const editFlashcardSchema = z.object({
   unit: z.string(),
   topic: z.string(),
   subject: z.string().min(1),

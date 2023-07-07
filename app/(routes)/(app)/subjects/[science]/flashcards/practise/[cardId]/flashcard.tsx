@@ -60,7 +60,7 @@ const ScoreButton = ({
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [score, setScore]);
 
   return (
     <Button
