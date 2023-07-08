@@ -1,13 +1,14 @@
-import { Button, Text } from "@/ui";
+import { Button } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { InfoIcon, PencilIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import { Markdown } from "@/components/markdown";
 import Flashcard from "./flashcard";
-import { StudyScope, StudyType } from "@prisma/client";
-import { getCurrentUser } from "@/util/session";
+import { getOrCreateSession } from "@/app/(models)/flashcard-study-session";
+import { getFlashcard } from "@/app/(models)/flashcard";
+import { getScope } from "@/util/flashcards";
+import Information from "./information";
 
 const CardPage = async ({
   params,
@@ -18,7 +19,6 @@ const CardPage = async ({
     cardId: string;
   };
   searchParams: {
-    close?: string;
     scope?: string;
     scopeId?: string;
     type?: string;
@@ -28,74 +28,28 @@ const CardPage = async ({
   const science = getScience(params.science);
   if (!science) notFound();
 
-  const flashcard = await prisma.flashcard.findUnique({
-    where: {
-      id: params.cardId,
-    },
-  });
+  const flashcard = await getFlashcard(params.cardId);
   if (!flashcard) notFound();
 
-  let session;
-  if (searchParams.sessionId) {
-    session = await prisma.flashcardStudySession.findUnique({
-      where: {
-        id: searchParams.sessionId,
-      },
-      include: {
-        _count: {
-          select: { flashcardsStudies: true },
-        },
-      },
-    });
-  }
-
-  if (!session) {
-    const user = await getCurrentUser();
-    if (!user?.email) redirect("/login");
-
-    const userId = await prisma.user.findUnique({
-      where: { email: user?.email },
-      select: { id: true },
-    });
-    if (!userId) redirect("/login");
-
-    session = await prisma.flashcardStudySession.create({
-      data: {
-        userId: userId.id,
-        start: new Date(),
-        scope: StudyScope.Group,
-        scopeId: searchParams.scopeId,
-        type: StudyType.All,
-      },
-      select: {
-        id: true,
-      },
-    });
-
+  const { session, created } = await getOrCreateSession({
+    id: searchParams.sessionId,
+    data: {
+      scope: "Group",
+      scopeId: searchParams.scopeId,
+      type: "All",
+    },
+  });
+  if (!session) throw new Error("Unable to initiate a new session");
+  if (created)
     redirect(
       `/subjects/${params.science}/flashcards/practise/${params.cardId}?sessionId=${session.id}`,
     );
-  }
 
-  let scope;
-  if (session.scope === StudyScope.Group && session.scopeId) {
-    const group = await prisma.flashcardGroup.findUnique({
-      where: { id: session.scopeId },
-      include: {
-        _count: {
-          select: { flashcards: true },
-        },
-      },
-    });
-    if (!group) notFound();
-
-    scope = {
-      topicName: science.units[group.unit - 1].topics[group.topic - 1],
-      ...group,
-    };
-  } else {
-    scope = null;
-  }
+  const { scope } = await getScope({
+    id: session.scopeId,
+    type: session.scope,
+    science,
+  });
 
   const difference = scope
     ? scope?._count.flashcards - session._count.flashcardsStudies
@@ -116,7 +70,7 @@ const CardPage = async ({
             {difference || "All"} flashcards in{" "}
             {scope ? (
               <Button size="sm" className="ml-3" variant="outline">
-                {scope.topicName}
+                {scope.title}
               </Button>
             ) : (
               ""
@@ -126,10 +80,7 @@ const CardPage = async ({
             <PencilIcon />
             <span className="sr-only">Edit</span>
           </Button>
-          <Button variant="ghost" size="icon">
-            <InfoIcon />
-            <span className="sr-only">Information</span>
-          </Button>
+          <Information flashcard={flashcard} />
         </div>
 
         <div className="p-6 pt-2 space-y-6">
