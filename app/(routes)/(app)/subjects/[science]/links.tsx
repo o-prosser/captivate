@@ -12,8 +12,11 @@ import {
   PresentationIcon,
   StickyNoteIcon,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const Links = ({ params }: { params: { science: string } }) => {
+  const pathname = usePathname();
+
   return (
     <>
       <Button variant="ghost" asChild>
@@ -64,7 +67,11 @@ const Links = ({ params }: { params: { science: string } }) => {
           Practicals
         </Link>
       </Button>
-      <Accordion.Root type="single" collapsible>
+      <Accordion.Root
+        type="single"
+        value={pathname.includes("/questions/") ? "questions" : undefined}
+        collapsible
+      >
         <Accordion.Item value="questions" className="border-none">
           <Button variant="ghost" asChild>
             <Accordion.Trigger className="hover:no-underline [&[data-state=open]>svg:first-child]:rotate-0 md:rounded-none justify-start">
@@ -83,7 +90,7 @@ const Links = ({ params }: { params: { science: string } }) => {
               </Button>
               <Button variant="ghost" size="sm" asChild>
                 <Link
-                  href={`/subjects/${params.science}/questions/topic-questions`}
+                  href={`/subjects/${params.science}/questions/topic-papers`}
                 >
                   Topic questions
                 </Link>

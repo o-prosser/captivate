@@ -17,6 +17,20 @@
             "Using radiation to investigate stars",
             "Particles and nuclear structure"
           ]
+        },
+        {
+          "number": 2,
+          "name": "Electricity and Light",
+          "topics": [
+            "Conduction of Electricity",
+            "Resistance",
+            "D.C. Circuits",
+            "The nature of wave",
+            "Wave properties",
+            "Refraction of Light",
+            "Photons",
+            "Lasers"
+          ]
         }
       ],
       "labBook": "https://www.dropbox.com/s/v8owqqqo73bl1x5/lab-book.pdf?dl=1",
@@ -641,6 +655,166 @@
           "paper": "https://www.dropbox.com/s/vf02mtzoskg1rdz/w08-physics2.pdf?dl=1",
           "markscheme": "https://www.dropbox.com/s/lo2xkojm5h2jtjm/w08-physics2-ms.pdf?dl=1"
         }
+      ],
+      "topicPapers": [
+        {
+          "unit": 1,
+          "topic": 1,
+          "title": "Resolving and moments",
+          "paper": "https://www.dropbox.com/s/wpmpnao80pb67ff/u101-questions.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/9toqlzojuieesao/u101-questions-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 2,
+          "title": "Motion and projectiles",
+          "paper": "https://www.dropbox.com/s/jl4hhnrw0g4ppsm/u102-questions-aqa.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/l4e7zl37pi5v1ic/u102-questions-aqa-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 2,
+          "title": "Equations and graphs of motion",
+          "paper": "https://www.dropbox.com/s/y68vasc40mp4lhk/u102-questions-edexcel.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/vqdc582vcqblexy/u102-questions-edexcel-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 2,
+          "title": "Motion",
+          "paper": "https://www.dropbox.com/s/6kudh8qq71wbvyy/u102-questions-ocr.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/z28mfsvyokwplbh/u102-questions-ocr-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 3,
+          "title": "Momentum",
+          "paper": "https://www.dropbox.com/s/nl10867g2duwkep/u103-questions-aqa1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/oc8a9708qbo4s5l/u103-questions-aqa1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 3,
+          "title": "Motion and force",
+          "paper": "https://www.dropbox.com/s/eneyzueg1m9xk9e/u103-questions-aqa2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/ebtiz3310rehovu/u103-questions-aqa2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 3,
+          "title": "Forces",
+          "paper": "https://www.dropbox.com/s/09lt9hoksnbq2yf/u103-questions-edexcel1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/d11gcice51qfs1f/u103-questions-edexcel1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 3,
+          "title": "Momentum",
+          "paper": "https://www.dropbox.com/s/5gwboi5bt7dt6dy/u103-questions-edexcel2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/v2jcxc55qra8u6o/u103-questions-edexcel2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 3,
+          "title": "Forces",
+          "paper": "https://www.dropbox.com/s/1sq6bsqnc3nrpc6/u103-questions-ocr.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/fvmmre8rbqmdrsx/u103-questions-ocr-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 4,
+          "title": "Work, energy and power",
+          "paper": "https://www.dropbox.com/s/9lb52np4pa2za2t/u104-questions-aqa.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/lq79lo20cvz6udg/u104-questions-aqa-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 4,
+          "title": "Energy, work and power",
+          "paper": "https://www.dropbox.com/s/efzndj6q3l7zfqp/u104-questions-edexcel.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/wjl60b26gf1pt6n/u104-questions-edexcel-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 4,
+          "title": "Work and energy",
+          "paper": "https://www.dropbox.com/s/uhd9nr6dr10no1v/u104-questions-ocr.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/juid40h24jy5a76/u104-questions-ocr-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 5,
+          "title": "Materials (AQA)",
+          "paper": "https://www.dropbox.com/s/s94xom8rrd4zb2x/u105-questions-aqa.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/knyxjvkeg9xs9hp/u105-questions-aqa-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 5,
+          "title": "Materials (Edexcel)",
+          "paper": "https://www.dropbox.com/s/o6qlq7ql89i8238/u105-questions-edexcel.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/8hvloi9bkrx38go/u105-questions-edexcel-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 6,
+          "title": "PMT Questions",
+          "paper": "https://www.dropbox.com/s/z1vpn33m3a1g9hf/u106-questions.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/ik7dauahkyezjtb/u106-questions-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 7,
+          "title": "Nuclear physics (AQA)",
+          "paper": "https://www.dropbox.com/s/xv5rbn6dtp89tfd/u107-questions-aqa1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/qm660l0eeva6rtx/u107-questions-aqa1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 7,
+          "title": "Particle physics (AQA)",
+          "paper": "https://www.dropbox.com/s/rdauyy77dmayx3q/u107-questions-aqa2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/yvalj02d2k7kfho/u107-questions-aqa2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 7,
+          "title": "Particle physics, set 1 (Edexcel)",
+          "paper": "https://www.dropbox.com/s/ax8v550bztscrbb/u107-questions-edexcel1.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/4vimezf3m7q3irg/u107-questions-edexcel1-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 7,
+          "title": "Particle physics, set 2 (Edexcel)",
+          "paper": "https://www.dropbox.com/s/9evolyftm9g273c/u107-questions-edexcel2.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/mk30vu4c6kej6da/u107-questions-edexcel2-ms.pdf?dl=1"
+        },
+        {
+          "unit": 1,
+          "topic": 7,
+          "title": "Nuclear physics (OCR)",
+          "paper": "https://www.dropbox.com/s/tkg07wm3u7yhqfs/u107-questions-ocr.pdf?dl=1",
+          "markscheme": "https://www.dropbox.com/s/7v2b8a82luqsl7r/u107-questions-ocr-ms.pdf?dl=1"
+        }
+      ],
+      "resources": [
+        {
+          "title": "Specification",
+          "download": "https://www.dropbox.com/s/xbgfpie8tkzxnbi/specification.pdf?dl=1"
+        },
+        {
+          "title": "Bangor notes — units 1 & 2",
+          "download": "https://www.dropbox.com/s/jhfo7si130ubq93/bangor-notes.pdf?dl=1"
+        },
+        {
+          "title": "Teachers guidance",
+          "download": "https://www.dropbox.com/s/k3xao6z2m1yl5a5/teachers-guide.pdf?dl=1"
+        },
+        {
+          "title": "Terms and definitions",
+          "download": "https://www.dropbox.com/s/x0oed17n6x9hsxi/terms-and-definitions.pdf?dl=1"
+        }
       ]
     },
     "chemistry": {
@@ -1082,7 +1256,9 @@
           "paper": "https://www.dropbox.com/s/bk6vy7mazvk2zvt/w14-chemistry2.pdf?dl=1",
           "markscheme": "https://www.dropbox.com/s/sw66s41gnk2quy3/w14-chemistry2-ms.pdf?dl=1"
         }
-      ]
+      ],
+      "topicPapers": [],
+      "resources": []
     }
   }
 }
