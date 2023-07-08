@@ -8,7 +8,7 @@ import Flashcard from "./flashcard";
 import { getOrCreateSession } from "@/app/(models)/flashcard-study-session";
 import { getFlashcard } from "@/app/(models)/flashcard";
 import { getScope } from "@/util/flashcards";
-import Information from "./information";
+import Information from "@/components/flashcard-information";
 import End from "./end";
 
 const CardPage = async ({

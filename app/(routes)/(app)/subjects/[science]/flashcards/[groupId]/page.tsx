@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { Markdown } from "@/components/markdown";
 import { PencilIcon } from "lucide-react";
+import Information from "@/components/flashcard-information";
 
 const FlashcardGroupPage = async ({
   params,
@@ -27,7 +28,11 @@ const FlashcardGroupPage = async ({
       id: true,
       unit: true,
       topic: true,
-      flashcards: true,
+      flashcards: {
+        include: {
+          studies: true,
+        },
+      },
     },
   });
 
@@ -82,13 +87,16 @@ const FlashcardGroupPage = async ({
         <div className="grid gap-6 lg:grid-cols-2 mt-6">
           {flashcardGroup.flashcards.map((flashcard, key) => (
             <Card.Root key={key}>
-              <Card.Header className="pb-3">
-                <span className="text-xs text-muted-foreground uppercase">
-                  Card {key + 1}
-                </span>
-                <Card.Title className="text-lg [&>*]:!m-0">
-                  <Markdown source={flashcard.front} />
-                </Card.Title>
+              <Card.Header className="pb-3 flex-row space-x-0 justify-between items-start">
+                <div className="space-y-1 5">
+                  <span className="text-xs text-muted-foreground uppercase">
+                    Card {key + 1}
+                  </span>
+                  <Card.Title className="text-lg [&>*]:!m-0">
+                    <Markdown source={flashcard.front} />
+                  </Card.Title>
+                </div>
+                <Information flashcard={flashcard} />
               </Card.Header>
               <Card.Content className="pt-0">
                 <Markdown source={flashcard.back} />
