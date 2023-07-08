@@ -87,8 +87,8 @@ const FlashcardGroupPage = async ({
         <div className="grid gap-6 lg:grid-cols-2 mt-6">
           {flashcardGroup.flashcards.map((flashcard, key) => (
             <Card.Root key={key}>
-              <Card.Header className="pb-3 flex-row space-x-0 justify-between items-start">
-                <div className="space-y-1 5">
+              <Card.Header className="pb-3 flex-row space-y-0 justify-between items-start">
+                <div className="space-y-1.5">
                   <span className="text-xs text-muted-foreground uppercase">
                     Card {key + 1}
                   </span>
