@@ -9,6 +9,7 @@ import { getOrCreateSession } from "@/app/(models)/flashcard-study-session";
 import { getFlashcard } from "@/app/(models)/flashcard";
 import { getScope } from "@/util/flashcards";
 import Information from "./information";
+import End from "./end";
 
 const CardPage = async ({
   params,
@@ -60,12 +61,7 @@ const CardPage = async ({
       <div className="fixed inset-0 z-50 bg-background backdrop-blur-sm" />
       <div className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-4xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background shadow-lg sm:rounded-2xl md:w-full">
         <div className="border-b h-12 flex items-center px-3 space-x-1">
-          <Button variant="ghost" size="icon" className="mr-11" asChild>
-            <Link href={`/subjects/${params.science}/flashcards`}>
-              <XIcon />
-              <span className="sr-only">Close</span>
-            </Link>
-          </Button>
+          <End />
           <span className="font-medium flex-1 justify-center flex items-center">
             {difference || "All"} flashcards in{" "}
             {scope ? (
