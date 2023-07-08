@@ -80,3 +80,34 @@ export const getSessionWithFlashcards = async (id: string) => {
     },
   });
 };
+
+export const getSessionSummary = async (id: string) => {
+  return await prisma.flashcardStudySession.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      scopeId: true,
+      start: true,
+      end: true,
+      scope: true,
+      flashcardsStudies: {
+        select: {
+          id: true,
+          score: true,
+          createdAt: true,
+          flashcard: {
+            select: {
+              front: true,
+              back: true,
+            },
+          },
+        },
+        orderBy: {
+          id: "asc",
+        },
+      },
+    },
+  });
+};

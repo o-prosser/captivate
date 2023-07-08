@@ -59,7 +59,18 @@ export const POST = async (
       if (f.id === flashcard.id) return false;
       return true;
     });
-    if (flashcardsToStudy.length === 0) return NextResponse.json({});
+    if (flashcardsToStudy.length === 0) {
+      await prisma.flashcardStudySession.update({
+        where: { id: session?.id },
+        data: {
+          end: new Date(),
+        },
+      });
+
+      return NextResponse.json({
+        summary: true,
+      });
+    }
 
     return NextResponse.json({
       next: flashcardsToStudy[0].id,

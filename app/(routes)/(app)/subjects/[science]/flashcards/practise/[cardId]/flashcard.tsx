@@ -44,13 +44,19 @@ const ScoreButton = ({
 
     const data = await response.json();
 
-    if (!data.next) router.push(`/subjects/${params.science}/flashcards`);
-
-    router.push(
-      `/subjects/${params.science}/flashcards/practise/${
-        data.next
-      }?sessionId=${searchParams.get("sessionId")}`,
-    );
+    if (data.summary == true) {
+      router.push(
+        `/subjects/${params.science}/flashcards/summary/${searchParams.get(
+          "sessionId",
+        )}`,
+      );
+    } else {
+      router.push(
+        `/subjects/${params.science}/flashcards/practise/${
+          data.next
+        }?sessionId=${searchParams.get("sessionId")}`,
+      );
+    }
   };
 
   useEffect(() => {

@@ -12,3 +12,11 @@ export const createFlashcardStudy = async (data: {
     },
   });
 };
+
+export const SCORES = [
+  "⏩ Skipped",
+  "❌ Forgot",
+  "😬 Partially recalled",
+  "😄 Recalled with effort",
+  "👑 Easily recalled",
+];
