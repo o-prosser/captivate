@@ -135,16 +135,19 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
 
         <div className="h-2" />
 
-        {links[1].map(({ label, icon: Icon, active, href }, key) => (
+        {links[1].map(({ label, icon: Icon, active, href }, key) => {
+					const styles = useSubjectStyles(label.toLowerCase())
+
+          return (
           <Button
             variant="ghost"
             asChild
             key={key}
             className={cn(
               pathname.startsWith(active) &&
-                useSubjectStyles(label.toLowerCase()).subjectBackground,
+                styles.subjectBackground,
               pathname.startsWith(active) &&
-                useSubjectStyles(label.toLowerCase()).importantSubjectColor,
+                styles.importantSubjectColor,
               "justify-start p-3 [&>svg]:!mr-0",
             )}
           >
@@ -169,7 +172,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
               </AnimatePresence>
             </Link>
           </Button>
-        ))}
+        )})}
 
         <div className="flex-1" />
 
