@@ -75,6 +75,10 @@ const links = [
 const Sidebar = ({ expanded }: { expanded: boolean }) => {
   const pathname = usePathname();
 
+	const mathsStyles = useSubjectStyles('maths');
+	const chemistryStyles = useSubjectStyles('chemistry');
+	const physicsStyles = useSubjectStyles('physics');
+
   return (
     <motion.aside
       variants={{ expand: { width: "15rem" }, contract: { width: "5.5rem" } }}
@@ -136,7 +140,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
         <div className="h-2" />
 
         {links[1].map(({ label, icon: Icon, active, href }, key) => {
-					const styles = useSubjectStyles(label.toLowerCase())
+					const styles = label.toLowerCase() === 'maths' ? mathsStyles : label.toLowerCase() === 'chemistry' ? chemistryStyles : physicsStyles
 
           return (
           <Button
