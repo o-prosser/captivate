@@ -15,7 +15,7 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen w-screen">
       <Header user={user} />
-      <Wrapper children={children} />
+      <Wrapper>{children}</Wrapper>
       <Footer />
     </div>
   );
