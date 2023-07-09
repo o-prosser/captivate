@@ -90,7 +90,7 @@ const Dashboard = async () => {
 
   return (
     <>
-      <div className="md:pr-[23.5rem]">
+      <div className="md:pr-[23.5rem] w-full">
         <Heading className="mt-12">
           Hello{user?.name ? `, ${user.name}` : ""}!
         </Heading>

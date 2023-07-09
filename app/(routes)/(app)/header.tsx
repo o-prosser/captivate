@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import CommandBar from "./command";
 import Image from "next/image";
 
-const Header = () => {
+const Header = ({ user }: { user: { image?: string | null } }) => {
   const [commandOpen, setCommandOpen] = useState(false);
 
   useEffect(() => {
@@ -45,10 +45,10 @@ const Header = () => {
         <Button variant="ghost" iconOnly className="hidden md:inline-flex">
           <SettingsIcon />
         </Button>
-        <Profile setCommandOpen={setCommandOpen} />
+        <Profile setCommandOpen={setCommandOpen} image={user.image} />
       </header>
 
-      <header className="hidden absolute  print:block left-8 top-6">
+      <header className="hidden absolute print:block left-8 top-6">
         <Image src="/logo.svg" alt="Captivate Logo" height={27} width={160} />
       </header>
     </>

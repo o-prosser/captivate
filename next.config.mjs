@@ -13,6 +13,15 @@ const nextConfig = {
     serverActions: true,
     //   mdxRs: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "uploadthing.com",
+        port: "",
+      },
+    ],
+  },
 };
 
 const remarkToc = [remarkTocPlugin, { maxDepth: 3 }];

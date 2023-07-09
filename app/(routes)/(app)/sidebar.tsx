@@ -13,104 +13,201 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
-const Sidebar = () => {
+const links = [
+  [
+    {
+      icon: HomeIcon,
+      label: "Home",
+      href: "/dashboard",
+      active: "/dashboard",
+    },
+    {
+      icon: CalendarIcon,
+      label: "Calendar",
+      href: "/calendar",
+      active: "/calendar",
+    },
+    {
+      icon: ClipboardIcon,
+      label: "Tasks",
+      href: "/tasks",
+      active: "/tasks",
+    },
+  ],
+  [
+    {
+      icon: PiIcon,
+      label: "Maths",
+      href: "/subjects/maths",
+      active: "/subjects/maths",
+    },
+    {
+      icon: FlaskRoundIcon,
+      label: "Chemistry",
+      href: "/subjects/chemistry",
+      active: "/subjects/chemistry",
+    },
+    {
+      icon: AtomIcon,
+      label: "Physics",
+      href: "/subjects/physics",
+      active: "/subjects/physics",
+    },
+  ],
+  [
+    {
+      icon: MessageSquareIcon,
+      label: "Support",
+      href: "/support",
+      active: "/support",
+    },
+    {
+      icon: SettingsIcon,
+      label: "Settings",
+      href: "/settings",
+      active: "/settings",
+    },
+  ],
+];
+
+const Sidebar = ({ expanded }: { expanded: boolean }) => {
   const pathname = usePathname();
 
-  const mathsStyles = useSubjectStyles("maths");
-  const chemistryStyles = useSubjectStyles("chemistry");
-  const physicsStyles = useSubjectStyles("physics");
-
   return (
-    <aside className="hidden md:flex py-6 flex-col items-center w-[5.5rem] fixed left-0 inset-y-0 h-screen print:!hidden">
+    <motion.aside
+      variants={{ expand: { width: "15rem" }, contract: { width: "5.5rem" } }}
+      initial={{ width: "15rem" }}
+      animate={expanded ? "expand" : "contract"}
+      transition={{ duration: 0.1 }}
+      className="hidden md:flex py-6 z-10 flex-col px-[15.5px] items-start bg-background fixed left-0 inset-y-0 h-screen print:!hidden overflow-hidden"
+    >
       <Button variant="default" size={null} asChild iconOnly>
         <Link href="/dashboard" className="p-2.5">
           <LogoIcon className="h-6 w-6" />
         </Link>
       </Button>
 
-      <div className="flex flex-col space-y-1 [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a]:p-3 mt-4 flex-1">
-        <Button variant="ghost" size={null} iconOnly asChild>
-          <Link href="/dashboard">
-            <HomeIcon />
-          </Link>
-        </Button>
-        <Button variant="ghost" size={null} iconOnly asChild>
-          <Link href="/timetable">
-            <CalendarIcon />
-          </Link>
-        </Button>
-        <Button variant="ghost" size={null} iconOnly asChild>
-          <Link href="/tasks">
-            <ClipboardIcon />
-          </Link>
-        </Button>
+      <motion.div
+        variants={{
+          expand: { width: "100%" },
+          contract: { width: "2.75rem" },
+        }}
+        initial="expand"
+        animate={expanded ? "expand" : "contract"}
+        transition={{ duration: 0 }}
+        className="flex flex-col space-y-1 [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a>svg]:flex-shrink-0 mt-4 flex-1"
+      >
+        {links[0].map(({ label, icon: Icon, active, href }, key) => (
+          <Button
+            variant="ghost"
+            asChild
+            key={key}
+            className={cn(
+              pathname.startsWith(active) &&
+                "bg-muted [&>svg]:!text-foreground",
+              "justify-start p-3 [&>svg]:!mr-0",
+            )}
+          >
+            <Link href={href}>
+              <Icon />
+              <AnimatePresence initial={false}>
+                {expanded && (
+                  <motion.span
+                    variants={{
+                      expand: { opacity: 1 },
+                      contract: { opacity: 0 },
+                    }}
+                    className="pl-2"
+                    transition={{ duration: 0.1 }}
+                    initial="contract"
+                    animate="expand"
+                    exit="contract"
+                  >
+                    {label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </Link>
+          </Button>
+        ))}
 
         <div className="h-2" />
 
-        <Button
-          variant="ghost"
-          size={null}
-          iconOnly
-          asChild
-          className={cn(
-            pathname.startsWith("/subjects/maths") &&
-              mathsStyles.subjectBackground,
-            pathname.startsWith("/subjects/maths") &&
-              mathsStyles.importantSubjectColor,
-          )}
-        >
-          <Link href="/subjects/maths">
-            <PiIcon />
-          </Link>
-        </Button>
-        <Button
-          variant="ghost"
-          size={null}
-          iconOnly
-          asChild
-          className={cn(
-            pathname.startsWith("/subjects/chemistry") &&
-              chemistryStyles.subjectBackground,
-            pathname.startsWith("/subjects/chemistry") &&
-              chemistryStyles.importantSubjectColor,
-          )}
-        >
-          <Link href="/subjects/chemistry">
-            <FlaskRoundIcon />
-          </Link>
-        </Button>
-        <Button
-          variant="ghost"
-          size={null}
-          iconOnly
-          asChild
-          className={cn(
-            pathname.startsWith("/subjects/physics") &&
-              physicsStyles.subjectBackground,
-            pathname.startsWith("/subjects/physics") &&
-              physicsStyles.importantSubjectColor,
-          )}
-        >
-          <Link href="/subjects/physics">
-            <AtomIcon />
-          </Link>
-        </Button>
+        {links[1].map(({ label, icon: Icon, active, href }, key) => (
+          <Button
+            variant="ghost"
+            asChild
+            key={key}
+            className={cn(
+              pathname.startsWith(active) &&
+                useSubjectStyles(label.toLowerCase()).subjectBackground,
+              pathname.startsWith(active) &&
+                useSubjectStyles(label.toLowerCase()).importantSubjectColor,
+              "justify-start p-3 [&>svg]:!mr-0",
+            )}
+          >
+            <Link href={href}>
+              <Icon />
+              <AnimatePresence initial={false}>
+                {expanded && (
+                  <motion.span
+                    variants={{
+                      expand: { opacity: 1 },
+                      contract: { opacity: 0 },
+                    }}
+                    className="pl-2"
+                    transition={{ duration: 0.1 }}
+                    initial="contract"
+                    animate="expand"
+                    exit="contract"
+                  >
+                    {label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </Link>
+          </Button>
+        ))}
 
         <div className="flex-1" />
 
-        <Button variant="ghost" size={null} iconOnly asChild>
-          <Link href="/support">
-            <MessageSquareIcon />
-          </Link>
-        </Button>
-        <Button variant="ghost" size={null} iconOnly asChild>
-          <Link href="/settings">
-            <SettingsIcon />
-          </Link>
-        </Button>
-      </div>
-    </aside>
+        {links[2].map(({ label, icon: Icon, active, href }, key) => (
+          <Button
+            variant="ghost"
+            asChild
+            key={key}
+            className={cn(
+              pathname.startsWith(active) &&
+                "bg-muted [&>svg]:!text-foreground",
+              "justify-start p-3 [&>svg]:!mr-0",
+            )}
+          >
+            <Link href={href}>
+              <Icon />
+              <AnimatePresence initial={false}>
+                {expanded && (
+                  <motion.span
+                    variants={{
+                      expand: { opacity: 1 },
+                      contract: { opacity: 0 },
+                    }}
+                    className="pl-2"
+                    transition={{ duration: 0.1 }}
+                    initial="contract"
+                    animate="expand"
+                    exit="contract"
+                  >
+                    {label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </Link>
+          </Button>
+        ))}
+      </motion.div>
+    </motion.aside>
   );
 };
 

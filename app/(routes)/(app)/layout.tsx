@@ -4,10 +4,9 @@ import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "@/util/session";
 
-import Body from "./body";
 import Footer from "./footer";
 import Header from "./header";
-import Sidebar from "./sidebar";
+import Wrapper from "./wrapper";
 
 const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getCurrentUser();
@@ -15,9 +14,8 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen w-screen">
-      <Sidebar />
-      <Header />
-      <Body>{children}</Body>
+      <Header user={user} />
+      <Wrapper children={children} />
       <Footer />
     </div>
   );

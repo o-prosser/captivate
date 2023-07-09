@@ -7,6 +7,7 @@ export const updateUser = async (formData: FormData) => {
   const id = formData.get("_id");
   const name = formData.get("name");
   const email = formData.get("email");
+  const image = formData.get("image");
 
   try {
     await prisma.user.update({
@@ -16,6 +17,7 @@ export const updateUser = async (formData: FormData) => {
       data: {
         name: name?.toString(),
         email: email?.toString(),
+        image: image?.toString(),
       },
     });
   } catch (error) {

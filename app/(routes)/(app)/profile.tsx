@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, DropdownMenu } from "@/ui";
+import { cn } from "@/util";
 import {
   KeyboardIcon,
   LaptopIcon,
@@ -13,20 +14,39 @@ import {
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 
 const Profile = ({
   setCommandOpen,
+  image,
 }: {
   setCommandOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  image?: string | null;
 }) => {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <Button variant="outline" className="[&>svg]:mr-0 mr-6 md:mr-8 px-3">
-          <UserIcon />
+        <Button
+          variant="outline"
+          className={cn(
+            "[&>svg]:mr-0 mr-6 md:mr-8 rounded-full",
+            image ? "p-0 relative w-10 h-10" : "px-3",
+          )}
+        >
+          {image ? (
+            <Image
+              src={image}
+              alt="Avatar"
+              fill
+              sizes="40px"
+              className="object-cover rounded-full"
+            />
+          ) : (
+            <UserIcon />
+          )}
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="w-56 mr-4">
