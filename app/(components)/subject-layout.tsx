@@ -40,7 +40,7 @@ export const SubjectLayout = ({
         </Sheet.Root>
       </nav>
 
-      <aside className="hidden md:block md:fixed overflow-x-hidden overflow-y-auto rounded-2xl w-60 border py-4 fixed inset-y-2 left-[5.5rem] print:!hidden">
+      <aside className="hidden md:block md:fixed overflow-x-hidden overflow-y-auto w-60 border-r py-2 fixed inset-y-6 left-[5.5rem] print:!hidden">
         <Heading level={4} className="capitalize px-3 mb-0">
           {title}
         </Heading>
