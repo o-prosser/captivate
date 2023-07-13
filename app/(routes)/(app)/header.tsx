@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 
-import { Button, LogoIcon } from "@/ui";
+import { Button, DropdownMenu, LogoIcon } from "@/ui";
 import Profile from "./profile";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  PinIcon,
   PlusIcon,
   SearchIcon,
   SettingsIcon,
@@ -16,6 +17,7 @@ import { useEffect, useState } from "react";
 import CommandBar from "./command";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { CalendarPlusIcon } from "lucide-react";
 
 const Header = ({ user }: { user: { image?: string | null } }) => {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -81,10 +83,24 @@ const Header = ({ user }: { user: { image?: string | null } }) => {
 
         <CommandBar open={commandOpen} setOpen={setCommandOpen} />
 
-        <Button variant="outline" className="px-3 !mr-2.5">
-          <PlusIcon />
-          <ChevronDownIcon className="text-muted-foreground !h-3 !w-3 !mr-0" />
-        </Button>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <Button variant="outline" className="px-3 !mr-2.5">
+              <PlusIcon />
+              <ChevronDownIcon className="text-muted-foreground !h-3 !w-3 !mr-0" />
+            </Button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content>
+            <DropdownMenu.Group>
+              <DropdownMenu.Item>
+                <PinIcon /> Add task
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <CalendarPlusIcon /> Add event
+              </DropdownMenu.Item>
+            </DropdownMenu.Group>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
 
         <Profile setCommandOpen={setCommandOpen} image={user.image} />
       </header>
