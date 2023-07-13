@@ -1,7 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import {
   BasicTable,
-  Button,
   Heading,
   OrderedList,
   UnorderedList,
@@ -12,7 +11,6 @@ import {
   Callout,
   Columns,
 } from "@/ui";
-import Link from "next/link";
 import MarkdownLink from "@/components/markdown-link";
 
 // This file allows you to provide custom React components
@@ -45,6 +43,7 @@ const defaultComponents: MDXComponents = {
   ),
   a: (props) => <MarkdownLink {...props} />,
   p: Text,
+  strong: (props) => <span className="font-semibold" {...props} />,
   table: BasicTable,
   tr: TableRow,
   th: TableHeading,

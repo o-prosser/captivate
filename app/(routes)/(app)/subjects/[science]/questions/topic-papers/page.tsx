@@ -1,5 +1,5 @@
 import DataTable from "@/components/data-table";
-import { Accordion, Breadcrumbs, Heading } from "@/ui";
+import { Accordion, Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import { columns } from "./columns";
@@ -11,7 +11,6 @@ const TopicPapers = async ({ params }: { params: { science: string } }) => {
 
   return (
     <>
-      <Breadcrumbs pages={[science.name, "Questions", "Topic papers"]} />
       <Heading>Topic papers</Heading>
 
       {science.units.map((unit, key) => (

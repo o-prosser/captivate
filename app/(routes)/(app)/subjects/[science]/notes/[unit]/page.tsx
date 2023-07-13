@@ -1,4 +1,4 @@
-import { Breadcrumbs, Button, Heading, OrderedList } from "@/ui";
+import { Button, Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -19,7 +19,6 @@ const Unit1Notes = ({
 
   return (
     <>
-      <Breadcrumbs pages={[science.name, "Notes", "AS Unit 1"]} />
       <Heading>
         Unit {params.unit} &mdash; {unit.name}
       </Heading>

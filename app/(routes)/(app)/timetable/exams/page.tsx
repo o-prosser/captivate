@@ -1,11 +1,4 @@
-import {
-  BasicTable,
-  Breadcrumbs,
-  Heading,
-  TableCell,
-  TableHeading,
-  TableRow,
-} from "@/ui";
+import { BasicTable, Heading, TableCell, TableHeading, TableRow } from "@/ui";
 import examsTimetable from "@/data/exam-timetable.json";
 import { cn } from "@/util";
 
@@ -48,7 +41,6 @@ function padTo2Digits(num: number) {
 const ExamsTimetable = () => {
   return (
     <>
-      <Breadcrumbs pages={["Timetables", "Exam timetable"]} />
       <Heading>Exam Timetable</Heading>
 
       <BasicTable className="!w-auto">

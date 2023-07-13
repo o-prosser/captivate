@@ -1,11 +1,9 @@
-import { Breadcrumbs, Button, Heading, LogoIcon, Text } from "@/ui";
+import { Button, Heading, LogoIcon, Text } from "@/ui";
 import { getPractical } from "@/util/pracitcals";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import labBookCover from "../lab-book-cover.png";
 import { DownloadIcon } from "lucide-react";
-import { BackButton, DocumentCover } from "@/components";
+import { DocumentCover } from "@/components";
 
 export const generateMetadata = ({
   params,
@@ -29,10 +27,6 @@ const Practical = async ({
 
   return (
     <>
-      <Breadcrumbs
-        pages={[science.name, "Practicals", `Unit ${practical.unit}`]}
-      />
-      <BackButton />
       <Heading>{practical.name}</Heading>
 
       <Text className="mt-6 font-semibold">

@@ -13,9 +13,8 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   if (!user) redirect("/login");
 
   return (
-    <div className="min-h-screen w-screen">
-      <Header user={user} />
-      <Wrapper>{children}</Wrapper>
+    <div className="w-screen">
+      <Wrapper user={user}>{children}</Wrapper>
       <Footer />
     </div>
   );

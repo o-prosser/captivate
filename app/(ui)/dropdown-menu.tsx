@@ -27,7 +27,7 @@ const SubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none focus:bg-muted data-[state=open]:bg-muted [&>svg]:w-4 [&>svg]:h-4 [&>svg]:mr-2",
+      "flex cursor-default select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none focus:bg-muted data-[state=open]:bg-muted [&>svg]:w-4 [&>svg]:h-4 [&>svg]:mr-2 [&>svg]:text-muted-foreground",
       inset && "pl-8",
       className,
     )}
@@ -81,7 +81,7 @@ const Item = React.forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors focus:bg-muted focus:text-muetd-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:mr-2",
+      "relative flex cursor-pointer select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-colors focus:bg-muted data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:mr-2 [&>svg]:text-muted-foreground",
       inset && "pl-8",
       className,
     )}

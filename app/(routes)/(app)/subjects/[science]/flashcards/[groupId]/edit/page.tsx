@@ -1,5 +1,4 @@
-import { BackButton } from "@/components";
-import { Breadcrumbs, Heading } from "@/ui";
+import { Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import CreateFlashcardForm from "./form";
@@ -29,8 +28,6 @@ const EditFlashcardPage = async ({
 
   return (
     <>
-      <Breadcrumbs pages={[science.name, "Flashcards", "Edit"]} />
-      <BackButton />
       <Heading>Edit flashcards</Heading>
 
       <CreateFlashcardForm flashcardGroup={flashcardGroup} params={params} />

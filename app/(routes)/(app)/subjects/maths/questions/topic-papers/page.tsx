@@ -1,5 +1,5 @@
 import DataTable from "@/components/data-table";
-import { Accordion, Breadcrumbs, Heading } from "@/ui";
+import { Accordion, Heading } from "@/ui";
 import { columns } from "./columns";
 import mathsData from "@/data/maths.json";
 
@@ -13,7 +13,6 @@ const PastPapers = async () => {
 
   return (
     <>
-      <Breadcrumbs pages={["Maths", "Questions", "Topic papers"]} />
       <Heading>Topic papers</Heading>
 
       <Accordion.Root className="mt-6" type="single" collapsible>

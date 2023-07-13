@@ -4,13 +4,22 @@ import Link from "next/link";
 
 import { Button, LogoIcon } from "@/ui";
 import Profile from "./profile";
-import { SearchIcon, SettingsIcon } from "lucide-react";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  PlusIcon,
+  SearchIcon,
+  SettingsIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import CommandBar from "./command";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Header = ({ user }: { user: { image?: string | null } }) => {
   const [commandOpen, setCommandOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -25,26 +34,58 @@ const Header = ({ user }: { user: { image?: string | null } }) => {
 
   return (
     <>
-      <header className="flex items-center justify-between border-b md:border-none fixed inset-x-6 top-0 md:absolute md:left-auto md:right-8 md:top-6 bg-background space-x-1 h-16 md:h-auto z-10 md:w-auto print:hidden">
+      <header className="flex items-center justify-between border-b md:border-none fixed inset-x-6 top-0 md:static bg-background space-x-1 md:-ml-5 h-16 md:h-auto z-10 print:hidden md:pb-4">
         <Button variant="default" size={null} asChild iconOnly>
           <Link href="/dashboard" className="p-2.5 md:hidden">
             <LogoIcon className="h-5 w-5" />
           </Link>
         </Button>
 
-        <CommandBar open={commandOpen} setOpen={setCommandOpen} />
+        <Button variant="ghost" size="icon" onClick={router.back}>
+          <ChevronLeftIcon className="h-5 w-5" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={router.forward}
+          className="md:!ml-0"
+        >
+          <ChevronRightIcon className="h-5 w-5" />
+        </Button>
+
+        <Button
+          variant="outline"
+          onClick={() => setCommandOpen(true)}
+          className="text-muted-foreground hidden md:inline-flex"
+        >
+          <SearchIcon />
+          <span className="lg:hidden">Notes, tasks, events...</span>
+          <span className="hidden lg:inline">
+            Notes, tasks, events and questions...
+          </span>
+          <span className="text-xs tracking-widest opacity-60 inline-flex -m-1 p-1 ml-2 rounded-xl bg-muted">
+            ⌘K
+          </span>
+        </Button>
+
+        <div className="flex-1" />
 
         <Button
           variant="ghost"
-          iconOnly
+          size="icon"
           onClick={() => setCommandOpen(true)}
-          className="hidden md:inline-flex"
+          className="md:hidden"
         >
           <SearchIcon />
         </Button>
-        <Button variant="ghost" iconOnly className="hidden md:inline-flex">
-          <SettingsIcon />
+
+        <CommandBar open={commandOpen} setOpen={setCommandOpen} />
+
+        <Button variant="outline" className="px-3 !mr-2.5">
+          <PlusIcon />
+          <ChevronDownIcon className="text-muted-foreground !h-3 !w-3 !mr-0" />
         </Button>
+
         <Profile setCommandOpen={setCommandOpen} image={user.image} />
       </header>
 

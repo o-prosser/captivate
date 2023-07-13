@@ -1,5 +1,5 @@
 import DataTable from "@/components/data-table";
-import { Accordion, Breadcrumbs, Heading } from "@/ui";
+import { Accordion, Heading } from "@/ui";
 import { columns } from "./columns";
 import { Fragment } from "react";
 import mathsData from "@/data/maths.json";
@@ -20,7 +20,6 @@ const PastPapers = async () => {
 
   return (
     <>
-      <Breadcrumbs pages={["Maths", "Questions", "Past papers"]} />
       <Heading>Past papers</Heading>
 
       {tables.map((table, key) => (

@@ -28,16 +28,16 @@ const Science = ({ params }: { params: { science: string } }) => {
       : sciencesData.sciences.chemistry;
 
   return (
-    <main>
+    <>
       <Heading>{science.name}</Heading>
 
-      <Button asChild>
+      <Button asChild className="mt-6">
         <Link href={science.specificationLink}>
           <DownloadIcon />
           Download specification
         </Link>
       </Button>
-    </main>
+    </>
   );
 };
 

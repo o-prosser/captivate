@@ -1,5 +1,5 @@
 import { getSessionSummary } from "@/app/(models)/flashcard-study-session";
-import { Breadcrumbs, Heading } from "@/ui";
+import { Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import { intervalToDuration } from "date-fns";
@@ -75,7 +75,6 @@ const FlashcardSessionSummary = async ({
 
   return (
     <>
-      <Breadcrumbs pages={[science.name, "Flashcards", "Session summary"]} />
       <Heading>Session summary</Heading>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-6 border-b pb-6">

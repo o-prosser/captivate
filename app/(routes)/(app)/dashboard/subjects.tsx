@@ -1,26 +1,24 @@
-import { Button, ButtonProps, Card } from "@/ui";
+import { Button, Card } from "@/ui";
 import { cn } from "@/util";
 import { useSubjectStyles } from "@/util/subjects";
-import { ArrowRightIcon, AtomIcon, FlaskRoundIcon, PiIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
-
-// const QuickLink = ({className, ...props}: ButtonProps) => {
-//   return (
-//     <Button variant="">
-//     </Button>
-//   )
-// }
 
 const Subject = ({
   subject,
 }: {
   subject: "maths" | "chemistry" | "physics";
 }) => {
-  const { subjectBorder, subjectBackground, subjectColor, SubjectIcon } =
-    useSubjectStyles(subject);
+  const {
+    subjectBorder,
+    subjectBackground,
+    subjectColor,
+    SubjectIcon,
+    gridArea,
+  } = useSubjectStyles(subject);
 
   return (
-    <Card.Root className={cn(subjectBorder, subjectBackground)}>
+    <Card.Root className={cn(subjectBorder, subjectBackground, gridArea)}>
       <Card.Header className="flex-row space-y-0 items-center space-x-2">
         <SubjectIcon className={cn("h-6 w-6", subjectColor)} />
         <Card.Title className="capitalize">{subject}</Card.Title>
@@ -57,14 +55,4 @@ const Subject = ({
   );
 };
 
-const Subjects = () => {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
-      <Subject subject="maths" />
-      <Subject subject="chemistry" />
-      <Subject subject="physics" />
-    </div>
-  );
-};
-
-export default Subjects;
+export default Subject;

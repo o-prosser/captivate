@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 import shadcnPlugin from "./shadcn-tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   content: ["./app/**/*.{tsx,ts,mdx}"],
@@ -14,5 +15,18 @@ export default {
       },
     },
   },
-  plugins: [shadcnPlugin, tailwindcssAnimate],
+  plugins: [
+    shadcnPlugin,
+    tailwindcssAnimate,
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          area: (value) => ({
+            gridArea: value,
+          }),
+        },
+        { values: theme("gridArea") },
+      );
+    }),
+  ],
 } satisfies Config;

@@ -1,9 +1,8 @@
 import DataTable from "@/components/data-table";
-import { Accordion, Breadcrumbs, Heading } from "@/ui";
+import { Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import { columns } from "./columns";
-import { Fragment } from "react";
 
 const Resources = async ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
@@ -11,7 +10,6 @@ const Resources = async ({ params }: { params: { science: string } }) => {
 
   return (
     <>
-      <Breadcrumbs pages={[science.name, "Questions", "Resources"]} />
       <Heading>Resources</Heading>
 
       <div className="mt-8">

@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={cn(
           generalSans.variable,
-          "font-sans antialiased bg-background text-foreground min-h-screen w-screen",
+          "font-sans antialiased bg-background text-foreground w-screen",
         )}
       >
         <Providers attribute="class" disableTransitionOnChange>

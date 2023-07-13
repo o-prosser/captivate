@@ -1,4 +1,4 @@
-import { Breadcrumbs, Button, Heading, Text } from "@/ui";
+import { Button, Heading, Text } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import DataTable from "@/components/data-table";
@@ -18,7 +18,6 @@ const Practicals = ({ params }: { params: { science: string } }) => {
 
   return (
     <>
-      <Breadcrumbs pages={[science.name, "Practicals"]} />
       <Heading>Practicals</Heading>
 
       <div className="flex mt-8 space-x-4">

@@ -17,3 +17,51 @@
 .uploadthing p {
   @apply text-sm text-muted-foreground;
 }
+
+@layer components {
+  .layout-home {
+    grid-template-areas:
+      "heading"
+      "sidebar"
+      "maths"
+      "chemistry"
+      "physics"
+      "links"
+      "flashcards";
+  }
+
+  @media screen(md) {
+    .layout-home {
+      grid-template-areas:
+        "heading heading"
+        "maths sidebar"
+        "chemistry sidebar"
+        "physics sidebar"
+        "stretch sidebar"
+        "links links"
+        "flashcards flashcards";
+    }
+  }
+
+  @media screen(lg) {
+    .layout-home {
+      grid-template-areas:
+        "heading sidebar"
+        "maths sidebar"
+        "chemistry sidebar"
+        "physics sidebar"
+        "stretch sidebar"
+        "links links"
+        "flashcards flashcards";
+    }
+  }
+
+  @media screen(xl) {
+    .layout-home {
+      grid-template-areas:
+        "heading heading heading sidebar"
+        "maths chemistry physics sidebar"
+        "links flashcards flashcards sidebar";
+    }
+  }
+}

@@ -6,30 +6,33 @@ const shadcnPlugin = plugin(
     addBase({
       ":root": {
         "--background": "0 0% 255%", // white
-        "--foreground": "229 84% 5%", // slate-950
-        "--muted": "210 40% 96%", // slate-100
-        "--muted-foreground": "215 16% 47%", // slate-500
+        "--foreground": "240 10% 4%", // zinc-950
+        "--muted": "0 0% 98%", // zinc-100
+        "--muted-foreground": "240 4% 46%", // zinc-500
         "--primary": "226 56% 35%", // primary-7
-        "--primary-foreground": "210 40% 98%", // slate-50
+        "--primary-foreground": "0 0% 98%", // zinc-50
         "--destructive": "8 71% 50%", // red
-        "--destructive-foreground": "210 40% 98%", // slate-50
-        "--border": "214 32% 91%", // slate-200
+        "--destructive-foreground": "0 0% 98%", // zinc-50
+        "--border": "240 6% 90%", // zinc-200
         "--ring": "var(--primary)",
         "--maths": "358 75% 59%", // red9
         "--chemistry": "292 45% 51%", // plum9
         "--physics": "190 95% 39%", // cyan9
       },
       ".dark": {
-        "--background": "229 84% 5%", // slate-950
+        "--background": "240 10% 4%", // zinc-950
         "--foreground": "0 0% 255%", // white
-        "--muted": "219 33% 17%", // slate-800
-        "--muted-foreground": "215 16% 47%", // slate-500
+        "--muted": "240 6% 10%", // zinc-800
+        "--muted-foreground": "240 4% 46%", // zinc-500
         "--primary": "226 56% 35%", // primary-7
-        "--primary-foreground": "210 40% 98%", // slate-50
+        "--primary-foreground": "0 0% 98%", // zinc-50
         "--destructive": "8 71% 50%", // red
-        "--destructive-foreground": "229 84% 5%", // slate-950
-        "--border": "217 33% 17%", // slate-800
+        "--destructive-foreground": "240 10% 4%", // zinc-950
+        "--border": "240 4% 16%", // zinc-800
         "--ring": "var(--primary)",
+        "--maths": "358 65% 49%", // red11
+        "--chemistry": "92 60% 43%", // plum11
+        "--physics": "192 85% 31%", // cyan11
       },
     });
   },

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Sidebar from "./sidebar";
 import quotes from "@/data/quotes.json";
 import WrapBalancer from "react-wrap-balancer";
-import Subjects from "./subjects";
+import Subject from "./subjects";
 import { ArrowRightIcon } from "lucide-react";
 
 const quickLinks = [
@@ -90,57 +90,61 @@ const Dashboard = async () => {
 
   return (
     <>
-      <div className="md:pr-[23.5rem] w-full">
-        <Heading className="mt-12">
-          Hello{user?.name ? `, ${user.name}` : ""}!
-        </Heading>
+      <div className="layout-home grid gap-6 md:grid-cols-2 md:grid-rows-[auto,auto,auto,auto,1fr,auto,auto] lg:grid-cols-[1fr,21.5rem] xl:grid-cols-[1fr,1fr,1fr,21.5rem] xl:grid-rows-[auto,auto,1fr]">
+        <div className="area-[heading]">
+          <Heading>Hello{user?.name ? `, ${user.name}` : ""}!</Heading>
 
-        <Text className="mt-4 mb-6 max-w-2xl">
-          <WrapBalancer>
-            {quote.text.slice(0, -1)}{" "}
-            {quote.author ? (
-              <span className="font-medium">&mdash; {quote.author}</span>
-            ) : (
-              ""
-            )}
-          </WrapBalancer>
-        </Text>
+          <Text className="mt-4 max-w-2xl">
+            <WrapBalancer>
+              {quote.text.slice(0, -1)}{" "}
+              {quote.author ? (
+                <span className="font-medium">&mdash; {quote.author}</span>
+              ) : (
+                ""
+              )}
+            </WrapBalancer>
+          </Text>
+        </div>
 
         <Sidebar />
 
-        <Subjects />
+        <Subject subject="maths" />
+        <Subject subject="chemistry" />
+        <Subject subject="physics" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[1fr,2fr] 2xl:grid-cols-[1fr,3fr] gap-6 mt-6">
-          <Card.Root>
-            <Card.Header>
-              <Card.Title>Quick links</Card.Title>
-            </Card.Header>
-            <Card.Content className="flex flex-col items-start [&>a]:!mb-1">
-              {quickLinks.map((category, key) => (
-                <div key={key} className="mb-3">
-                  <Card.Description className="pb-1">
-                    {category.name}
-                  </Card.Description>
+        {/* Stop subjects stretching out */}
+        <div className="area-[stretch] hidden md:block xl:hidden" />
 
-                  <div className="flex flex-col items-start">
-                    {category.links.map((link, key) => (
-                      <Button
-                        variant="arrow"
-                        asChild
-                        key={key}
-                        className="!mb-1"
-                      >
-                        <Link href={link.href} target="_blank">
-                          {link.title} <ArrowRightIcon />
-                        </Link>
-                      </Button>
-                    ))}
-                  </div>
+        <Card.Root className="area-[links]">
+          <Card.Header>
+            <Card.Title>Quick links</Card.Title>
+          </Card.Header>
+          <Card.Content className="flex flex-col items-start [&>a]:!mb-1">
+            {quickLinks.map((category, key) => (
+              <div key={key} className="mb-3">
+                <Card.Description className="pb-1">
+                  {category.name}
+                </Card.Description>
+
+                <div className="flex flex-col items-start">
+                  {category.links.map((link, key) => (
+                    <Button variant="arrow" asChild key={key} className="!mb-1">
+                      <Link href={link.href} target="_blank">
+                        {link.title} <ArrowRightIcon />
+                      </Link>
+                    </Button>
+                  ))}
                 </div>
-              ))}
-            </Card.Content>
-          </Card.Root>
-        </div>
+              </div>
+            ))}
+          </Card.Content>
+        </Card.Root>
+        <Card.Root className="xl:col-span-2 area-[flashcards]">
+          <Card.Header>
+            <Card.Title>Recent flashcards</Card.Title>
+            <Card.Content></Card.Content>
+          </Card.Header>
+        </Card.Root>
       </div>
     </>
   );

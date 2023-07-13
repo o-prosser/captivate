@@ -1,4 +1,4 @@
-import { Breadcrumbs, Heading } from "@/ui";
+import { Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import ChemistrySpecification from "./chemistry-specification.mdx";
 import PhysicsSpecification from "./physics-specification.mdx";
@@ -10,8 +10,7 @@ const Specification = ({ params }: { params: { science: string } }) => {
 
   return (
     <>
-      <Breadcrumbs pages={["Physics", "Specification"]} />
-      <Heading className="mb-8">Specification</Heading>
+      <Heading className="mb-6">Specification</Heading>
 
       {params.science === "physics" && <PhysicsSpecification />}
       {params.science === "chemistry" && <ChemistrySpecification />}

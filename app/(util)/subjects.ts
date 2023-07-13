@@ -45,6 +45,12 @@ export const useSubjectStyles = (subject: string) => {
       : subject === "chemistry"
       ? FlaskRoundIcon
       : AtomIcon;
+  const gridArea =
+    subject === "maths"
+      ? "area-[maths]"
+      : subject === "chemistry"
+      ? "area-[chemistry]"
+      : "area-[physics]";
 
   return {
     subjectColor,
@@ -52,6 +58,7 @@ export const useSubjectStyles = (subject: string) => {
     subjectBorder,
     subjectBackground,
     SubjectIcon,
+    gridArea,
   };
 };
 

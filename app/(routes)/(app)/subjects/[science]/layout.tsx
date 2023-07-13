@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import { notFound } from "next/navigation";
 
 import sciencesData from "@/data/science.json";
-import Links from "./links";
 import { SubjectLayout } from "@/components/subject-layout";
+import links from "./links";
 
 const ScienceLayout = ({
   children,
@@ -23,7 +23,7 @@ const ScienceLayout = ({
     <SubjectLayout
       title={science.name}
       subTitle={science.fullName}
-      links={<Links params={params} />}
+      links={links}
     >
       {children}
     </SubjectLayout>

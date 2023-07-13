@@ -1,5 +1,4 @@
 export * as Accordion from "./accordion";
-export * from "./breadcrumbs";
 export * from "./button";
 export * from "./callout";
 export * as Command from "./command";

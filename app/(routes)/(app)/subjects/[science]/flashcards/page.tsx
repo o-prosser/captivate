@@ -1,5 +1,5 @@
 import DataTable from "@/components/data-table";
-import { Breadcrumbs, Button, Heading } from "@/ui";
+import { Button, Heading } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { notFound } from "next/navigation";
 import { columns } from "./columns";
@@ -31,9 +31,8 @@ const Flashcards = async ({ params }: { params: { science: string } }) => {
 
   return (
     <>
-      <Breadcrumbs pages={["Physics", "Flashcards"]} />
-      <div className="flex justify-between items-start flex-col-reverse sm:flex-row mt-3 md:mt-7">
-        <Heading className="mb-8 mt-0">Flashcards</Heading>
+      <div className="flex justify-between items-start flex-col-reverse sm:flex-row">
+        <Heading className="mb-8">Flashcards</Heading>
         <Button className="mb-3" asChild>
           <Link href={`/subjects/${params.science}/flashcards/create`}>
             <PlusIcon />

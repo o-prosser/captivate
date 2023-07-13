@@ -1,5 +1,4 @@
-import { BackButton } from "@/components";
-import { Breadcrumbs, Button, Card, Heading, Text } from "@/ui";
+import { Button, Card, Heading, Text } from "@/ui";
 import { getScience } from "@/util/pracitcals";
 import { getSubjectEnum } from "@/util/subjects";
 import Link from "next/link";
@@ -43,15 +42,6 @@ const FlashcardGroupPage = async ({
 
   return (
     <>
-      <Breadcrumbs
-        pages={[
-          science.name,
-          "Flashcards",
-          `Unit ${flashcardGroup.unit}.${flashcardGroup.topic}`,
-          topicName || "",
-        ]}
-      />
-      <BackButton />
       <div className="flex justify-between items-start flex-col-reverse sm:flex-row mt-5">
         <Heading className="mt-0">Flashcards &mdash; {topicName}</Heading>
         <div className="mb-3 sm:mb-0 space-x-3">
