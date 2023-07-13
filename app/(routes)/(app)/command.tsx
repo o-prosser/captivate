@@ -177,7 +177,13 @@ const CommandBar = ({
           <Fragment key={key}>
             <Command.Group heading={command.heading}>
               {command.items.map(({ href, label, icon: Icon }, key) => (
-                <Command.Item key={key} onSelect={() => router.push(href)}>
+                <Command.Item
+                  key={key}
+                  onSelect={() => {
+                    router.push(href);
+                    setOpen(false);
+                  }}
+                >
                   <Icon className="mr-2 h-4 w-4" />
                   <span>{label}</span>
                 </Command.Item>
