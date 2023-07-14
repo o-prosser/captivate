@@ -1,0 +1,65 @@
+{
+  "weeks": [
+    {
+      "monday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Ms Teacher",
+          "room": "R00"
+        }
+      ],
+      "tuesday": [
+        {
+          "lesson": [5],
+          "subject": "chemistry",
+          "teacher": "Mr Teacher",
+          "room": "R01"
+        }
+      ],
+      "wednesday": [
+        {
+          "lesson": [3, 4],
+          "subject": "maths",
+          "teacher": "Ms Teacher",
+          "room": "R00"
+        }
+      ],
+      "thursday": [
+        {
+          "lesson": [5],
+          "subject": "maths",
+          "teacher": "Ms Teacher",
+          "room": "R00"
+        }
+      ],
+      "friday": [
+        {
+          "lesson": [1, 2],
+          "subject": "chemistry",
+          "teacher": "Mr Teacher",
+          "room": "R01"
+        },
+        {
+          "lesson": [3],
+          "subject": "maths",
+          "teacher": "Ms Teacher",
+          "room": "R02"
+        },
+        {
+          "lesson": [5],
+          "subject": "physics",
+          "teacher": "Mr Teacher",
+          "room": "R03"
+        }
+      ]
+    },
+    {
+      "monday": [],
+      "tuesday": [],
+      "wednesday": [],
+      "thursday": [],
+      "friday": []
+    }
+  ]
+}

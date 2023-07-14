@@ -45,7 +45,7 @@ const Wrapper = ({
       >
         <Header user={user} />
 
-        {children}
+        <main>{children}</main>
       </motion.div>
     </>
   );

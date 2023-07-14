@@ -6,12 +6,14 @@ const Root = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="w-full overflow-auto">
-    <table
-      ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
-      {...props}
-    />
+  <div className="border border-collapse rounded-2xl overflow-hidden">
+    <div className="overflow-x-auto overflow-y-hidden w-[calc(100%+2px)]">
+      <table
+        ref={ref}
+        className={cn("w-full caption-bottom text-sm -m-px", className)}
+        {...props}
+      />
+    </div>
   </div>
 ));
 Root.displayName = "Root";
@@ -20,7 +22,14 @@ const Header = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead
+    ref={ref}
+    className={cn(
+      "[&_tr]:border-b [&_tr]:border-t [&_tr]:bg-muted [&_tr]:hover:bg-muted",
+      className,
+    )}
+    {...props}
+  />
 ));
 Header.displayName = "Header";
 
@@ -70,7 +79,7 @@ const Head = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 border",
       className,
     )}
     {...props}
@@ -84,7 +93,10 @@ const Cell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    className={cn(
+      "p-4 align-middle [&:has([role=checkbox])]:pr-0 border",
+      className,
+    )}
     {...props}
   />
 ));
