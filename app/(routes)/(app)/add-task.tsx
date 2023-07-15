@@ -14,14 +14,14 @@ import { EventCategory, Subject } from "@prisma/client";
 import { useToast } from "@/util/use-toast";
 
 const schema = z.object({
-  date: z.date(),
+  doDate: z.date().nullable(),
+  dueDate: z.date().nullable(),
   title: z.string().min(3),
-  description: z.string().optional(),
-  subject: z.nativeEnum(Subject).optional(),
-  category: z.nativeEnum(EventCategory),
+  description: z.string().nullable(),
+  subject: z.nativeEnum(Subject).nullable(),
 });
 
-const AddEvent = ({
+const AddTask = ({
   userId,
   close,
 }: {
@@ -31,11 +31,11 @@ const AddEvent = ({
   const form = useForm({
     schema,
     defaultValues: {
-      date: "",
+      doDate: "",
+      dueDate: "",
       title: "",
       description: "",
       subject: "",
-      category: "",
     },
   });
 
@@ -47,28 +47,28 @@ const AddEvent = ({
     try {
       setPending(true);
 
-      const response = await fetch("/api/events", {
+      const response = await fetch("/api/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           userId,
-          date: values.date.toDateString(),
+          doDate: values.doDate?.toDateString(),
+          dueDate: values.dueDate?.toDateString(),
           title: values.title,
           description: values.description,
           subject: values.subject,
-          category: values.category,
         }),
       });
 
       const data = await response.json();
-      router.push(`/calendar?added=${data.event.id}`);
+      router.push(`/tasks?added=${data.task.id}`);
       close(false);
       form.reset();
       toast({
-        title: "Event added successfully",
-        description: "The event has been added to your calendar.",
+        title: "Task added successfully",
+        description: "The task has been added to your task list.",
       });
     } catch (error) {
       form.setError("title", {
@@ -83,8 +83,8 @@ const AddEvent = ({
   return (
     <>
       <Dialog.Header>
-        <Dialog.Title>Add event</Dialog.Title>
-        <Dialog.Description>Add an event to your calendar.</Dialog.Description>
+        <Dialog.Title>Add task</Dialog.Title>
+        <Dialog.Description>Add a task.</Dialog.Description>
       </Dialog.Header>
 
       <Form.Root form={form} onSubmit={onSubmit} className="space-y-6">
@@ -96,11 +96,49 @@ const AddEvent = ({
         />
         <Form.Field
           control={form.control}
-          name="date"
+          name="doDate"
           input={{}}
           render={({ field }) => (
             <Form.Item className="flex flex-col">
-              <Form.Label>Date</Form.Label>
+              <Form.Label>Do date</Form.Label>
+              <Popover.Root>
+                <Popover.Trigger asChild>
+                  <Form.Control>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-full pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </Form.Control>
+                </Popover.Trigger>
+                <Popover.Content className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    initialFocus
+                  />
+                </Popover.Content>
+              </Popover.Root>
+            </Form.Item>
+          )}
+        />
+        <Form.Field
+          control={form.control}
+          name="dueDate"
+          input={{}}
+          render={({ field }) => (
+            <Form.Item className="flex flex-col">
+              <Form.Label>Due date</Form.Label>
               <Popover.Root>
                 <Popover.Trigger asChild>
                   <Form.Control>
@@ -175,37 +213,9 @@ const AddEvent = ({
           )}
         />
 
-        <Form.Field
-          control={form.control}
-          name="category"
-          input={{}}
-          render={({ field }) => (
-            <Form.Item>
-              <Form.Label>Category</Form.Label>
-              <Select.Root
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
-                <Form.Control>
-                  <Select.Trigger>
-                    <Select.Value placeholder="Select category" />
-                  </Select.Trigger>
-                </Form.Control>
-                <Select.Content>
-                  <Select.Item value="Test">Test</Select.Item>
-                  <Select.Item value="Meeting">Meeting</Select.Item>
-                  <Select.Item value="School">School</Select.Item>
-                  <Select.Item value="Other">Other</Select.Item>
-                </Select.Content>
-              </Select.Root>
-              <Form.Message />
-            </Form.Item>
-          )}
-        />
-
         <Dialog.Footer>
           <Button type="submit" pending={pending}>
-            Add event
+            Add task
           </Button>
         </Dialog.Footer>
       </Form.Root>
@@ -213,4 +223,4 @@ const AddEvent = ({
   );
 };
 
-export default AddEvent;
+export default AddTask;

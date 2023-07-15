@@ -19,10 +19,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CalendarPlusIcon } from "lucide-react";
 import AddEvent from "./add-event";
+import AddTask from "./add-task";
 
 const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
   const [commandOpen, setCommandOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
+  const [addType, setAddType] = useState<"task" | "event">("task");
   const router = useRouter();
 
   useEffect(() => {
@@ -95,18 +97,26 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
               <DropdownMenu.Group>
-                <DropdownMenu.Item>
-                  <PinIcon /> Add task
-                </DropdownMenu.Item>
-                <Dialog.Trigger asChild>
+                <Dialog.Trigger asChild onClick={() => setAddType("task")}>
+                  <DropdownMenu.Item>
+                    <PinIcon /> Add task
+                  </DropdownMenu.Item>
+                </Dialog.Trigger>
+                <Dialog.Trigger asChild onClick={() => setAddType("event")}>
                   <DropdownMenu.Item>
                     <CalendarPlusIcon /> Add event
                   </DropdownMenu.Item>
-                </Dialog.Trigger>{" "}
+                </Dialog.Trigger>
               </DropdownMenu.Group>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
-          <AddEvent close={setAddOpen} userId={user.id} />
+          <Dialog.Content>
+            {addType === "event" ? (
+              <AddEvent close={setAddOpen} userId={user.id} />
+            ) : (
+              <AddTask close={setAddOpen} userId={user.id} />
+            )}
+          </Dialog.Content>
         </Dialog.Root>
 
         <Profile setCommandOpen={setCommandOpen} image={user.image} />

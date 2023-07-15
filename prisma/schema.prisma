@@ -51,6 +51,7 @@ model User {
   sessions               Session[]
   flashcardStudySessions FlashcardStudySession[]
   events                 Event[]
+  tasks                  Task[]
 }
 
 model VerificationToken {
@@ -147,6 +148,22 @@ model Event {
   user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime?     @updatedAt
+
+  @@index([userId])
+}
+
+model Task {
+  id          String    @id @default(uuid())
+  completed   Boolean   @default(false)
+  dueDate     DateTime?
+  doDate      DateTime?
+  title       String
+  subject     Subject?
+  description String?   @db.LongText
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
 
   @@index([userId])
 }
