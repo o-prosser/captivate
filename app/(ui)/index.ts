@@ -14,3 +14,6 @@ export * as Card from "./card";
 export * from "./skeleton";
 export * from "./checkbox";
 export * from "./pill";
+export * from "./calendar";
+export * as Popover from "./popover";
+export * as Select from "./select";

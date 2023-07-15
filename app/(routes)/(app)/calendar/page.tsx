@@ -6,6 +6,11 @@ import Link from "next/link";
 import timetable from "@/data/timetable.json";
 import { lessonHasPassed } from "@/util/timetable";
 import { cn } from "@/util";
+import Calendar from "./calendar";
+import { getEvents } from "@/app/(models)/event";
+import { ErrorBoundary } from "react-error-boundary";
+import { Suspense } from "react";
+import { Markdown } from "@/components/markdown";
 
 const days: ["monday", "tuesday", "wednesday", "thursday", "friday"] = [
   "monday",
@@ -15,11 +20,13 @@ const days: ["monday", "tuesday", "wednesday", "thursday", "friday"] = [
   "friday",
 ];
 
-const Calendar = () => {
+const CalendarPage = async () => {
   const currentWeek = getCurrentWeek();
 
   const day: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" =
     days[new Date().getDay() - 1];
+
+  const events = await getEvents();
 
   return (
     <div>
@@ -103,10 +110,21 @@ const Calendar = () => {
             </div>
           </Card.Content>
         </Card.Root>
-        <div></div>
+        <div>
+          <ErrorBoundary fallback={<>Unable to load events</>}>
+            <Suspense fallback={<>Loading events...</>}>
+              <Calendar
+                events={events.map((event) => ({
+                  markdown: <Markdown source={event.description || ""} />,
+                  ...event,
+                }))}
+              />
+            </Suspense>
+          </ErrorBoundary>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Calendar;
+export default CalendarPage;

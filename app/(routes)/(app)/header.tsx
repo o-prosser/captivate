@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Button, DropdownMenu, LogoIcon } from "@/ui";
+import { Button, Dialog, DropdownMenu, LogoIcon } from "@/ui";
 import Profile from "./profile";
 import {
   ChevronDownIcon,
@@ -18,9 +18,11 @@ import CommandBar from "./command";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CalendarPlusIcon } from "lucide-react";
+import AddEvent from "./add-event";
 
-const Header = ({ user }: { user: { image?: string | null } }) => {
+const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
   const [commandOpen, setCommandOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -83,24 +85,29 @@ const Header = ({ user }: { user: { image?: string | null } }) => {
 
         <CommandBar open={commandOpen} setOpen={setCommandOpen} />
 
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
-            <Button variant="outline" className="px-3 !mr-2.5">
-              <PlusIcon />
-              <ChevronDownIcon className="text-muted-foreground !h-3 !w-3 !mr-0" />
-            </Button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Content>
-            <DropdownMenu.Group>
-              <DropdownMenu.Item>
-                <PinIcon /> Add task
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <CalendarPlusIcon /> Add event
-              </DropdownMenu.Item>
-            </DropdownMenu.Group>
-          </DropdownMenu.Content>
-        </DropdownMenu.Root>
+        <Dialog.Root open={addOpen} onOpenChange={setAddOpen}>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <Button variant="outline" className="px-3 !mr-2.5">
+                <PlusIcon />
+                <ChevronDownIcon className="text-muted-foreground !h-3 !w-3 !mr-0" />
+              </Button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content>
+              <DropdownMenu.Group>
+                <DropdownMenu.Item>
+                  <PinIcon /> Add task
+                </DropdownMenu.Item>
+                <Dialog.Trigger asChild>
+                  <DropdownMenu.Item>
+                    <CalendarPlusIcon /> Add event
+                  </DropdownMenu.Item>
+                </Dialog.Trigger>{" "}
+              </DropdownMenu.Group>
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+          <AddEvent close={setAddOpen} userId={user.id} />
+        </Dialog.Root>
 
         <Profile setCommandOpen={setCommandOpen} image={user.image} />
       </header>

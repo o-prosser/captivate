@@ -50,6 +50,7 @@ model User {
   accounts               Account[]
   sessions               Session[]
   flashcardStudySessions FlashcardStudySession[]
+  events                 Event[]
 }
 
 model VerificationToken {
@@ -126,4 +127,26 @@ model FlashcardStudy {
 
   @@index([sessionId])
   @@index([flashcardId])
+}
+
+enum EventCategory {
+  Test
+  Meeting
+  School
+  Other
+}
+
+model Event {
+  id          String        @id @default(uuid())
+  date        DateTime
+  title       String
+  subject     Subject?
+  category    EventCategory
+  description String?       @db.LongText
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime?     @updatedAt
+
+  @@index([userId])
 }
