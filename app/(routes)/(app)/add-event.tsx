@@ -11,6 +11,7 @@ import { Textarea } from "@/ui/textarea";
 import { cn } from "@/util";
 import format from "date-fns/format";
 import { EventCategory, Subject } from "@prisma/client";
+import { useToast } from "@/util/use-toast";
 
 const schema = z.object({
   date: z.date(),
@@ -33,6 +34,7 @@ const AddEvent = ({
 
   const [pending, setPending] = useState(false);
   const router = useRouter();
+  const { toast } = useToast();
 
   const onSubmit = async (values: z.infer<typeof schema>) => {
     try {
@@ -57,6 +59,10 @@ const AddEvent = ({
       router.push(`/calendar?added=${data.event.id}`);
       close(false);
       form.reset();
+      toast({
+        title: "Event added successfully",
+        description: "The event has been added to your calendar.",
+      });
     } catch (error) {
       form.setError("title", {
         type: "custom",

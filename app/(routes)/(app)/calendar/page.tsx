@@ -34,7 +34,7 @@ const CalendarPage = async () => {
 
       <div className="flex space-x-2"></div>
 
-      <div className="grid gap-6 mt-6 md:grid-cols-2 lg:grid-cols-[21.5rem,1fr]">
+      <div className="grid gap-6 mt-6 xl:grid-cols-[21.5rem,1fr]">
         <Card.Root>
           <Card.Header>
             <Card.Description>

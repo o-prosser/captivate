@@ -3,6 +3,7 @@ import "./globals.css";
 import { cn } from "@/util";
 import Providers from "./providers";
 import Images from "./images";
+import { Toaster } from "@/components/toaster";
 
 export const metadata = {
   title: {
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <Providers attribute="class" disableTransitionOnChange>
           {children}
+          <Toaster />
         </Providers>
       </body>
     </html>

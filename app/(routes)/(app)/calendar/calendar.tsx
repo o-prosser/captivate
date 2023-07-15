@@ -11,7 +11,6 @@ import isToday from "date-fns/isToday";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { EventCategory, Subject } from "@prisma/client";
 import { parseSubjectName } from "@/util/subjects";
-import { Markdown } from "@/components/markdown";
 import EditEvent from "./edit-event";
 import DeleteEvent from "./delete-event";
 
