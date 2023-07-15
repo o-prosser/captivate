@@ -12,7 +12,7 @@ const Wrapper = ({
   user,
 }: {
   children: React.ReactNode;
-  user: { image?: string | null };
+  user: { image?: string | null; id: string };
 }) => {
   const pathname = usePathname();
 
