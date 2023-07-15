@@ -5,7 +5,7 @@ import subMonths from "date-fns/subMonths";
 import { ReactNode, useEffect, useState } from "react";
 import { useCalendar } from "@h6s/calendar";
 import format from "date-fns/format";
-import { Button, Card, Dialog, Heading, Pill } from "@/ui";
+import { Button, Card, Dialog, Heading, Pill, Text } from "@/ui";
 import { cn } from "@/util";
 import isToday from "date-fns/isToday";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
@@ -13,6 +13,7 @@ import { EventCategory, Subject } from "@prisma/client";
 import { parseSubjectName } from "@/util/subjects";
 import EditEvent from "./edit-event";
 import DeleteEvent from "./delete-event";
+import Event from "./event";
 
 const Calendar = ({
   events,
@@ -28,6 +29,7 @@ const Calendar = ({
   }[];
 }) => {
   const [activeDate, setActiveDate] = useState(new Date());
+  const [selected, setSelected] = useState<Date | null>(null);
 
   const nextMonth = () => setActiveDate((prev) => addMonths(prev, 1));
   const prevMonth = () => setActiveDate((prev) => subMonths(prev, 1));
@@ -85,12 +87,49 @@ const Calendar = ({
           </div>
         ))}
 
+        {/* Mobile!! */}
+        {body.value.map((week) =>
+          week.value.map((day, index) => (
+            <button
+              onClick={() =>
+                setSelected(
+                  selected?.toDateString() === day.value.toDateString()
+                    ? null
+                    : day.value,
+                )
+              }
+              key={day.key}
+              className={cn(
+                "flex p-1 items-center justify-center min-h-[3rem] sm:hidden",
+                selected?.toDateString() === day.value.toDateString()
+                  ? "bg-muted"
+                  : "bg-background transition hover:bg-muted",
+              )}
+            >
+              <p
+                className={cn(
+                  "inline-flex justify-center",
+                  isToday(day.value)
+                    ? "p-1 bg-primary/10 text-primary rounded-full h-7"
+                    : "text-muted-foreground m-1",
+                  day.value.getDate() !== 1 && "w-7",
+                )}
+              >
+                {day.value.getDate() === 1
+                  ? format(day.value, "MMM d")
+                  : day.value.getDate()}
+              </p>
+            </button>
+          )),
+        )}
+
+        {/* Desktop only */}
         {body.value.map((week) =>
           week.value.map((day, index) => (
             <div
               key={day.key}
               className={cn(
-                "flex flex-col p-1 items-start min-h-[6rem]",
+                "sm:flex flex-col p-1 items-start min-h-[6rem] hidden",
                 isToday(day.value)
                   ? "bg-muted"
                   : "bg-background transition hover:bg-muted",
@@ -116,56 +155,41 @@ const Calendar = ({
                     event.date.toDateString() === day.value.toDateString(),
                 )
                 .map((event, key) => (
-                  <div key={key} className="px-1 pt-1">
-                    <Dialog.Root>
-                      <Dialog.Trigger asChild>
-                        <Button
-                          variant="link"
-                          className="justify-start text-sm text-left"
-                          size={null}
-                        >
-                          {event.title}
-                        </Button>
-                      </Dialog.Trigger>
-                      <Dialog.Content>
-                        <Dialog.Header>
-                          <div className="inline-flex pb-1">
-                            {event.subject ? (
-                              <Pill
-                                color={
-                                  parseSubjectName(event.subject) || undefined
-                                }
-                              >
-                                {event.subject}
-                              </Pill>
-                            ) : (
-                              ""
-                            )}
-                            <Pill>{event.category}</Pill>
-                          </div>
-                          <Dialog.Title className="mt-2">
-                            {event.title}
-                          </Dialog.Title>
-                          <Dialog.Description>
-                            {event.markdown}
-                          </Dialog.Description>
-                        </Dialog.Header>
-                        <Dialog.Footer>
-                          <DeleteEvent id={event.id} />
-                          <EditEvent event={event} />
-                        </Dialog.Footer>
-                      </Dialog.Content>
-                    </Dialog.Root>
-                  </div>
+                  <Event key={key} event={event} />
                 ))}
             </div>
           )),
         )}
-
         {body.value.length === 5 ? (
           <div className="col-span-7 bg-background" />
         ) : (
           ""
+        )}
+      </div>
+
+      {/* Mobile only events */}
+      <div className="sm:hidden flex flex-col p-6 border-t">
+        {selected ? (
+          <div>
+            {events.filter(
+              (event) => event.date.toDateString() === selected.toDateString(),
+            ).length > 0 ? (
+              events
+                .filter(
+                  (event) =>
+                    event.date.toDateString() === selected.toDateString(),
+                )
+                .map((event, key) => <Event key={key} event={event} />)
+            ) : (
+              <Text className="text-sm text-center text-muted-foreground">
+                No events
+              </Text>
+            )}
+          </div>
+        ) : (
+          <Text className="text-sm text-center text-muted-foreground">
+            Select a date to view events.
+          </Text>
         )}
       </div>
     </Card.Root>
