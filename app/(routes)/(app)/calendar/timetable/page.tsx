@@ -55,7 +55,10 @@ const Timetable = () => {
               <Table.Row>
                 <Table.Head className="min-w-[9rem]"></Table.Head>
                 {days.map((day) => (
-                  <Table.Head className="capitalize min-w-[10rem] w-[calc((100%-10rem)/5)] text-center font-semibold text-foreground">
+                  <Table.Head
+                    key={day}
+                    className="capitalize min-w-[10rem] w-[calc((100%-10rem)/5)] text-center font-semibold text-foreground"
+                  >
                     {day}
                   </Table.Head>
                 ))}
