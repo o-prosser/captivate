@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/util/session";
 
 import Footer from "./footer";
-import Header from "./header";
 import Wrapper from "./wrapper";
 
 const AppLayout = async ({ children }: { children: React.ReactNode }) => {
