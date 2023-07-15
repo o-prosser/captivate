@@ -34,7 +34,7 @@ export const SubjectLayout = ({
       style={
         { "--primary": `var(--${title.toLowerCase()})` } as React.CSSProperties
       }
-      className="relative"
+      className="relative flex"
     >
       <nav className="fixed h-16 ml-1.5 top-0 left-36 flex items-center z-10 md:hidden print:!hidden">
         <Sheet.Root open={open} onOpenChange={setOpen}>
@@ -89,7 +89,7 @@ export const SubjectLayout = ({
         </Sheet.Root>
       </nav>
 
-      <aside className="hidden md:block fixed overflow-x-hidden overflow-y-auto w-60 border rounded-2xl py-2 top-24 left-[6.9375rem] print:!hidden">
+      <aside className="hidden md:block grow basis-60 self-start sticky overflow-x-hidden overflow-y-auto w-60 border rounded-2xl py-2 top-4 print:!hidden">
         <Heading level={4} className="capitalize px-4 mb-0">
           {title}
         </Heading>
@@ -132,7 +132,7 @@ export const SubjectLayout = ({
         </div>
       </aside>
 
-      <main className="md:pl-[16.5rem]">{children}</main>
+      <main className="md:pl-6 basis-0 flex-grow-[999]">{children}</main>
     </div>
   );
 };

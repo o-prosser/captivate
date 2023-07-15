@@ -4,6 +4,7 @@ import { ClipboardListIcon } from "lucide-react";
 import Link from "next/link";
 import timetable from "@/data/timetable.json";
 import { cn } from "@/util";
+import { Fragment } from "react";
 
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 const lessonTimes = [
@@ -81,37 +82,73 @@ const Timetable = () => {
                 );
 
                 return (
-                  <Table.Row key={key}>
-                    <Table.Cell>
-                      <p className="font-medium">Lesson {key + 1}</p>
-                      <p className="font-muted-foreground">{time}</p>
-                    </Table.Cell>
-                    {monday?.lesson.length === 2 && shouldHideIfDouble ? (
-                      ""
+                  <Fragment key={key}>
+                    <Table.Row>
+                      <Table.Cell>
+                        <p className="font-medium">Lesson {key + 1}</p>
+                        <p className="font-muted-foreground">{time}</p>
+                      </Table.Cell>
+                      {monday?.lesson.length === 2 && shouldHideIfDouble ? (
+                        ""
+                      ) : (
+                        <Day lesson={monday} />
+                      )}
+                      {tuesday?.lesson.length === 2 && shouldHideIfDouble ? (
+                        ""
+                      ) : (
+                        <Day lesson={tuesday} />
+                      )}
+                      {wednesday?.lesson.length === 2 && shouldHideIfDouble ? (
+                        ""
+                      ) : (
+                        <Day lesson={wednesday} />
+                      )}
+                      {thursday?.lesson.length === 2 && shouldHideIfDouble ? (
+                        ""
+                      ) : (
+                        <Day lesson={thursday} />
+                      )}
+                      {friday?.lesson.length === 2 && shouldHideIfDouble ? (
+                        ""
+                      ) : (
+                        <Day lesson={friday} />
+                      )}
+                    </Table.Row>
+                    {key === 1 || key === 3 ? (
+                      <>
+                        <Table.Row>
+                          <Table.Cell
+                            className="py-2 text-center bg-muted/20"
+                            colSpan={6}
+                          >
+                            <p className="font-medium">
+                              {key === 1 ? "Break" : "Lunch"}
+                            </p>
+                            <p className="font-muted-foreground">
+                              {key === 1 ? "10:35 – 11:10" : "13:05 – 13:40"}
+                            </p>
+                          </Table.Cell>
+                        </Table.Row>
+                        {key === 3 ? (
+                          <Table.Row>
+                            <Table.Cell
+                              className="py-2 text-center bg-muted/20"
+                              colSpan={6}
+                            >
+                              <p className="font-medium">Worship</p>
+                              <p className="font-muted-foreground">
+                                13:40 – 14:00
+                              </p>
+                            </Table.Cell>
+                          </Table.Row>
+                        ) : (
+                          ""
+                        )}
+                      </>
                     ) : (
-                      <Day lesson={monday} />
-                    )}
-                    {tuesday?.lesson.length === 2 && shouldHideIfDouble ? (
                       ""
-                    ) : (
-                      <Day lesson={tuesday} />
                     )}
-                    {wednesday?.lesson.length === 2 && shouldHideIfDouble ? (
-                      ""
-                    ) : (
-                      <Day lesson={wednesday} />
-                    )}
-                    {thursday?.lesson.length === 2 && shouldHideIfDouble ? (
-                      ""
-                    ) : (
-                      <Day lesson={thursday} />
-                    )}
-                    {friday?.lesson.length === 2 && shouldHideIfDouble ? (
-                      ""
-                    ) : (
-                      <Day lesson={friday} />
-                    )}
-                  </Table.Row>
+                  </Fragment>
                 );
               })}
             </Table.Body>
