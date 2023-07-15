@@ -49,8 +49,8 @@ const Timetable = () => {
       <Heading>Timetable</Heading>
 
       {timetable.weeks.map((week, key) => (
-        <div className="mt-6">
-          <Table.Root key={key}>
+        <div key={key} className="mt-6">
+          <Table.Root>
             <Table.Header>
               <Table.Row>
                 <Table.Head className="min-w-[9rem]"></Table.Head>
