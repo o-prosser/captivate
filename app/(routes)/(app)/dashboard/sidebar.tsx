@@ -9,6 +9,8 @@ import { lessonHasPassed } from "@/util/timetable";
 import { cn } from "@/util";
 import { parseSubjectName } from "@/util/subjects";
 import timetable from "@/data/timetable.json";
+import { TimetableToday } from "@/components/timetable-today";
+import isWeekend from "date-fns/isWeekend";
 
 const LESSONS = [
   {
@@ -67,27 +69,23 @@ const EVENTS = [
   },
 ];
 
-const days: ["monday", "tuesday", "wednesday", "thursday", "friday"] = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-];
-
 const Sidebar = () => {
-  const currentWeek = getCurrentWeek();
-
-  const day: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" =
-    days[new Date().getDay() - 1];
-
   return (
     <Card.Root className="area-[sidebar]">
       <Card.Header>
         <Card.Description>
-          It&apos;s {currentWeek === 0 ? "half term" : ""}
-          {currentWeek === 1 ? "a week 1" : ""}
-          {currentWeek === 2 ? "a week 1" : ""}
+          It&apos;s {getCurrentWeek() === 0 ? "half term" : ""}
+          {isWeekend(new Date()) ? (
+            <>
+              {getCurrentWeek() === 1 ? "the weekend" : ""}
+              {getCurrentWeek() === 2 ? "the weekend" : ""}
+            </>
+          ) : (
+            <>
+              {getCurrentWeek() === 1 ? "a week 1" : ""}
+              {getCurrentWeek() === 2 ? "a week 1" : ""}
+            </>
+          )}
         </Card.Description>
         <Card.Title className="text-primary text-xl pb-2">
           {format(new Date(), "EEEE, 'the' do 'of' MMMM y")}.
@@ -113,47 +111,7 @@ const Sidebar = () => {
       </Card.Header>
 
       <Card.Content>
-        {(currentWeek === 1 || currentWeek === 2) &&
-        timetable.weeks[currentWeek - 1][day]?.length > 0 ? (
-          <>
-            <Card.Description className="pb-1">
-              <span className="pr-2">👩🏻‍🏫</span>Lessons today
-            </Card.Description>
-
-            {timetable.weeks[currentWeek - 1][day].map((lesson, key) => {
-              const passed = lessonHasPassed(
-                lesson.lesson.length > 1 ? lesson.lesson[1] : lesson.lesson[0],
-              );
-              return (
-                <div
-                  className={cn(passed && "opacity-50", "flex space-x-3 mb-3")}
-                  key={key}
-                >
-                  <Checkbox
-                    disabled
-                    className="mt-1.5 disabled:cursor-text disabled:opacity-100"
-                    checked={passed}
-                  />
-                  <div>
-                    <Text>
-                      <span className="rounded-full bg-primary text-primary-foreground px-2 py-0.5 font-medium text-sm inline-flex mr-2">
-                        {lesson.lesson.length > 1
-                          ? `Lessons ${lesson.lesson[0]} & ${lesson.lesson[1]}`
-                          : `Lesson ${lesson.lesson}`}
-                      </span>
-                      {lesson.subject.charAt(0).toUpperCase()}
-                      {lesson.subject.substring(1)}
-                    </Text>
-                    <Pill>{lesson.teacher}</Pill>
-                    <Pill>{lesson.room}</Pill>
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        ) : (
-          ""
-        )}
+        <TimetableToday />
 
         <Card.Description className="pb-1 pt-5">
           <span className="pr-2">📌</span>Tasks due today

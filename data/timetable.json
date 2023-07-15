@@ -55,7 +55,26 @@
       ]
     },
     {
-      "monday": [],
+      "monday": [
+        {
+          "lesson": [2],
+          "subject": "physics",
+          "teacher": "Teacher",
+          "room": "R01"
+        },
+        {
+          "lesson": [3, 4],
+          "subject": "maths",
+          "teacher": "Teacher",
+          "room": "R01"
+        },
+        {
+          "lesson": [5],
+          "subject": "chemistry",
+          "teacher": "Teacher",
+          "room": "R01"
+        }
+      ],
       "tuesday": [],
       "wednesday": [],
       "thursday": [],
