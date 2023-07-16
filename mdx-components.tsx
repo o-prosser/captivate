@@ -1,17 +1,18 @@
 import type { MDXComponents } from "mdx/types";
+
+import { Callout } from "@/ui/callout";
 import {
   BasicTable,
+  Columns,
   Heading,
   OrderedList,
-  UnorderedList,
   TableCell,
   TableHeading,
   TableRow,
   Text,
-  Callout,
-  Columns,
-} from "@/ui";
-import MarkdownLink from "@/components/markdown-link";
+  UnorderedList,
+} from "@/ui/typography";
+import { MarkdownLink } from "@/components/markdown-link";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any

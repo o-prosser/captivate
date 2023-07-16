@@ -20,15 +20,12 @@
       }
     ],
     "paths": {
-      "@/lib/*": ["./app/(lib)/*"],
-      "@/assets/*": ["./app/(assets)/*"],
-      "@/util": ["./app/(util)/index.ts"],
-      "@/ui": ["./app/(ui)/index.ts"],
-      "@/ui/*": ["./app/(ui)/*"],
-      "@/components": ["./app/(components)/index.ts"],
-      "@/components/*": ["./app/(components)/*"],
-      "@/util/*": ["./app/(util)/*"],
-      "@/actions/*": ["./app/(actions)/*"],
+      "@/assets/*": ["./app/_assets/*"],
+      "@/components/*": ["./app/_components/*"],
+      "@/lib/*": ["./app/_lib/*"],
+      "@/models/*": ["./app/_models/*"],
+      "@/ui/*": ["./app/_ui/*"],
+      "@/util/*": ["./app/_util/*"],
       "@/*": ["./*"]
     }
   },

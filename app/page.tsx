@@ -1,11 +1,13 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 
-import { Button, Heading } from "@/ui";
-import ThemeToggle from "@/components/theme";
-import { getCurrentUser } from "./(util)/session";
+import { Button } from "@/ui/button";
+import { Heading } from "@/ui/typography";
+import { ThemeToggle } from "@/components/theme";
+
+import { getCurrentUser } from "./_util/session";
 
 const Index = async () => {
   const user = await getCurrentUser();

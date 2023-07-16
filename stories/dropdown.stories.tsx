@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { Button, DropdownMenu } from "../app/(ui)";
 import {
   CloudIcon,
   CreditCardIcon,
@@ -17,6 +15,9 @@ import {
   UserPlusIcon,
   UsersIcon,
 } from "lucide-react";
+
+import { Button } from "../app/_ui/button";
+import * as DropdownMenu from "../app/_ui/dropdown-menu";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof DropdownMenu.Root> = {
