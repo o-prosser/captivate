@@ -18,7 +18,9 @@ const End = () => {
 
   return (
     <Button
-      onClick={() => startTransition(() => end(sessionId, params.science))}
+      onClick={() =>
+        startTransition(() => end(sessionId, params.science as string))
+      }
       variant="ghost"
       size="icon"
       className="mr-11"
