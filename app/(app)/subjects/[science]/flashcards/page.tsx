@@ -11,6 +11,10 @@ import DataTable from "@/components/data-table";
 
 import { columns } from "./_components/columns";
 
+export const metadata = {
+  title: "Flashcards",
+};
+
 const Flashcards = async ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
   if (!science) notFound();

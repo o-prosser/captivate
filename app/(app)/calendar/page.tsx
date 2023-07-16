@@ -15,6 +15,10 @@ import { getEvents } from "@/models/event";
 
 import Calendar from "./_components/calendar";
 
+export const metadata = {
+  title: "Calendar",
+};
+
 const CalendarPage = async () => {
   const events = await getEvents();
 

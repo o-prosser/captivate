@@ -8,6 +8,10 @@ import DataTable from "@/app/_components/data-table";
 
 import { columns } from "./_components/columns";
 
+export const metadata = {
+  title: "Topic papers",
+};
+
 const TopicPapers = async ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
   if (!science) notFound();

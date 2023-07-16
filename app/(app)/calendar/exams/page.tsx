@@ -1,10 +1,14 @@
-import lightFormat from "date-fns/lightFormat";
+import format from "date-fns/format";
 
 import examsTimetable from "@/data/exam-timetable.json";
 import { cn } from "@/util/cn";
 import { minutesToHoursAndMinutes } from "@/util/time";
 import * as Table from "@/ui/table";
 import { Heading } from "@/ui/typography";
+
+export const metadata = {
+  title: "Exam timetable",
+};
 
 const ExamsTimetable = () => {
   return (
@@ -28,7 +32,7 @@ const ExamsTimetable = () => {
               return (
                 <Table.Row key={key} className={cn(completed && "bg-muted")}>
                   <Table.Cell className="capitalize py-4 w-60">
-                    {lightFormat(date, "EEEE d LLLL")}
+                    {format(date, "EEEE d LLLL")}
                   </Table.Cell>
                   <Table.Cell className="uppercase py-4 w-[3.375rem]">
                     {exam.session}

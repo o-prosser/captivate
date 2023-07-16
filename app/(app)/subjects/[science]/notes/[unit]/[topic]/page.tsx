@@ -5,11 +5,13 @@ import { Heading } from "@/ui/typography";
 
 import GetMarkdown from "./_components/get-markdown";
 
-const NoteTopic = ({
-  params,
-}: {
-  params: { science: string; unit: string; topic: string };
-}) => {
+type Params = { science: string; unit: string; topic: string };
+
+export const generateMetadata = ({ params }: { params: Params }) => ({
+  title: `Notes – Unit ${params.unit}.${params.topic}`,
+});
+
+const NoteTopic = ({ params }: { params: Params }) => {
   const science = getScience(params.science);
   if (!science) notFound();
 

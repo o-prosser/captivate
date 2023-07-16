@@ -4,6 +4,10 @@ import { getTasks } from "@/models/task";
 
 import Tasks from "./_components/tasks";
 
+export const metadata = {
+  title: "Tasks",
+};
+
 const TaskPage = async () => {
   const tasks = await getTasks();
 

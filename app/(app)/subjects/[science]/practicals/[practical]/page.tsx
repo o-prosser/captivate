@@ -16,7 +16,7 @@ export const generateMetadata = ({
   const { practical } = getPractical(params.science, params.practical);
 
   return {
-    title: practical?.name,
+    title: "Practicals – " + practical?.name,
   };
 };
 

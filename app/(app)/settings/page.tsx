@@ -6,6 +6,10 @@ import Theme from "./_components/theme";
 import User from "./_components/user";
 import UserFallback from "./_components/user-fallback";
 
+export const metadata = {
+  title: "Settings",
+};
+
 const SettingsPage = () => {
   return (
     <>

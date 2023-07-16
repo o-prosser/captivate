@@ -10,6 +10,10 @@ import { DocumentCover } from "@/components/document-cover";
 
 import { columns } from "./_components/columns";
 
+export const metadata = {
+  title: "Practicals",
+};
+
 const Practicals = ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
   if (!science) notFound();

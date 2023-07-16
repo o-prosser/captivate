@@ -4,6 +4,10 @@ import timetable from "@/data/timetable.json";
 import * as Table from "@/ui/table";
 import { Heading } from "@/ui/typography";
 
+export const metadata = {
+  title: "Timetable",
+};
+
 const days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 const lessonTimes = [
   "08:40 – 09:35",

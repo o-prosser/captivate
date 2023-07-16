@@ -5,6 +5,10 @@ import DataTable from "@/components/data-table";
 
 import { columns } from "./columns";
 
+export const metadata = {
+  title: "Topic papers",
+};
+
 const PastPapers = async () => {
   const units = [
     "AS Unit 1 — Pure Mathematics A",

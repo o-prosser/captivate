@@ -6,6 +6,10 @@ import { Heading } from "@/ui/typography";
 import { DocumentCover } from "@/components/document-cover";
 import { getScience } from "@/app/_util/pracitcals";
 
+export const metadata = {
+  title: "Notes",
+};
+
 const Unit1Notes = ({
   params,
 }: {

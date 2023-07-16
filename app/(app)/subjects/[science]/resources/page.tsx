@@ -6,6 +6,10 @@ import { getScience } from "@/app/_util/pracitcals";
 
 import { columns } from "./_components/columns";
 
+export const metadata = {
+  title: "Resources",
+};
+
 const Resources = async ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
   if (!science) notFound();

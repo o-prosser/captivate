@@ -6,21 +6,6 @@ import sciencesData from "@/data/science.json";
 import { Button } from "@/ui/button";
 import { Heading } from "@/ui/typography";
 
-export const generateMetadata = ({
-  params,
-}: {
-  params: { science: string };
-}) => {
-  const science =
-    params.science === "physics"
-      ? sciencesData.sciences.physics
-      : sciencesData.sciences.chemistry;
-
-  return {
-    title: science.name,
-  };
-};
-
 const Science = ({ params }: { params: { science: string } }) => {
   if (params.science !== "physics" && params.science !== "chemistry")
     notFound();

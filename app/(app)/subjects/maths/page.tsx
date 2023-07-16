@@ -1,9 +1,5 @@
 import { Heading } from "@/ui/typography";
 
-export const metadata = {
-  title: "Maths",
-};
-
 const Maths = () => {
   return (
     <>

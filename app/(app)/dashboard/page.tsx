@@ -85,6 +85,10 @@ function getRandom(min: number, max: number) {
   return randomWithinRange;
 }
 
+export const metadata = {
+  title: "Dashboard",
+};
+
 const Dashboard = async () => {
   const user = await getCurrentUser();
 

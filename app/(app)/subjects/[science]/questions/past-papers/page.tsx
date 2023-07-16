@@ -56,6 +56,10 @@ const chemistryTables = [
   },
 ];
 
+export const metadata = {
+  title: "Past papers",
+};
+
 const PastPapers = async ({ params }: { params: { science: string } }) => {
   const science = getScience(params.science);
   if (!science) notFound();

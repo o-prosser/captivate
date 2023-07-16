@@ -7,6 +7,10 @@ import DataTable from "@/components/data-table";
 
 import { columns } from "./columns";
 
+export const metadata = {
+  title: "Past papers",
+};
+
 const PastPapers = async () => {
   const tables = [
     {
