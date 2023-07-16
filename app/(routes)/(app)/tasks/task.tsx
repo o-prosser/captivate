@@ -11,9 +11,14 @@ import { cn } from "@/util";
 import { AnimatePresence, motion } from "framer-motion";
 import DeleteTask from "./delete-task";
 import EditTask from "./edit-task";
+import isPast from "date-fns/isPast";
+import formatDistance from "date-fns/formatDistance";
+import isToday from "date-fns/isToday";
+import { differenceInDays } from "date-fns/esm";
 
 const Task = ({
   task,
+  timing = "past",
 }: {
   task: {
     id?: string;
@@ -25,6 +30,7 @@ const Task = ({
     description?: string | null;
     markdown?: React.ReactNode;
   };
+  timing?: string;
 }) => {
   const [completed, setCompleted] = useState(task.completed);
 
@@ -105,6 +111,32 @@ const Task = ({
           ""
         )}
         <p className="font-medium text-sm flex-1">{task.title}</p>
+        <p
+          className={cn(
+            "text-muted-foreground text-sm",
+            timing === "past" &&
+              ((task.doDate && isPast(task.doDate)) ||
+                (task.dueDate && isPast(task.dueDate))) &&
+              "text-destructive",
+          )}
+        >
+          {timing === "past"
+            ? task.doDate &&
+              isPast(task.doDate) &&
+              !isToday(task.doDate) &&
+              formatDistance(task.doDate, new Date()) + " ago"
+            : task.doDate
+            ? "do " +
+              (differenceInDays(new Date(), task.doDate) === 0
+                ? "tomorrow"
+                : "in " + formatDistance(task.doDate, new Date()))
+            : task.dueDate
+            ? "due " +
+              (differenceInDays(new Date(), task.dueDate) === 0
+                ? "tomorrow"
+                : "in " + formatDistance(task.dueDate, new Date()))
+            : "no date specified"}
+        </p>
         <AccordionTrigger asChild>
           <Button variant="ghost" size="icon">
             <CircleEllipsisIcon />

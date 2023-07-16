@@ -6,10 +6,10 @@ import { PrismaClientValidationError } from "@prisma/client/runtime";
 import { revalidatePath } from "next/cache";
 
 const schema = z.object({
-  doDate: z.string(),
-  dueDate: z.string(),
+  doDate: z.string().nullable().optional(),
+  dueDate: z.string().nullable().optional(),
   title: z.string().min(3),
-  description: z.string().nullable(),
+  description: z.string().nullable().optional(),
   subject: z.nativeEnum(Subject).optional().nullable(),
 });
 
@@ -30,8 +30,8 @@ export const PATCH = async (req: Request, context: any) => {
       data: {
         title: body.title,
         description: body.description,
-        doDate: new Date(body.doDate),
-        dueDate: new Date(body.dueDate),
+        doDate: body.doDate ? new Date(body.doDate) : undefined,
+        dueDate: body.dueDate ? new Date(body.dueDate) : undefined,
         subject: body.subject as Subject,
       },
       select: {

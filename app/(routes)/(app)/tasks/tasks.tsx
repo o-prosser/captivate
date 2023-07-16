@@ -6,6 +6,8 @@ import { experimental_useOptimistic } from "react";
 import React, { useRef } from "react";
 import { Subject } from "@prisma/client";
 import { quickCreate } from "./actions";
+import { isPast, isToday } from "date-fns";
+import isFuture from "date-fns/isFuture";
 
 const Tasks = ({
   tasks,
@@ -69,9 +71,53 @@ const Tasks = ({
         </Card.Header>
         <Card.Content>
           <Accordion.Root type="single" collapsible>
-            {optimisticTasks.map((task, key) => (
-              <Task task={task} key={key} />
-            ))}
+            {optimisticTasks
+              .filter(
+                (task) =>
+                  task.doDate && (isPast(task.doDate) || isToday(task.doDate)),
+              )
+              .map((task, key) => (
+                <Task task={task} key={key} />
+              ))}
+          </Accordion.Root>
+        </Card.Content>
+      </Card.Root>
+
+      <Card.Root className="mt-6">
+        <Card.Header>
+          <Card.Title>Due today</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <Accordion.Root type="single" collapsible>
+            {optimisticTasks
+              .filter(
+                (task) =>
+                  task.dueDate &&
+                  (isPast(task.dueDate) || isToday(task.dueDate)),
+              )
+              .map((task, key) => (
+                <Task task={task} key={key} />
+              ))}
+          </Accordion.Root>
+        </Card.Content>
+      </Card.Root>
+
+      <Card.Root className="mt-6">
+        <Card.Header>
+          <Card.Title>Future</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <Accordion.Root type="single" collapsible>
+            {optimisticTasks
+              .filter(
+                (task) =>
+                  (task.dueDate && isFuture(task.dueDate)) ||
+                  (task.doDate && isFuture(task.doDate)) ||
+                  (!task.doDate && !task.dueDate),
+              )
+              .map((task, key) => (
+                <Task task={task} key={key} timing="future" />
+              ))}
           </Accordion.Root>
         </Card.Content>
       </Card.Root>
