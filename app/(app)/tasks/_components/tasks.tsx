@@ -1,6 +1,6 @@
 "use client";
 
-import React, { experimental_useOptimistic, useRef } from "react";
+import { experimental_useOptimistic, useRef } from "react";
 import { Subject } from "@prisma/client";
 import { isPast, isToday } from "date-fns";
 import isFuture from "date-fns/isFuture";
@@ -9,7 +9,6 @@ import * as Accordion from "@/ui/accordion";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
-import { Label } from "@/ui/label";
 
 import { quickCreate } from "../actions";
 import Task from "./task";
@@ -59,7 +58,6 @@ const Tasks = ({
         }}
         ref={formRef}
       >
-        <Label>Title</Label>
         <Input
           type="text"
           name="title"
