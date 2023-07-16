@@ -92,6 +92,6 @@ export const TimetableToday = () => {
       ))}
     </>
   ) : (
-    <>It's half term!</>
+    <>It&apos;s half term!</>
   );
 };
