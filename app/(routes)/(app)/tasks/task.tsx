@@ -16,14 +16,14 @@ const Task = ({
   task,
 }: {
   task: {
-    id: string;
-    completed: boolean;
-    dueDate: Date | null;
-    doDate: Date | null;
+    id?: string;
+    completed?: boolean;
+    dueDate?: Date | null;
+    doDate?: Date | null;
     title: string;
-    subject: Subject | null;
-    description: string | null;
-    markdown: React.ReactNode;
+    subject?: Subject | null;
+    description?: string | null;
+    markdown?: React.ReactNode;
   };
 }) => {
   const [completed, setCompleted] = useState(task.completed);
@@ -42,6 +42,22 @@ const Task = ({
       console.log(error);
     }
   };
+
+  if (typeof task.id === "undefined")
+    return (
+      <div className="flex items-center h-16 space-x-3">
+        <Button
+          variant={null}
+          size={null}
+          disabled
+          onClick={toggle}
+          className={cn(
+            "h-4 w-4 shrink-0 rounded-md border border-primary [&>svg]:!mr-0",
+          )}
+        ></Button>
+        <p className="font-medium text-sm flex-1">{task.title}</p>
+      </div>
+    );
 
   return (
     <Accordion.Item value={task.id}>
@@ -69,9 +85,9 @@ const Task = ({
                 strokeLinejoin="round"
               >
                 <motion.polyline
-                  initial={{ strokeDasharray: 0 }}
-                  animate={{ strokeDasharray: 1 }}
-                  exit={{ strokeDasharray: 0 }}
+                  initial={{ pathLength: -0 }}
+                  animate={{ pathLength: 1 }}
+                  exit={{ pathLength: 0 }}
                   points="20 6 9 17 4 12"
                 />
               </motion.svg>

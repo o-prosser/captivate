@@ -47,21 +47,21 @@ const Lesson = ({
 };
 
 const days: [
+  "sunday",
   "monday",
   "tuesday",
   "wednesday",
   "thursday",
   "friday",
   "saturday",
-  "sunday",
 ] = [
+  "sunday",
   "monday",
   "tuesday",
   "wednesday",
   "thursday",
   "friday",
   "saturday",
-  "sunday",
 ];
 
 export const TimetableToday = () => {
@@ -73,7 +73,7 @@ export const TimetableToday = () => {
     | "thursday"
     | "friday"
     | "saturday"
-    | "sunday" = days[new Date().getDay() - 1];
+    | "sunday" = days[new Date().getDay()];
   const day =
     actualDay === "saturday" || actualDay === "sunday" ? "monday" : actualDay;
 

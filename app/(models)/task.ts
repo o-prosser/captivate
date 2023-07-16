@@ -18,5 +18,8 @@ export const getTasks = async () => {
       subject: true,
       description: true,
     },
+    orderBy: {
+      createdAt: "asc",
+    },
   });
 };

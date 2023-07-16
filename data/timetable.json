@@ -75,10 +75,38 @@
           "room": "R01"
         }
       ],
-      "tuesday": [],
-      "wednesday": [],
-      "thursday": [],
-      "friday": []
+      "tuesday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Teacher",
+          "room": "R00"
+        }
+      ],
+      "wednesday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Teacher",
+          "room": "R00"
+        }
+      ],
+      "thursday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Teacher",
+          "room": "R00"
+        }
+      ],
+      "friday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Teacher",
+          "room": "R00"
+        }
+      ]
     }
   ]
 }

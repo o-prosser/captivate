@@ -25,12 +25,12 @@ const EditTask = ({
   task,
 }: {
   task: {
-    id: string;
-    doDate: Date | null;
-    dueDate: Date | null;
+    id?: string;
+    doDate?: Date | null;
+    dueDate?: Date | null;
     title: string;
-    description: string | null;
-    subject: Subject | null;
+    description?: string | null;
+    subject?: Subject | null;
   };
 }) => {
   const [open, setOpen] = useState(false);
@@ -69,7 +69,7 @@ const EditTask = ({
       });
 
       const data = await response.json();
-      router.push(`/calendar?updated=${data.task.id}`);
+      router.push(`/tasks?updated=${data.task.id}`);
       setOpen(false);
       form.reset();
       toast({

@@ -1,15 +1,20 @@
 import { Heading } from "@/ui";
-import { Suspense } from "react";
 import Tasks from "./tasks";
+import { getTasks } from "@/app/(models)/task";
+import { Markdown } from "@/components/markdown";
 
-const TaskPage = () => {
+const TaskPage = async () => {
+  const tasks = await getTasks();
+
   return (
     <>
       <Heading>Tasks</Heading>
-
-      <Suspense fallback={<>Loading tasks...</>}>
-        <Tasks />
-      </Suspense>
+      <Tasks
+        tasks={tasks.map((task) => ({
+          markdown: <Markdown source={task.description || ""} />,
+          ...task,
+        }))}
+      />
     </>
   );
 };

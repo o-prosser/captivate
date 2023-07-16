@@ -40,7 +40,7 @@ const Wrapper = ({
         className={cn(
           "px-6 pt-[5.5rem] pb-[7.5rem] below-md:!ml-0 min-h-screen",
           "md:mr-6 md:my-6 md:pt-2 md:pb-4 md:min-h-[calc(100vh-3rem)] md:border md:rounded-2xl",
-          "print:!m-0 print:!px-8 print:!pt-16",
+          "print:!m-0 print:!px-8 print:!pt-16 print:border-none",
         )}
       >
         <Header user={user} />
