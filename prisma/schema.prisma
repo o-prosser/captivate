@@ -111,6 +111,7 @@ model FlashcardStudySession {
   end               DateTime?
   scope             StudyScope
   scopeId           String?
+  subject           Subject?
   type              StudyType
 
   @@index([userId])

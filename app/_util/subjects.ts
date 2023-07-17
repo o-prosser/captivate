@@ -1,6 +1,26 @@
 import { Subject } from "@prisma/client";
 import { AtomIcon, FlaskRoundIcon, PiIcon } from "lucide-react";
 
+import mathsData from "@/data/maths.json";
+import sciencesData from "@/data/science.json";
+
+const getSubject = (id: string) => {
+  if (id !== "maths" && id !== "chemistry" && id !== "physics")
+    return undefined;
+
+  const science =
+    id === "physics"
+      ? sciencesData.sciences.physics
+      : id === "chemistry"
+      ? sciencesData.sciences.chemistry
+      : mathsData;
+
+  return {
+    enum: getSubjectEnum(id),
+    ...science,
+  };
+};
+
 const parseSubjectName = (name: string) => {
   if (name === "Maths") return "maths";
   if (name === "maths") return "maths";
@@ -73,4 +93,4 @@ const getSubjectEnum = (value: string) => {
   return null;
 };
 
-export { parseSubjectName, useSubjectStyles, getSubjectEnum };
+export { getSubject, parseSubjectName, useSubjectStyles, getSubjectEnum };

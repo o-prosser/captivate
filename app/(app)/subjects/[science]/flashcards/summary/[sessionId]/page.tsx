@@ -4,7 +4,7 @@ import { intervalToDuration } from "date-fns";
 import { getScience } from "@/util/pracitcals";
 import { Heading } from "@/ui/typography";
 import { getScope } from "@/models/flashcard";
-import { getSessionSummary } from "@/models/flashcard-study-session";
+import { getSessionSummary, SCORES } from "@/models/flashcard-study-session";
 
 import Chart from "./chart";
 
@@ -31,33 +31,7 @@ const FlashcardSessionSummary = async ({
     science,
   });
 
-  const scores = [
-    {
-      emoji: "⏩",
-      label: "Skipped",
-      short: "Skipped",
-    },
-    {
-      emoji: "❌",
-      label: "Forgot",
-      short: "Forgot",
-    },
-    {
-      emoji: "😬",
-      label: "Partially recalled",
-      short: "Partially",
-    },
-    {
-      emoji: "😄",
-      label: "Recalled with effort",
-      short: "Recalled",
-    },
-    {
-      emoji: "👑",
-      label: "Easily recalled",
-      short: "Easily",
-    },
-  ].map(({ emoji, label, short }, key) => {
+  const scores = SCORES.map(({ emoji, label, short }, key) => {
     const score = key + 1;
 
     const count = session.flashcardsStudies.filter(

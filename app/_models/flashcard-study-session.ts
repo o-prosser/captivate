@@ -1,7 +1,8 @@
+import { redirect } from "next/navigation";
+import { StudyScope, StudyType } from "@prisma/client";
+
 import { prisma } from "@/app/_lib/prisma";
 import { getCurrentUser } from "@/app/_util/session";
-import { StudyScope, StudyType } from "@prisma/client";
-import { redirect } from "next/navigation";
 
 const getOrCreateSession = async ({
   id,
@@ -112,4 +113,55 @@ const getSessionSummary = async (id: string) => {
   });
 };
 
-export { getOrCreateSession, getSessionWithFlashcards, getSessionSummary };
+const SCORES = [
+  {
+    emoji: "⏩",
+    label: "Skipped",
+    short: "Skipped",
+  },
+  {
+    emoji: "❌",
+    label: "Forgot",
+    short: "Forgot",
+  },
+  {
+    emoji: "😬",
+    label: "Partially recalled",
+    short: "Partially",
+  },
+  {
+    emoji: "😄",
+    label: "Recalled with effort",
+    short: "Recalled",
+  },
+  {
+    emoji: "👑",
+    label: "Easily recalled",
+    short: "Easily",
+  },
+];
+
+const getScores = (session: { flashcardsStudies: { score: number }[] }) =>
+  SCORES.map(({ emoji, label, short }, key) => {
+    const score = key + 1;
+
+    const count = session.flashcardsStudies.filter(
+      (study) => study.score == score
+    ).length;
+
+    return {
+      emoji,
+      score,
+      flashcards: count,
+      label,
+      short,
+    };
+  });
+
+export {
+  getOrCreateSession,
+  getSessionWithFlashcards,
+  getSessionSummary,
+  SCORES,
+  getScores,
+};

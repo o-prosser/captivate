@@ -3,6 +3,16 @@
     "physics": {
       "name": "Physics",
       "fullName": "WJEC AS Physics",
+      "teachers": [
+        {
+          "name": "Ms Teacher",
+          "email": "teacher@teacher.com"
+        },
+        {
+          "name": "Mr Teacher",
+          "email": "teacher2@teacher.com"
+        }
+      ],
       "specificationLink": "https://www.wjec.co.uk/media/gxbjl243/wjec-gce-physics-spec-from-2015-e-22-09-22.pdf",
       "units": [
         {
@@ -820,6 +830,7 @@
     "chemistry": {
       "name": "Chemistry",
       "fullName": "WJEC AS Chemistry",
+      "teachers": [],
       "specificationLink": "https://www.wjec.co.uk/media/akbbkvwh/wjec-gce-chemistry-spec-from-2015.pdf",
       "units": [],
       "practicals": [
