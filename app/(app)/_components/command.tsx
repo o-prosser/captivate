@@ -171,7 +171,7 @@ const CommandBar = ({
 
   return (
     <Command.Dialog open={open} onOpenChange={setOpen}>
-      <Command.Input placeholder="Type a command or search..." />
+      <Command.Input placeholder="Search for notes, tasks, events and questions..." />
       <Command.List>
         <Command.Empty>No results found.</Command.Empty>
         {commands.map((command, key) => (
