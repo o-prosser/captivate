@@ -925,9 +925,130 @@
       "name": "Chemistry",
       "fullName": "WJEC AS Chemistry",
       "teachers": [],
-      "gradeBoundaries": [],
+      "gradeBoundaries": [
+        {
+          "unit": 1,
+          "total": 80,
+          "years": [
+            {
+              "year": 2016,
+              "A": 43,
+              "B": 36,
+              "C": 29,
+              "D": 22,
+              "E": 16
+            },
+            {
+              "year": 2017,
+              "A": 44,
+              "B": 36,
+              "C": 28,
+              "D": 20,
+              "E": 13
+            },
+            {
+              "year": 2018,
+              "A": 45,
+              "B": 38,
+              "C": 31,
+              "D": 24,
+              "E": 18
+            },
+            {
+              "year": 2019,
+              "A": 44,
+              "B": 37,
+              "C": 30,
+              "D": 23,
+              "E": 17
+            },
+            {
+              "year": 2022,
+              "A": 44,
+              "B": 36,
+              "C": 28,
+              "D": 20,
+              "E": 13
+            }
+          ]
+        },
+        {
+          "unit": 2,
+          "total": 80,
+          "years": [
+            {
+              "year": 2016,
+              "A": 42,
+              "B": 35,
+              "C": 28,
+              "D": 22,
+              "E": 16
+            },
+            {
+              "year": 2017,
+              "A": 45,
+              "B": 37,
+              "C": 29,
+              "D": 21,
+              "E": 14
+            },
+            {
+              "year": 2018,
+              "A": 49,
+              "B": 41,
+              "C": 33,
+              "D": 26,
+              "E": 19
+            },
+            {
+              "year": 2019,
+              "A": 48,
+              "B": 40,
+              "C": 33,
+              "D": 26,
+              "E": 19
+            },
+            {
+              "year": 2022,
+              "A": 47,
+              "B": 38,
+              "C": 30,
+              "D": 22,
+              "E": 14
+            }
+          ]
+        }
+      ],
       "specificationLink": "https://www.wjec.co.uk/media/akbbkvwh/wjec-gce-chemistry-spec-from-2015.pdf",
-      "units": [],
+      "units": [
+        {
+          "number": 1,
+          "name": "The Language of Chemistry, Structure of Matter and Simple Reactions",
+          "topics": [
+            "Formulae and equations",
+            "Basic ideas about atoms",
+            "Chemical calculations",
+            "Bonding",
+            "Solid structures",
+            "The Periodic Table",
+            "Simple equilibria and acid-base reactions"
+          ]
+        },
+        {
+          "number": 2,
+          "name": "Energy, Rate and Chemistry of Carbon Compounds",
+          "topics": [
+            "Thermochemistry",
+            "Rates of reaction",
+            "The wider impact of chemistry",
+            "Organic compounds",
+            "Hydrocarbons",
+            "Halogenoalkanes",
+            "Alcohols and carboxylic acids",
+            "Instrumental analysis"
+          ]
+        }
+      ],
       "practicals": [
         {
           "id": "u101-e1",
