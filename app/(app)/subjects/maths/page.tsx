@@ -1,11 +1,5 @@
-import { Heading } from "@/ui/typography";
+import Index from "../_components/index-page";
 
-const Maths = () => {
-  return (
-    <>
-      <Heading>Maths</Heading>
-    </>
-  );
-};
+const Page = () => <Index subject="maths" />;
 
-export default Maths;
+export default Page;
