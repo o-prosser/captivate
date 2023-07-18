@@ -5,18 +5,18 @@ import mathsData from "@/data/maths.json";
 import sciencesData from "@/data/science.json";
 
 const getSubject = (id: string) => {
-  if (id !== "maths" && id !== "chemistry" && id !== "physics")
-    return undefined;
+  const subjectEnum = getSubjectEnum(id);
+  if (!subjectEnum) throw new Error("Unknown subject provided");
 
   const science =
-    id === "physics"
+    subjectEnum === "Physics"
       ? sciencesData.sciences.physics
-      : id === "chemistry"
+      : subjectEnum === "Chemistry"
       ? sciencesData.sciences.chemistry
       : mathsData;
 
   return {
-    enum: getSubjectEnum(id),
+    enum: subjectEnum,
     ...science,
   };
 };

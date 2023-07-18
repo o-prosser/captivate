@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import * as z from "zod";
 
 import { getCurrentUser } from "@/util/session";
+import { getScope } from "@/models/flashcard";
 import { getFlashcardGroup } from "@/models/flashcard-group";
 import { createFlashcardStudy } from "@/models/flashcard-study";
 import { getSessionWithFlashcards } from "@/models/flashcard-study-session";
@@ -32,34 +33,26 @@ export const POST = async (
 
     const session = await getSessionWithFlashcards(params.sessionId);
     if (!session) throw new Error("No session found");
-    if (!session.scopeId) throw new Error("No scope ID");
-
-    const flashcardGroup = await getFlashcardGroup(session.scopeId);
-    if (!flashcardGroup) throw new Error("Flashcard group not found");
-
-    const flashcard = await prisma.flashcard.findUnique({
-      where: {
-        id: body.flashcardId,
-      },
-      select: { id: true },
-    });
-    if (!flashcard) throw new Error("No flashcard found");
 
     // Create flashcard study record
     const record = await createFlashcardStudy({
-      flashcardId: flashcard.id,
+      flashcardId: body.flashcardId,
       sessionId: session.id,
       score: body.score,
     });
 
-    const flashcardsToStudy = flashcardGroup.flashcards.filter((f) => {
+    const scope = await getScope(session);
+    if (!scope) throw new Error("Invalid scope");
+
+    const flashcardsToStudy = scope.flashcards.filter((f) => {
       const viewed = session.flashcardsStudies.find(
         (study) => study.flashcardId === f.id
       );
       if (viewed) return false;
-      if (f.id === flashcard.id) return false;
+      if (f.id === body.flashcardId) return false;
       return true;
     });
+
     if (flashcardsToStudy.length === 0) {
       await prisma.flashcardStudySession.update({
         where: { id: session?.id },

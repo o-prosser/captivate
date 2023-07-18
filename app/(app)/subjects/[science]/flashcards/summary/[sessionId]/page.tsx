@@ -17,19 +17,14 @@ const FlashcardSessionSummary = async ({
   if (!science) notFound();
 
   const session = await getSessionSummary(params.sessionId);
-  if (!session) notFound();
-  if (!session.end) notFound();
+  if (!session || !session.end) notFound();
 
   const length = intervalToDuration({
     start: session.start,
     end: session.end,
   });
 
-  const { scope } = await getScope({
-    id: session.scopeId,
-    type: session.scope,
-    science,
-  });
+  const scope = await getScope(session);
 
   const scores = SCORES.map(({ emoji, label, short }, key) => {
     const score = key + 1;

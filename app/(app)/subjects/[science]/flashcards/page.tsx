@@ -1,30 +1,27 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PlusIcon } from "lucide-react";
+import { ChevronDownIcon, PlusIcon } from "lucide-react";
 
 import { prisma } from "@/lib/prisma";
-import { getScience } from "@/util/pracitcals";
-import { getSubjectEnum } from "@/util/subjects";
+import { getSubject, getSubjectEnum } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Heading } from "@/ui/typography";
 import DataTable from "@/components/data-table";
 
 import { columns } from "./_components/columns";
+import SelectPractise from "./_components/select-practise";
 
 export const metadata = {
   title: "Flashcards",
 };
 
 const Flashcards = async ({ params }: { params: { science: string } }) => {
-  const science = getScience(params.science);
-  if (!science) notFound();
-
-  const subject = getSubjectEnum(params.science);
-  if (!subject) notFound();
+  const subject = getSubject(params.science);
+  if (!subject || !subject.enum) notFound();
 
   const flashcardGroups = await prisma.flashcardGroup.findMany({
     where: {
-      subject,
+      subject: subject.enum,
     },
     select: {
       id: true,
@@ -40,18 +37,13 @@ const Flashcards = async ({ params }: { params: { science: string } }) => {
     <>
       <div className="flex justify-between items-start flex-col-reverse sm:flex-row">
         <Heading className="mb-8">Flashcards</Heading>
-        <Button className="mb-3" asChild>
-          <Link href={`/subjects/${params.science}/flashcards/create`}>
-            <PlusIcon />
-            Add page
-          </Link>
-        </Button>
+        <SelectPractise subject={subject} />
       </div>
 
       <DataTable
         data={flashcardGroups.map((flashcardGroup) => {
           const topicName =
-            science.units[flashcardGroup.unit - 1].topics[
+            subject.units[flashcardGroup.unit - 1].topics[
               flashcardGroup.topic - 1
             ];
           return {
@@ -63,6 +55,13 @@ const Flashcards = async ({ params }: { params: { science: string } }) => {
         })}
         columns={columns}
       />
+
+      <Button className="mt-6" variant="outline" asChild>
+        <Link href={`/subjects/${params.science}/flashcards/create`}>
+          <PlusIcon />
+          Add flashcard group
+        </Link>
+      </Button>
     </>
   );
 };

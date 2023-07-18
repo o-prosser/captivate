@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { StudyScope, StudyType } from "@prisma/client";
+import { StudyScope, StudyType, Subject } from "@prisma/client";
 
 import { prisma } from "@/app/_lib/prisma";
 import { getCurrentUser } from "@/app/_util/session";
@@ -10,8 +10,9 @@ const getOrCreateSession = async ({
 }: {
   id?: string;
   data: {
-    scope: StudyScope;
-    scopeId?: string;
+    groupId?: string;
+    unit?: number;
+    subject?: Subject;
     type: StudyType;
   };
 }) => {
@@ -25,6 +26,9 @@ const getOrCreateSession = async ({
           _count: {
             select: { flashcardsStudies: true },
           },
+          group: {
+            include: { flashcards: true },
+          },
         },
       }),
       created: false,
@@ -32,27 +36,26 @@ const getOrCreateSession = async ({
   }
 
   const user = await getCurrentUser();
-  if (!user?.email) redirect("/login");
-
-  const userId = await prisma.user.findUnique({
-    where: { email: user?.email },
-    select: { id: true },
-  });
-  if (!userId) redirect("/login");
+  if (!user?.id) redirect("/login");
 
   return {
     session: await prisma.flashcardStudySession.create({
       data: {
-        userId: userId.id,
+        userId: user.id,
         start: new Date(),
+        scope: data.groupId ? "Group" : data.unit ? "Unit" : "Subject",
         ...data,
       },
       select: {
         id: true,
         scope: true,
-        scopeId: true,
+        unit: true,
+        subject: true,
         _count: {
           select: { flashcardsStudies: true },
+        },
+        group: {
+          include: { flashcards: true },
         },
       },
     }),
@@ -67,7 +70,12 @@ const getSessionWithFlashcards = async (id: string) => {
     },
     select: {
       id: true,
-      scopeId: true,
+      scope: true,
+      group: {
+        include: { flashcards: true },
+      },
+      unit: true,
+      subject: true,
       flashcardsStudies: {
         select: {
           id: true,
@@ -89,10 +97,14 @@ const getSessionSummary = async (id: string) => {
     },
     select: {
       id: true,
-      scopeId: true,
+      scope: true,
       start: true,
       end: true,
-      scope: true,
+      group: {
+        include: { flashcards: true },
+      },
+      subject: true,
+      unit: true,
       flashcardsStudies: {
         select: {
           id: true,

@@ -50,7 +50,7 @@ const FlashcardGroupPage = async ({
         <div className="mb-3 sm:mb-0 space-x-3">
           <Button asChild>
             <Link
-              href={`/subjects/${params.science}/flashcards/practise/${flashcardGroup.flashcards[0].id}?scope=group&scopeId=${flashcardGroup.id}&type=all`}
+              href={`/subjects/${params.science}/flashcards/practise/${flashcardGroup.flashcards[0].id}?scope=group&groupId=${flashcardGroup.id}&type=all`}
             >
               Practise all
             </Link>

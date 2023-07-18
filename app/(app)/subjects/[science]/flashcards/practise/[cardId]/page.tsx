@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { PencilIcon } from "lucide-react";
 
 import { getScience } from "@/util/pracitcals";
+import { getSubjectEnum, parseSubjectName } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Information } from "@/components/flashcard-information";
 import { Markdown } from "@/components/markdown";
@@ -21,7 +22,9 @@ const CardPage = async ({
   };
   searchParams: {
     scope?: string;
-    scopeId?: string;
+    groupId?: string;
+    unit?: string;
+    subject?: string;
     type?: string;
     sessionId?: string;
   };
@@ -35,8 +38,9 @@ const CardPage = async ({
   const { session, created } = await getOrCreateSession({
     id: searchParams.sessionId,
     data: {
-      scope: "Group",
-      scopeId: searchParams.scopeId,
+      groupId: searchParams.groupId,
+      subject: getSubjectEnum(searchParams.subject || "") || undefined,
+      unit: searchParams.unit ? parseInt(searchParams.unit) : undefined,
       type: "All",
     },
   });
@@ -46,14 +50,11 @@ const CardPage = async ({
       `/subjects/${params.science}/flashcards/practise/${params.cardId}?sessionId=${session.id}`
     );
 
-  const { scope } = await getScope({
-    id: session.scopeId,
-    type: session.scope,
-    science,
-  });
+  const scope = await getScope(session);
+  if (!scope) throw new Error("Invalid scope found");
 
-  const difference = scope
-    ? scope?._count.flashcards - session._count.flashcardsStudies
+  const difference = scope.flashcards
+    ? scope.flashcards.length - session._count.flashcardsStudies
     : null;
 
   return (
