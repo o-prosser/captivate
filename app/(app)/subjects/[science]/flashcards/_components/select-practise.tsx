@@ -59,7 +59,7 @@ const SelectPractise = async ({
                 subjectFlashcard?.id
               }?scope=subject&subject=${subject.enum}&type=all`}
             >
-              Practise subject
+              Subject
             </Link>
           </DropdownMenu.Item>
           {subject.units.map((unit, key) => (
@@ -75,7 +75,36 @@ const SelectPractise = async ({
                   subject.enum
                 }&type=all`}
               >
-                Practise unit {unit.number}
+                Unit {unit.number}
+              </Link>
+            </DropdownMenu.Item>
+          ))}
+        </DropdownMenu.Group>
+        <DropdownMenu.Label>Practise spaced</DropdownMenu.Label>
+        <DropdownMenu.Group>
+          <DropdownMenu.Item asChild>
+            <Link
+              href={`/subjects/${subject.enum.toLowerCase()}/flashcards/practise/${
+                subjectFlashcard?.id
+              }?scope=subject&subject=${subject.enum}&type=spaced`}
+            >
+              Subject
+            </Link>
+          </DropdownMenu.Item>
+          {subject.units.map((unit, key) => (
+            <DropdownMenu.Item
+              key={key}
+              asChild
+              disabled={!unitFlashcards[key]?.id}
+            >
+              <Link
+                href={`/subjects/${subject.enum.toLowerCase()}/flashcards/practise/${
+                  unitFlashcards[key]?.id
+                }?scope=unit&unit=${unit.number}&subject=${
+                  subject.enum
+                }&type=spaced`}
+              >
+                Unit {unit.number}
               </Link>
             </DropdownMenu.Item>
           ))}
