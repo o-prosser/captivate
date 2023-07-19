@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 import { cn } from "@/util/cn";
 import { Button } from "@/ui/button";
@@ -36,7 +36,7 @@ const TaskCheck = ({ task }: { task: { id: string; completed: boolean } }) => {
     >
       <AnimatePresence>
         {completed && (
-          <motion.svg
+          <m.svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -47,13 +47,13 @@ const TaskCheck = ({ task }: { task: { id: string; completed: boolean } }) => {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <motion.polyline
+            <m.polyline
               initial={{ pathLength: -0 }}
               animate={{ pathLength: 1 }}
               exit={{ pathLength: 0 }}
               points="20 6 9 17 4 12"
             />
-          </motion.svg>
+          </m.svg>
         )}
       </AnimatePresence>
     </Button>

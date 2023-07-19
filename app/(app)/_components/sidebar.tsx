@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import {
   AtomIcon,
   CalendarIcon,
@@ -84,7 +84,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
   const physicsStyles = useSubjectStyles("physics");
 
   return (
-    <motion.aside
+    <m.aside
       variants={{ expand: { width: "15rem" }, contract: { width: "5.5rem" } }}
       initial={{ width: "15rem" }}
       animate={expanded ? "expand" : "contract"}
@@ -97,7 +97,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
         </Link>
       </Button>
 
-      <motion.div
+      <m.div
         variants={{
           expand: { width: "100%" },
           contract: { width: "2.75rem" },
@@ -122,7 +122,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
               <Icon />
               <AnimatePresence initial={false}>
                 {expanded && (
-                  <motion.span
+                  <m.span
                     variants={{
                       expand: { opacity: 1 },
                       contract: { opacity: 0 },
@@ -134,7 +134,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
                     exit="contract"
                   >
                     {label}
-                  </motion.span>
+                  </m.span>
                 )}
               </AnimatePresence>
             </Link>
@@ -166,7 +166,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
                 <Icon />
                 <AnimatePresence initial={false}>
                   {expanded && (
-                    <motion.span
+                    <m.span
                       variants={{
                         expand: { opacity: 1 },
                         contract: { opacity: 0 },
@@ -178,7 +178,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
                       exit="contract"
                     >
                       {label}
-                    </motion.span>
+                    </m.span>
                   )}
                 </AnimatePresence>
               </Link>
@@ -203,7 +203,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
               <Icon />
               <AnimatePresence initial={false}>
                 {expanded && (
-                  <motion.span
+                  <m.span
                     variants={{
                       expand: { opacity: 1 },
                       contract: { opacity: 0 },
@@ -215,14 +215,14 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
                     exit="contract"
                   >
                     {label}
-                  </motion.span>
+                  </m.span>
                 )}
               </AnimatePresence>
             </Link>
           </Button>
         ))}
-      </motion.div>
-    </motion.aside>
+      </m.div>
+    </m.aside>
   );
 };
 

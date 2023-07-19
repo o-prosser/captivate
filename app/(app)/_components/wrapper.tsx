@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 import { cn } from "@/util/cn";
 
@@ -31,7 +31,7 @@ const Wrapper = ({
   return (
     <>
       <Sidebar expanded={expanded} />
-      <motion.div
+      <m.div
         variants={{
           expand: { marginLeft: "15rem" },
           contract: { marginLeft: "5.5rem" },
@@ -48,7 +48,7 @@ const Wrapper = ({
         <Header user={user} />
 
         <main>{children}</main>
-      </motion.div>
+      </m.div>
     </>
   );
 };
