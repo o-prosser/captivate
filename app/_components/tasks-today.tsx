@@ -9,6 +9,8 @@ import { Checkbox } from "@/ui/checkbox";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
+import { TaskCheck } from "./task-check";
+
 const TasksToday = async ({ subject }: { subject?: Subject }) => {
   const user = await getCurrentUser();
   if (!user?.id) throw new Error();
@@ -29,6 +31,7 @@ const TasksToday = async ({ subject }: { subject?: Subject }) => {
     },
     select: {
       id: true,
+      completed: true,
       doDate: true,
       dueDate: true,
       title: true,
@@ -41,10 +44,7 @@ const TasksToday = async ({ subject }: { subject?: Subject }) => {
   return tasks.length > 0 ? (
     tasks.map((task, key) => (
       <div className={"flex space-x-3 mb-3"} key={key}>
-        <Checkbox
-          className="mt-1.5 disabled:cursor-text disabled:opacity-100"
-          disabled
-        />
+        <TaskCheck task={task} />
         <div className="flex-1">
           <Text>{task.title}</Text>
           {task.subject ? (
