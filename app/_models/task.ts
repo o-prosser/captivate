@@ -8,6 +8,7 @@ const getTasks = async () => {
   return await prisma.task.findMany({
     where: {
       userId: user.id,
+      completed: false,
     },
     select: {
       id: true,
