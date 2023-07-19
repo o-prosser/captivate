@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 import WrapBalancer from "react-wrap-balancer";
 
+import quickLinks from "@/data/quick-links.json";
 import quotes from "@/data/quotes.json";
 import { getCurrentUser } from "@/util/session";
 import { Button } from "@/ui/button";
@@ -10,67 +11,6 @@ import { Heading, Text } from "@/ui/typography";
 
 import Sidebar from "./_components/sidebar";
 import Subject from "./_components/subjects";
-
-const quickLinks = [
-  {
-    name: "General",
-    links: [
-      {
-        title: "School email",
-        href: "http://mail.stteilos.com/owa",
-        category: "",
-      },
-      {
-        title: "Hwb",
-        href: "https://hwb.gov.wales",
-        category: "",
-      },
-      {
-        title: "St Teilo's",
-        href: "https://stteilos.com",
-        category: "",
-      },
-    ],
-  },
-  {
-    name: "WJEC",
-    links: [
-      {
-        title: "Maths",
-        href: "https://www.wjec.co.uk/qualifications/mathematics-a-as-level",
-      },
-      {
-        title: "Chemistry",
-        href: "https://www.wjec.co.uk/qualifications/chemistry-as-a-level",
-      },
-      {
-        title: "Physics",
-        href: "https://www.wjec.co.uk/qualifications/physics-as-a-level",
-      },
-      {
-        title: "Question Bank",
-        href: "https://questionbank.wjec.co.uk",
-      },
-    ],
-  },
-  {
-    name: "Resources",
-    links: [
-      {
-        title: "Physics & Maths Tutor",
-        href: "https://pmt.physicsandmathstutor.com",
-      },
-      {
-        title: "Maths DIY",
-        href: "https://mathsdiy.com",
-      },
-      {
-        title: "Revise WJEC Maths",
-        href: "https://wjecmaths.co.uk",
-      },
-    ],
-  },
-];
 
 function getRandom(min: number, max: number) {
   const floatRandom = Math.random();
