@@ -22,7 +22,9 @@ const FlashcardsToday = async ({ subject }: { subject?: Subject }) => {
       </div>
     ))
   ) : (
-    <Callout emoji="📚">No recent flashcard sessions.</Callout>
+    <Callout className="mt-0" emoji="📚">
+      No recent flashcard sessions.
+    </Callout>
   );
 };
 

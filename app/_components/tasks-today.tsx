@@ -70,7 +70,9 @@ const TasksToday = async ({ subject }: { subject?: Subject }) => {
       </div>
     ))
   ) : (
-    <Callout emoji="📌">No due tasks.</Callout>
+    <Callout className="!mt-0" emoji="📌">
+      No due tasks.
+    </Callout>
   );
 };
 

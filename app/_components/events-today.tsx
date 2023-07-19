@@ -74,7 +74,9 @@ const EventsToday = async ({ subject }: { subject?: Subject }) => {
       </div>
     ))
   ) : (
-    <Callout emoji="🗓️">No upcoming events.</Callout>
+    <Callout className="!mt-0" emoji="🗓️">
+      No upcoming events.
+    </Callout>
   );
 };
 
