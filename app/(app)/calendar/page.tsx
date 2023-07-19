@@ -3,30 +3,24 @@ import Link from "next/link";
 import format from "date-fns/format";
 import isWeekend from "date-fns/isWeekend";
 import { CalendarRangeIcon, FileTextIcon } from "lucide-react";
-import { ErrorBoundary } from "react-error-boundary";
 
 import { getCurrentWeek } from "@/util/weeks";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
+import { Loading } from "@/ui/loading";
 import { Heading } from "@/ui/typography";
-import { Markdown } from "@/components/markdown";
 import { TimetableToday } from "@/components/timetable-today";
-import { getEvents } from "@/models/event";
 
-import Calendar from "./_components/calendar";
+import CalendarData from "./_components/calendar-data";
 
 export const metadata = {
   title: "Calendar",
 };
 
-const CalendarPage = async () => {
-  const events = await getEvents();
-
+const CalendarPage = () => {
   return (
     <div>
       <Heading>Calendar</Heading>
-
-      <div className="flex space-x-2"></div>
 
       <div className="grid gap-6 mt-6 xl:grid-cols-[21.5rem,1fr]">
         <Card.Root>
@@ -69,16 +63,9 @@ const CalendarPage = async () => {
           </Card.Content>
         </Card.Root>
         <div>
-          <ErrorBoundary fallback={<>Unable to load events</>}>
-            <Suspense fallback={<>Loading events...</>}>
-              <Calendar
-                events={events.map((event) => ({
-                  markdown: <Markdown source={event.description || ""} />,
-                  ...event,
-                }))}
-              />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<Loading text="Loading calendar events..." />}>
+            <CalendarData />
+          </Suspense>
         </div>
       </div>
     </div>

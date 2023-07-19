@@ -1,5 +1,6 @@
 import { env } from "@/env.mjs";
 import weatherTypes from "@/data/weather-types.json";
+import * as Card from "@/ui/card";
 
 const getLocationWeather = async () => {
   try {
@@ -8,7 +9,8 @@ const getLocationWeather = async () => {
     // );
 
     const result = await fetch(
-      `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/350758?res=daily&key=${env.WEATHER_API_KEY}`
+      `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/350758?res=daily&key=${env.WEATHER_API_KEY}`,
+      { next: { revalidate: 60 * 60 * 6 } }
     );
 
     if (result.status === 200) {
@@ -24,7 +26,12 @@ const getLocationWeather = async () => {
 const Weather = async () => {
   const weather = await getLocationWeather();
 
-  if (!weather.success) throw new Error(weather.error);
+  if (!weather.success)
+    return (
+      <Card.Description className="text-destructive">
+        Unable to load weather 😢. It&apos;s probably going to rain 🌧️.
+      </Card.Description>
+    );
 
   return `You can expect a 👆 high of ${
     weather.data.SiteRep.DV.Location.Period[0].Rep[0].Dm

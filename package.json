@@ -81,7 +81,6 @@
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-email": "1.9.3",
-    "react-error-boundary": "^4.0.10",
     "react-hook-form": "^7.44.3",
     "react-wrap-balancer": "^1.0.0",
     "rehype-katex": "^6.0.3",
