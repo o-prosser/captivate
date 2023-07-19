@@ -34,12 +34,7 @@ export const SubjectLayout = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      style={
-        { "--primary": `var(--${title.toLowerCase()})` } as React.CSSProperties
-      }
-      className="relative flex"
-    >
+    <div className={`relative flex primary-${title.toLowerCase()}`}>
       <nav className="fixed h-16 ml-1.5 top-0 left-36 flex items-center z-10 md:hidden print:!hidden">
         <Sheet.Root open={open} onOpenChange={setOpen}>
           <Sheet.Trigger asChild>
