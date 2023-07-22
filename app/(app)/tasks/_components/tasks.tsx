@@ -7,6 +7,7 @@ import isFuture from "date-fns/isFuture";
 
 import * as Accordion from "@/ui/accordion";
 import { Button } from "@/ui/button";
+import { Callout } from "@/ui/callout";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
 
@@ -63,7 +64,7 @@ const Tasks = ({
           name="title"
           id="title"
           required
-          className="w-full max-w-sm mr-4 ml-2"
+          className="w-full max-w-sm mr-4"
         />
         <Button type="submit">Add task</Button>
       </form>
@@ -73,16 +74,26 @@ const Tasks = ({
           <Card.Title>Do today</Card.Title>
         </Card.Header>
         <Card.Content>
-          <Accordion.Root type="single" collapsible>
-            {optimisticTasks
-              .filter(
-                (task) =>
-                  task.doDate && (isPast(task.doDate) || isToday(task.doDate))
-              )
-              .map((task, key) => (
-                <Task task={task} key={key} />
-              ))}
-          </Accordion.Root>
+          {optimisticTasks.filter(
+            (task) =>
+              task.doDate && (isPast(task.doDate) || isToday(task.doDate))
+          ).length > 0 ? (
+            <Accordion.Root type="single" collapsible>
+              {optimisticTasks
+                .filter(
+                  (task) =>
+                    task.doDate && (isPast(task.doDate) || isToday(task.doDate))
+                )
+                .map((task, key) => (
+                  <Task task={task} key={key} />
+                ))}
+            </Accordion.Root>
+          ) : (
+            <Callout emoji="🎉">
+              No tasks left to do today. Sit back and relax &mdash; or add a new
+              task.
+            </Callout>
+          )}
         </Card.Content>
       </Card.Root>
 
@@ -91,17 +102,26 @@ const Tasks = ({
           <Card.Title>Due today</Card.Title>
         </Card.Header>
         <Card.Content>
-          <Accordion.Root type="single" collapsible>
-            {optimisticTasks
-              .filter(
-                (task) =>
-                  task.dueDate &&
-                  (isPast(task.dueDate) || isToday(task.dueDate))
-              )
-              .map((task, key) => (
-                <Task task={task} key={key} />
-              ))}
-          </Accordion.Root>
+          {optimisticTasks.filter(
+            (task) =>
+              task.dueDate && (isPast(task.dueDate) || isToday(task.dueDate))
+          ).length > 0 ? (
+            <Accordion.Root type="single" collapsible>
+              {optimisticTasks
+                .filter(
+                  (task) =>
+                    task.dueDate &&
+                    (isPast(task.dueDate) || isToday(task.dueDate))
+                )
+                .map((task, key) => (
+                  <Task task={task} key={key} />
+                ))}
+            </Accordion.Root>
+          ) : (
+            <Callout emoji="🎉">
+              No tasks are due today. Check your to do list ⬆️
+            </Callout>
+          )}
         </Card.Content>
       </Card.Root>
 
@@ -110,18 +130,29 @@ const Tasks = ({
           <Card.Title>Future</Card.Title>
         </Card.Header>
         <Card.Content>
-          <Accordion.Root type="single" collapsible>
-            {optimisticTasks
-              .filter(
-                (task) =>
-                  (task.dueDate && isFuture(task.dueDate)) ||
-                  (task.doDate && isFuture(task.doDate)) ||
-                  (!task.doDate && !task.dueDate)
-              )
-              .map((task, key) => (
-                <Task task={task} key={key} timing="future" />
-              ))}
-          </Accordion.Root>
+          {optimisticTasks.filter(
+            (task) =>
+              (task.dueDate && isFuture(task.dueDate)) ||
+              (task.doDate && isFuture(task.doDate)) ||
+              (!task.doDate && !task.dueDate)
+          ).length > 0 ? (
+            <Accordion.Root type="single" collapsible>
+              {optimisticTasks
+                .filter(
+                  (task) =>
+                    (task.dueDate && isFuture(task.dueDate)) ||
+                    (task.doDate && isFuture(task.doDate)) ||
+                    (!task.doDate && !task.dueDate)
+                )
+                .map((task, key) => (
+                  <Task task={task} key={key} timing="future" />
+                ))}
+            </Accordion.Root>
+          ) : (
+            <Callout emoji="🎉">
+              No future tasks. Check your to do list ⬆️
+            </Callout>
+          )}
         </Card.Content>
       </Card.Root>
     </>
