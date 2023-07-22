@@ -1,20 +1,28 @@
 import * as React from "react";
 import {
-  Html,
-  Tailwind,
-  Heading,
-  Button,
-  Text,
-  Img,
-  Head,
   Body,
+  Button,
   Container,
-  Section,
-  Link,
+  Head,
+  Heading,
   Hr,
+  Html,
+  Img,
+  Link,
+  Section,
+  Tailwind,
+  Text,
 } from "@react-email/components";
 
-const LoginEmail = ({ url, host }: { url: string; host: string }) => {
+const LoginEmail = ({
+  url,
+  host,
+  token,
+}: {
+  url: string;
+  host: string;
+  token: string;
+}) => {
   return (
     <Html lang="en">
       <Head />
@@ -35,7 +43,16 @@ const LoginEmail = ({ url, host }: { url: string; host: string }) => {
               Hello user,
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Follow the magic link below to sign in to Captivate.
+              Copy the code below to sign in to Captivate.
+            </Text>
+            <Section className="flex mt-4 mb-6 justify-center">
+              <Text className="text-black font-mono p-1 bg-[#eaeaea] rounded-sm tracking-widest">
+                {token}
+              </Text>
+            </Section>
+
+            <Text className="text-black text-[14px] leading-[24px]">
+              or click to sign in.
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
@@ -48,7 +65,7 @@ const LoginEmail = ({ url, host }: { url: string; host: string }) => {
               </Button>
             </Section>
             <Text className="text-black text-[14px] leading-[24px] break-all">
-              or copy and paste this URL into your browser:{" "}
+              If the link didn't work, copy and this url into your browser:{" "}
               <Link href={url} className="text-[#273F8B] no-underline">
                 {url}
               </Link>

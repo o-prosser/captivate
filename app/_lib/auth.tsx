@@ -28,17 +28,22 @@ const authOptions: NextAuthOptions = {
         },
       },
       from: env.EMAIL_FROM,
-      async sendVerificationRequest({ identifier, url, provider, theme }) {
+      generateVerificationToken: () => {
+        const digits =
+          Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+        return digits.toString();
+      },
+      async sendVerificationRequest({ identifier, url, provider, token }) {
         const { host } = new URL(url);
         const transport = createTransport(provider.server);
         const result = await transport.sendMail({
           to: identifier,
           from: provider.from,
           subject: `Sign in to Captivate`,
-          text: render(<LoginEmail url={url} host={host} />, {
+          text: render(<LoginEmail url={url} host={host} token={token} />, {
             plainText: true,
           }),
-          html: render(<LoginEmail url={url} host={host} />),
+          html: render(<LoginEmail url={url} host={host} token={token} />),
         });
         const failed = result.rejected.concat(result.pending).filter(Boolean);
         if (failed.length) {

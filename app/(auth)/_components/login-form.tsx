@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LogInIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import * as z from "zod";
@@ -18,12 +18,14 @@ const LoginForm = () => {
 
   const [pending, setPending] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const onSubmit = async (values: z.infer<typeof schema>) => {
     setPending(true);
 
     await signIn("email", {
       email: values.email,
+      redirect: false,
     }).catch((error) => {
       setPending(false);
       form.setError("email", {
@@ -31,6 +33,8 @@ const LoginForm = () => {
         message: "An unknown error occurred. Please try again.",
       });
     });
+
+    router.push(`/verify-request?email=${encodeURIComponent(values.email)}`);
   };
 
   return (

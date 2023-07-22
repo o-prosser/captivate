@@ -1,5 +1,5 @@
-import plugin from "tailwindcss/plugin";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import plugin from "tailwindcss/plugin";
 
 const shadcnPlugin = plugin(
   ({ addBase }) => {
@@ -11,6 +11,8 @@ const shadcnPlugin = plugin(
         "--muted-foreground": "240 4% 46%", // zinc-500
         "--primary": "226 56% 35%", // primary-7
         "--primary-foreground": "0 0% 98%", // zinc-50
+        "--success": "153 51.8% 21.8%", // green-7,
+        "--success-foreground": "137 72.0% 94.0%", // green-12
         "--destructive": "8 71% 50%", // red
         "--destructive-foreground": "0 0% 98%", // zinc-50
         "--border": "240 6% 90%", // zinc-200
@@ -61,6 +63,10 @@ const shadcnPlugin = plugin(
             DEFAULT: "hsl(var(--primary))",
             foreground: "hsl(var(--primary-foreground))",
           },
+          success: {
+            DEFAULT: "hsl(var(--success))",
+            foreground: "hsl(var(--success-foreground))",
+          },
           destructive: {
             DEFAULT: "hsl(var(--destructive))",
             foreground: "hsl(var(--destructive-foreground))",
@@ -87,7 +93,7 @@ const shadcnPlugin = plugin(
         },
       },
     },
-  },
+  }
 );
 
 export default shadcnPlugin;
