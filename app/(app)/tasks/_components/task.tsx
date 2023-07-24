@@ -3,19 +3,26 @@
 import { useState } from "react";
 import { Subject } from "@prisma/client";
 import { AccordionHeader, AccordionTrigger } from "@radix-ui/react-accordion";
+import { isTomorrow } from "date-fns";
 import { differenceInDays } from "date-fns/esm";
 import format from "date-fns/format";
 import formatDistance from "date-fns/formatDistance";
 import isPast from "date-fns/isPast";
 import isToday from "date-fns/isToday";
 import { AnimatePresence, m } from "framer-motion";
-import { CalendarIcon, CircleEllipsisIcon } from "lucide-react";
+import {
+  CalendarIcon,
+  CheckIcon,
+  CircleEllipsisIcon,
+  MessageCircleIcon,
+} from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { parseSubjectName } from "@/util/subjects";
 import * as Accordion from "@/ui/accordion";
 import { Button } from "@/ui/button";
 import { Pill } from "@/ui/pill";
+import * as Sheet from "@/ui/sheet";
 import { Text } from "@/ui/typography";
 
 import DeleteTask from "./delete-task";
@@ -56,126 +63,180 @@ const Task = ({
 
   if (typeof task.id === "undefined")
     return (
-      <div className="flex items-center h-16 space-x-3">
-        <Button
-          variant={null}
-          size={null}
-          disabled
-          onClick={toggle}
-          className={cn(
-            "h-4 w-4 shrink-0 rounded-md border border-primary [&>svg]:!mr-0"
+      <Button
+        size={null}
+        variant="outline"
+        className="block bg-muted/30 w-full hover:text-foreground"
+      >
+        <div className="flex flex-col space-y-1 items-start py-3 px-4">
+          <h5 className="font-medium">{task.title}</h5>
+          {task.subject ? (
+            <Pill color={parseSubjectName(task.subject) || undefined}>
+              {task.subject}
+            </Pill>
+          ) : (
+            ""
           )}
-        ></Button>
-        <p className="font-medium text-sm flex-1">{task.title}</p>
-      </div>
+        </div>
+        <div className="border-t flex items-center py-2 px-4">
+          <MessageCircleIcon className="h-4 w-4 text-muted-foreground mr-1" />
+          <span className="text-sm flex-1 text-left">1</span>
+
+          <span className="text-xs">
+            {task.dueDate ? (
+              <>
+                {isToday(task.dueDate) ? (
+                  <span className="text-destructive">Today</span>
+                ) : (
+                  ""
+                )}
+                {isTomorrow(task.dueDate) ? (
+                  <span className="text-[hsl(24_92.4%_24.0%)]">Tomorrow</span>
+                ) : (
+                  ""
+                )}
+                {!isToday(task.dueDate) && !isTomorrow(task.dueDate) ? (
+                  <span>{formatDistance(task.dueDate, new Date())}</span>
+                ) : (
+                  ""
+                )}
+              </>
+            ) : (
+              ""
+            )}
+          </span>
+        </div>
+      </Button>
     );
 
   return (
-    <Accordion.Item value={task.id}>
-      <AccordionHeader className="flex items-center h-16 space-x-3">
+    <Sheet.Root>
+      <Sheet.Trigger asChild>
         <Button
-          variant={null}
           size={null}
-          onClick={toggle}
-          className={cn(
-            "h-4 w-4 shrink-0 rounded-md border border-primary [&>svg]:!mr-0",
-            completed && "bg-primary text-primary-foreground"
-          )}
+          variant="outline"
+          className="block bg-muted/30 w-full hover:text-foreground"
         >
-          <AnimatePresence>
-            {completed && (
-              <m.svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <m.polyline
-                  initial={{ pathLength: -0 }}
-                  animate={{ pathLength: 1 }}
-                  exit={{ pathLength: 0 }}
-                  points="20 6 9 17 4 12"
-                />
-              </m.svg>
+          <div className="flex flex-col space-y-1 items-start py-3 px-4">
+            <h5 className="font-medium">{task.title}</h5>
+            {task.subject ? (
+              <Pill color={parseSubjectName(task.subject) || undefined}>
+                {task.subject}
+              </Pill>
+            ) : (
+              ""
             )}
-          </AnimatePresence>
+          </div>
+          <div className="border-t flex items-center py-2 px-4">
+            <MessageCircleIcon className="h-4 w-4 text-muted-foreground mr-1" />
+            <span className="text-sm flex-1 text-left">1</span>
+
+            <span className="text-xs">
+              {task.dueDate ? (
+                <>
+                  {isToday(task.dueDate) ? (
+                    <span className="text-destructive">Today</span>
+                  ) : (
+                    ""
+                  )}
+                  {isTomorrow(task.dueDate) ? (
+                    <span className="text-[hsl(24_92.4%_24.0%)]">Tomorrow</span>
+                  ) : (
+                    ""
+                  )}
+                  {!isToday(task.dueDate) && !isTomorrow(task.dueDate) ? (
+                    <span>{formatDistance(task.dueDate, new Date())}</span>
+                  ) : (
+                    ""
+                  )}
+                </>
+              ) : (
+                ""
+              )}
+            </span>
+          </div>
         </Button>
-        {task.subject ? (
-          <Pill
-            color={parseSubjectName(task.subject.toLowerCase()) || undefined}
-            className="mt-0"
-          >
-            {task.subject}
-          </Pill>
-        ) : (
-          ""
-        )}
-        <p className="font-medium text-sm flex-1">{task.title}</p>
-        <p
-          className={cn(
-            "text-muted-foreground text-sm",
-            timing === "past" &&
-              ((task.doDate && isPast(task.doDate)) ||
-                (task.dueDate && isPast(task.dueDate))) &&
-              "text-destructive"
+      </Sheet.Trigger>
+      <Sheet.Content side="right" className="flex flex-col">
+        <Sheet.Header>
+          <Sheet.Title>{task.title}</Sheet.Title>
+          <div>
+            {task.subject ? (
+              <Pill color={parseSubjectName(task.subject) || undefined}>
+                {task.subject}
+              </Pill>
+            ) : (
+              ""
+            )}
+          </div>
+        </Sheet.Header>
+
+        <div className="flex-1">
+          {task.dueDate ? (
+            <p className="text-sm flex items-center space-x-2">
+              <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+              <span>Due</span>
+              <>
+                {isToday(task.dueDate) ? (
+                  <span className="text-destructive">Today</span>
+                ) : (
+                  ""
+                )}
+                {isTomorrow(task.dueDate) ? (
+                  <span className="text-[hsl(24_92.4%_24.0%)]">Tomorrow</span>
+                ) : (
+                  ""
+                )}
+                {!isToday(task.dueDate) && !isTomorrow(task.dueDate) ? (
+                  <span>{formatDistance(task.dueDate, new Date())}</span>
+                ) : (
+                  ""
+                )}
+              </>
+            </p>
+          ) : (
+            ""
           )}
-        >
-          {timing === "past"
-            ? task.doDate &&
-              isPast(task.doDate) &&
-              !isToday(task.doDate) &&
-              formatDistance(task.doDate, new Date()) + " ago"
-            : task.doDate
-            ? "do " +
-              (differenceInDays(new Date(), task.doDate) === 0
-                ? "tomorrow"
-                : "in " + formatDistance(task.doDate, new Date()))
-            : task.dueDate
-            ? "due " +
-              (differenceInDays(new Date(), task.dueDate) === 0
-                ? "tomorrow"
-                : "in " + formatDistance(task.dueDate, new Date()))
-            : "no date specified"}
-        </p>
-        <AccordionTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <CircleEllipsisIcon />
+
+          {task.doDate ? (
+            <p className="text-sm flex items-center space-x-2 mt-3">
+              <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+              <span>Do</span>
+              <>
+                {isToday(task.doDate) ? (
+                  <span className="text-destructive">Today</span>
+                ) : (
+                  ""
+                )}
+                {isTomorrow(task.doDate) ? (
+                  <span className="text-[hsl(24_92.4%_24.0%)]">Tomorrow</span>
+                ) : (
+                  ""
+                )}
+                {!isToday(task.doDate) && !isTomorrow(task.doDate) ? (
+                  <span>{formatDistance(task.doDate, new Date())}</span>
+                ) : (
+                  ""
+                )}
+              </>
+            </p>
+          ) : (
+            ""
+          )}
+
+          <hr className="my-6" />
+
+          <Text className="!mt-0">{task.markdown}</Text>
+        </div>
+
+        <Sheet.Footer>
+          <Button variant="outline" className="w-full" onClick={toggle}>
+            <CheckIcon />
+            Mark as completed
           </Button>
-        </AccordionTrigger>
-      </AccordionHeader>
-      <Accordion.Content className="pl-7 pb-4">
-        {task.description ? <Text>{task.markdown}</Text> : ""}
-
-        <div className="flex items-center mt-3 space-x-1">
-          <CalendarIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="font-medium">Do date:</span>
-          <span>
-            {task.doDate
-              ? format(task.doDate, "E do LLLL, y")
-              : "No do date specified."}
-          </span>
-        </div>
-        <div className="flex items-center mt-2 space-x-1">
-          <CalendarIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="font-medium">Due date:</span>
-          <span>
-            {task.dueDate
-              ? format(task.dueDate, "E do LLLL, y")
-              : "No due date specified."}
-          </span>
-        </div>
-
-        <div className="flex space-x-2 mt-4">
-          <EditTask task={task} />
-          <DeleteTask id={task.id} />
-        </div>
-      </Accordion.Content>
-    </Accordion.Item>
+        </Sheet.Footer>
+      </Sheet.Content>
+    </Sheet.Root>
   );
 };
 

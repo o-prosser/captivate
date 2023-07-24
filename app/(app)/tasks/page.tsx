@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/util/session";
 import { Heading } from "@/ui/typography";
 import { Markdown } from "@/components/markdown";
 import { getTasks } from "@/models/task";
@@ -10,11 +11,13 @@ export const metadata = {
 
 const TaskPage = async () => {
   const tasks = await getTasks();
+  const user = await getCurrentUser();
 
   return (
     <>
       <Heading>Tasks</Heading>
       <Tasks
+        userId={user?.id as string}
         tasks={tasks.map((task) => ({
           markdown: <Markdown source={task.description || ""} />,
           ...task,

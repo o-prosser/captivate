@@ -2,20 +2,22 @@
 
 import { experimental_useOptimistic, useRef } from "react";
 import { Subject } from "@prisma/client";
-import { isPast, isToday } from "date-fns";
-import isFuture from "date-fns/isFuture";
+import clsx from "clsx";
+import { isToday } from "date-fns";
+import { PlusIcon } from "lucide-react";
 
-import * as Accordion from "@/ui/accordion";
+import { useSubjectStyles } from "@/util/subjects";
 import { Button } from "@/ui/button";
-import { Callout } from "@/ui/callout";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
+import AddTask from "@/components/add-task";
 
 import { quickCreate } from "../actions";
 import Task from "./task";
 
 const Tasks = ({
   tasks,
+  userId,
 }: {
   tasks: {
     id: string;
@@ -27,6 +29,7 @@ const Tasks = ({
     description: string | null;
     markdown: React.ReactNode;
   }[];
+  userId: string;
 }) => {
   const [optimisticTasks, addOptimisticTask] = experimental_useOptimistic<
     {
@@ -39,11 +42,28 @@ const Tasks = ({
       description?: string | null;
       markdown?: React.ReactNode | null;
     }[],
-    unknown
+    {
+      title: string;
+      dueDate?: Date | null;
+      doDate?: Date | null;
+      subject?: Subject | null;
+    }
   >(tasks, (state, newTask) => [
     ...state,
-    { id: undefined, title: newTask as string },
+    {
+      id: undefined,
+      title: newTask.title,
+      dueDate: newTask.dueDate,
+      doDate: newTask.doDate,
+      subject: newTask.subject,
+    },
   ]);
+
+  const todoTasks = optimisticTasks.filter(
+    (task) =>
+      (task.doDate && isToday(task.doDate)) ||
+      (task.dueDate && isToday(task.dueDate))
+  );
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -54,7 +74,7 @@ const Tasks = ({
         action={async (formData) => {
           const title = formData.get("title");
           formRef.current?.reset();
-          addOptimisticTask(title);
+          addOptimisticTask({ title: title as string });
           await quickCreate(title as string);
         }}
         ref={formRef}
@@ -69,92 +89,60 @@ const Tasks = ({
         <Button type="submit">Add task</Button>
       </form>
 
-      <Card.Root className="mt-6">
-        <Card.Header>
-          <Card.Title>Do today</Card.Title>
-        </Card.Header>
-        <Card.Content>
-          {optimisticTasks.filter(
-            (task) =>
-              task.doDate && (isPast(task.doDate) || isToday(task.doDate))
-          ).length > 0 ? (
-            <Accordion.Root type="single" collapsible>
-              {optimisticTasks
-                .filter(
-                  (task) =>
-                    task.doDate && (isPast(task.doDate) || isToday(task.doDate))
-                )
-                .map((task, key) => (
-                  <Task task={task} key={key} />
-                ))}
-            </Accordion.Root>
-          ) : (
-            <Callout emoji="🎉">
-              No tasks left to do today. Sit back and relax &mdash; or add a new
-              task.
-            </Callout>
-          )}
-        </Card.Content>
-      </Card.Root>
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4 mt-6">
+        <Card.Root>
+          <Card.Header className="flex-row space-y-0 -mr-3 py-3">
+            <Card.Title className="flex-1 inline-flex items-center">
+              <div className="h-[15px] w-[15px] rounded-full bg-muted-foreground mr-2" />
+              Todo
+            </Card.Title>
+            <Button variant="ghost" size="icon">
+              <PlusIcon />
+            </Button>
+          </Card.Header>
 
-      <Card.Root className="mt-6">
-        <Card.Header>
-          <Card.Title>Due today</Card.Title>
-        </Card.Header>
-        <Card.Content>
-          {optimisticTasks.filter(
-            (task) =>
-              task.dueDate && (isPast(task.dueDate) || isToday(task.dueDate))
-          ).length > 0 ? (
-            <Accordion.Root type="single" collapsible>
-              {optimisticTasks
-                .filter(
-                  (task) =>
-                    task.dueDate &&
-                    (isPast(task.dueDate) || isToday(task.dueDate))
-                )
-                .map((task, key) => (
-                  <Task task={task} key={key} />
-                ))}
-            </Accordion.Root>
-          ) : (
-            <Callout emoji="🎉">
-              No tasks are due today. Check your to do list ⬆️
-            </Callout>
-          )}
-        </Card.Content>
-      </Card.Root>
+          <Card.Content>
+            {todoTasks.map((task, key) => (
+              <Task key={key} task={task} />
+            ))}
+          </Card.Content>
+        </Card.Root>
 
-      <Card.Root className="mt-6">
-        <Card.Header>
-          <Card.Title>Future</Card.Title>
-        </Card.Header>
-        <Card.Content>
-          {optimisticTasks.filter(
-            (task) =>
-              (task.dueDate && isFuture(task.dueDate)) ||
-              (task.doDate && isFuture(task.doDate)) ||
-              (!task.doDate && !task.dueDate)
-          ).length > 0 ? (
-            <Accordion.Root type="single" collapsible>
-              {optimisticTasks
-                .filter(
-                  (task) =>
-                    (task.dueDate && isFuture(task.dueDate)) ||
-                    (task.doDate && isFuture(task.doDate)) ||
-                    (!task.doDate && !task.dueDate)
-                )
-                .map((task, key) => (
-                  <Task task={task} key={key} timing="future" />
-                ))}
-            </Accordion.Root>
-          ) : (
-            <Callout emoji="🎉">
-              No future tasks. Check your to do list ⬆️
-            </Callout>
-          )}
-        </Card.Content>
-      </Card.Root>
+        {["Maths", "Chemistry", "Physics"].map((subject, key) => {
+          const styles = useSubjectStyles(subject.toLowerCase());
+
+          return (
+            <Card.Root key={key}>
+              <Card.Header className="flex-row space-y-0 -mr-3 py-3">
+                <Card.Title className="flex-1 inline-flex items-center capitalize">
+                  <styles.SubjectIcon
+                    className={clsx("h-5 w-5 mr-2", styles.subjectColor)}
+                  />
+                  {subject}
+                </Card.Title>
+                <AddTask
+                  trigger={
+                    <Button variant="ghost" size="icon">
+                      <PlusIcon />
+                    </Button>
+                  }
+                  userId={userId}
+                  addOptimisticTask={addOptimisticTask}
+                  defaultData={{ subject }}
+                />
+              </Card.Header>
+
+              <Card.Content>
+                {optimisticTasks
+                  .filter((task) => task.subject === subject)
+                  .map((task, key) => (
+                    <Task key={key} task={task} />
+                  ))}
+              </Card.Content>
+            </Card.Root>
+          );
+        })}
+      </div>
     </>
   );
 };
