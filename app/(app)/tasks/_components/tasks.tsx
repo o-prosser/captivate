@@ -67,6 +67,10 @@ const Tasks = ({
 
   const formRef = useRef<HTMLFormElement>(null);
 
+  const maths = useSubjectStyles('maths');
+  const chemistry = useSubjectStyles('chemistry');
+  const physics = useSubjectStyles('physics');
+
   return (
     <>
       <form
@@ -108,17 +112,14 @@ const Tasks = ({
           </Card.Content>
         </Card.Root>
 
-        {["Maths", "Chemistry", "Physics"].map((subject, key) => {
-          const styles = useSubjectStyles(subject.toLowerCase());
-
-          return (
+        {[{name:"Maths", ...maths}, {name: "Chemistry", ...chemistry}, {name: "Physics", ...physics}].map((subject, key) => (
             <Card.Root key={key}>
               <Card.Header className="flex-row space-y-0 -mr-3 py-3">
                 <Card.Title className="flex-1 inline-flex items-center capitalize">
-                  <styles.SubjectIcon
-                    className={clsx("h-5 w-5 mr-2", styles.subjectColor)}
+                  <subject.SubjectIcon
+                    className={clsx("h-5 w-5 mr-2", subject.subjectColor)}
                   />
-                  {subject}
+                  {subject.name}
                 </Card.Title>
                 <AddTask
                   trigger={
@@ -128,20 +129,20 @@ const Tasks = ({
                   }
                   userId={userId}
                   addOptimisticTask={addOptimisticTask}
-                  defaultData={{ subject }}
+                  defaultData={{ subject: subject.name }}
                 />
               </Card.Header>
 
               <Card.Content>
                 {optimisticTasks
-                  .filter((task) => task.subject === subject)
+                  .filter((task) => task.subject === subject.name)
                   .map((task, key) => (
                     <Task key={key} task={task} />
                   ))}
               </Card.Content>
             </Card.Root>
-          );
-        })}
+          )
+        )}
       </div>
     </>
   );

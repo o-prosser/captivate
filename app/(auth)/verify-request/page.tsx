@@ -17,8 +17,8 @@ const VerifyRequest = () => {
       <Alert.Root className="text-left" variant="success">
         <CheckCircleIcon className="h-4 w-4" />
         <Alert.Description>
-          We've sent you a email containing a login code and a link. Click the
-          click or enter the 6-digit code below.
+          We&apos;ve sent you a email containing a login code and a link. Click
+          the click or enter the 6-digit code below.
         </Alert.Description>
       </Alert.Root>
 
