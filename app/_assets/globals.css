@@ -75,7 +75,7 @@
 }
 
 .primary-physics {
-  --primary: var(--maths);
+  --primary: var(--physics);
 }
 
 @media print {
