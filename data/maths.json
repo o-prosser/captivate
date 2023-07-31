@@ -3,7 +3,64 @@
   "fullName": "WJEC AS/A2 Mathematics",
   "specificationLink": "",
   "teachers": [],
-  "units": [],
+  "units": [
+    {
+      "number": 1,
+      "level": "as",
+      "name": "Pure Mathematics A",
+      "topics": [
+        "Proof",
+        "Algebra and Functions",
+        "Coordinate geometry in the (x,y) plane",
+        "Sequences and Series — The Binomial Theorem",
+        "Trigonometry",
+        "Exponentials and logarithms",
+        "Differentiation",
+        "Integration",
+        "Vectors"
+      ]
+    },
+    {
+      "number": 2,
+      "level": "as",
+      "name": "Applied Mathematics A",
+      "topics": [
+        "Statistical Sampling",
+        "Data presentation and interpretation",
+        "Probability",
+        "Statistical distributions",
+        "Statistical hypothesis testing",
+        "Quantities and units in mechanics",
+        "Kinematics",
+        "Forces and Newton's laws",
+        "Vectors"
+      ]
+    },
+    {
+      "number": 3,
+      "level": "a2",
+      "name": "Pure Mathematics B",
+      "topics": []
+    },
+    {
+      "number": 4,
+      "level": "a2",
+      "name": "Applied Mathematics B",
+      "topics": []
+    }
+  ],
+  "paperTables": [
+    {
+      "id": "current",
+      "spec": "Current specification (2018–)",
+      "units": [
+        "AS Unit 1 — Pure Mathematics A",
+        "AS Unit 2 — Applied Mathematics A",
+        "A2 Unit 2 — Pure Mathematics B",
+        "A2 Unit 3 — Applied Mathematics B"
+      ]
+    }
+  ],
   "gradeBoundaries": [],
   "pastPapers": [
     {
@@ -137,112 +194,132 @@
   ],
   "topicPapers": [
     {
-      "unit": 1.1,
+      "unit": 1,
+      "topic": 1,
       "title": "Proof",
       "paper": "https://www.dropbox.com/s/qi9wbgal246uuo1/101-proof.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/qh50p2vlkywcqpq/101-proof-ms.pdf?dl=1"
     },
     {
-      "unit": 1.2,
+      "unit": 1,
+      "topic": 2,
       "title": "Completing the square",
       "paper": "https://www.dropbox.com/s/jcl4e6wdthz1vfi/102-completing-the-square.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/esymlp3cc2rcksg/102-completing-the-square-ms.pdf?dl=1"
     },
     {
-      "unit": 1.2,
+      "unit": 1,
+      "topic": 2,
       "title": "Polynomials",
       "paper": "https://www.dropbox.com/s/qh9nb37a8bvcluo/102-polynomials.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/o02tr827irxfw4s/102-polynomials-ms.pdf?dl=1"
     },
     {
-      "unit": 1.2,
+      "unit": 1,
+      "topic": 2,
       "title": "Quadratics and inequalities",
       "paper": "https://www.dropbox.com/s/ydwziphc7e874n0/102-quadratics-inequalities.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/pqlabptafie2n9n/102-quadratics-inequalities-ms.pdf?dl=1"
     },
     {
-      "unit": 1.2,
+      "unit": 1,
+      "topic": 2,
       "title": "Surds",
       "paper": "https://www.dropbox.com/s/cvgd02yt91555jc/102-surds.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/hlcg6yepogyzm2l/102-surds-ms.pdf?dl=1"
     },
     {
-      "unit": 1.2,
+      "unit": 1,
+      "topic": 2,
       "title": "Transformation of functions",
       "paper": "https://www.dropbox.com/s/ouqwxvtj4kopw7i/102-transformations-of-functions.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/c6agv3ln4gv4goi/102-transformations-of-functions-ms.pdf?dl=1"
     },
     {
-      "unit": 1.3,
+      "unit": 1,
+      "topic": 3,
       "title": "Coordinate geometry circles",
       "paper": "https://www.dropbox.com/s/rk0xyxa94bboluk/103-coordinate-geometry-circles.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/xgof5arrx911ssv/103-coordinate-geometry-circles-ms.pdf?dl=1"
     },
     {
-      "unit": 1.3,
+      "unit": 1,
+      "topic": 3,
       "title": "Coordinate geometry lines",
       "paper": "https://www.dropbox.com/s/4q2l9blupvpszmo/103-coordinate-geometry-lines.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/mz58kdo2616stsz/103-coordinate-geometry-lines-ms.pdf?dl=1"
     },
     {
-      "unit": 1.4,
+      "unit": 1,
+      "topic": 4,
       "title": "Binomial theorem",
       "paper": "https://www.dropbox.com/s/ltz4ulvy4n0kyd4/104-binomial-theorem.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/klkwpce2kq4a00v/104-binomial-theorem-ms.pdf?dl=1"
     },
     {
-      "unit": 1.5,
+      "unit": 1,
+      "topic": 5,
       "title": "Trig triangles",
       "paper": "https://www.dropbox.com/s/8c4szjgoiq7rk26/105-trig-triangles.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/xi63umlrf3fu0lb/105-trig-triangles-ms.pdf?dl=1"
     },
     {
-      "unit": 1.5,
+      "unit": 1,
+      "topic": 5,
       "title": "Trigonometric equations",
       "paper": "https://www.dropbox.com/s/05x02qj9a7d2tyo/105-trigonometric-equations.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/2wghhuf4pwba7hv/105-trigonometric-equations-ms.pdf?dl=1"
     },
     {
-      "unit": 1.6,
+      "unit": 1,
+      "topic": 6,
       "title": "Logarithms and exponentials",
       "paper": "https://www.dropbox.com/s/fnhmpajojp54fq3/106-logarithms-exponentials.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/f9ufkv2jyt1chkf/106-logarithms-exponentials-ms.pdf?dl=1"
     },
     {
-      "unit": 1.7,
+      "unit": 1,
+      "topic": 7,
       "title": "Application of differentiation — optimisation",
       "paper": "https://www.dropbox.com/s/dur21jf3k8w7tdt/107-app-differentiation-optimisation.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/yi65raiio8xxlyv/107-app-differentiation-optimisation-ms.pdf?dl=1"
     },
     {
-      "unit": 1.7,
+      "unit": 1,
+      "topic": 7,
       "title": "Application of differentiation — stationary points",
       "paper": "https://www.dropbox.com/s/17b1f5qsrjxgvc1/107-app-differentiation-stationary-pts.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/q4kh60wp8a892bt/107-app-differentiation-stationary-pts-ms.pdf?dl=1"
     },
     {
-      "unit": 1.7,
+      "unit": 1,
+      "topic": 7,
       "title": "Application of differentiation — tangents normals",
       "paper": "https://www.dropbox.com/s/7w5a5l7y0urnpv9/107-app-differentiation-tangents-normals.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/pfwzqn4vpv2a9s0/107-app-differentiation-tangents-normals-ms.pdf?dl=1"
     },
     {
-      "unit": 1.7,
+      "unit": 1,
+      "topic": 7,
       "title": "Differentiation",
       "paper": "https://www.dropbox.com/s/hfua5vb5h3cj01i/107-differentiation.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/bxs8cuykuspom8r/107-differentiation-ms.pdf?dl=1"
     },
     {
-      "unit": 1.8,
+      "unit": 1,
+      "topic": 8,
       "title": "Integration",
       "paper": "https://www.dropbox.com/s/051oedpkwnsruhy/108-integration.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/wvqq4c1wxnt3eui/108-integration-ms.pdf?dl=1"
     },
     {
-      "unit": 1.9,
+      "unit": 1,
+      "topic": 9,
       "title": "Vectors",
       "paper": "https://www.dropbox.com/s/qbk8abb1mn6imv1/109-vectors.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/u422yg7f1i29lwn/109-vectors-ms.pdf?dl=1"
     }
-  ]
+  ],
+  "resources": [],
+  "practicals": null
 }

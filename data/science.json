@@ -43,6 +43,32 @@
           ]
         }
       ],
+      "paperTables": [
+        {
+          "id": "current",
+          "spec": "Current specification (2016–)",
+          "units": [
+            "AS Unit 1 — Motion, Energy and Matter",
+            "AS Unit 2 — Electricity and Light"
+          ]
+        },
+        {
+          "id": "2009",
+          "spec": "Legacy specification (2009–2016)",
+          "units": [
+            "AS Unit 1 — Motion, Energy and Charge",
+            "AS Unit 2 — Waves and Particles"
+          ]
+        },
+        {
+          "id": "2003",
+          "spec": "Legacy specification (2003–2009)",
+          "units": [
+            "AS Unit 1 — Waves, Light and Basics",
+            "AS Unit 2 — Quanta and Electricity"
+          ]
+        }
+      ],
       "gradeBoundaries": [
         {
           "unit": 1,
@@ -1047,6 +1073,26 @@
             "Alcohols and carboxylic acids",
             "Instrumental analysis"
           ]
+        }
+      ],
+      "paperTables": [
+        {
+          "id": "current",
+          "spec": "Current specification (2016–)",
+          "units": [
+            "AS Unit 1 — The Language of Chemistry, Structure of Matter and Simple Reactions",
+            "AS Unit 2 — Energy, Rate and Chemistry of Carbon Compounds"
+          ]
+        },
+        {
+          "id": "2009",
+          "spec": "Legacy specification (2009–2016)",
+          "units": ["AS Unit 1", "AS Unit 2"]
+        },
+        {
+          "id": "2003",
+          "spec": "Legacy specification (2003–2009)",
+          "units": ["AS Unit 1", "AS Unit 2"]
         }
       ],
       "practicals": [
