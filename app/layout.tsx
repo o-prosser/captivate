@@ -1,4 +1,4 @@
-import { generalSans } from "./_assets/fonts";
+import { openRunde } from "./_assets/fonts";
 
 import "./_assets/globals.css";
 
@@ -24,7 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body
         className={cn(
-          generalSans.variable,
+          openRunde.variable,
           "font-sans antialiased bg-background text-foreground w-screen"
         )}
       >
