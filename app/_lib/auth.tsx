@@ -27,7 +27,7 @@ const authOptions: NextAuthOptions = {
           pass: env.EMAIL_SERVER_PASSWORD,
         },
       },
-      from: env.EMAIL_FROM,
+      from: `Captivate <${env.EMAIL_FROM}>`,
       generateVerificationToken: () => {
         const digits =
           Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
@@ -38,7 +38,7 @@ const authOptions: NextAuthOptions = {
         const transport = createTransport(provider.server);
         const result = await transport.sendMail({
           to: identifier,
-          from: provider.from,
+          from: `Captivate <${provider.from}`,
           subject: `Sign in to Captivate`,
           text: render(<LoginEmail url={url} host={host} token={token} />, {
             plainText: true,
