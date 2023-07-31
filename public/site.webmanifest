@@ -2,7 +2,7 @@
   "name": "Captivate",
   "short_name": "Captivate",
   "display": "standalone",
-  "start_url": "/dashboard",
+  "start_url": "/",
   "icons": [
     {
       "src": "public/manifest-icon-192.maskable.png",
