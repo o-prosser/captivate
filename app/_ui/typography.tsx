@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 import { cn } from "@/util/cn";
 
-const headingVariants = cva("scroll-m-20", {
+const headingVariants = cva("scroll-m-20 font-headings", {
   variants: {
     level: {
       1: "text-3xl font-bold tracking-tight lg:text-4xl [&:not(:first-child)]:mt-5 print:!text-[40px] print:!leading-[36px] print:text-primary",

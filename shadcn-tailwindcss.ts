@@ -32,9 +32,9 @@ const shadcnPlugin = plugin(
         "--destructive-foreground": "240 10% 4%", // zinc-950
         "--border": "240 4% 16%", // zinc-800
         "--ring": "var(--primary)",
-        "--maths": "358 65% 49%", // red11
-        "--chemistry": "92 60% 43%", // plum11
-        "--physics": "192 85% 31%", // cyan11
+        // "--maths": "358 65% 49%", // red11
+        // "--chemistry": "92 60% 43%", // plum11
+        // "--physics": "192 85% 31%", // cyan11
       },
     });
   },
@@ -42,10 +42,11 @@ const shadcnPlugin = plugin(
     theme: {
       extend: {
         fontFamily: {
+          headings: ["var(--font-headings)", ...fontFamily.sans],
           sans: [
             ["var(--font-sans)", ...fontFamily.sans],
             {
-              fontFeatureSettings: "'ss01' on",
+              fontFeatureSettings: "'salt' on",
             },
           ],
         },

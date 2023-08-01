@@ -37,7 +37,7 @@ const buttonVariants = cva(
       },
       iconOnly: {
         true: "",
-        false: "[&>svg]:mr-2",
+        false: "gap-2",
       },
     },
     defaultVariants: {

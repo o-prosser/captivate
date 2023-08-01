@@ -1,7 +1,8 @@
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
 export const openRunde = localFont({
-  variable: "--font-sans",
+  variable: "--font-headings",
   src: [
     {
       path: "./OpenRunde-Bold.woff2",
@@ -25,6 +26,12 @@ export const openRunde = localFont({
       style: "normal",
     },
   ],
+});
+
+export const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const generalSans = localFont({

@@ -1,4 +1,4 @@
-import { openRunde } from "./_assets/fonts";
+import { inter, openRunde } from "./_assets/fonts";
 
 import "./_assets/globals.css";
 
@@ -25,6 +25,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <body
         className={cn(
           openRunde.variable,
+          inter.variable,
           "font-sans antialiased bg-background text-foreground w-screen"
         )}
       >
