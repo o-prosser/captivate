@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { EyeIcon } from "lucide-react";
+import { Eye } from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { Button } from "@/ui/button";
@@ -148,7 +148,7 @@ const Flashcard = ({
           className="w-full mt-6"
           onClick={() => setShow(true)}
         >
-          <EyeIcon />
+          <Eye />
           Show answer
         </Button>
       )}

@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ClipboardIcon,
-  FileTextIcon,
-  FlaskConicalIcon,
-  FolderDownIcon,
-  PaperclipIcon,
-  PresentationIcon,
-  StickyNoteIcon,
+  Clipboard,
+  FileText,
+  FlaskConical,
+  FolderDown,
+  Paperclip,
+  Presentation,
+  StickyNote,
 } from "lucide-react";
 
 import * as Command from "@/ui/command";
@@ -17,42 +17,42 @@ const commands = [
     heading: "Maths",
     items: [
       {
-        icon: ClipboardIcon,
+        icon: Clipboard,
         href: "/subjects/maths/specification",
         label: "Specification",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/maths/notes/1",
         label: "Notes — AS Unit 1",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/maths/notes/2",
         label: "Notes — AS Unit 2",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/maths/notes/3",
         label: "Notes — A2 Unit 3",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/maths/notes/4",
         label: "Notes — A2 Unit 4",
       },
       {
-        icon: PaperclipIcon,
+        icon: Paperclip,
         href: "/subjects/maths/questions/past-papers",
         label: "Past papers",
       },
       {
-        icon: PaperclipIcon,
+        icon: Paperclip,
         href: "/subjects/maths/questions/topic-questions",
         label: "Topic questions",
       },
       {
-        icon: FolderDownIcon,
+        icon: FolderDown,
         href: "/subjects/maths/resources",
         label: "Resources",
       },
@@ -62,47 +62,47 @@ const commands = [
     heading: "Physics",
     items: [
       {
-        icon: ClipboardIcon,
+        icon: Clipboard,
         href: "/subjects/physics/specification",
         label: "Specification",
       },
       {
-        icon: PresentationIcon,
+        icon: Presentation,
         href: "/subjects/physics/lessons",
         label: "Lessons",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/physics/notes/1",
         label: "Notes — AS Unit 1",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/physics/notes/2",
         label: "Notes — AS Unit 2",
       },
       {
-        icon: FlaskConicalIcon,
+        icon: FlaskConical,
         href: "/subjects/physics/practicals",
         label: "Practicals",
       },
       {
-        icon: PaperclipIcon,
+        icon: Paperclip,
         href: "/subjects/physics/questions/past-papers",
         label: "Past papers",
       },
       {
-        icon: PaperclipIcon,
+        icon: Paperclip,
         href: "/subjects/physics/questions/topic-questions",
         label: "Topic questions",
       },
       {
-        icon: StickyNoteIcon,
+        icon: StickyNote,
         href: "/subjects/physics/flashcards",
         label: "Flaschards",
       },
       {
-        icon: FolderDownIcon,
+        icon: FolderDown,
         href: "/subjects/physics/resources",
         label: "Resources",
       },
@@ -112,47 +112,47 @@ const commands = [
     heading: "Chemistry",
     items: [
       {
-        icon: ClipboardIcon,
+        icon: Clipboard,
         href: "/subjects/chemistry/specification",
         label: "Specification",
       },
       {
-        icon: PresentationIcon,
+        icon: Presentation,
         href: "/subjects/chemistry/lessons",
         label: "Lessons",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/chemistry/notes/1",
         label: "Notes — AS Unit 1",
       },
       {
-        icon: FileTextIcon,
+        icon: FileText,
         href: "/subjects/chemistry/notes/2",
         label: "Notes — AS Unit 2",
       },
       {
-        icon: FlaskConicalIcon,
+        icon: FlaskConical,
         href: "/subjects/chemistry/practicals",
         label: "Practicals",
       },
       {
-        icon: PaperclipIcon,
+        icon: Paperclip,
         href: "/subjects/chemistry/questions/past-papers",
         label: "Past papers",
       },
       {
-        icon: PaperclipIcon,
+        icon: Paperclip,
         href: "/subjects/chemistry/questions/topic-questions",
         label: "Topic questions",
       },
       {
-        icon: StickyNoteIcon,
+        icon: StickyNote,
         href: "/subjects/chemistry/flashcards",
         label: "Flaschards",
       },
       {
-        icon: FolderDownIcon,
+        icon: FolderDown,
         href: "/subjects/chemistry/resources",
         label: "Resources",
       },

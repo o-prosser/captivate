@@ -1,5 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import { PencilIcon } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
@@ -72,7 +72,7 @@ const CardPage = async ({
             )}
           </span>
           <Button variant="ghost" size="icon">
-            <PencilIcon />
+            <Pencil />
             <span className="sr-only">Edit</span>
           </Button>
           <Information flashcard={flashcard} />

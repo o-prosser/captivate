@@ -1,42 +1,40 @@
+import { eventsTable } from "@/drizzle/schema";
 import { Subject } from "@prisma/client";
-import { isTomorrow } from "date-fns";
+import { isTomorrow, startOfDay } from "date-fns";
 import formatDistance from "date-fns/formatDistance";
 import isToday from "date-fns/isToday";
 
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/util/session";
+import { and, asc, db, eq, gte } from "@/lib/db";
+import { getSession } from "@/lib/session";
 import { parseSubjectName } from "@/util/subjects";
 import { Callout } from "@/ui/callout";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
 const EventsToday = async ({ subject }: { subject?: Subject }) => {
-  const user = await getCurrentUser();
-  if (!user?.id) throw new Error();
+  const { user } = await getSession();
 
-  const events = await prisma.event.findMany({
-    where: {
-      subject: subject,
-      date: subject
-        ? {
-            gte: new Date(new Date().setHours(0, 0, 0, 0)),
-          }
-        : { equals: new Date(new Date().setHours(0, 0, 0, 0)) },
-      userId: user.id,
-    },
-    orderBy: {
-      date: "asc",
-    },
-    select: {
-      id: true,
-      date: true,
-      title: true,
-      category: true,
-      description: true,
-      subject: true,
-    },
-    take: 4,
-  });
+  const events = await db
+    .select({
+      id: eventsTable.id,
+      date: eventsTable.date,
+      title: eventsTable.title,
+      category: eventsTable.category,
+      description: eventsTable.description,
+      subject: eventsTable.subjectId,
+    })
+    .from(eventsTable)
+    .where(
+      and(
+        subject ? eq(eventsTable.subjectId, subject) : undefined,
+        subject
+          ? gte(eventsTable.date, startOfDay(new Date()))
+          : eq(eventsTable.date, startOfDay(new Date())),
+        eq(eventsTable.userId, user.id),
+      ),
+    )
+    .orderBy(asc(eventsTable.date))
+    .limit(4);
 
   return events.length ? (
     events.map((event, key) => (

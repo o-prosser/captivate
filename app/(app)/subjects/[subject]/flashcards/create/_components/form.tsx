@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { notFound, useRouter } from "next/navigation";
-import { PlusIcon, Trash2Icon } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { useFieldArray } from "react-hook-form";
 import * as z from "zod";
 
@@ -137,7 +137,7 @@ const CreateFlashcardForm = ({ params }: SubjectPageProps) => {
                 type="button"
                 onClick={() => fieldArray.remove(key)}
               >
-                <Trash2Icon /> Delete
+                <Trash2 /> Delete
               </Button>
             </div>
           </div>
@@ -150,7 +150,7 @@ const CreateFlashcardForm = ({ params }: SubjectPageProps) => {
         variant="outline"
         onClick={() => fieldArray.append({ front: "", back: "" })}
       >
-        <PlusIcon />
+        <Plus />
         Add flashcards
       </Button>
 

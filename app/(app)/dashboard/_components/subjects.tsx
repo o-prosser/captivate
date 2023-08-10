@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { useSubjectStyles } from "@/util/subjects";
@@ -29,25 +29,25 @@ const Subject = ({
       <Card.Content className="flex flex-col items-start">
         <Button asChild variant="arrow" className="!mb-1">
           <Link href={`/subjects/${subject}/specification`}>
-            Specification <ArrowRightIcon />
+            Specification <ArrowRight />
           </Link>
         </Button>
         <Button asChild variant="arrow" className="!mb-1">
           <Link href={`/subjects/${subject}/questions/past-papers`}>
-            Past papers <ArrowRightIcon />
+            Past papers <ArrowRight />
           </Link>
         </Button>
         {subject === "maths" ? (
           <Button asChild variant="arrow">
             <Link href={`/subjects/maths/questions/topic-papers`}>
-              Topic papers <ArrowRightIcon />
+              Topic papers <ArrowRight />
             </Link>
           </Button>
         ) : (
           <>
             <Button asChild variant="arrow">
               <Link href={`/subjects/${subject}/practicals`}>
-                Practicals <ArrowRightIcon />
+                Practicals <ArrowRight />
               </Link>
             </Button>
           </>

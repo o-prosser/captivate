@@ -1,5 +1,5 @@
 import { Subject } from "@prisma/client";
-import { AtomIcon, FlaskRoundIcon, PiIcon } from "lucide-react";
+import { Atom, FlaskRound, Pi } from "lucide-react";
 
 import mathsData from "@/data/maths.json";
 import sciencesData from "@/data/science.json";
@@ -61,10 +61,10 @@ const useSubjectStyles = (subject: string) => {
       : "bg-physics/10 hover:bg-physics/10";
   const SubjectIcon =
     subject === "maths"
-      ? PiIcon
+      ? Pi
       : subject === "chemistry"
-      ? FlaskRoundIcon
-      : AtomIcon;
+      ? FlaskRound
+      : Atom;
   const gridArea =
     subject === "maths"
       ? "area-[maths]"

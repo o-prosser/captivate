@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Subject } from "@prisma/client";
-import { ChevronDownIcon } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { prisma } from "@/lib/prisma";
 import { Button } from "@/ui/button";
@@ -47,7 +47,7 @@ const SelectPractise = async ({
       <DropdownMenu.Trigger asChild>
         <Button className="mb-3">
           Practise
-          <ChevronDownIcon className="ml-2 !mr-0" />
+          <ChevronDown className="ml-2 !mr-0" />
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content align="end" className="w-40">

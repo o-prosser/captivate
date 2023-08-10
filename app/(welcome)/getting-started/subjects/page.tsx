@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { useSubjectStyles } from "@/util/subjects";
@@ -65,7 +65,7 @@ const Subjects = () => {
           <Card.Footer>
             <Button className="w-full">
               Next step{" "}
-              <ArrowRightIcon className="transition group-hover:translate-x-1" />
+              <ArrowRight className="transition group-hover:translate-x-1" />
             </Button>
           </Card.Footer>
         </form>

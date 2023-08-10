@@ -14,15 +14,7 @@ import {
   Text,
 } from "@react-email/components";
 
-const LoginEmail = ({
-  url,
-  host,
-  token,
-}: {
-  url: string;
-  host: string;
-  token: string;
-}) => {
+const LoginEmail = ({ url }: { url: string }) => {
   return (
     <Html lang="en">
       <Head />
@@ -40,20 +32,14 @@ const LoginEmail = ({
               Sign in to <strong>Captivate</strong>
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
-              Hello user,
+              Hi there,
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Copy the code below to sign in to Captivate.
+              Thanks for choosing Captivate for your learning journey. To
+              complete your registration, follow the link below to verify your
+              email address.
             </Text>
-            <Section className="flex mt-4 mb-6 justify-center">
-              <Text className="text-black font-mono p-1 bg-[#eaeaea] rounded-sm tracking-widest">
-                {token}
-              </Text>
-            </Section>
 
-            <Text className="text-black text-[14px] leading-[24px]">
-              or click to sign in.
-            </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
                 pX={20}
@@ -61,7 +47,7 @@ const LoginEmail = ({
                 className="bg-[#273F8B] rounded text-white text-[12px] font-semibold no-underline text-center"
                 href={url}
               >
-                Sign in
+                Verify email address
               </Button>
             </Section>
             <Text className="text-black text-[14px] leading-[24px] break-all">
@@ -69,6 +55,10 @@ const LoginEmail = ({
               <Link href={url} className="text-[#273F8B] no-underline">
                 {url}
               </Link>
+            </Text>
+            <Text className="text-black text-[14px] leading-[24px]">Owen</Text>
+            <Text className="text-black text-[14px] leading-[24px]">
+              Captivate
             </Text>
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-black text-[12px] leading-[20px]">

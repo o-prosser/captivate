@@ -1,8 +1,7 @@
-import { redirect } from "next/navigation";
-import { StudyScope, StudyType, Subject } from "@prisma/client";
+import { StudyType, Subject } from "@prisma/client";
 
+import { getSession } from "@/lib/session";
 import { prisma } from "@/app/_lib/prisma";
-import { getCurrentUser } from "@/app/_util/session";
 
 const getOrCreateSession = async ({
   id,
@@ -35,8 +34,7 @@ const getOrCreateSession = async ({
     };
   }
 
-  const user = await getCurrentUser();
-  if (!user?.id) redirect("/login");
+  const { user } = await getSession();
 
   return {
     session: await prisma.flashcardStudySession.create({
@@ -158,7 +156,7 @@ const getScores = (session: { flashcardsStudies: { score: number }[] }) =>
     const score = key + 1;
 
     const count = session.flashcardsStudies.filter(
-      (study) => study.score == score
+      (study) => study.score == score,
     ).length;
 
     return {

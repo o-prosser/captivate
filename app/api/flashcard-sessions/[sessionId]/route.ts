@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
-import { getCurrentUser } from "@/util/session";
+import { getSession } from "@/lib/session";
 import { getScope } from "@/models/flashcard";
 import { getFlashcardGroup } from "@/models/flashcard-group";
 import { createFlashcardStudy } from "@/models/flashcard-study";
@@ -21,10 +21,10 @@ const contextSchema = z.object({
 
 export const POST = async (
   req: Request,
-  context: z.infer<typeof contextSchema>
+  context: z.infer<typeof contextSchema>,
 ) => {
   try {
-    const user = await getCurrentUser();
+    const { user } = await getSession();
     if (!user) return new Response("Unauthorised", { status: 422 });
 
     const json = await req.json();
@@ -46,7 +46,7 @@ export const POST = async (
 
     const flashcardsToStudy = scope.flashcards.filter((f) => {
       const viewed = session.flashcardsStudies.find(
-        (study) => study.flashcardId === f.id
+        (study) => study.flashcardId === f.id,
       );
       if (viewed) return false;
       if (f.id === body.flashcardId) return false;

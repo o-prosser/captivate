@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import format from "date-fns/format";
-import { CalendarIcon, ClipboardIcon, UserIcon } from "lucide-react";
+import { Calendar, Clipboard, User } from "lucide-react";
 
 import examTimetable from "@/data/exam-timetable.json";
 import { getSubject } from "@/util/subjects";
@@ -33,7 +33,7 @@ const Index = (props: { subject: string }) => {
             </Suspense>
             <Button variant="outline" asChild className="w-full mt-3">
               <Link href="/calendar">
-                <CalendarIcon />
+                <Calendar />
                 View more
               </Link>
             </Button>
@@ -49,7 +49,7 @@ const Index = (props: { subject: string }) => {
             </Suspense>
             <Button variant="outline" asChild className="w-full mt-3">
               <Link href="/tasks">
-                <ClipboardIcon />
+                <Clipboard />
                 View more
               </Link>
             </Button>
@@ -64,7 +64,7 @@ const Index = (props: { subject: string }) => {
               ? subject.teachers.map((teacher, key) => (
                   <div key={key} className="flex items-center space-x-3 mb-3">
                     <div className="h-12 w-12 rounded-full bg-muted grid place-items-center">
-                      <UserIcon className="text-muted-foreground h-6 w-6" />
+                      <User className="text-muted-foreground h-6 w-6" />
                     </div>
                     <div>
                       <Text className="font-medium">{teacher.name}</Text>

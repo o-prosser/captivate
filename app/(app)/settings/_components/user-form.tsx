@@ -3,7 +3,7 @@
 import "@uploadthing/react/styles.css";
 
 import { useState } from "react";
-import { SaveIcon } from "lucide-react";
+import { Save } from "lucide-react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 import { UploadButton } from "@/util/uploadthing";
@@ -74,7 +74,7 @@ const UserForm = ({
 
       <Card.Footer>
         <Button type="submit" pending={pending}>
-          <SaveIcon />
+          <Save />
           Update
         </Button>
       </Card.Footer>

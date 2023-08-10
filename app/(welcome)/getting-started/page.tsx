@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/util/session";
+import { getSession } from "@/lib/session";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
@@ -16,7 +16,7 @@ export const metadata = {
 const action = async (formData: FormData) => {
   "use server";
 
-  const user = await getCurrentUser();
+  const user = await getSession();
   if (!user?.id) throw new Error("No user id found");
   await prisma.user.update({
     where: {
@@ -70,7 +70,7 @@ const GettingStarted = () => {
           <Card.Footer>
             <FormButton className="w-full">
               Next step
-              <ArrowRightIcon className="transition group-hover:translate-x-1" />
+              <ArrowRight className="transition group-hover:translate-x-1" />
             </FormButton>
           </Card.Footer>
         </form>

@@ -1,6 +1,6 @@
 "use client";
 
-import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
+import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/ui/button";
@@ -24,22 +24,22 @@ const Theme = () => {
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
             <Button>
-              <SunIcon className="dark:hidden" />
-              <MoonIcon className="hidden dark:block" />
+              <Sun className="dark:hidden" />
+              <Moon className="hidden dark:block" />
               Select theme
             </Button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item onSelect={() => setTheme("system")}>
-              <LaptopIcon />
+              <Laptop />
               <span>System</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item onSelect={() => setTheme("light")}>
-              <SunIcon />
+              <Sun />
               <span>Light</span>
             </DropdownMenu.Item>
             <DropdownMenu.Item onSelect={() => setTheme("dark")}>
-              <MoonIcon />
+              <Moon />
               <span>Dark</span>
             </DropdownMenu.Item>
           </DropdownMenu.Content>

@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, m } from "framer-motion";
 import {
-  AtomIcon,
-  CalendarIcon,
-  ClipboardIcon,
-  FlaskRoundIcon,
-  HomeIcon,
-  MessageSquareIcon,
-  PiIcon,
-  SettingsIcon,
+  Atom,
+  Calendar,
+  Clipboard,
+  FlaskRound,
+  Home,
+  MessageSquare,
+  Pi,
+  Settings,
 } from "lucide-react";
 
 import { cn } from "@/util/cn";
@@ -22,19 +22,19 @@ import { useSubjectStyles } from "@/app/_util/subjects";
 const links = [
   [
     {
-      icon: HomeIcon,
+      icon: Home,
       label: "Home",
       href: "/dashboard",
       active: "/dashboard",
     },
     {
-      icon: CalendarIcon,
+      icon: Calendar,
       label: "Calendar",
       href: "/calendar",
       active: "/calendar",
     },
     {
-      icon: ClipboardIcon,
+      icon: Clipboard,
       label: "Tasks",
       href: "/tasks",
       active: "/tasks",
@@ -42,19 +42,19 @@ const links = [
   ],
   [
     {
-      icon: PiIcon,
+      icon: Pi,
       label: "Maths",
       href: "/subjects/maths",
       active: "/subjects/maths",
     },
     {
-      icon: FlaskRoundIcon,
+      icon: FlaskRound,
       label: "Chemistry",
       href: "/subjects/chemistry",
       active: "/subjects/chemistry",
     },
     {
-      icon: AtomIcon,
+      icon: Atom,
       label: "Physics",
       href: "/subjects/physics",
       active: "/subjects/physics",
@@ -62,13 +62,13 @@ const links = [
   ],
   [
     {
-      icon: MessageSquareIcon,
+      icon: MessageSquare,
       label: "Support",
       href: "/support",
       active: "/support",
     },
     {
-      icon: SettingsIcon,
+      icon: Settings,
       label: "Settings",
       href: "/settings",
       active: "/settings",

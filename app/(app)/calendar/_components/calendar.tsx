@@ -7,7 +7,7 @@ import addMonths from "date-fns/addMonths";
 import format from "date-fns/format";
 import isToday from "date-fns/isToday";
 import subMonths from "date-fns/subMonths";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { Button } from "@/ui/button";
@@ -58,7 +58,7 @@ const Calendar = ({
           onClick={prevMonth}
           className="rounded-r-none -mr-px"
         >
-          <ChevronLeftIcon />
+          <ChevronLeft />
         </Button>
         <Button
           variant="outline"
@@ -74,7 +74,7 @@ const Calendar = ({
           onClick={nextMonth}
           className="rounded-l-none -ml-px"
         >
-          <ChevronRightIcon />
+          <ChevronRight />
         </Button>
       </Card.Header>
 

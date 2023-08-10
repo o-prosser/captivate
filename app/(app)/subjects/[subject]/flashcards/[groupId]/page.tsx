@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PencilIcon } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
@@ -54,7 +54,7 @@ const FlashcardGroupPage = async ({
             <Link
               href={`/subjects/${params.subject}/flashcards/${flashcardGroup.id}/edit`}
             >
-              <PencilIcon />
+              <Pencil />
             </Link>
           </Button>
         </div>

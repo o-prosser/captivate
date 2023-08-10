@@ -1,14 +1,9 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
-import { getCurrentUser } from "@/util/session";
 import { Button } from "@/ui/button";
 import { LogoIcon } from "@/ui/logo-icon";
 
 const WelcomeLayout = async ({ children }: { children: React.ReactNode }) => {
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
-
   return (
     <main className="bg-background sm:min-h-[100dvh] grid place-items-center px-5">
       <div className="max-w-lg w-full">

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import format from "date-fns/format";
 import isWeekend from "date-fns/isWeekend";
-import { CalendarRangeIcon, FileTextIcon } from "lucide-react";
+import { CalendarRange, FileText } from "lucide-react";
 
 import { getCurrentWeek } from "@/util/weeks";
 import { Button } from "@/ui/button";
@@ -49,13 +49,13 @@ const CalendarPage = () => {
             <div className="flex flex-col space-y-3 mt-6">
               <Button asChild>
                 <Link href="/calendar/timetable">
-                  <CalendarRangeIcon />
+                  <CalendarRange />
                   Timetable
                 </Link>
               </Button>
               <Button variant="outline" asChild>
                 <Link href="/calendar/exams">
-                  <FileTextIcon />
+                  <FileText />
                   Exam timetable
                 </Link>
               </Button>

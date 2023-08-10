@@ -1,16 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 import { Button } from "@/ui/button";
 import { Text } from "@/ui/typography";
 import { ThemeToggle } from "@/components/theme";
-import { getCurrentUser } from "@/app/_util/session";
 
 const AuthLayout = async ({ children }: { children: React.ReactNode }) => {
-  const user = await getCurrentUser();
-  if (user) redirect("/dashboard");
-
   return (
     <>
       <Button variant="link" asChild size={null}>

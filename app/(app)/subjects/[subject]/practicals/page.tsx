@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DownloadIcon } from "lucide-react";
+import { Download } from "lucide-react";
 
 import type { SubjectPageProps } from "@/types/subjects";
 import { getSubject } from "@/util/subjects";
@@ -43,7 +43,7 @@ const Practicals = ({ params }: SubjectPageProps) => {
 
           <Button asChild>
             <Link download href={subject.labBook}>
-              <DownloadIcon />
+              <Download />
               Download booklet
             </Link>
           </Button>

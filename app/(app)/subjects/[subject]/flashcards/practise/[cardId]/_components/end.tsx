@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import { Loader2Icon, XIcon } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 
 import { Button } from "@/ui/button";
 
@@ -27,7 +27,7 @@ const End = () => {
       size="icon"
       className="mr-11"
     >
-      {isPending ? <Loader2Icon className="animate-spin" /> : <XIcon />}
+      {isPending ? <Loader2 className="animate-spin" /> : <X />}
     </Button>
   );
 };

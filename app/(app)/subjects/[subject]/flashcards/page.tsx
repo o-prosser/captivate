@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlusIcon } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import { SubjectPageProps } from "@/types/subjects";
 import { prisma } from "@/lib/prisma";
@@ -57,7 +57,7 @@ const Flashcards = async ({ params }: SubjectPageProps) => {
 
       <Button className="mt-6" variant="outline" asChild>
         <Link href={`/subjects/${params.subject}/flashcards/create`}>
-          <PlusIcon />
+          <Plus />
           Add flashcard group
         </Link>
       </Button>

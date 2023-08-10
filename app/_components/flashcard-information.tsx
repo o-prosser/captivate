@@ -2,7 +2,7 @@
 
 import { Flashcard, FlashcardStudy } from "@prisma/client";
 import format from "date-fns/format";
-import { InfoIcon } from "lucide-react";
+import { Info } from "lucide-react";
 
 import { Button } from "@/ui/button";
 import * as Dialog from "@/ui/dialog";
@@ -30,7 +30,7 @@ const Information = ({
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <Button variant="ghost" size="icon">
-          <InfoIcon />
+          <Info />
           <span className="sr-only">Information</span>
         </Button>
       </Dialog.Trigger>

@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Balancer from "react-wrap-balancer";
 
+import { getSession } from "@/lib/session";
 import { Button } from "@/ui/button";
 import { Heading } from "@/ui/typography";
 import { ThemeToggle } from "@/components/theme";
 
-import { getCurrentUser } from "./_util/session";
-
 const Index = async () => {
-  const user = await getCurrentUser();
+  const { user } = await getSession();
 
   return (
     <main className="min-h-screen w-screen">
@@ -63,7 +62,7 @@ const Index = async () => {
         >
           <Link href={user ? "/dashboard" : "/signup"}>
             {user ? "Your dashboard" : "Get started"}
-            <ArrowRightIcon className="!mr-0 !h-5 !w-5 ml-2 group-hover:translate-x-1 transition duration-100" />
+            <ArrowRight className="!mr-0 !h-5 !w-5 ml-2 group-hover:translate-x-1 transition duration-100" />
           </Link>
         </Button>
       </div>

@@ -11,10 +11,9 @@ import isPast from "date-fns/isPast";
 import isToday from "date-fns/isToday";
 import { AnimatePresence, m } from "framer-motion";
 import {
-  CalendarIcon,
-  CheckIcon,
-  CircleEllipsisIcon,
-  MessageCircleIcon,
+  Calendar,
+  Check,
+  MessageCircle,
 } from "lucide-react";
 
 import { cn } from "@/util/cn";
@@ -79,7 +78,7 @@ const Task = ({
           )}
         </div>
         <div className="border-t flex items-center py-2 px-4">
-          <MessageCircleIcon className="h-4 w-4 text-muted-foreground mr-1" />
+          <MessageCircle className="h-4 w-4 text-muted-foreground mr-1" />
           <span className="text-sm flex-1 text-left">1</span>
 
           <span className="text-xs">
@@ -128,7 +127,7 @@ const Task = ({
             )}
           </div>
           <div className="border-t flex items-center py-2 px-4">
-            <MessageCircleIcon className="h-4 w-4 text-muted-foreground mr-1" />
+            <MessageCircle className="h-4 w-4 text-muted-foreground mr-1" />
             <span className="text-sm flex-1 text-left">1</span>
 
             <span className="text-xs">
@@ -174,7 +173,7 @@ const Task = ({
         <div className="flex-1">
           {task.dueDate ? (
             <p className="text-sm flex items-center space-x-2">
-              <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+              <Calendar className="h-4 w-4 text-muted-foreground" />
               <span>Due</span>
               <>
                 {isToday(task.dueDate) ? (
@@ -200,7 +199,7 @@ const Task = ({
 
           {task.doDate ? (
             <p className="text-sm flex items-center space-x-2 mt-3">
-              <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+              <Calendar className="h-4 w-4 text-muted-foreground" />
               <span>Do</span>
               <>
                 {isToday(task.doDate) ? (
@@ -231,7 +230,7 @@ const Task = ({
 
         <Sheet.Footer>
           <Button variant="outline" className="w-full" onClick={toggle}>
-            <CheckIcon />
+            <Check />
             Mark as completed
           </Button>
         </Sheet.Footer>

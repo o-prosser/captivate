@@ -1,45 +1,41 @@
-import { Subject } from "@prisma/client";
-import isToday from "date-fns/isToday";
+import { tasksTable } from "@/drizzle/schema/tasks";
+import { isToday, startOfDay } from "date-fns";
 
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/util/session";
+import { and, db, eq, lte, or } from "@/lib/db";
+import { getSession } from "@/lib/session";
 import { parseSubjectName } from "@/util/subjects";
 import { Callout } from "@/ui/callout";
-import { Checkbox } from "@/ui/checkbox";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
 import { TaskCheck } from "./task-check";
 
-const TasksToday = async ({ subject }: { subject?: Subject }) => {
-  const user = await getCurrentUser();
-  if (!user?.id) throw new Error();
+const TasksToday = async ({ subject }: { subject?: string }) => {
+  const { user } = await getSession();
 
-  const tasks = await prisma.task.findMany({
-    where: {
-      subject: subject,
-      completed: false,
-      OR: [
-        {
-          dueDate: { lte: new Date(new Date().setHours(0, 0, 0, 0)) },
-        },
-        {
-          doDate: { lte: new Date(new Date().setHours(0, 0, 0, 0)) },
-        },
-      ],
-      userId: user.id,
-    },
-    select: {
-      id: true,
-      completed: true,
-      doDate: true,
-      dueDate: true,
-      title: true,
-      description: true,
-      subject: true,
-    },
-    take: 4,
-  });
+  const tasks = await db
+    .select({
+      id: tasksTable.id,
+      completed: tasksTable.completed,
+      doDate: tasksTable.doDate,
+      dueDate: tasksTable.dueDate,
+      title: tasksTable.title,
+      description: tasksTable.description,
+      subject: tasksTable.subjectId,
+    })
+    .from(tasksTable)
+    .where(
+      and(
+        subject ? eq(tasksTable.subjectId, subject) : undefined,
+        eq(tasksTable.completed, false),
+        eq(tasksTable.userId, user.id),
+        or(
+          lte(tasksTable.dueDate, startOfDay(new Date())),
+          lte(tasksTable.doDate, startOfDay(new Date())),
+        ),
+      ),
+    )
+    .limit(4);
 
   return tasks.length > 0 ? (
     tasks.map((task, key) => (

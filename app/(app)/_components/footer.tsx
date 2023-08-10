@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AtomIcon, FlaskRoundIcon, HomeIcon, PiIcon } from "lucide-react";
+import { Atom, FlaskRound, Home, Pi } from "lucide-react";
 
 import { Button } from "@/ui/button";
 
@@ -8,25 +8,25 @@ const Footer = () => {
     <footer className="flex items-center justify-around pb-4 border-t md:hidden [&>a]:rounded-full [&>a>svg]:!w-6 [&>a>svg]:!h-6 [&>a]:flex-col [&>a>svg]:!mr-0 [&>a>svg]:!mb-1 [&>a]:!h-auto h-24 w-screen fixed bottom-0 inset-x-0 bg-background print:hidden">
       <Button variant="ghost" asChild>
         <Link href="/dashboard">
-          <HomeIcon />
+          <Home />
           Dashboard
         </Link>
       </Button>
       <Button variant="ghost" asChild>
         <Link href="/subjects/maths">
-          <PiIcon />
+          <Pi />
           Maths
         </Link>
       </Button>
       <Button variant="ghost" asChild>
         <Link href="/subjects/chemistry">
-          <FlaskRoundIcon />
+          <FlaskRound />
           Chemistry
         </Link>
       </Button>
       <Button variant="ghost" asChild>
         <Link href="/subjects/physics">
-          <AtomIcon />
+          <Atom />
           Physics
         </Link>
       </Button>

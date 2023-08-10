@@ -5,7 +5,6 @@ import { PrismaClientValidationError } from "@prisma/client/runtime";
 import * as z from "zod";
 
 import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/util/session";
 
 const schema = z.object({
   userId: z.string(),

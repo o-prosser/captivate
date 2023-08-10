@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { LogInIcon } from "lucide-react";
+import { LogIn } from "lucide-react";
 import { signIn } from "next-auth/react";
 import * as z from "zod";
 
@@ -47,7 +47,7 @@ const LoginForm = () => {
       />
 
       <Button className="w-full" type="submit" pending={pending}>
-        <LogInIcon />
+        <LogIn />
         {pathname.includes("login") ? "Log in" : "Sign up"} with email
       </Button>
     </Form.Root>

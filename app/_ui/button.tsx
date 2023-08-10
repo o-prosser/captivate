@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Loader2Icon } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 import { cn } from "@/util/cn";
 
@@ -105,7 +105,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {pending ? (
           <div className="absolute rounded-xl inset-0 grid place-items-center bg-white/50">
-            <Loader2Icon className="animate-spin" />
+            <Loader2 className="animate-spin" />
           </div>
         ) : (
           ""

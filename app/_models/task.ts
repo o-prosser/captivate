@@ -1,9 +1,8 @@
+import { getSession } from "@/lib/session";
 import { prisma } from "@/app/_lib/prisma";
-import { getCurrentUser } from "@/app/_util/session";
 
 const getTasks = async () => {
-  const user = await getCurrentUser();
-  if (!user?.id) throw new Error("Unauthorised");
+  const { user } = await getSession();
 
   return await prisma.task.findMany({
     where: {

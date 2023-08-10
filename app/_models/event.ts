@@ -1,23 +1,30 @@
-import { prisma } from "@/app/_lib/prisma";
-import { getCurrentUser } from "@/app/_util/session";
+import { eventsTable } from "@/drizzle/schema";
+import { startOfDay } from "date-fns";
 
-const getEvents = async () => {
-  const user = await getCurrentUser();
-  if (!user?.id) throw new Error("Unauthorised");
+import { and, db, eq, gte } from "@/lib/db";
+import { getSession } from "@/lib/session";
 
-  return await prisma.event.findMany({
-    where: {
-      userId: user.id,
-    },
-    select: {
-      id: true,
-      date: true,
-      title: true,
-      subject: true,
-      category: true,
-      description: true,
-    },
-  });
+const selectEvents = async () => {
+  const { user } = await getSession();
+
+  console.log(user);
+
+  return await db
+    .select({
+      id: eventsTable.id,
+      date: eventsTable.date,
+      title: eventsTable.title,
+      subject: eventsTable.subjectId,
+      category: eventsTable.category,
+      description: eventsTable.description,
+    })
+    .from(eventsTable)
+    .where(
+      and(
+        eq(eventsTable.userId, user.id),
+        gte(eventsTable.date, startOfDay(new Date())),
+      ),
+    );
 };
 
-export { getEvents };
+export { selectEvents };

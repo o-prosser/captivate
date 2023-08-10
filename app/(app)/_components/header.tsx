@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  CalendarPlusIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  PinIcon,
-  PlusIcon,
-  SearchIcon,
+  CalendarPlus,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Pin,
+  Plus,
+  Search,
 } from "lucide-react";
 
 import { Button } from "@/ui/button";
@@ -51,7 +51,7 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
         </Button>
 
         <Button variant="ghost" size="icon" onClick={router.back}>
-          <ChevronLeftIcon className="h-5 w-5" />
+          <ChevronLeft className="h-5 w-5" />
         </Button>
         <Button
           variant="ghost"
@@ -59,7 +59,7 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
           onClick={router.forward}
           className="md:!ml-0"
         >
-          <ChevronRightIcon className="h-5 w-5" />
+          <ChevronRight className="h-5 w-5" />
         </Button>
 
         <Button
@@ -67,7 +67,7 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
           onClick={() => setCommandOpen(true)}
           className="text-muted-foreground hidden md:inline-flex"
         >
-          <SearchIcon />
+          <Search />
           <span className="lg:hidden">Notes, tasks, events...</span>
           <span className="hidden lg:inline">
             Notes, tasks, events and questions...
@@ -85,7 +85,7 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
           onClick={() => setCommandOpen(true)}
           className="md:hidden"
         >
-          <SearchIcon />
+          <Search />
         </Button>
 
         <CommandBar open={commandOpen} setOpen={setCommandOpen} />
@@ -94,20 +94,20 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
           <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
               <Button variant="outline" className="px-3 !mr-2.5">
-                <PlusIcon />
-                <ChevronDownIcon className="text-muted-foreground !h-3 !w-3 !mr-0" />
+                <Plus />
+                <ChevronDown className="text-muted-foreground !h-3 !w-3 !mr-0" />
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
               <DropdownMenu.Group>
                 <Dialog.Trigger asChild onClick={() => setAddType("task")}>
                   <DropdownMenu.Item>
-                    <PinIcon /> Add task
+                    <Pin /> Add task
                   </DropdownMenu.Item>
                 </Dialog.Trigger>
                 <Dialog.Trigger asChild onClick={() => setAddType("event")}>
                   <DropdownMenu.Item>
-                    <CalendarPlusIcon /> Add event
+                    <CalendarPlus /> Add event
                   </DropdownMenu.Item>
                 </Dialog.Trigger>
               </DropdownMenu.Group>

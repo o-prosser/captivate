@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Column, ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDownIcon, EyeIcon } from "lucide-react";
+import { ArrowUpDown, Eye } from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { Button } from "@/ui/button";
@@ -34,7 +34,7 @@ const SortHeader = ({
     className={cn(first ? "-ml-2 pl-2 pr-0" : "-ml-4 pr-2")}
     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
   >
-    {children} <ArrowUpDownIcon className="ml-2" />
+    {children} <ArrowUpDown className="ml-2" />
   </Button>
 );
 
@@ -93,7 +93,7 @@ export const columns: ColumnDef<Practical>[] = [
           <Link
             href={`/subjects/${practical.subject}/practicals/${practical.id}`}
           >
-            <EyeIcon />
+            <Eye />
           </Link>
         </Button>
       );

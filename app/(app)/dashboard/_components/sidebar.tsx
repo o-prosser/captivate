@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { format } from "date-fns";
 import isWeekend from "date-fns/isWeekend";
-import { Loader2Icon } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 import { getCurrentWeek } from "@/util/weeks";
 import * as Card from "@/ui/card";

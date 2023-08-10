@@ -3,14 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  KeyboardIcon,
-  LaptopIcon,
-  LifeBuoyIcon,
-  LogOutIcon,
-  MoonIcon,
-  SettingsIcon,
-  SunIcon,
-  UserIcon,
+  Keyboard,
+  Laptop,
+  LifeBuoy,
+  LogOut,
+  Moon,
+  Settings,
+  Sun,
+  User,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
@@ -47,7 +47,7 @@ const Profile = ({
               className="object-cover rounded-full"
             />
           ) : (
-            <UserIcon />
+            <User />
           )}
         </Button>
       </DropdownMenu.Trigger>
@@ -57,27 +57,27 @@ const Profile = ({
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
             <Link href="/profile">
-              <UserIcon />
+              <User />
               <span>Profile</span>
             </Link>
           </DropdownMenu.Item>
           <DropdownMenu.Sub>
             <DropdownMenu.SubTrigger>
-              <SunIcon />
+              <Sun />
               <span>Theme</span>
             </DropdownMenu.SubTrigger>
             <DropdownMenu.Portal>
               <DropdownMenu.SubContent>
                 <DropdownMenu.Item onSelect={() => setTheme("system")}>
-                  <LaptopIcon />
+                  <Laptop />
                   <span>System</span>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item onSelect={() => setTheme("light")}>
-                  <SunIcon />
+                  <Sun />
                   <span>Light</span>
                 </DropdownMenu.Item>
                 <DropdownMenu.Item onSelect={() => setTheme("dark")}>
-                  <MoonIcon />
+                  <Moon />
                   <span>Dark</span>
                 </DropdownMenu.Item>
               </DropdownMenu.SubContent>
@@ -85,7 +85,7 @@ const Profile = ({
           </DropdownMenu.Sub>
           <DropdownMenu.Item asChild>
             <Link href="/profile">
-              <SettingsIcon />
+              <Settings />
               <span>Settings</span>
             </Link>
           </DropdownMenu.Item>
@@ -95,13 +95,13 @@ const Profile = ({
 
         <DropdownMenu.Group>
           <DropdownMenu.Item onSelect={() => setCommandOpen(true)}>
-            <KeyboardIcon />
+            <Keyboard />
             <span>Keyboard shortcuts</span>
             <DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
             <Link href="/profile">
-              <LifeBuoyIcon />
+              <LifeBuoy />
               <span>Support</span>
             </Link>
           </DropdownMenu.Item>
@@ -111,7 +111,7 @@ const Profile = ({
 
         <DropdownMenu.Group>
           <DropdownMenu.Item onSelect={() => signOut()}>
-            <LogOutIcon />
+            <LogOut />
             <span>Logout</span>
           </DropdownMenu.Item>
         </DropdownMenu.Group>

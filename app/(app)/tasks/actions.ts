@@ -3,11 +3,10 @@
 import { revalidatePath } from "next/cache";
 
 import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/util/session";
+import { getSession } from "@/lib/session";
 
 export const quickCreate = async (title: string) => {
-  const user = await getCurrentUser();
-  if (!user?.id) throw new Error();
+  const { user } = await getSession();
 
   const task = await prisma.task.create({
     data: {

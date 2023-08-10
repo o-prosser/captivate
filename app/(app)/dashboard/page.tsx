@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import WrapBalancer from "react-wrap-balancer";
 
 import quickLinks from "@/data/quick-links.json";
 import quotes from "@/data/quotes.json";
-import { getCurrentUser } from "@/util/session";
+import { getSession } from "@/lib/session";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";
@@ -30,7 +30,7 @@ export const metadata = {
 };
 
 const Dashboard = async () => {
-  const user = await getCurrentUser();
+  const { user } = await getSession();
 
   const quote = quotes[getRandom(0, 1643)];
 
@@ -76,7 +76,7 @@ const Dashboard = async () => {
                   {category.links.map((link, key) => (
                     <Button variant="arrow" asChild key={key} className="!mb-1">
                       <Link href={link.href} target="_blank">
-                        {link.title} <ArrowRightIcon />
+                        {link.title} <ArrowRight />
                       </Link>
                     </Button>
                   ))}

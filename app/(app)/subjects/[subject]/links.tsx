@@ -1,15 +1,15 @@
 "use client";
 
 import {
-  CalculatorIcon,
-  ClipboardIcon,
-  FileTextIcon,
-  FlaskConicalIcon,
-  FolderDownIcon,
-  LayoutDashboardIcon,
-  PaperclipIcon,
-  PresentationIcon,
-  StickyNoteIcon,
+  Calculator,
+  Clipboard,
+  FileText,
+  FlaskConical,
+  FolderDown,
+  LayoutDashboard,
+  Paperclip,
+  Presentation,
+  StickyNote,
 } from "lucide-react";
 
 // Links auto-prefix with subject name
@@ -18,18 +18,18 @@ const links = [
     label: "Information",
     links: [
       {
-        Icon: LayoutDashboardIcon,
+        Icon: LayoutDashboard,
         href: "/",
         label: "Dashboard",
         active: "/subjects/{subject}",
       },
       {
-        Icon: ClipboardIcon,
+        Icon: Clipboard,
         href: "/specification",
         label: "Specification",
       },
       {
-        Icon: CalculatorIcon,
+        Icon: Calculator,
         href: "/grades",
         label: "Grade boundaries",
       },
@@ -39,22 +39,22 @@ const links = [
     label: "Learning",
     links: [
       {
-        Icon: PresentationIcon,
+        Icon: Presentation,
         href: "/lessons",
         label: "Lessons",
       },
       {
-        Icon: FileTextIcon,
+        Icon: FileText,
         href: "/notes/1",
         label: "Unit 1",
       },
       {
-        Icon: FileTextIcon,
+        Icon: FileText,
         href: "/notes/2",
         label: "Unit 2",
       },
       {
-        Icon: FlaskConicalIcon,
+        Icon: FlaskConical,
         href: "/practicals",
         label: "Practicals",
         subjects: ["Physics", "Chemistry"],
@@ -65,17 +65,17 @@ const links = [
     label: "Revision",
     links: [
       {
-        Icon: PaperclipIcon,
+        Icon: Paperclip,
         href: "/questions/past-papers",
         label: "Past papers",
       },
       {
-        Icon: PaperclipIcon,
+        Icon: Paperclip,
         href: "/questions/topic-papers",
         label: "Topic papers",
       },
       {
-        Icon: StickyNoteIcon,
+        Icon: StickyNote,
         href: "/flashcards",
         label: "Flashcards",
         subjects: ["Chemistry, Physics"],
@@ -86,7 +86,7 @@ const links = [
     label: "Misc",
     links: [
       {
-        Icon: FolderDownIcon,
+        Icon: FolderDown,
         href: "/resources",
         label: "Resources",
       },

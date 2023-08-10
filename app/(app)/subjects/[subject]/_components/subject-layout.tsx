@@ -3,7 +3,7 @@
 import { ReactNode, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LucideIcon, MenuIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/util/cn";
 import { Button } from "@/ui/button";
@@ -22,7 +22,7 @@ export const SubjectLayout = ({
   links: {
     label: string;
     links: {
-      Icon: LucideIcon;
+      Icon: typeof Menu;
       href: string;
       label: string;
       active?: string;
@@ -43,7 +43,7 @@ export const SubjectLayout = ({
               variant="ghost"
               className="[&>svg]:h-5 [&>svg]:w-5"
             >
-              <MenuIcon />
+              <Menu />
             </Button>
           </Sheet.Trigger>
           <Sheet.Content side="left">
@@ -69,7 +69,7 @@ export const SubjectLayout = ({
                           ? pathname === link.active
                           : pathname.includes(link.href)) &&
                           "bg-muted [&>svg]:!text-foreground",
-                        "justify-start px-3 mb-0.5"
+                        "justify-start px-3 mb-0.5",
                       )}
                       onClick={() => setOpen(false)}
                     >
@@ -117,7 +117,7 @@ export const SubjectLayout = ({
                         link.active.replace("{subject}", title.toLowerCase())
                       : pathname.includes(link.href)) &&
                       "bg-muted [&>svg]:!text-foreground",
-                    "justify-start px-3 mb-0.5"
+                    "justify-start px-3 mb-0.5",
                   )}
                 >
                   <Link href={`/subjects/${title.toLowerCase()}${link.href}`}>

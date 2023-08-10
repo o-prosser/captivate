@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { EventCategory, Subject } from "@prisma/client";
 import format from "date-fns/format";
-import { CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon } from "lucide-react";
 import * as z from "zod";
 
 import { cn } from "@/util/cn";

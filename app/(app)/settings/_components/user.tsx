@@ -1,30 +1,10 @@
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/util/session";
+import { getSession } from "@/lib/session";
 import * as Card from "@/ui/card";
 
 import UserForm from "./user-form";
 
-const getUser = async () => {
-  const sessionUser = await getCurrentUser();
-  if (!sessionUser || !sessionUser.email) return null;
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email: sessionUser?.email,
-    },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-    },
-  });
-
-  return user;
-};
-
 const User = async () => {
-  const user = await getUser();
-  if (!user) return null;
+  const { user } = await getSession();
 
   return (
     <Card.Root>

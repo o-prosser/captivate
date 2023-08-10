@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DownloadIcon } from "lucide-react";
+import { Download } from "lucide-react";
 
 import { getPractical } from "@/util/pracitcals";
 import { Button } from "@/ui/button";
@@ -64,13 +64,13 @@ const Practical = async ({
 
           <Button asChild>
             <Link href={practical.download} target="_blank">
-              <DownloadIcon />
+              <Download />
               Download pages
             </Link>
           </Button>
           <Button asChild variant="outline">
             <Link download href={subject.labBook} className="ml-2">
-              <DownloadIcon />
+              <Download />
               Download booklet
             </Link>
           </Button>

@@ -4,7 +4,7 @@ import { experimental_useOptimistic, useRef } from "react";
 import { Subject } from "@prisma/client";
 import clsx from "clsx";
 import { isToday } from "date-fns";
-import { PlusIcon } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import { useSubjectStyles } from "@/util/subjects";
 import { Button } from "@/ui/button";
@@ -101,7 +101,7 @@ const Tasks = ({
               Todo
             </Card.Title>
             <Button variant="ghost" size="icon">
-              <PlusIcon />
+              <Plus />
             </Button>
           </Card.Header>
 
@@ -124,7 +124,7 @@ const Tasks = ({
                 <AddTask
                   trigger={
                     <Button variant="ghost" size="icon">
-                      <PlusIcon />
+                      <Plus />
                     </Button>
                   }
                   userId={userId}
