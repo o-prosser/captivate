@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
+import { usersTable } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
-import { prisma } from "@/lib/prisma";
+import { db, eq } from "@/lib/db";
 import { getSession } from "@/lib/session";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
@@ -9,29 +10,36 @@ import { Label } from "@/ui/label";
 import { Heading, Text } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
 
+import Progress from "./_components/progress";
+
 export const metadata = {
   title: "Getting started",
 };
 
-const action = async (formData: FormData) => {
-  "use server";
+const GettingStarted = async () => {
+  const { user } = await getSession();
 
-  const user = await getSession();
-  if (!user?.id) throw new Error("No user id found");
-  await prisma.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      username: formData.get("username") as string,
-      name: formData.get("name") as string,
-    },
-  });
+  const action = async (formData: FormData) => {
+    "use server";
 
-  redirect("/getting-started/subjects");
-};
+    const username = formData.get("username");
+    const name = formData.get("name");
+    if (typeof username !== "string" || typeof name !== "string")
+      throw new Error("Invalid form data");
 
-const GettingStarted = () => {
+    console.log(user, username, name);
+
+    await db
+      .update(usersTable)
+      .set({
+        username,
+        name,
+      })
+      .where(eq(usersTable.id, user.id));
+
+    redirect("/getting-started/subjects");
+  };
+
   return (
     <>
       <Heading level={2}>Welcome to Captivate</Heading>
@@ -39,6 +47,8 @@ const GettingStarted = () => {
         We need some basic info to setup your profile. <br /> This can be edited
         later.
       </Text>
+
+      <Progress step={1} />
 
       <Card.Root className="mt-6">
         <form action={action}>
@@ -53,6 +63,7 @@ const GettingStarted = () => {
                 autoComplete="none"
                 autoCapitalize="none"
                 autoCorrect="none"
+                defaultValue={user.username}
               />
             </div>
 
@@ -64,6 +75,7 @@ const GettingStarted = () => {
                 id="name"
                 required
                 autoComplete="fullname"
+                defaultValue={user.name}
               />
             </div>
           </Card.Content>

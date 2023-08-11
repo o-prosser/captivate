@@ -1,29 +1,6 @@
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
-import { auth } from "@/lib/lucia";
-
-export const login = async ({
-  userId,
-  redirectUser = true,
-}: {
-  userId: string;
-  redirectUser?: boolean;
-}) => {
-  const session = await auth.createSession({
-    userId,
-    attributes: {},
-  });
-
-  const sessionCookie = auth.createSessionCookie(session);
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes,
-  );
-
-  if (redirectUser) redirect("/dashboard");
-};
+import { auth } from "@/lib/auth";
 
 export const getSession = async () => {
   const authRequest = auth.handleRequest({

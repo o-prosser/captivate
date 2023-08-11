@@ -5,7 +5,7 @@ import { LuciaError } from "lucia";
 
 import { env } from "@/env.mjs";
 import LoginEmail from "@/emails/login";
-import { auth } from "@/lib/lucia";
+import { auth } from "@/lib/auth";
 import { resend } from "@/lib/resend";
 import { selectUser } from "@/models/user";
 

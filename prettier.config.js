@@ -7,6 +7,7 @@ module.exports = {
     "",
     "^types$",
     "^@/env(.*)$",
+    "^@/actions/(.*)$",
     "^@/data/(.*)$",
     "^@/emails/(.*)$",
     "^@/types/(.*)$",

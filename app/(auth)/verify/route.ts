@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
+import { login } from "@/actions/session";
 
-import { login } from "@/lib/session";
 import { selectUser, updateUser } from "@/models/user";
 
 export const GET = async (request: Request) => {

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { logout } from "@/actions/session";
 import {
   Keyboard,
   Laptop,
@@ -12,7 +13,6 @@ import {
   Sun,
   User,
 } from "lucide-react";
-import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 
 import { cn } from "@/util/cn";
@@ -35,7 +35,7 @@ const Profile = ({
           variant="outline"
           className={cn(
             "[&>svg]:mr-0 mr-6 md:mr-8 rounded-full",
-            image ? "p-0 relative w-10 h-10" : "px-3"
+            image ? "p-0 relative w-10 h-10" : "px-3",
           )}
         >
           {image ? (
@@ -110,7 +110,7 @@ const Profile = ({
         <DropdownMenu.Separator />
 
         <DropdownMenu.Group>
-          <DropdownMenu.Item onSelect={() => signOut()}>
+          <DropdownMenu.Item onSelect={logout}>
             <LogOut />
             <span>Logout</span>
           </DropdownMenu.Item>

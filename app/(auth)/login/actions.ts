@@ -1,10 +1,10 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { login } from "@/actions/session";
 import { LuciaError } from "lucia";
 
-import { auth } from "@/lib/lucia";
-import { login } from "@/lib/session";
+import { auth } from "@/lib/auth";
 
 export const action = async (formData: FormData) => {
   const email = formData.get("email");

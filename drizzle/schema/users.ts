@@ -1,6 +1,8 @@
-import { InferModel, sql } from "drizzle-orm";
+import { InferModel, relations, sql } from "drizzle-orm";
 import { bigint, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+
+import { subjectsTable, usersToSubjects } from "./subjects";
 
 export const usersTable = pgTable("User", {
   id: text("id")
@@ -14,6 +16,10 @@ export const usersTable = pgTable("User", {
   token: text("token").default(sql`gen_random_uuid()`),
   emailVerifiedAt: timestamp("emailVerifiedAt"),
 });
+
+export const usersRelations = relations(usersTable, ({ many }) => ({
+  usersToSubjects: many(usersToSubjects),
+}));
 
 export type User = InferModel<typeof usersTable>;
 export const insertUserSchema = createInsertSchema(usersTable);
