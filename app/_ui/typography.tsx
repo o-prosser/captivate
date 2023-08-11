@@ -81,7 +81,7 @@ export const BasicTable = ({
   <div
     className={cn(
       "my-6 w-full overflow-y-auto",
-      center ? "!text-center" : "text-left"
+      center ? "!text-center" : "text-left",
     )}
   >
     <table className={twMerge("w-full", className)} {...props} />

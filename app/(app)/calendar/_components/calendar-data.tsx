@@ -1,10 +1,10 @@
 import { Markdown } from "@/components/markdown";
-import { getEvents } from "@/models/event";
+import { selectEvents } from "@/models/event";
 
 import Calendar from "./calendar";
 
 const CalendarData = async () => {
-  const events = await getEvents();
+  const events = await selectEvents();
 
   return (
     <Calendar

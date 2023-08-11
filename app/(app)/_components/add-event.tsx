@@ -22,7 +22,7 @@ const schema = z.object({
   date: z.date(),
   title: z.string().min(3),
   description: z.string().optional(),
-  subject: z.nativeEnum(Subject).optional(),
+  subject: z.string().optional(),
   category: z.nativeEnum(EventCategory),
 });
 
@@ -59,10 +59,10 @@ const AddEvent = ({
         },
         body: JSON.stringify({
           userId,
-          date: values.date.toDateString(),
+          date: values.date,
           title: values.title,
           description: values.description,
-          subject: values.subject,
+          subjectId: values.subject,
           category: values.category,
         }),
       });
@@ -80,6 +80,8 @@ const AddEvent = ({
         type: "custom",
         message: "Unable to submit form",
       });
+
+      throw error;
     } finally {
       setPending(false);
     }
@@ -113,7 +115,7 @@ const AddEvent = ({
                       variant={"outline"}
                       className={cn(
                         "w-full pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
+                        !field.value && "text-muted-foreground",
                       )}
                     >
                       {field.value ? (
@@ -169,9 +171,9 @@ const AddEvent = ({
                   </Select.Trigger>
                 </Form.Control>
                 <Select.Content>
-                  <Select.Item value="Maths">Maths</Select.Item>
-                  <Select.Item value="Chemistry">Chemistry</Select.Item>
-                  <Select.Item value="Physics">Physics</Select.Item>
+                  <Select.Item value="maths">Maths</Select.Item>
+                  <Select.Item value="chemistry">Chemistry</Select.Item>
+                  <Select.Item value="physics">Physics</Select.Item>
                   <Select.Item value="">No subject</Select.Item>
                 </Select.Content>
               </Select.Root>

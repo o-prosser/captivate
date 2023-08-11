@@ -1,5 +1,7 @@
-import { relations, sql } from "drizzle-orm";
+import { InferModel, relations, sql } from "drizzle-orm";
 import { date, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 
 import { subjectsTable } from "./subjects";
 import { usersTable } from "./users";
@@ -11,6 +13,13 @@ export const eventCategory = pgEnum("category", [
   "Other",
 ]);
 
+export enum EventCategory {
+  "Test",
+  "Meeting",
+  "School",
+  "Other",
+}
+
 export const eventsTable = pgTable("Event", {
   id: text("id")
     .primaryKey()
@@ -18,7 +27,9 @@ export const eventsTable = pgTable("Event", {
     .default(sql`gen_random_uuid()`),
   date: date("date", { mode: "date" }).notNull(),
   title: text("title").notNull(),
-  subjectId: text("subjectId").references(() => subjectsTable.id),
+  subjectId: text("subjectId")
+    .references(() => subjectsTable.id)
+    .default(sql`NULL`),
   category: eventCategory("category").notNull().default("Other"),
   description: text("description"),
   userId: text("userId")
@@ -26,6 +37,9 @@ export const eventsTable = pgTable("Event", {
     .references(() => usersTable.id),
   createdAt: timestamp("createdAt", { precision: 3 }).defaultNow().notNull(),
 });
+
+export type Event = InferModel<typeof eventsTable>;
+export const insertEventSchema = createInsertSchema(eventsTable);
 
 export const eventsRelations = relations(eventsTable, ({ one }) => ({
   subject: one(subjectsTable, {

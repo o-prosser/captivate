@@ -5,6 +5,6 @@ export default {
   driver: "pg",
   out: "./drizzle/migrations",
   dbCredentials: {
-    connectionString: `${process.env.DATABASE_URL}?sslmode=require`,
+    connectionString: `postgres://o-prosser:rYnM27vXQEfi@ep-polished-violet-43602101-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require`,
   },
 } satisfies Config;

@@ -1,10 +1,16 @@
+import Link from "next/link";
 import format from "date-fns/format";
+import { Download, Printer } from "lucide-react";
 
 import examsTimetable from "@/data/exam-timetable.json";
 import { cn } from "@/util/cn";
 import { minutesToHoursAndMinutes } from "@/util/time";
+import { displayCurrentWeek } from "@/util/weeks";
+import { Button } from "@/ui/button";
 import * as Table from "@/ui/table";
-import { Heading } from "@/ui/typography";
+import { Heading, Text } from "@/ui/typography";
+
+import Tabs from "../_components/tabs";
 
 export const metadata = {
   title: "Exam timetable",
@@ -13,14 +19,46 @@ export const metadata = {
 const ExamsTimetable = () => {
   return (
     <>
-      <Heading>Exam Timetable</Heading>
+      <Heading>Timetable</Heading>
+      <Text className="text-muted-foreground">
+        It's {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
+        {displayCurrentWeek()}
+      </Text>
+
+      <div className="flex gap-2 my-6">
+        <Button variant="outline" asChild>
+          <Link href={examsTimetable.link} download>
+            Complete timetable
+          </Link>
+        </Button>
+        <Button variant="outline">
+          <Download />
+          Download
+        </Button>
+        <Button variant="outline">
+          <Printer />
+          Print
+        </Button>
+      </div>
+
+      <Tabs active="exams" />
 
       <div className="max-w-[44.375rem] mt-6">
         <Table.Root>
           <Table.Header>
             <Table.Row>
-              <Table.Head colSpan={2}>Date</Table.Head>
-              <Table.Head colSpan={3}>Exam details</Table.Head>
+              <Table.Head
+                colSpan={2}
+                className="uppercase text-xs font-semibold"
+              >
+                Date
+              </Table.Head>
+              <Table.Head
+                colSpan={3}
+                className="uppercase text-xs font-semibold"
+              >
+                Exam details
+              </Table.Head>
             </Table.Row>
           </Table.Header>
           <Table.Body>

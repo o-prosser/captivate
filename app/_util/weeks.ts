@@ -1,5 +1,7 @@
-import weeks from "@/data/weeks.json";
 import addWeeks from "date-fns/addWeeks";
+import isWeekend from "date-fns/isWeekend";
+
+import weeks from "@/data/weeks.json";
 
 const getStartOfWeek = () => {
   const currentDate = new Date();
@@ -20,6 +22,15 @@ const getCurrentWeek = () => {
   return currentWeek?.week;
 };
 
+const displayCurrentWeek = () => {
+  const currentWeek = getCurrentWeek();
+
+  if (isWeekend(new Date())) return "the weekend";
+  if (!currentWeek || currentWeek === 0) return "half term";
+  if (currentWeek === 1) return "week 1";
+  if (currentWeek === 2) return "week 2";
+};
+
 const getNextWeek = () => {
   const startOfWeek = getStartOfWeek();
   if (!startOfWeek) throw new Error("Start of week not found");
@@ -35,4 +46,4 @@ const getNextWeek = () => {
   return nextWeek?.week;
 };
 
-export { getStartOfWeek, getCurrentWeek, getNextWeek };
+export { getStartOfWeek, getCurrentWeek, displayCurrentWeek, getNextWeek };

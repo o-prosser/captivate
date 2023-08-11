@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { EventCategory, Subject } from "@prisma/client";
+import { EventCategory } from "@/drizzle/schema";
 import format from "date-fns/format";
 import { Calendar as CalendarIcon } from "lucide-react";
 import * as z from "zod";
@@ -21,7 +21,7 @@ const schema = z.object({
   date: z.date(),
   title: z.string().min(3),
   description: z.string().optional(),
-  subject: z.nativeEnum(Subject).nullable(),
+  subject: z.string().nullable(),
   category: z.nativeEnum(EventCategory),
 });
 
@@ -33,8 +33,8 @@ const EditEvent = ({
     date: Date;
     title: string;
     description: string | null;
-    subject: Subject | null;
-    category: EventCategory;
+    subject: string | null;
+    category: "Test" | "Meeting" | "School" | "Other";
   };
 }) => {
   const [open, setOpen] = useState(false);
@@ -122,7 +122,7 @@ const EditEvent = ({
                         variant={"outline"}
                         className={cn(
                           "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
+                          !field.value && "text-muted-foreground",
                         )}
                       >
                         {field.value ? (

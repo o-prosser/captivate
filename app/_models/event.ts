@@ -1,13 +1,12 @@
+import { cache } from "react";
 import { eventsTable } from "@/drizzle/schema";
 import { startOfDay } from "date-fns";
 
 import { and, db, eq, gte } from "@/lib/db";
 import { getSession } from "@/lib/session";
 
-const selectEvents = async () => {
+const selectEvents = cache(async () => {
   const { user } = await getSession();
-
-  console.log(user);
 
   return await db
     .select({
@@ -25,6 +24,6 @@ const selectEvents = async () => {
         gte(eventsTable.date, startOfDay(new Date())),
       ),
     );
-};
+});
 
 export { selectEvents };

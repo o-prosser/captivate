@@ -60,11 +60,7 @@ const useSubjectStyles = (subject: string) => {
       ? "bg-chemistry/10 hover:bg-chemistry/10"
       : "bg-physics/10 hover:bg-physics/10";
   const SubjectIcon =
-    subject === "maths"
-      ? Pi
-      : subject === "chemistry"
-      ? FlaskRound
-      : Atom;
+    subject === "maths" ? Pi : subject === "chemistry" ? FlaskRound : Atom;
   const gridArea =
     subject === "maths"
       ? "area-[maths]"
