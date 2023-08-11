@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import { Subject } from "@prisma/client";
-import { getServerSession } from "next-auth/next";
 import { z } from "zod";
 
-import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getSession } from "@/lib/session";
 
 const createFlashcardSchema = z.object({
   unit: z.string(),
@@ -26,7 +25,7 @@ const getSubject = (value: string) => {
 
 export const POST = async (req: Request) => {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getSession();
 
     if (!session) return new Response("Unauthorised", { status: 403 });
 
@@ -65,7 +64,7 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json(
       { lol: "There was an error", error },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
