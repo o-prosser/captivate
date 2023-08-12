@@ -62,5 +62,4 @@ export const action = async (formData: FormData) => {
 
   redirect(`/verify-request`);
 };
-
-export const runtime = "edge";
+a;
