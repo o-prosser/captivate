@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { usersTable } from "@/drizzle/schema";
-import { renderAsync } from "@react-email/render";
+import { render } from "@/patches/@react-email/render";
 
 import { env } from "@/env.mjs";
 import LoginEmail from "@/emails/login";
@@ -69,7 +69,7 @@ export const action = async (formData: FormData) => {
         from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
         to: [email],
         subject: "Verify your email",
-        html: await renderAsync(
+        html: await render(
           <LoginEmail
             url={`${
               process.env.NODE_ENV === "production"
