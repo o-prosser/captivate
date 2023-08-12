@@ -63,13 +63,19 @@ const Subjects = async () => {
                 <Label
                   htmlFor={subject}
                   key={key}
-                  className={cn(
-                    "flex cursor-pointer items-center py-4 space-x-2 rounded-2xl px-3 border bg-opacity-20 opacity-50 transition hover:opacity-100 [&:has(input:checked)]:opacity-100",
-                    styles[key].subjectBackground,
-                    styles[key].subjectBorder,
-                  )}
+                  style={
+                      {
+                        "--fill": `var(--${subject})`,
+                      } as React.CSSProperties
+                    }
+                  className="flex cursor-pointer items-center bg-[hsl(var(--fill)_/_0.2)] border-[hsl(var(--fill))] py-4 space-x-2 rounded-2xl px-3 border opacity-50 transition hover:opacity-100 [&:has(input:checked)]:opacity-100"
+
                 >
-                  <Icon className={cn("h-5 w-5", styles[key].subjectColor)} />
+                  <Icon style={
+                      {
+                        "--fill": `var(--${subject})`,
+                      } as React.CSSProperties
+                    } className="h-5 w-5 border-[hsl(var(--fill))]" />
                   <span className="flex-1 capitalize">{subject}</span>
                   <Checkbox
                     name={subject}
@@ -80,8 +86,8 @@ const Subjects = async () => {
                       } as React.CSSProperties
                     }
                     className={cn(
-                      styles[key].subjectBorder,
-                      "data-[state=checked]:!bg-[hsl(var(--fill))] h-4 w-4",
+                      
+                      "data-[state=checked]:!bg-[hsl(var(--fill))] border-[hsl(var(--fill))] h-4 w-4",
                     )}
                   />
                 </Label>
