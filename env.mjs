@@ -5,11 +5,11 @@ export const env = createEnv({
   server: {
     DATABASE_URL: z.string(),
     DRIZZLE_DATABASE_URL: z.string(),
-    NEXTAUTH_URL: z.string().url().optional(),
-    NEXTAUTH_SECRET: z.string().min(1),
     WEATHER_API_KEY: z.string().min(1),
+    UPLOADTHING_SECRET: z.string().min(1),
+    UPLOADTHING_APP_ID: z.string().min(1),
     EMAIL_KEY: z.string().min(1),
-    EMAIL_FROM: z.string().min(1),
     EMAIL_FROM_NAME: z.string().min(1),
+    EMAIL_FROM: z.string().min(1),
   },
 });
