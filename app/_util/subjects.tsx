@@ -31,6 +31,15 @@ const parseSubjectName = (name: string) => {
   return null;
 };
 
+const SubjectIcon = ({
+  subject,
+  ...props
+}: { subject: string } & React.ComponentPropsWithoutRef<"svg">) => {
+  if (subject === "maths") return <Pi {...props} />;
+  if (subject === "chemistry") return <FlaskRound {...props} />;
+  if (subject === "physics") return <Atom {...props} />;
+};
+
 const useSubjectStyles = (subject: string) => {
   if (subject !== "maths" && subject !== "chemistry" && subject !== "physics")
     throw new Error("Incorrect subject provided:" + subject);
@@ -89,4 +98,10 @@ const getSubjectEnum = (value: string) => {
   return null;
 };
 
-export { getSubject, parseSubjectName, useSubjectStyles, getSubjectEnum };
+export {
+  getSubject,
+  parseSubjectName,
+  useSubjectStyles,
+  getSubjectEnum,
+  SubjectIcon,
+};
