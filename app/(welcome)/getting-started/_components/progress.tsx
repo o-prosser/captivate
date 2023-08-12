@@ -9,6 +9,7 @@ const Progress = ({ step }: { step: number }) => {
       <div className="grid grid-cols-5 mt-2 gap-2">
         {Array.from({ length: 5 }).map((_, key) => (
           <div
+            key={key}
             className={clsx(
               "h-1.5 rounded-full",
               key + 1 <= 3 ? "bg-muted-foreground" : "bg-muted",
