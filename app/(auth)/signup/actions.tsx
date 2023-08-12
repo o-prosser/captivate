@@ -46,20 +46,45 @@ export const action = async (formData: FormData) => {
       from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
       to: [email],
       subject: "Verify your email",
-      react: LoginEmail({
-        url: `${
-          process.env.NODE_ENV === "production"
-            ? process.env.VERCEL_URL
-            : "http://localhost:3000"
-        }/verify?email=${encodeURIComponent(
-          user.email,
-        )}&token=${encodeURIComponent(user.token || "")}`,
-      }),
+      react: (
+        <LoginEmail
+          url={`${
+            process.env.NODE_ENV === "production"
+              ? process.env.VERCEL_URL
+              : "http://localhost:3000"
+          }/verify?email=${encodeURIComponent(
+            user.email,
+          )}&token=${encodeURIComponent(user.token || "")}`}
+        />
+      ),
     });
+
+    //  const res = await fetch("https://api.resend.com/emails", {
+    //    method: "POST",
+    //    headers: {
+    //      "Content-Type": "application/json",
+    //      Authorization: `Bearer ${env.EMAIL_KEY}`,
+    //    },
+    //    body: JSON.stringify({
+    //      from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
+    //      to: [email],
+    //      subject: "Verify your email",
+    //      html: render(
+    //        LoginEmail({
+    //          url: `${
+    //            process.env.NODE_ENV === "production"
+    //              ? process.env.VERCEL_URL
+    //              : "http://localhost:3000"
+    //          }/verify?email=${encodeURIComponent(
+    //            user.email,
+    //          )}&token=${encodeURIComponent(user.token || "")}`,
+    //        }),
+    //      ),
+    //    }),
+    //  });
   } catch (error) {
     redirect(`/signup?error=email`);
   }
 
   redirect(`/verify-request`);
 };
-a;
