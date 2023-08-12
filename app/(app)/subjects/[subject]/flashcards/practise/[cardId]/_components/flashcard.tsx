@@ -39,7 +39,7 @@ const ScoreButton = ({
           flashcardId: id,
           score,
         }),
-      }
+      },
     );
 
     if (!response.ok) return;
@@ -49,26 +49,26 @@ const ScoreButton = ({
     if (data.summary == true) {
       router.push(
         `/subjects/${params.subject}/flashcards/summary/${searchParams.get(
-          "sessionId"
-        )}`
+          "sessionId",
+        )}`,
       );
     } else {
       router.push(
         `/subjects/${params.subject}/flashcards/practise/${
           data.next
-        }?sessionId=${searchParams.get("sessionId")}`
+        }?sessionId=${searchParams.get("sessionId")}`,
       );
     }
   };
 
   useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === score.toString()) setScore();
+    const down = async (e: KeyboardEvent) => {
+      if (e.key === score.toString()) await setScore();
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, [score]);
+  });
 
   return (
     <Button

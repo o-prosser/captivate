@@ -1,7 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { EventCategory, Subject } from "@prisma/client";
-import { PrismaClientValidationError } from "@prisma/client/runtime";
 import * as z from "zod";
 
 import { prisma } from "@/lib/prisma";
@@ -48,10 +47,6 @@ export const PATCH = async (req: Request, context: any) => {
       return NextResponse.json(error.issues, { status: 422 });
     }
 
-    if (error instanceof PrismaClientValidationError) {
-      return NextResponse.json("PrismaClientValidationError", { status: 422 });
-    }
-
     return NextResponse.json(error, { status: 500 });
   }
 };
@@ -70,10 +65,6 @@ export const DELETE = async (req: Request, context: any) => {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(error.issues, { status: 422 });
-    }
-
-    if (error instanceof PrismaClientValidationError) {
-      return NextResponse.json("PrismaClientValidationError", { status: 422 });
     }
 
     return NextResponse.json(error, { status: 500 });
