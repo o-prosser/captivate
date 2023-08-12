@@ -97,3 +97,6 @@ const Dashboard = async () => {
 };
 
 export default Dashboard;
+
+export const runtime = "edge";
+export const preferredRegion = "lhr1";

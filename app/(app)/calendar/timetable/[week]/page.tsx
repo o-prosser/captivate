@@ -160,3 +160,6 @@ const Timetable = ({ params }: { params: { week: string } }) => {
 };
 
 export default Timetable;
+
+export const runtime = "edge";
+export const preferredRegion = "lhr1";

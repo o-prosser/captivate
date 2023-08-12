@@ -95,3 +95,6 @@ const ExamsTimetable = () => {
 };
 
 export default ExamsTimetable;
+
+export const runtime = "edge";
+export const preferredRegion = "lhr1";

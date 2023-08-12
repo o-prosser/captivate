@@ -35,3 +35,6 @@ const MonthPage = async ({
 };
 
 export default MonthPage;
+
+export const runtime = "edge";
+export const preferredRegion = "lhr1";
