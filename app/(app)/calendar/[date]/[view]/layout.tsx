@@ -37,7 +37,7 @@ const CalendarLayout = async ({
     <div>
       <Heading>Calendar</Heading>
       <Text className="text-muted-foreground">
-        It's {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
+        It&apos;s {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
         {displayCurrentWeek()}
       </Text>
 
