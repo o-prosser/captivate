@@ -9,7 +9,7 @@ import { Heading } from "@/ui/typography";
 import { ThemeToggle } from "@/components/theme";
 
 const Index = async () => {
-  const { user } = await getSession();
+  const session = await getSession();
 
   return (
     <main className="min-h-screen w-screen">
@@ -26,15 +26,15 @@ const Index = async () => {
         </Button>
 
         <div className="flex items-center space-x-2">
-          {!user && (
+          {!session?.user && (
             <Button variant="ghost" asChild>
               <Link href="/login">Log in</Link>
             </Button>
           )}
           <Button variant="default" asChild>
-            <Link href={user ? "/dashboard" : "/signup"}>
+            <Link href={session?.user ? "/dashboard" : "/signup"}>
               {" "}
-              {user ? "Your dashboard" : "Sign up"}
+              {session?.user ? "Your dashboard" : "Sign up"}
             </Link>
           </Button>
         </div>
@@ -60,8 +60,8 @@ const Index = async () => {
           size="lg"
           asChild
         >
-          <Link href={user ? "/dashboard" : "/signup"}>
-            {user ? "Your dashboard" : "Get started"}
+          <Link href={session?.user ? "/dashboard" : "/signup"}>
+            {session?.user ? "Your dashboard" : "Get started"}
             <ArrowRight className="!mr-0 !h-5 !w-5 ml-2 group-hover:translate-x-1 transition duration-100" />
           </Link>
         </Button>
