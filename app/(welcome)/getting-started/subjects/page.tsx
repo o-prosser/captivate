@@ -3,7 +3,7 @@ import { usersToSubjects } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
 import { db } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { cn } from "@/util/cn";
 import { SubjectIcon } from "@/util/subjects";
 import { Button } from "@/ui/button";
@@ -19,7 +19,7 @@ export const metadata = {
 };
 
 const Subjects = async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   const action = async (formData: FormData) => {
     "use server";

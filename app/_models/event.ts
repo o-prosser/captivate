@@ -3,10 +3,10 @@ import { eventsTable } from "@/drizzle/schema";
 import { startOfDay } from "date-fns";
 
 import { and, db, eq, gte } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 
 const selectEvents = cache(async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   return await db
     .select({

@@ -1,8 +1,8 @@
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { prisma } from "@/app/_lib/prisma";
 
 const getTasks = async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   return await prisma.task.findMany({
     where: {

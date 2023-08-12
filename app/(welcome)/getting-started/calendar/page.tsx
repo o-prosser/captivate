@@ -43,3 +43,5 @@ const CalendarPage = () => {
 };
 
 export default CalendarPage;
+
+export const runtime = "edge";

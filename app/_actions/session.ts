@@ -2,9 +2,11 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { sessionsTable } from "@/drizzle/schema";
+import { addMonths } from "date-fns";
 
-import { auth } from "@/lib/auth";
-import { getSession } from "@/lib/session";
+import { db, eq } from "@/lib/db";
+import { clearSession, createSession, getSession } from "@/lib/session";
 
 export const login = async ({
   userId,
@@ -13,26 +15,33 @@ export const login = async ({
   userId: string;
   redirectUser?: boolean;
 }) => {
-  const session = await auth.createSession({
-    userId,
-    attributes: {},
-  });
+  const session = (
+    await db
+      .insert(sessionsTable)
+      .values({
+        userId,
+        expiresAt: addMonths(new Date(), 1),
+      })
+      .returning({ id: sessionsTable.id })
+  )[0];
 
-  const sessionCookie = auth.createSessionCookie(session);
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes,
-  );
+  await createSession(session.id);
 
   if (redirectUser) redirect("/dashboard");
 };
 
 export const logout = async () => {
   const session = await getSession();
-  await auth.invalidateSession(session.sessionId);
+  if (!session) redirect("/login");
 
-  cookies().delete("auth_session");
+  // Remove cookie
+  clearSession();
+
+  // Set db entry to expire now so can't be used in future
+  await db
+    .update(sessionsTable)
+    .set({ expiresAt: new Date() })
+    .where(eq(sessionsTable.id, session.id));
 
   redirect("/login");
 };

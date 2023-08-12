@@ -4,7 +4,7 @@ import WrapBalancer from "react-wrap-balancer";
 
 import quickLinks from "@/data/quick-links.json";
 import quotes from "@/data/quotes.json";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";
@@ -30,7 +30,7 @@ export const metadata = {
 };
 
 const Dashboard = async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   const quote = quotes[getRandom(0, 1643)];
 

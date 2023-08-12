@@ -1,10 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { login } from "@/actions/session";
-import { LuciaError } from "lucia";
+import { usersTable } from "@/drizzle/schema";
 
-import { auth } from "@/lib/auth";
+import { login } from "@/actions/session";
+import { db, eq } from "@/lib/db";
+import { isMatchingPassword } from "@/util/password";
 
 export const action = async (formData: FormData) => {
   const email = formData.get("email");
@@ -13,18 +14,27 @@ export const action = async (formData: FormData) => {
     throw new Error("Invalid form data");
 
   try {
-    const user = await auth.useKey("email", email, password);
+    const user = await db
+      .select({ hashedPassword: usersTable.hashedPassword, id: usersTable.id })
+      .from(usersTable)
+      .where(eq(usersTable.email, email))
+      .limit(1);
+    if (user.length === 0) throw new Error("INVALID_CREDENTIALS");
 
-    await login({ userId: user.userId });
+    const correctPassword = await isMatchingPassword(
+      password,
+      user[0].hashedPassword,
+    );
+
+    if (!correctPassword) throw new Error("INVALID_CREDENTIALS");
+
+    await login({ userId: user[0].id });
   } catch (error) {
-    if (
-      error instanceof LuciaError &&
-      (error.message === "AUTH_INVALID_KEY_ID" ||
-        error.message === "AUTH_INVALID_PASSWORD")
-    ) {
-      redirect(`/signup?error=user`);
+    // @ts-expect-error
+    if (error.message === "INVALID_CREDENTIALS") {
+      redirect(`/login?error=credentials`);
     } else {
-      redirect(`/signup?error=unknown`);
+      redirect(`/login?error=unknown`);
     }
   }
 };

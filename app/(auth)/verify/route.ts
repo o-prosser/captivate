@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { login } from "@/actions/session";
 
+import { login } from "@/actions/session";
 import { selectUser, updateUser } from "@/models/user";
 
 export const GET = async (request: Request) => {
@@ -24,3 +24,5 @@ export const GET = async (request: Request) => {
 
   redirect("/getting-started");
 };
+
+export const runtime = "edge";

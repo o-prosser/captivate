@@ -1,13 +1,13 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { LuciaError } from "lucia";
+import { usersTable } from "@/drizzle/schema";
 
 import { env } from "@/env.mjs";
 import LoginEmail from "@/emails/login";
-import { auth } from "@/lib/auth";
+import { db, DrizzleError } from "@/lib/db";
 import { resend } from "@/lib/resend";
-import { selectUser } from "@/models/user";
+import { hashPassword } from "@/util/password";
 
 export const action = async (formData: FormData) => {
   const email = formData.get("email");
@@ -15,23 +15,24 @@ export const action = async (formData: FormData) => {
   if (typeof email !== "string" || typeof password !== "string")
     throw new Error("Invalid form data");
 
-  let id;
+  let user;
   try {
-    const user = await auth.createUser({
-      key: {
-        providerId: "email",
-        providerUserId: email,
-        password,
-      },
-      attributes: {
+    const users = await db
+      .insert(usersTable)
+      .values({
         email,
-      },
-    });
+        hashedPassword: await hashPassword(password),
+      })
+      .returning({
+        id: usersTable.id,
+        email: usersTable.email,
+        token: usersTable.token,
+      });
 
-    id = user.userId;
+    user = users[0];
   } catch (error) {
     if (
-      error instanceof LuciaError &&
+      error instanceof DrizzleError &&
       error.message === "AUTH_DUPLICATE_KEY_ID"
     ) {
       redirect(`/signup?error=duplicate`);
@@ -41,9 +42,7 @@ export const action = async (formData: FormData) => {
   }
 
   try {
-    const user = await selectUser({ id });
-
-    const result = await resend.emails.send({
+    await resend.emails.send({
       from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
       to: [email],
       subject: "Verify your email",

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { getScope } from "@/models/flashcard";
 import { getFlashcardGroup } from "@/models/flashcard-group";
 import { createFlashcardStudy } from "@/models/flashcard-study";
@@ -24,7 +24,7 @@ export const POST = async (
   context: z.infer<typeof contextSchema>,
 ) => {
   try {
-    const { user } = await getSession();
+    const { user } = await getValidSession();
     if (!user) return new Response("Unauthorised", { status: 422 });
 
     const json = await req.json();

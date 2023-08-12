@@ -70,3 +70,5 @@ export const DELETE = async (req: Request, context: any) => {
     return NextResponse.json(error, { status: 500 });
   }
 };
+
+export const runtime = "edge";

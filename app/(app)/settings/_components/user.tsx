@@ -1,10 +1,10 @@
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import * as Card from "@/ui/card";
 
 import UserForm from "./user-form";
 
 const User = async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   return (
     <Card.Root>

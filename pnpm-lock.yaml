@@ -14,9 +14,6 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.1.0
     version: 3.1.0(react-hook-form@7.44.3)
-  '@lucia-auth/adapter-postgresql':
-    specifier: ^2.0.0
-    version: 2.0.0(lucia@2.2.0)(pg@8.11.2)(postgres@3.3.5)
   '@mdx-js/loader':
     specifier: ^2.3.0
     version: 2.3.0(webpack@5.88.2)
@@ -176,12 +173,12 @@ dependencies:
   github-slugger:
     specifier: ^2.0.0
     version: 2.0.0
+  jose:
+    specifier: ^4.14.4
+    version: 4.14.4
   katex:
     specifier: ^0.16.7
     version: 0.16.7
-  lucia:
-    specifier: ^2.2.0
-    version: 2.2.0
   lucide-react:
     specifier: ^0.263.1
     version: 0.263.1(react@18.2.0)
@@ -4073,23 +4070,6 @@ packages:
 
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
-
-  /@lucia-auth/adapter-postgresql@2.0.0(lucia@2.2.0)(pg@8.11.2)(postgres@3.3.5):
-    resolution: {integrity: sha512-1HUOjJPbCxvhFcHjjr6LypflBtGCS5fsXsK++SsyKn3bVj6Z6XwgxMhvLTJlvwXEQxGL1c9HJE81mIZHaHT4+w==}
-    peerDependencies:
-      lucia: ^2.0.0
-      pg: ^8.8.0
-      postgres: ^3.3.0
-    peerDependenciesMeta:
-      pg:
-        optional: true
-      postgres:
-        optional: true
-    dependencies:
-      lucia: 2.2.0
-      pg: 8.11.2
-      postgres: 3.3.5
-    dev: false
 
   /@manypkg/find-root@2.1.0:
     resolution: {integrity: sha512-NEYRVlZCJYhRTqQURhv+WBpDcvmsp/M423Wcdvggv8lYJYD4GtqnTMLrQaTjA10fYt/PIc3tSdwV+wxJnWqPfQ==}
@@ -11972,6 +11952,10 @@ packages:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
     dev: false
 
+  /jose@4.14.4:
+    resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+    dev: false
+
   /js-beautify@1.14.8:
     resolution: {integrity: sha512-4S7HFeI9YfRvRgKnEweohs0tgJj28InHVIj4Nl8Htf96Y6pHg3+tJrmo4ucAM9f7l4SHbFI3IvFAZ2a1eQPbyg==}
     engines: {node: '>=12'}
@@ -12341,10 +12325,6 @@ packages:
     dependencies:
       es5-ext: 0.10.62
     dev: true
-
-  /lucia@2.2.0:
-    resolution: {integrity: sha512-bCKSbWGpUQl+YbWaIy4t9eqqZQwKa5XKTBMTAjhAWwg9rEgPWu6L7vH55SueRsvB+2XNa2NA71ASdBUyS2fwLA==}
-    dev: false
 
   /lucide-react@0.263.1(react@18.2.0):
     resolution: {integrity: sha512-keqxAx97PlaEN89PXZ6ki1N8nRjGWtDa4021GFYLNj0RgruM5odbpl8GHTExj0hhPq3sF6Up0gnxt6TSHu+ovw==}

@@ -1,6 +1,6 @@
 import { StudyType, Subject } from "@prisma/client";
 
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { prisma } from "@/app/_lib/prisma";
 
 const getOrCreateSession = async ({
@@ -34,7 +34,7 @@ const getOrCreateSession = async ({
     };
   }
 
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   return {
     session: await prisma.flashcardStudySession.create({

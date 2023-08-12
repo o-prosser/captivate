@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { Heading } from "@/ui/typography";
 import { Markdown } from "@/components/markdown";
 import { getTasks } from "@/models/task";
@@ -11,7 +11,7 @@ export const metadata = {
 
 const TaskPage = async () => {
   const tasks = await getTasks();
-  const user = await getSession();
+  const user = await getValidSession();
 
   return (
     <>
@@ -28,3 +28,5 @@ const TaskPage = async () => {
 };
 
 export default TaskPage;
+
+export const runtime = "edge";

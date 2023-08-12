@@ -3,7 +3,7 @@ import { usersTable } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
 import { db, eq } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
@@ -17,7 +17,7 @@ export const metadata = {
 };
 
 const GettingStarted = async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   const action = async (formData: FormData) => {
     "use server";
@@ -63,7 +63,7 @@ const GettingStarted = async () => {
                 autoComplete="none"
                 autoCapitalize="none"
                 autoCorrect="none"
-                defaultValue={user.username}
+                defaultValue={user.username || ""}
               />
             </div>
 
@@ -75,7 +75,7 @@ const GettingStarted = async () => {
                 id="name"
                 required
                 autoComplete="fullname"
-                defaultValue={user.name}
+                defaultValue={user.name || ""}
               />
             </div>
           </Card.Content>
@@ -92,3 +92,5 @@ const GettingStarted = async () => {
 };
 
 export default GettingStarted;
+
+export const runtime = "edge";

@@ -2,7 +2,7 @@ import { tasksTable } from "@/drizzle/schema/tasks";
 import { isToday, startOfDay } from "date-fns";
 
 import { and, db, eq, lte, or } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import { parseSubjectName } from "@/util/subjects";
 import { Callout } from "@/ui/callout";
 import { Pill } from "@/ui/pill";
@@ -11,7 +11,7 @@ import { Text } from "@/ui/typography";
 import { TaskCheck } from "./task-check";
 
 const TasksToday = async ({ subject }: { subject?: string }) => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   const tasks = await db
     .select({

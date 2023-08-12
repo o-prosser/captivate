@@ -44,3 +44,5 @@ const TimetablePage = () => {
 };
 
 export default TimetablePage;
+
+export const runtime = "edge";

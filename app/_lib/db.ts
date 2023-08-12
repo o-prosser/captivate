@@ -1,5 +1,5 @@
 import * as schema from "@/drizzle/schema";
-import { neon, neonConfig, Pool } from "@neondatabase/serverless";
+import { neon, neonConfig } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 
 import { env } from "@/env.mjs";
@@ -15,6 +15,4 @@ export const db = drizzle(sql, {
   logger: process.env.NODE_ENV === "development",
 });
 
-export const pool = new Pool({
-  connectionString: env.DRIZZLE_DATABASE_URL,
-});
+export const runtime = "edge";

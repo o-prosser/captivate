@@ -3,7 +3,7 @@ import { Subject } from "@prisma/client";
 import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 
 const createFlashcardSchema = z.object({
   unit: z.string(),
@@ -25,7 +25,7 @@ const getSubject = (value: string) => {
 
 export const POST = async (req: Request) => {
   try {
-    const session = await getSession();
+    const session = await getValidSession();
 
     if (!session) return new Response("Unauthorised", { status: 403 });
 

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
-import { getSession } from "@/lib/session";
+import { getValidSession } from "@/lib/session";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 const Profile = async () => {
-  const { user } = await getSession();
+  const { user } = await getValidSession();
 
   const action = async (formData: FormData) => {
     "use server";
@@ -47,3 +47,5 @@ const Profile = async () => {
 };
 
 export default Profile;
+
+export const runtime = "edge";

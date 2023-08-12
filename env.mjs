@@ -11,5 +11,7 @@ export const env = createEnv({
     EMAIL_KEY: z.string().min(1),
     EMAIL_FROM_NAME: z.string().min(1),
     EMAIL_FROM: z.string().min(1),
+    JOSE_SESSION_KEY: z.string().min(1),
+    SALT_KEY: z.string().min(1),
   },
 });
