@@ -3,8 +3,8 @@ import { usersToSubjects } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
 import { db } from "@/lib/db";
-import { getValidSession } from "@/lib/session";
 import { cn } from "@/util/cn";
+import { getValidSession } from "@/util/session";
 import { SubjectIcon } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";

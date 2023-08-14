@@ -1,7 +1,8 @@
 import "katex/dist/katex.min.css";
 
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 
+import AddEvent from "./_components/add-event";
 import Footer from "./_components/footer";
 import Wrapper from "./_components/wrapper";
 
@@ -11,7 +12,9 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="w-screen">
       {/* @ts-ignore */}
-      <Wrapper user={user}>{children}</Wrapper>
+      <Wrapper eventDialog={<AddEvent userId={user.id} />} user={user}>
+        {children}
+      </Wrapper>
       <Footer />
     </div>
   );

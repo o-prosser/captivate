@@ -2,11 +2,11 @@
 
 import { redirect } from "next/navigation";
 import { usersTable } from "@/drizzle/schema";
-import { render } from "@/patches/@react-email/render";
 
 import { env } from "@/env.mjs";
 import LoginEmail from "@/emails/login";
 import { db, DrizzleError } from "@/lib/db";
+import { resend } from "@/lib/resend";
 import { hashPassword } from "@/util/password";
 
 export const action = async (formData: FormData) => {
@@ -42,45 +42,21 @@ export const action = async (formData: FormData) => {
   }
 
   try {
-    // await resend.emails.send({
-    //   from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
-    //   to: [email],
-    //   subject: "Verify your email",
-    //   react: (
-    //     <LoginEmail
-    //       url={`${
-    //         process.env.NODE_ENV === "production"
-    //           ? process.env.VERCEL_URL
-    //           : "http://localhost:3000"
-    //       }/verify?email=${encodeURIComponent(
-    //         user.email,
-    //       )}&token=${encodeURIComponent(user.token || "")}`}
-    //     />
-    //   ),
-    // });
-
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${env.EMAIL_KEY}`,
-      },
-      body: JSON.stringify({
-        from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
-        to: [email],
-        subject: "Verify your email",
-        html: await render(
-          <LoginEmail
-            url={`${
-              process.env.NODE_ENV === "production"
-                ? process.env.VERCEL_URL
-                : "http://localhost:3000"
-            }/verify?email=${encodeURIComponent(
-              user.email,
-            )}&token=${encodeURIComponent(user.token || "")}`}
-          />,
-        ),
-      }),
+    await resend.emails.send({
+      from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
+      to: [email],
+      subject: "Verify your email",
+      react: (
+        <LoginEmail
+          url={`${
+            process.env.NODE_ENV === "production"
+              ? process.env.VERCEL_URL
+              : "http://localhost:3000"
+          }/verify?email=${encodeURIComponent(
+            user.email,
+          )}&token=${encodeURIComponent(user.token || "")}`}
+        />
+      ),
     });
   } catch (error) {
     redirect(`/signup?error=email`);

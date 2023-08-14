@@ -9,14 +9,11 @@ import * as DropdownMenu from "@/ui/dropdown-menu";
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
-  const Icon =
-    theme === "light" ? Sun : theme === "dark" ? Moon : Laptop;
-
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <Button variant="ghost" className="fixed right-2 bottom-4">
-          <Icon />
+          <Sun />
           Select theme
         </Button>
       </DropdownMenu.Trigger>

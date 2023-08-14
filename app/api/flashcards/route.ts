@@ -3,7 +3,7 @@ import { Subject } from "@prisma/client";
 import { z } from "zod";
 
 import { prisma } from "@/lib/prisma";
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 
 const createFlashcardSchema = z.object({
   unit: z.string(),

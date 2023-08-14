@@ -1,18 +1,16 @@
-import { cache } from "react";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { sessionsTable } from "@/drizzle/schema";
-import { isPast } from "date-fns";
+import { NextRequest } from "next/server";
+import { addMonths, isPast } from "date-fns";
 import * as jose from "jose";
 
 import { env } from "@/env.mjs";
-import { db, eq } from "@/lib/db";
+import { selectSession } from "@/models/session";
 
 // const secret = jose.base64url.decode(env.JOSE_SESSION_KEY);
 const secret = new TextEncoder().encode(env.JOSE_SESSION_KEY);
 const issuer = "urn:example:issuer";
 const audience = "urn:example:audience";
-const expiresAt = "10s";
+const expiresAt = `${60 * 60 * 24 * 31}s`;
 
 export const encodeUserSession = async (sessionId: string) => {
   const jwt = await new jose.EncryptJWT({ sessionId })
@@ -35,9 +33,9 @@ export const decodeUserSession = async (jwt: string) => {
 
     const { sessionId } = payload;
     return sessionId;
-  } catch (error) {}
-
-  return null;
+  } catch (error) {
+    return null;
+  }
 };
 
 // const verifySession = async () => {
@@ -56,66 +54,68 @@ export const decodeUserSession = async (jwt: string) => {
 export const createSession = async (sessionId: string) => {
   const newSessionValue = await encodeUserSession(sessionId);
 
-  cookies().set("session_id", newSessionValue);
+  cookies().set("session_id", newSessionValue, {
+    sameSite: "lax",
+    path: "/",
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    expires: addMonths(new Date(), 1),
+  });
 };
 
-export const clearSession = () => {
-  cookies().set("session_id", "");
+export const clearSession = async () => {
+  await fetch("/api/sessions", {
+    method: "DELETE",
+  });
 };
 
-export const getSession = cache(async () => {
+export const getMiddlewareSession = async (request: NextRequest) => {
+  const cookieSessionValue = request.cookies.get("session_id")?.value;
+  if (!cookieSessionValue) {
+    console.log("No cookie session value");
+    return {
+      session: undefined,
+      shouldDelete: false,
+    };
+  }
+
+  const extractedSessionId = await decodeUserSession(cookieSessionValue);
+  if (!extractedSessionId || typeof extractedSessionId !== "string") {
+    console.log("Couldn't extract session id");
+    return {
+      session: undefined,
+      shouldDelete: true,
+    };
+  }
+
+  const session = await selectSession({ id: extractedSessionId });
+
+  if (!session || isPast(session.expiresAt)) {
+    return {
+      session: undefined,
+      shouldDelete: true,
+    };
+  }
+
+  return { session, shouldDelete: false };
+};
+
+export const getSession = async () => {
   const cookieSessionValue = cookies().get("session_id")?.value;
   if (!cookieSessionValue) return;
 
   const extractedSessionId = await decodeUserSession(cookieSessionValue);
-  if (!extractedSessionId || typeof extractedSessionId !== "string") return;
-
-  const session = await db.query.sessionsTable.findFirst({
-    where: eq(sessionsTable.id, extractedSessionId),
-    columns: {
-      id: true,
-      expiresAt: true,
-    },
-    with: {
-      user: {
-        columns: {
-          id: true,
-          email: true,
-          username: true,
-          name: true,
-          image: true,
-        },
-        with: {
-          usersToSubjects: {
-            columns: {
-              level: true,
-            },
-            with: {
-              subject: {
-                columns: {
-                  id: true,
-                  name: true,
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  });
-
-  if (!session || isPast(session.expiresAt)) {
-    clearSession();
+  if (!extractedSessionId || typeof extractedSessionId !== "string") {
+    await clearSession();
     return;
   }
 
-  return session;
-});
+  const session = await selectSession({ id: extractedSessionId });
 
-// For use in areas where we know there is a session, so will not be undefined.
-export const getValidSession = async () => {
-  const session = await getSession();
-  if (!session) throw new Error("Used getValidSession but no session found");
+  if (!session || isPast(session.expiresAt)) {
+    await clearSession();
+    return;
+  }
 
   return session;
 };

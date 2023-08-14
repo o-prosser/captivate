@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import { parse } from "date-fns";
 
 import { Loading } from "@/ui/loading";
-import { Markdown } from "@/components/markdown";
 import { selectEvents } from "@/models/event";
 
 import Calendar from "../../_components/calendar";
@@ -23,13 +22,7 @@ const MonthPage = async ({
   if (params.view === "month")
     return (
       <Suspense fallback={<Loading text="Loading calendar events..." />}>
-        <Calendar
-          events={events.map((event) => ({
-            markdown: <Markdown source={event.description || ""} />,
-            ...event,
-          }))}
-          activeDate={activeDate}
-        />
+        <Calendar events={events} activeDate={activeDate} />
       </Suspense>
     );
 };
@@ -38,3 +31,4 @@ export default MonthPage;
 
 export const runtime = "edge";
 export const preferredRegion = "lhr1";
+export const revalidate = 3600;

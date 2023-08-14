@@ -7,6 +7,7 @@ import { addMonths } from "date-fns";
 
 import { db, eq } from "@/lib/db";
 import { clearSession, createSession, getSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 
 export const login = async ({
   userId,
@@ -26,16 +27,21 @@ export const login = async ({
   )[0];
 
   await createSession(session.id);
+  console.log("Created session:" + cookies().get("session_id")?.value);
 
   if (redirectUser) redirect("/dashboard");
 };
 
 export const logout = async () => {
-  const session = await getSession();
-  if (!session) redirect("/login");
+  const session = await getValidSession();
+  // if (!session) redirect("/login");
+
+  console.log("Logging out " + session.id);
 
   // Remove cookie
   clearSession();
+
+  console.log("New cookie value" + cookies().get("session_id")?.value);
 
   // Set db entry to expire now so can't be used in future
   await db

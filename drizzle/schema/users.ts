@@ -39,6 +39,8 @@ export const sessionsTable = pgTable("Session", {
   createdAt: timestamp("createdAt").notNull().defaultNow(),
 });
 
+export type Session = InferModel<typeof sessionsTable>;
+
 export const sessionsRelations = relations(sessionsTable, ({ one }) => ({
   user: one(usersTable, {
     fields: [sessionsTable.userId],

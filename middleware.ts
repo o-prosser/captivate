@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getSession } from "@/lib/session";
+import { getMiddlewareSession } from "@/lib/session";
 
 export const middleware = async (request: NextRequest) => {
-  const session = await getSession();
+  const { session, shouldDelete } = await getMiddlewareSession(request);
   const pathname = request.nextUrl.pathname;
 
   const protectedRoute =
@@ -21,10 +21,12 @@ export const middleware = async (request: NextRequest) => {
     pathname.startsWith("/verify") ||
     pathname.startsWith("/verify-request");
 
+  let response = NextResponse.next();
   if (protectedRoute && !session)
-    return NextResponse.redirect(new URL("/login", request.url));
+    response = NextResponse.redirect(new URL("/login", request.url));
   if (guestRoute && session)
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    response = NextResponse.redirect(new URL("/dashboard", request.url));
 
-  return NextResponse.next();
+  if (shouldDelete) response.cookies.delete("session_id");
+  return response;
 };

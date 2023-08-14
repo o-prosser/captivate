@@ -24,7 +24,13 @@ import AddTask from "./add-task";
 import CommandBar from "./command";
 import Profile from "./profile";
 
-const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
+const Header = ({
+  user,
+  eventDialog,
+}: {
+  user: { image?: string | null; id: string };
+  eventDialog: React.ReactElement;
+}) => {
   const [commandOpen, setCommandOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [addType, setAddType] = useState<"task" | "event">("task");
@@ -115,7 +121,7 @@ const Header = ({ user }: { user: { image?: string | null; id: string } }) => {
           </DropdownMenu.Root>
           <Dialog.Content>
             {addType === "event" ? (
-              <AddEvent close={setAddOpen} userId={user.id} />
+              eventDialog
             ) : (
               <AddTask close={setAddOpen} userId={user.id} />
             )}

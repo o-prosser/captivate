@@ -1,50 +1,45 @@
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { eventsTable, insertEventSchema } from "@/drizzle/schema";
 import { format } from "date-fns";
 
-import { db } from "@/lib/db";
-import * as Dialog from "@/ui/dialog";
+import { db, eq } from "@/lib/db";
 import { Select } from "@/ui/html-select";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
+import { RouteSheet } from "@/ui/route-sheet";
+import { Textarea } from "@/ui/textarea";
+import { Heading } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
-import { Textarea } from "@/app/_ui/textarea";
+import { selectEvent } from "@/models/event";
 
-const AddEvent = ({ userId }: { userId: string }) => {
+const EditEventPage = async ({ params }: { params: { id: string } }) => {
+  const event = await selectEvent(params);
+  if (!event) notFound();
+
   const action = async (formData: FormData) => {
     "use server";
 
     const { date, ...formValues } = Object.fromEntries(formData.entries());
 
-    const data = insertEventSchema.parse({
+    const data = insertEventSchema.omit({ userId: true }).parse({
       date: new Date(date as string),
       ...formValues,
     });
 
-    const event = await db
-      .insert(eventsTable)
-      .values(data)
-      .returning({ id: eventsTable.id });
+    await db.update(eventsTable).set(data).where(eq(eventsTable.id, event.id));
 
     revalidatePath("/calendar");
     redirect(
-      `/calendar/${format(new Date(), "yyyy-MM-dd")}/month?created=${
-        event[0].id
-      }`,
+      `/calendar/${format(new Date(), "yyyy-MM-dd")}/month?updated=${event.id}`,
     );
   };
 
   return (
-    <>
-      <Dialog.Header>
-        <Dialog.Title>Add event</Dialog.Title>
-        <Dialog.Description>Add an event to your calendar.</Dialog.Description>
-      </Dialog.Header>
+    <RouteSheet>
+      <Heading level={2}>Edit event</Heading>
 
       <form action={action} className="space-y-6">
-        <input type="hidden" name="userId" value={userId} />
-
         <div className="space-y-2">
           <Label htmlFor="title">Title</Label>
           <Input
@@ -57,17 +52,29 @@ const AddEvent = ({ userId }: { userId: string }) => {
             autoCapitalize="off"
             autoFocus
             placeholder="Title"
+            defaultValue={event.title}
           />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="date">Date</Label>
-          <Input name="date" id="date" type="date" required />
+          <Input
+            name="date"
+            id="date"
+            type="date"
+            required
+            defaultValue={format(event.date, "yyyy-MM-dd")}
+          />
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="description">Description</Label>
-          <Textarea name="description" id="description" className="h-24" />
+          <Textarea
+            name="description"
+            id="description"
+            className="h-24"
+            defaultValue={event.description || ""}
+          />
         </div>
 
         <div className="space-y-2">
@@ -81,6 +88,7 @@ const AddEvent = ({ userId }: { userId: string }) => {
               chemistry: "Chemistry",
               physics: "Physics",
             }}
+            defaultValue={event.subject || ""}
           />
         </div>
 
@@ -97,15 +105,14 @@ const AddEvent = ({ userId }: { userId: string }) => {
               School: "School",
               Other: "Other",
             }}
+            defaultValue={event.category}
           />
         </div>
 
-        <Dialog.Footer>
-          <FormButton>Add event</FormButton>
-        </Dialog.Footer>
+        <FormButton>Update event</FormButton>
       </form>
-    </>
+    </RouteSheet>
   );
 };
 
-export default AddEvent;
+export default EditEventPage;

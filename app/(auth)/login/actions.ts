@@ -30,6 +30,8 @@ export const action = async (formData: FormData) => {
 
     await login({ userId: user[0].id });
   } catch (error) {
+    throw error;
+
     // @ts-expect-error
     if (error.message === "INVALID_CREDENTIALS") {
       redirect(`/login?error=credentials`);

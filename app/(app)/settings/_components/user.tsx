@@ -1,4 +1,4 @@
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import * as Card from "@/ui/card";
 
 import UserForm from "./user-form";

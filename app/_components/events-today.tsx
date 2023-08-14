@@ -1,17 +1,16 @@
 import { eventsTable } from "@/drizzle/schema";
-import { Subject } from "@prisma/client";
 import { isTomorrow, startOfDay } from "date-fns";
 import formatDistance from "date-fns/formatDistance";
 import isToday from "date-fns/isToday";
 
 import { and, asc, db, eq, gte } from "@/lib/db";
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import { parseSubjectName } from "@/util/subjects";
 import { Callout } from "@/ui/callout";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
-const EventsToday = async ({ subject }: { subject?: Subject }) => {
+const EventsToday = async ({ subject }: { subject?: string }) => {
   const { user } = await getValidSession();
 
   const events = await db

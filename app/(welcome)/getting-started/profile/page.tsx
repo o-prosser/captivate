@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";

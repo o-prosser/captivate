@@ -1,6 +1,6 @@
 import { StudyType, Subject } from "@prisma/client";
 
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import { prisma } from "@/app/_lib/prisma";
 
 const getOrCreateSession = async ({

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import { getScope } from "@/models/flashcard";
 import { getFlashcardGroup } from "@/models/flashcard-group";
 import { createFlashcardStudy } from "@/models/flashcard-study";

@@ -1,4 +1,4 @@
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import { Heading } from "@/ui/typography";
 import { Markdown } from "@/components/markdown";
 import { getTasks } from "@/models/task";

@@ -25,9 +25,11 @@ export const metadata = {
 const CalendarLayout = async ({
   params,
   children,
+  modal,
 }: {
   params: { view: string; date: string };
   children: React.ReactNode;
+  modal?: React.ReactNode;
 }) => {
   if (params.view !== "month" && params.view !== "week") notFound();
 
@@ -44,9 +46,9 @@ const CalendarLayout = async ({
       <div className="flex gap-2 my-6">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
-            <Button variant="outline">
-              <CalendarIcon />
-              Calendar
+            <Button variant="outline" className="capitalize">
+              {params.view === "month" ? <CalendarIcon /> : <CalendarRange />}
+              {params.view}
               <ChevronDown className="text-muted-foreground" />
             </Button>
           </DropdownMenu.Trigger>
@@ -112,6 +114,7 @@ const CalendarLayout = async ({
       <Tabs active="calendar" />
 
       {children}
+      {modal}
     </div>
   );
 };

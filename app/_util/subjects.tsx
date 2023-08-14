@@ -1,4 +1,3 @@
-import { Subject } from "@prisma/client";
 import { Atom, FlaskRound, Pi } from "lucide-react";
 
 import mathsData from "@/data/maths.json";
@@ -88,12 +87,12 @@ const useSubjectStyles = (subject: string) => {
 };
 
 const getSubjectEnum = (value: string) => {
-  if (value === "maths") return Subject.Maths;
-  if (value === "Maths") return Subject.Maths;
-  if (value === "chemistry") return Subject.Chemistry;
-  if (value === "Chemistry") return Subject.Chemistry;
-  if (value === "physics") return Subject.Physics;
-  if (value === "Physics") return Subject.Physics;
+  if (value === "maths") return "Maths";
+  if (value === "Maths") return "Maths";
+  if (value === "chemistry") return "Chemistry";
+  if (value === "Chemistry") return "Chemistry";
+  if (value === "physics") return "Physics";
+  if (value === "Physics") return "Physics";
 
   return null;
 };

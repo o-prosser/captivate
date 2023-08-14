@@ -83,5 +83,3 @@ const SignUp = ({
 };
 
 export default SignUp;
-
-export const runtime = "edge";

@@ -1,7 +1,6 @@
 "use client";
 
 import { experimental_useOptimistic, useRef } from "react";
-import { Subject } from "@prisma/client";
 import clsx from "clsx";
 import { isToday } from "date-fns";
 import { Plus } from "lucide-react";
@@ -10,7 +9,7 @@ import { useSubjectStyles } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
-import AddTask from "@/components/add-task";
+import AddTask from "@/app/(app)/_components/add-task";
 
 import { quickCreate } from "../actions";
 import Task from "./task";
@@ -25,7 +24,7 @@ const Tasks = ({
     dueDate: Date | null;
     doDate: Date | null;
     title: string;
-    subject: Subject | null;
+    subject: string | null;
     description: string | null;
     markdown: React.ReactNode;
   }[];
@@ -38,7 +37,7 @@ const Tasks = ({
       dueDate?: Date | null;
       doDate?: Date | null;
       title: string;
-      subject?: Subject | null;
+      subject?: string | null;
       description?: string | null;
       markdown?: React.ReactNode | null;
     }[],
@@ -46,7 +45,7 @@ const Tasks = ({
       title: string;
       dueDate?: Date | null;
       doDate?: Date | null;
-      subject?: Subject | null;
+      subject?: string | null;
     }
   >(tasks, (state, newTask) => [
     ...state,
@@ -62,14 +61,14 @@ const Tasks = ({
   const todoTasks = optimisticTasks.filter(
     (task) =>
       (task.doDate && isToday(task.doDate)) ||
-      (task.dueDate && isToday(task.dueDate))
+      (task.dueDate && isToday(task.dueDate)),
   );
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const maths = useSubjectStyles('maths');
-  const chemistry = useSubjectStyles('chemistry');
-  const physics = useSubjectStyles('physics');
+  const maths = useSubjectStyles("maths");
+  const chemistry = useSubjectStyles("chemistry");
+  const physics = useSubjectStyles("physics");
 
   return (
     <>
@@ -112,37 +111,40 @@ const Tasks = ({
           </Card.Content>
         </Card.Root>
 
-        {[{name:"Maths", ...maths}, {name: "Chemistry", ...chemistry}, {name: "Physics", ...physics}].map((subject, key) => (
-            <Card.Root key={key}>
-              <Card.Header className="flex-row space-y-0 -mr-3 py-3">
-                <Card.Title className="flex-1 inline-flex items-center capitalize">
-                  <subject.SubjectIcon
-                    className={clsx("h-5 w-5 mr-2", subject.subjectColor)}
-                  />
-                  {subject.name}
-                </Card.Title>
-                <AddTask
-                  trigger={
-                    <Button variant="ghost" size="icon">
-                      <Plus />
-                    </Button>
-                  }
-                  userId={userId}
-                  addOptimisticTask={addOptimisticTask}
-                  defaultData={{ subject: subject.name }}
+        {[
+          { name: "Maths", ...maths },
+          { name: "Chemistry", ...chemistry },
+          { name: "Physics", ...physics },
+        ].map((subject, key) => (
+          <Card.Root key={key}>
+            <Card.Header className="flex-row space-y-0 -mr-3 py-3">
+              <Card.Title className="flex-1 inline-flex items-center capitalize">
+                <subject.SubjectIcon
+                  className={clsx("h-5 w-5 mr-2", subject.subjectColor)}
                 />
-              </Card.Header>
+                {subject.name}
+              </Card.Title>
+              <AddTask
+                trigger={
+                  <Button variant="ghost" size="icon">
+                    <Plus />
+                  </Button>
+                }
+                userId={userId}
+                addOptimisticTask={addOptimisticTask}
+                defaultData={{ subject: subject.name }}
+              />
+            </Card.Header>
 
-              <Card.Content>
-                {optimisticTasks
-                  .filter((task) => task.subject === subject.name)
-                  .map((task, key) => (
-                    <Task key={key} task={task} />
-                  ))}
-              </Card.Content>
-            </Card.Root>
-          )
-        )}
+            <Card.Content>
+              {optimisticTasks
+                .filter((task) => task.subject === subject.name)
+                .map((task, key) => (
+                  <Task key={key} task={task} />
+                ))}
+            </Card.Content>
+          </Card.Root>
+        ))}
       </div>
     </>
   );

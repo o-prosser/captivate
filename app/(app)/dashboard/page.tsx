@@ -4,7 +4,7 @@ import WrapBalancer from "react-wrap-balancer";
 
 import quickLinks from "@/data/quick-links.json";
 import quotes from "@/data/quotes.json";
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";

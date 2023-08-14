@@ -28,13 +28,13 @@ export const eventsTable = pgTable("Event", {
   date: date("date", { mode: "date" }).notNull(),
   title: text("title").notNull(),
   subjectId: text("subjectId")
-    .references(() => subjectsTable.id)
+    .references(() => subjectsTable.id, { onDelete: "set null" })
     .default(sql`NULL`),
   category: eventCategory("category").notNull().default("Other"),
   description: text("description"),
   userId: text("userId")
     .notNull()
-    .references(() => usersTable.id),
+    .references(() => usersTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("createdAt", { precision: 3 }).defaultNow().notNull(),
 });
 
@@ -45,5 +45,9 @@ export const eventsRelations = relations(eventsTable, ({ one }) => ({
   subject: one(subjectsTable, {
     fields: [eventsTable.subjectId],
     references: [subjectsTable.id],
+  }),
+  user: one(usersTable, {
+    fields: [eventsTable.userId],
+    references: [usersTable.id],
   }),
 }));

@@ -3,7 +3,7 @@ import { usersTable } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
 import { db, eq } from "@/lib/db";
-import { getValidSession } from "@/lib/session";
+import { getValidSession } from "@/util/session";
 import * as Card from "@/ui/card";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";

@@ -1,16 +1,28 @@
-"use client";
-
-import { useState } from "react";
-import dynamic from "next/dynamic";
+import Link from "next/link";
 import type { Event as EventType } from "@/drizzle/schema";
-import { useCalendar } from "@h6s/calendar";
+import {
+  eachDayOfInterval,
+  endOfMonth,
+  getDay,
+  isSameDay,
+  parse,
+} from "date-fns";
 import format from "date-fns/format";
 import isToday from "date-fns/isToday";
 
 import { cn } from "@/util/cn";
+import { Button } from "@/ui/button";
 import { Text } from "@/ui/typography";
 
-const Event = dynamic(() => import("./event"));
+const colStartClasses = [
+  "",
+  "col-start-2",
+  "col-start-3",
+  "col-start-4",
+  "col-start-5",
+  "col-start-6",
+  "col-start-7",
+];
 
 const Calendar = ({
   events,
@@ -19,131 +31,153 @@ const Calendar = ({
   events: Array<
     Pick<EventType, "id" | "date" | "title" | "category" | "description"> & {
       subject: string | null;
-      markdown: React.ReactNode;
     }
   >;
   activeDate: Date;
 }) => {
-  const [selected, setSelected] = useState<Date | null>(null);
+  const firstDayCurrentMonth = parse(
+    format(activeDate, "MMM-yyyy"),
+    "MMM-yyyy",
+    new Date(),
+  );
 
-  const { headers, body, navigation } = useCalendar({
-    defaultDate: activeDate,
-    defaultWeekStart: 1,
+  const days = eachDayOfInterval({
+    start: firstDayCurrentMonth,
+    end: endOfMonth(firstDayCurrentMonth),
   });
 
   return (
     <div className="overflow-hidden rounded-2xl border">
-      <div className="grid-rows-[auto,repeat(6,1fr)] grid grid-cols-7 bg-border gap-px h-full">
-        {headers.weekDays.map(({ key, value }) => (
+      <div className="grid-rows-[auto,repeat(6,1fr)] grid grid-cols-7 bg-border gap-px">
+        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((value, key) => (
           <div
             key={key}
             className="h-10 uppercase px-4 grid place-items-center font-semibold bg-muted text-xs text-muted-foreground"
           >
-            {format(value, "E")}
+            <span className="hidden sm:inline">{value}</span>
+            <span className="sm:hidden">{value.charAt(0)}</span>
           </div>
         ))}
 
         {/* Mobile!! */}
-        {body.value.map((week) =>
-          week.value.map((day, index) => (
-            <button
-              onClick={() =>
-                setSelected(
-                  selected?.toDateString() === day.value.toDateString()
-                    ? null
-                    : day.value,
-                )
-              }
-              key={day.key}
+        {days.map((day, key) => (
+          <Link
+            href={`/calendar/${format(day, "yyyy-MM-dd")}/month`}
+            key={key}
+            className={cn(
+              "flex p-1 items-center justify-center min-h-[3rem] sm:hidden",
+              key === 0 && colStartClasses[getDay(day) - 1],
+              isSameDay(activeDate, day)
+                ? "bg-muted"
+                : "bg-background transition hover:bg-muted",
+            )}
+          >
+            <p
               className={cn(
-                "flex p-1 items-center justify-center min-h-[3rem] sm:hidden",
-                selected?.toDateString() === day.value.toDateString()
-                  ? "bg-muted"
-                  : "bg-background transition hover:bg-muted",
+                "inline-flex justify-center",
+                isToday(day)
+                  ? "p-1 bg-primary/10 text-primary rounded-full h-7"
+                  : "text-muted-foreground m-1",
+                day.getDate() !== 1 && "w-7",
               )}
             >
-              <p
-                className={cn(
-                  "inline-flex justify-center",
-                  isToday(day.value)
-                    ? "p-1 bg-primary/10 text-primary rounded-full h-7"
-                    : "text-muted-foreground m-1",
-                  day.value.getDate() !== 1 && "w-7",
-                )}
-              >
-                {day.value.getDate() === 1
-                  ? format(day.value, "MMM d")
-                  : day.value.getDate()}
-              </p>
-            </button>
-          )),
-        )}
+              {day.getDate() === 1 ? format(day, "MMM d") : day.getDate()}
+            </p>
+          </Link>
+        ))}
 
         {/* Desktop only */}
-        {body.value.map((week) =>
-          week.value.map((day, index) => (
-            <div
-              key={day.key}
+        {days.map((day, key) => (
+          <div
+            key={key}
+            className={cn(
+              "sm:flex flex-col p-1 items-end min-h-[6rem] hidden",
+              key === 0 && colStartClasses[getDay(day) - 1],
+              isToday(day) ? "bg-muted" : "bg-background",
+            )}
+          >
+            <p
               className={cn(
-                "sm:flex flex-col p-1 items-end min-h-[6rem] hidden",
-                isToday(day.value) ? "bg-muted" : "bg-background",
+                "inline-flex text-sm mt-1.5 mr-2",
+                isToday(day)
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground",
               )}
             >
-              <p
-                className={cn(
-                  "inline-flex text-sm mt-1.5 mr-2",
-                  isToday(day.value)
-                    ? "text-primary font-semibold"
-                    : "text-muted-foreground",
-                )}
-              >
-                {day.value.getDate() === 1
-                  ? format(day.value, "MMM d")
-                  : day.value.getDate()}
-              </p>
+              {day.getDate() === 1 ? format(day, "MMM d") : day.getDate()}
+            </p>
 
-              {events
-                .filter(
-                  (event) =>
-                    event.date.toDateString() === day.value.toDateString(),
-                )
-                .map((event, key) => (
-                  <Event key={key} event={event} />
-                ))}
-            </div>
-          )),
-        )}
-        {body.value.length === 5 ? (
-          <div className="col-span-7 bg-background" />
-        ) : (
-          ""
-        )}
+            {events
+              .filter(
+                (event) => event.date.toDateString() === day.toDateString(),
+              )
+              .map((event, key) => (
+                <Button
+                  key={key}
+                  variant={null}
+                  style={
+                    {
+                      "--subject": `var(--${event.subject || "muted"}) ${
+                        event.subject ? "/ 0.2" : ""
+                      }`,
+                    } as React.CSSProperties
+                  }
+                  className="justify-start w-full py-1 px-2 text-sm text-left bg-[hsl(var(--subject))] hover:opacity-90 transition"
+                  size={null}
+                  asChild
+                >
+                  <Link
+                    href={`/calendar/${format(
+                      activeDate,
+                      "yyyy-MM-dd",
+                    )}/month/events/${event.id}`}
+                  >
+                    {event.title}
+                  </Link>
+                </Button>
+              ))}
+          </div>
+        ))}
       </div>
 
       {/* Mobile only events */}
       <div className="sm:hidden flex flex-col p-6 border-t">
-        {selected ? (
-          <div>
-            {events.filter(
-              (event) => event.date.toDateString() === selected.toDateString(),
-            ).length > 0 ? (
-              events
-                .filter(
-                  (event) =>
-                    event.date.toDateString() === selected.toDateString(),
-                )
-                .map((event, key) => <Event key={key} event={event} />)
-            ) : (
-              <Text className="text-sm text-center text-muted-foreground">
-                No events
-              </Text>
-            )}
-          </div>
-        ) : (
-          <Text className="text-sm text-center text-muted-foreground">
-            Select a date to view events.
-          </Text>
-        )}
+        <div>
+          {events.filter((event) => isSameDay(event.date, activeDate)).length >
+          0 ? (
+            events
+              .filter((event) => isSameDay(event.date, activeDate))
+              .map((event, key) => (
+                <Button
+                  key={key}
+                  variant={null}
+                  style={
+                    {
+                      "--subject": `var(--${event.subject || "muted"}) ${
+                        event.subject ? "/ 0.2" : ""
+                      }`,
+                    } as React.CSSProperties
+                  }
+                  className="justify-start w-full py-1 px-2 text-sm text-left bg-[hsl(var(--subject))] hover:opacity-90 transition"
+                  size={null}
+                  asChild
+                >
+                  <Link
+                    href={`/calendar/${format(
+                      activeDate,
+                      "yyyy-MM-dd",
+                    )}/month/events/${event.id}`}
+                  >
+                    {event.title}
+                  </Link>
+                </Button>
+              ))
+          ) : (
+            <Text className="text-sm text-center text-muted-foreground">
+              No events
+            </Text>
+          )}
+        </div>
       </div>
     </div>
   );

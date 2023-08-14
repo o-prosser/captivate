@@ -1,29 +1,23 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { usersTable } from "@/drizzle/schema";
+import { object, string } from "zod";
 
-import { prisma } from "@/lib/prisma";
+import { db, eq } from "@/lib/db";
 
 export const updateUser = async (formData: FormData) => {
-  const id = formData.get("_id");
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const image = formData.get("image");
+  const updateSchema = object({
+    id: string().min(3),
+    name: string().nullable(),
+    email: string().min(3).email(),
+    username: string().nullable(),
+    image: string().nullable(),
+  });
 
-  try {
-    await prisma.user.update({
-      where: {
-        id: id?.toString(),
-      },
-      data: {
-        name: name?.toString(),
-        email: email?.toString(),
-        image: image?.toString(),
-      },
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  const data = updateSchema.parse(Object.fromEntries(formData.entries()));
+
+  await db.update(usersTable).set(data).where(eq(usersTable.id, data.id));
 
   revalidatePath("/settings");
 };
