@@ -1,27 +1,40 @@
-import { getValidSession } from "@/util/session";
-import { prisma } from "@/app/_lib/prisma";
+import { cache } from "react";
+import { tasksTable } from "@/drizzle/schema/tasks";
+import type { Task } from "@/drizzle/schema/tasks";
 
-const getTasks = async () => {
+import { and, asc, db, eq } from "@/lib/db";
+import { getValidSession } from "@/util/session";
+
+export const selectTasks = cache(async () => {
   const { user } = await getValidSession();
 
-  return await prisma.task.findMany({
-    where: {
-      userId: user.id,
-      completed: false,
-    },
-    select: {
-      id: true,
-      completed: true,
-      dueDate: true,
-      doDate: true,
-      title: true,
-      subject: true,
-      description: true,
-    },
-    orderBy: {
-      createdAt: "asc",
-    },
-  });
-};
+  const tasks = await db
+    .select({
+      id: tasksTable.id,
+      completed: tasksTable.completed,
+      dueDate: tasksTable.dueDate,
+      doDate: tasksTable.doDate,
+      title: tasksTable.title,
+      subjectId: tasksTable.subjectId,
+      description: tasksTable.description,
+    })
+    .from(tasksTable)
+    .where(and(eq(tasksTable.userId, user.id), eq(tasksTable.completed, false)))
+    .orderBy(asc(tasksTable.createdAt));
 
-export { getTasks };
+  return tasks;
+});
+
+export const selectTask = cache(async ({ id }: { id: Task["id"] }) => {
+  const { user } = await getValidSession();
+
+  const task = (
+    await db
+      .select()
+      .from(tasksTable)
+      .where(and(eq(tasksTable.userId, user.id), eq(tasksTable.id, id)))
+      .limit(1)
+  )[0];
+
+  return task;
+});

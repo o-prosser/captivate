@@ -5,8 +5,8 @@ import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Information } from "@/components/flashcard-information";
 import { Markdown } from "@/components/markdown";
-import { getFlashcard, getScope } from "@/models/flashcard";
-import { getOrCreateSession } from "@/models/flashcard-study-session";
+import { getScope, selectFlashcard } from "@/models/flashcard";
+import { selectOrCreateSession } from "@/models/flashcard-study-session";
 
 import End from "./_components/end";
 import Flashcard from "./_components/flashcard";
@@ -30,10 +30,10 @@ const CardPage = async ({
 }) => {
   const subject = getSubject(params.subject);
 
-  const flashcard = await getFlashcard(params.cardId);
+  const flashcard = await selectFlashcard({ id: params.cardId });
   if (!flashcard) notFound();
 
-  const { session, created } = await getOrCreateSession({
+  const { session, created } = await selectOrCreateSession({
     id: searchParams.sessionId,
     data: {
       groupId: searchParams.groupId,
@@ -45,14 +45,15 @@ const CardPage = async ({
   if (!session) throw new Error("Unable to initiate a new session");
   if (created)
     redirect(
-      `/subjects/${params.subject}/flashcards/practise/${params.cardId}?sessionId=${session.id}`
+      `/subjects/${params.subject}/flashcards/practise/${params.cardId}?sessionId=${session.id}`,
     );
 
   const scope = await getScope(session);
   if (!scope) throw new Error("Invalid scope found");
 
   const difference = scope.flashcards
-    ? scope.flashcards.length - session._count.flashcardsStudies
+    ? // @ts-expect-error
+      scope.flashcards.length - session.flashcardStudies?.length
     : null;
 
   return (

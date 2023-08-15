@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { Subject } from "@prisma/client";
+import { flashcardGroupsTable, flashcardsTable } from "@/drizzle/schema";
 import { z } from "zod";
 
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 
 const createFlashcardSchema = z.object({
@@ -13,12 +13,12 @@ const createFlashcardSchema = z.object({
 });
 
 const getSubject = (value: string) => {
-  if (value === "maths") return Subject.Maths;
-  if (value === "Maths") return Subject.Maths;
-  if (value === "chemistry") return Subject.Chemistry;
-  if (value === "Chemistry") return Subject.Chemistry;
-  if (value === "physics") return Subject.Physics;
-  if (value === "Physics") return Subject.Physics;
+  if (value === "maths") return "Maths";
+  if (value === "Maths") return "Maths";
+  if (value === "chemistry") return "Chemistry";
+  if (value === "Chemistry") return "Chemistry";
+  if (value === "physics") return "Physics";
+  if (value === "Physics") return "Physics";
 
   throw new Error("Invalid subject provided: " + value);
 };
@@ -32,27 +32,24 @@ export const POST = async (req: Request) => {
     const json = await req.json();
     const body = createFlashcardSchema.parse(json);
 
-    const flashcardGroup = await prisma.flashcardGroup.create({
-      data: {
-        unit: parseInt(body.unit),
-        topic: parseInt(body.topic),
-        subject: getSubject(body.subject),
-        flashcards:
-          body.flashcards.length > 0
-            ? {
-                createMany: {
-                  data: body.flashcards.map((flashcard) => ({
-                    front: flashcard.front,
-                    back: flashcard.back,
-                  })),
-                },
-              }
-            : {},
-      },
-      select: {
-        id: true,
-      },
-    });
+    const flashcardGroup = (
+      await db
+        .insert(flashcardGroupsTable)
+        .values({
+          unit: parseInt(body.unit),
+          topic: parseInt(body.topic),
+          subjectId: getSubject(body.subject).toLowerCase(),
+        })
+        .returning({ id: flashcardGroupsTable.id })
+    )[0];
+
+    const flashcards = await db.insert(flashcardsTable).values(
+      body.flashcards.map((flashcard) => ({
+        groupId: flashcardGroup.id,
+        front: flashcard.front,
+        back: flashcard.back,
+      })),
+    );
 
     if (!flashcardGroup) throw new Error("Unable to create");
 

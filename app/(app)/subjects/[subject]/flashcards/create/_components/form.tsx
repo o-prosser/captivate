@@ -7,7 +7,6 @@ import { useFieldArray } from "react-hook-form";
 import * as z from "zod";
 
 import { SubjectPageProps } from "@/types/subjects";
-import { getScience } from "@/util/pracitcals";
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Textarea } from "@/ui/textarea";
@@ -52,7 +51,7 @@ const CreateFlashcardForm = ({ params }: SubjectPageProps) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        subject: values.subject,
+        subject: values.subject.toLowerCase(),
         unit: values.unit,
         topic: values.topic,
         flashcards: values.flashcards,

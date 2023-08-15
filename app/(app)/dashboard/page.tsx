@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar, FileText } from "lucide-react";
 import WrapBalancer from "react-wrap-balancer";
 
 import quickLinks from "@/data/quick-links.json";
@@ -7,6 +7,7 @@ import quotes from "@/data/quotes.json";
 import { getValidSession } from "@/util/session";
 import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
+import Tabs, { Tab } from "@/ui/tabs";
 import { Heading, Text } from "@/ui/typography";
 
 import Sidebar from "./_components/sidebar";
@@ -29,7 +30,7 @@ export const metadata = {
   title: "Dashboard",
 };
 
-const Dashboard = async () => {
+const OldDashboard = async () => {
   const { user } = await getValidSession();
 
   const quote = quotes[getRandom(0, 1643)];
@@ -94,6 +95,10 @@ const Dashboard = async () => {
       </div>
     </>
   );
+};
+
+const Dashboard = () => {
+  return <>Hello</>;
 };
 
 export default Dashboard;

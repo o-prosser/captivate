@@ -6,7 +6,6 @@ import { Plus, Trash2 } from "lucide-react";
 import { useFieldArray } from "react-hook-form";
 import * as z from "zod";
 
-import { getScience } from "@/util/pracitcals";
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Textarea } from "@/ui/textarea";
@@ -21,7 +20,7 @@ export const editFlashcardSchema = z.object({
       id: z.string().optional(),
       front: z.string(),
       back: z.string(),
-    })
+    }),
   ),
 });
 

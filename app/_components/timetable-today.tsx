@@ -1,13 +1,37 @@
 import isWeekend from "date-fns/isWeekend";
 
 import timetable from "@/data/timetable.json";
-import { cn } from "@/util/cn";
+import { cn, createVar } from "@/util/cn";
+import { parseSubjectName } from "@/util/subjects";
 import { lessonHasPassed } from "@/util/timetable";
 import { getCurrentWeek, getNextWeek } from "@/util/weeks";
 import * as Card from "@/ui/card";
 import { Checkbox } from "@/ui/checkbox";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
+
+const lessonTimes = [
+  {
+    start: "08:40",
+    end: "09:35",
+  },
+  {
+    start: "09:40",
+    end: "10:35",
+  },
+  {
+    start: "11:10",
+    end: "12:05",
+  },
+  {
+    start: "12:10",
+    end: "13:05",
+  },
+  {
+    start: "14:05",
+    end: "15:00",
+  },
+];
 
 const Lesson = ({
   lesson,
@@ -24,27 +48,36 @@ const Lesson = ({
   const passed = next
     ? false
     : lessonHasPassed(
-        lesson.lesson.length > 1 ? lesson.lesson[1] : lesson.lesson[0]
+        lesson.lesson.length > 1 ? lesson.lesson[1] : lesson.lesson[0],
       );
+
   return (
-    <div className={cn(passed && "opacity-50", "flex space-x-3 mb-3")}>
-      <Checkbox
-        disabled
-        className="mt-1.5 disabled:cursor-text disabled:opacity-100"
-        checked={passed}
-      />
-      <div>
-        <Text>
-          <span className="rounded-full bg-primary text-primary-foreground px-2 py-0.5 font-medium text-sm inline-flex mr-2">
-            {lesson.lesson.length > 1
-              ? `Lessons ${lesson.lesson[0]} & ${lesson.lesson[1]}`
-              : `Lesson ${lesson.lesson}`}
-          </span>
-          {lesson.subject.charAt(0).toUpperCase()}
-          {lesson.subject.substring(1)}
-        </Text>
-        <Pill>{lesson.teacher}</Pill>
-        <Pill>{lesson.room}</Pill>
+    <div
+      style={createVar({ "--subject": `var(--${lesson.subject})` })}
+      className="bg-gradient-to-b from-subject/30 to-subject/10 rounded-2xl py-3 px-4"
+    >
+      <Text className="font-semibold text-subject capitalize brightness-50">
+        {lesson.subject}
+      </Text>
+
+      <p className="text-subject text-sm brightness-75">
+        {lessonTimes[lesson.lesson[0] - 1].start} &ndash;{" "}
+        {
+          lessonTimes[
+            lesson.lesson.length === 2
+              ? lesson.lesson[1] - 1
+              : lesson.lesson[0] - 1
+          ].end
+        }
+      </p>
+
+      <div className="flex items-end justify-between mt-2">
+        <div className="text-subject text-sm brightness-50">
+          {lesson.teacher} &bull; {lesson.room}
+        </div>
+        <Pill outline="subject" color={null}>
+          Lesson {lesson.lesson.join(" & ")}
+        </Pill>
       </div>
     </div>
   );
@@ -57,7 +90,7 @@ const days: [
   "wednesday",
   "thursday",
   "friday",
-  "saturday"
+  "saturday",
 ] = [
   "sunday",
   "monday",
@@ -86,15 +119,11 @@ const TimetableToday = () => {
     getNextWeek() === 1 ||
     getNextWeek() === 2) &&
     week ? (
-    <>
-      <Card.Description className="pb-1">
-        <span className="pr-2">👩🏻‍🏫</span>Lessons{" "}
-        {isWeekend(new Date()) ? "Monday" : "today"}
-      </Card.Description>
+    <div className="space-y-2">
       {timetable.weeks[week - 1][day].map((lesson, key) => (
         <Lesson next={isWeekend(new Date())} lesson={lesson} key={key} />
       ))}
-    </>
+    </div>
   ) : (
     <>It&apos;s half term!</>
   );

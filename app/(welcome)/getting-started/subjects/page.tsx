@@ -3,14 +3,15 @@ import { usersToSubjects } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
 import { db } from "@/lib/db";
-import { cn } from "@/util/cn";
+import { createVar } from "@/util/cn";
 import { getValidSession } from "@/util/session";
 import { SubjectIcon } from "@/util/subjects";
-import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Checkbox } from "@/ui/checkbox";
 import { Label } from "@/ui/label";
 import { Heading, Text } from "@/ui/typography";
+import { FormButton } from "@/components/form-button";
+import { selectSubjects } from "@/models/subject";
 
 import Progress from "../_components/progress";
 
@@ -20,17 +21,19 @@ export const metadata = {
 
 const Subjects = async () => {
   const { user } = await getValidSession();
+  const subjects = await selectSubjects();
 
   const action = async (formData: FormData) => {
     "use server";
 
-    const subjects = ["maths", "chemistry", "physics"];
+    const { user } = await getValidSession();
+    const subjects = await selectSubjects();
 
     subjects.forEach(async (subject) => {
-      if (formData.get(subject) == "on") {
+      if (formData.get(subject.id) == "on") {
         await db
           .insert(usersToSubjects)
-          .values({ subjectId: subject, level: "Sub", userId: user.id });
+          .values({ subjectId: subject.id, level: "Sub", userId: user.id });
       }
     });
 
@@ -50,47 +53,40 @@ const Subjects = async () => {
       <Card.Root className="mt-6">
         <form action={action}>
           <Card.Content className="pt-6 space-y-6">
-            {["maths", "chemistry", "physics"].map((subject, key) => (
+            {subjects.map((subject, key) => (
               <Label
-                htmlFor={subject}
+                htmlFor={subject.id}
                 key={key}
-                style={
-                  {
-                    "--fill": `var(--${subject})`,
-                  } as React.CSSProperties
-                }
-                className="flex cursor-pointer items-center bg-[hsl(var(--fill)_/_0.2)] border-[hsl(var(--fill))] py-4 space-x-2 rounded-2xl px-3 border opacity-50 transition hover:opacity-100 [&:has(input:checked)]:opacity-100"
+                style={createVar({ "--subject": `var(--${subject.id})` })}
+                className="flex cursor-pointer items-center bg-subject/20 border-subject py-4 space-x-2 rounded-2xl px-3 border opacity-50 transition hover:opacity-100 [&:has(input:checked)]:opacity-100"
               >
                 <SubjectIcon
-                  subject={subject}
-                  style={
-                    {
-                      "--fill": `var(--${subject})`,
-                    } as React.CSSProperties
-                  }
-                  className="h-5 w-5 border-[hsl(var(--fill))]"
+                  subject={subject.id}
+                  style={createVar({ "--subject": `var(--${subject.id})` })}
+                  className="h-5 w-5 text-subject"
                 />
-                <span className="flex-1 capitalize">{subject}</span>
+                <span className="flex-1 capitalize">{subject.name}</span>
                 <Checkbox
-                  name={subject}
-                  id={subject}
-                  style={
-                    {
-                      "--fill": `var(--${subject})`,
-                    } as React.CSSProperties
+                  name={subject.id}
+                  id={subject.id}
+                  defaultChecked={
+                    user.usersToSubjects.find(
+                      (entry) => entry.subject.id === subject.id,
+                    )
+                      ? true
+                      : false
                   }
-                  className={cn(
-                    "data-[state=checked]:!bg-[hsl(var(--fill))] border-[hsl(var(--fill))] h-4 w-4",
-                  )}
+                  style={createVar({ "--subject": `var(--${subject.id})` })}
+                  className="data-[state=checked]:!bg-subject border-subject h-4 w-4"
                 />
               </Label>
             ))}
           </Card.Content>
           <Card.Footer>
-            <Button className="w-full">
-              Next step{" "}
+            <FormButton className="w-full">
+              Next step
               <ArrowRight className="transition group-hover:translate-x-1" />
-            </Button>
+            </FormButton>
           </Card.Footer>
         </form>
       </Card.Root>
@@ -99,3 +95,5 @@ const Subjects = async () => {
 };
 
 export default Subjects;
+
+export const runtime = "edge";

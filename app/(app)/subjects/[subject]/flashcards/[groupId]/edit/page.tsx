@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 
-import { prisma } from "@/lib/prisma";
 import { getSubject } from "@/util/subjects";
 import { Heading } from "@/ui/typography";
+import { selectFlashcardGroup } from "@/models/flashcard-group";
 
 import CreateFlashcardForm from "./_components/form";
 
@@ -13,18 +13,7 @@ const EditFlashcardPage = async ({
 }) => {
   const subject = getSubject(params.subject);
 
-  const flashcardGroup = await prisma.flashcardGroup.findUnique({
-    where: {
-      id: params.groupId,
-    },
-    select: {
-      id: true,
-      unit: true,
-      topic: true,
-      flashcards: true,
-    },
-  });
-
+  const flashcardGroup = await selectFlashcardGroup({ id: params.groupId });
   if (!flashcardGroup) notFound();
 
   return (

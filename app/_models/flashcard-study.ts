@@ -1,16 +1,16 @@
-import { prisma } from "@/app/_lib/prisma";
+import { flashcardStudiesTable, FlashcardStudy } from "@/drizzle/schema";
+
+import { db } from "@/lib/db";
 
 const createFlashcardStudy = async (data: {
-  flashcardId: string;
-  sessionId: string;
-  score: number;
+  flashcardId: FlashcardStudy["flashcardId"];
+  sessionId: FlashcardStudy["sessionId"];
+  score: FlashcardStudy["score"];
 }) => {
-  return await prisma.flashcardStudy.create({
-    data,
-    select: {
-      id: true,
-    },
-  });
+  return await db
+    .insert(flashcardStudiesTable)
+    .values(data)
+    .returning({ id: flashcardStudiesTable.id });
 };
 
 const SCORES = [

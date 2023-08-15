@@ -54,3 +54,4 @@ export const usersToSubjectsRelations = relations(
 );
 
 export type Subject = InferModel<typeof subjectsTable>;
+export type UserToSubject = InferModel<typeof usersToSubjects>;

@@ -1,22 +1,49 @@
-import { prisma } from "@/app/_lib/prisma";
+import { cache } from "react";
+import type { FlashcardGroup } from "@/drizzle/schema";
 
-const getFlashcardGroup = async (id: string) => {
-  return await prisma.flashcardGroup.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-      flashcards: {
-        select: {
-          id: true,
-        },
-        orderBy: {
-          id: "asc",
+import { db } from "@/lib/db";
+
+export const selectFlashcardGroups = cache(
+  async ({ subject }: { subject?: string }) => {
+    const flashcardGroups = await db.query.flashcardGroupsTable.findMany({
+      where: (fields, { eq }) =>
+        subject ? eq(fields.subjectId, subject) : undefined,
+      columns: {
+        id: true,
+        unit: true,
+        topic: true,
+      },
+      with: {
+        flashcards: {
+          columns: {
+            id: true,
+          },
         },
       },
-    },
-  });
-};
+    });
 
-export { getFlashcardGroup };
+    return flashcardGroups;
+  },
+);
+
+export const selectFlashcardGroup = cache(
+  async ({ id }: { id: FlashcardGroup["id"] }) => {
+    const flashcardGroup = await db.query.flashcardGroupsTable.findFirst({
+      where: (fields, { eq }) => eq(fields.id, id),
+      columns: {
+        id: true,
+        unit: true,
+        topic: true,
+      },
+      with: {
+        flashcards: {
+          with: {
+            studies: true,
+          },
+        },
+      },
+    });
+
+    return flashcardGroup;
+  },
+);

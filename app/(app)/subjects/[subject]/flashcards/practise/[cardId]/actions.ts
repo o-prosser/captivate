@@ -1,16 +1,15 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { flashcardStudySessionsTable } from "@/drizzle/schema";
 
-import { prisma } from "@/lib/prisma";
+import { db, eq } from "@/lib/db";
 
 export const end = async (id: string, subject: string) => {
-  await prisma.flashcardStudySession.update({
-    where: { id },
-    data: {
-      end: new Date(),
-    },
-  });
+  await db
+    .update(flashcardStudySessionsTable)
+    .set({ end: new Date() })
+    .where(eq(flashcardStudySessionsTable.id, id));
 
   redirect(`/subjects/${subject}/flashcards`);
 };

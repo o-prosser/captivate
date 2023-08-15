@@ -39,7 +39,7 @@ export const SubjectLayout = ({
         <Sheet.Root open={open} onOpenChange={setOpen}>
           <Sheet.Trigger asChild>
             <Button
-              iconOnly
+              size="icon"
               variant="ghost"
               className="[&>svg]:h-5 [&>svg]:w-5"
             >

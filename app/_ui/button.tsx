@@ -26,38 +26,21 @@ const buttonVariants = cva(
           "!h-auto !p-1 -m-1 text-base focus-visible:!ring-offset-0 [&>svg]:ml-2 [&:hover>svg]:translate-x-1 [&>svg]:transition-all",
       },
       size: {
-        default: "h-10 [&>svg]:h-4 [&>svg]:w-4",
-        sm: "h-9 px-3 rounded-xl [&>svg]:h-4 [&>svg]:w-4",
+        default: "h-10 [&>svg]:h-4 [&>svg]:w-4 gap-2 py-2 px-4",
+        sm: "h-9 px-3 rounded-2xl [&>svg]:h-4 [&>svg]:w-4 gap-2",
         lg: "h-11 px-8 rounded-3xl",
-        icon: "h-10 w-10 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:!mr-0",
+        icon: "h-10 w-10 [&>svg]:h-4 [&>svg]:w-4",
       },
       pending: {
         true: "",
         false: "disabled:opacity-50",
       },
-      iconOnly: {
-        true: "",
-        false: "gap-2",
-      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
-      iconOnly: false,
     },
-    compoundVariants: [
-      {
-        iconOnly: true,
-        size: "default",
-        className: "p-3",
-      },
-      {
-        iconOnly: false,
-        size: "default",
-        className: "py-2 px-4",
-      },
-    ],
-  }
+  },
 );
 
 export interface ButtonProps
@@ -69,25 +52,13 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      className,
-      variant,
-      size,
-      iconOnly,
-      asChild = false,
-      pending,
-      children,
-      ...props
-    },
-    ref
+    { className, variant, size, asChild = false, pending, children, ...props },
+    ref,
   ) => {
     const Comp = asChild ? Slot : "button";
     return asChild ? (
       <Slot
-        className={cn(
-          buttonVariants({ variant, size, pending, iconOnly }),
-          className
-        )}
+        className={cn(buttonVariants({ variant, size, pending }), className)}
         ref={ref}
         {...props}
       >
@@ -95,10 +66,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       </Slot>
     ) : (
       <button
-        className={cn(
-          buttonVariants({ variant, size, pending, iconOnly }),
-          className
-        )}
+        className={cn(buttonVariants({ variant, size, pending }), className)}
         ref={ref}
         disabled={pending}
         {...props}
@@ -113,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
       </button>
     );
-  }
+  },
 );
 Button.displayName = "Button";
 

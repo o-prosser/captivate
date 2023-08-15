@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Plus } from "lucide-react";
 
 import { SubjectPageProps } from "@/types/subjects";
-import { prisma } from "@/lib/prisma";
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Heading } from "@/ui/typography";
 import DataTable from "@/components/data-table";
+import { selectFlashcardGroups } from "@/models/flashcard-group";
 
 import { columns } from "./_components/columns";
 import SelectPractise from "./_components/select-practise";
@@ -18,25 +18,13 @@ export const metadata = {
 const Flashcards = async ({ params }: SubjectPageProps) => {
   const subject = getSubject(params.subject);
 
-  const flashcardGroups = await prisma.flashcardGroup.findMany({
-    where: {
-      subject: subject.enum,
-    },
-    select: {
-      id: true,
-      unit: true,
-      topic: true,
-      _count: {
-        select: { flashcards: true },
-      },
-    },
-  });
+  const flashcardGroups = await selectFlashcardGroups(params);
 
   return (
     <>
       <div className="flex justify-between items-start flex-col-reverse sm:flex-row">
         <Heading className="mb-8">Flashcards</Heading>
-        <SelectPractise subject={subject} />
+        <SelectPractise subject={{ id: params.subject, ...subject }} />
       </div>
 
       <DataTable
@@ -48,7 +36,7 @@ const Flashcards = async ({ params }: SubjectPageProps) => {
           return {
             title: topicName,
             subject: params.subject,
-            number: flashcardGroup._count.flashcards,
+            number: flashcardGroup.flashcards.length,
             ...flashcardGroup,
           };
         })}

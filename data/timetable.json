@@ -11,6 +11,18 @@
       ],
       "tuesday": [
         {
+          "lesson": [1],
+          "subject": "physics",
+          "teacher": "Ms Teacher",
+          "room": "R03"
+        },
+        {
+          "lesson": [3, 4],
+          "subject": "maths",
+          "teacher": "Ms Teacher",
+          "room": "R00"
+        },
+        {
           "lesson": [5],
           "subject": "chemistry",
           "teacher": "Mr Teacher",

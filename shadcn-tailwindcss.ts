@@ -77,6 +77,7 @@ const shadcnPlugin = plugin(
           maths: "hsl(var(--maths))",
           chemistry: "hsl(var(--chemistry))",
           physics: "hsl(var(--physics))",
+          subject: "hsl(var(--subject))",
         },
         keyframes: {
           "accordion-down": {
@@ -94,7 +95,7 @@ const shadcnPlugin = plugin(
         },
       },
     },
-  }
+  },
 );
 
 export default shadcnPlugin;

@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
+import { flashcardStudySessionsTable } from "@/drizzle/schema";
 import * as z from "zod";
 
+import { db, eq } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 import { getScope } from "@/models/flashcard";
-import { getFlashcardGroup } from "@/models/flashcard-group";
 import { createFlashcardStudy } from "@/models/flashcard-study";
-import { getSessionWithFlashcards } from "@/models/flashcard-study-session";
-import { prisma } from "@/app/_lib/prisma";
+import { selectSessionWithFlashcards } from "@/models/flashcard-study-session";
 
 const schema = z.object({
   flashcardId: z.string(),
@@ -31,7 +31,7 @@ export const POST = async (
     const body = schema.parse(json);
     const { params } = contextSchema.parse(context);
 
-    const session = await getSessionWithFlashcards(params.sessionId);
+    const session = await selectSessionWithFlashcards({ id: params.sessionId });
     if (!session) throw new Error("No session found");
 
     // Create flashcard study record
@@ -45,7 +45,7 @@ export const POST = async (
     if (!scope) throw new Error("Invalid scope");
 
     const flashcardsToStudy = scope.flashcards.filter((f) => {
-      const viewed = session.flashcardsStudies.find(
+      const viewed = session.flashcardStudies.find(
         (study) => study.flashcardId === f.id,
       );
       if (viewed) return false;
@@ -54,12 +54,10 @@ export const POST = async (
     });
 
     if (flashcardsToStudy.length === 0) {
-      await prisma.flashcardStudySession.update({
-        where: { id: session?.id },
-        data: {
-          end: new Date(),
-        },
-      });
+      await db
+        .update(flashcardStudySessionsTable)
+        .set({ end: new Date() })
+        .where(eq(flashcardStudySessionsTable.id, session.id));
 
       return NextResponse.json({
         summary: true,

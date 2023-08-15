@@ -11,7 +11,6 @@ const AppLayout = async ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="w-screen">
-      {/* @ts-ignore */}
       <Wrapper eventDialog={<AddEvent userId={user.id} />} user={user}>
         {children}
       </Wrapper>

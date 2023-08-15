@@ -78,7 +78,7 @@ const ScoreButton = ({
     >
       <span className="text-2xl pb-1">{emoji}</span>
       <span className="pb-1">{label}</span>
-      <Pill className="mr-0">{time}</Pill>
+      <Pill className="mr-0 lowercase">{time}</Pill>
     </Button>
   );
 };

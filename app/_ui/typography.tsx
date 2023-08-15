@@ -8,7 +8,7 @@ import { cn } from "@/util/cn";
 const headingVariants = cva("scroll-m-20 font-headings", {
   variants: {
     level: {
-      1: "text-3xl font-bold tracking-tight lg:text-4xl [&:not(:first-child)]:mt-5 print:!text-[40px] print:!leading-[36px] print:text-primary",
+      1: "text-3xl font-bold tracking-tight lg:text-4x [&:not(:first-child)]:mt-5 print:!text-[40px] print:!leading-[36px] print:text-primary",
       2: "text-2xl font-bold tracking-tight [&:not(:first-child)]:mt-10 print:!text-[32px] print:text-primary page-break-before-always",
       3: "text-xl font-bold [&:not(:first-child)]:pt-8 -mb-4 print:!uppercase print:!text-[19px] print:!text-background print:!bg-primary/80 print:!py-0 print:mt-8",
       4: "text-lg font-bold tracking-tight [&:not(:first-child)]:pt-6 -mb-5",

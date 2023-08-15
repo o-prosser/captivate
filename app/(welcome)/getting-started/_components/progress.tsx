@@ -12,7 +12,7 @@ const Progress = ({ step }: { step: number }) => {
             key={key}
             className={clsx(
               "h-1.5 rounded-full",
-              key + 1 <= 3 ? "bg-muted-foreground" : "bg-muted",
+              key + 1 <= step ? "bg-muted-foreground" : "bg-muted",
             )}
           />
         ))}

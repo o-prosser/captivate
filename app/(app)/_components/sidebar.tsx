@@ -91,7 +91,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
       transition={{ duration: 0.1 }}
       className="hidden md:flex py-6 z-10 flex-col px-[15.5px] items-start bg-background fixed left-0 inset-y-0 h-[100dvh] print:!hidden overflow-hidden"
     >
-      <Button variant="default" size={null} asChild iconOnly>
+      <Button variant="default" size={null} asChild>
         <Link href="/dashboard" className="p-2.5">
           <LogoIcon className="h-6 w-6" />
         </Link>
@@ -115,7 +115,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
             className={cn(
               pathname.startsWith(active) &&
                 "bg-muted [&>svg]:!text-foreground",
-              "justify-start p-3 [&>svg]:!mr-0"
+              "justify-start p-3 [&>svg]:!mr-0",
             )}
           >
             <Link href={href}>
@@ -159,7 +159,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
               className={cn(
                 pathname.startsWith(active) && styles.subjectBackground,
                 pathname.startsWith(active) && styles.importantSubjectColor,
-                "justify-start p-3 [&>svg]:!mr-0"
+                "justify-start p-3 [&>svg]:!mr-0",
               )}
             >
               <Link href={href}>
@@ -196,7 +196,7 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
             className={cn(
               pathname.startsWith(active) &&
                 "bg-muted [&>svg]:!text-foreground",
-              "justify-start p-3 [&>svg]:!mr-0"
+              "justify-start p-3 [&>svg]:!mr-0",
             )}
           >
             <Link href={href}>

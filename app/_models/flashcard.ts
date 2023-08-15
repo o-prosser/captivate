@@ -1,20 +1,22 @@
-import { Flashcard, FlashcardGroup, StudyScope, Subject } from "@prisma/client";
+import {
+  Flashcard,
+  FlashcardGroup,
+  FlashcardStudySession,
+} from "@/drizzle/schema";
 
-import { getSubject, getSubjectEnum } from "@/util/subjects";
-import { prisma } from "@/app/_lib/prisma";
+import { db } from "@/lib/db";
+import { getSubject } from "@/util/subjects";
 
-const getFlashcard = async (id: string) => {
-  return await prisma.flashcard.findUnique({
-    where: {
-      id,
-    },
-    include: {
+export const selectFlashcard = async ({ id }: { id: Flashcard["id"] }) => {
+  return await db.query.flashcardsTable.findFirst({
+    where: (fields, { eq }) => eq(fields.id, id),
+    with: {
       studies: true,
     },
   });
 };
 
-const getScore = (score: number) => {
+export const getScore = (score: number) => {
   const scores = [
     "Skipped",
     "Forgot",
@@ -26,16 +28,16 @@ const getScore = (score: number) => {
   return scores[score - 1];
 };
 
-const getScope = async (session: {
-  scope: StudyScope;
+export const getScope = async (session: {
+  scope: FlashcardStudySession["scope"];
   group?: (FlashcardGroup & { flashcards: Flashcard[] }) | null;
-  unit?: number | null;
-  subject?: Subject | null;
+  unit?: FlashcardStudySession["unit"];
+  subject?: FlashcardStudySession["subjectId"];
 }) => {
   const subject = session.subject
     ? getSubject(session.subject)
-    : session.group?.subject
-    ? getSubject(session.group.subject)
+    : session.group?.subjectId
+    ? getSubject(session.group.subjectId)
     : undefined;
 
   if (session.scope === "Group") {
@@ -54,37 +56,37 @@ const getScope = async (session: {
     if (!session.unit)
       throw new Error("Unit must be provided when using a unit type");
 
-    const flashcards = await prisma.flashcard.findMany({
-      where: {
-        group: {
-          is: {
-            subject: session.subject,
-            unit: session.unit,
-          },
-        },
+    const flashcardGroups = await db.query.flashcardGroupsTable.findMany({
+      where: (fields, { and, eq }) =>
+        and(
+          // @ts-expect-error
+          eq(fields.subjectId, session.subject),
+          // @ts-expect-error
+          eq(fields.unit, session.unit),
+        ),
+      with: {
+        flashcards: true,
       },
     });
 
-    return { title: subject?.units[session.unit - 1].name, flashcards };
+    return {
+      title: subject?.units[session.unit - 1].name,
+      flashcards: flashcardGroups,
+    };
   }
   if (session.scope === "Subject") {
     if (!session.subject)
       throw new Error("Subject must be provided when using a unit type");
 
-    const flashcards = await prisma.flashcard.findMany({
-      where: {
-        group: {
-          is: {
-            subject: session.subject,
-          },
-        },
+    const flashcardGroups = await db.query.flashcardGroupsTable.findMany({
+      // @ts-expect-error
+      where: (fields, { eq }) => eq(fields.subjectId, session.subject),
+      with: {
+        flashcards: true,
       },
     });
-
-    return { title: session.subject, flashcards };
+    return { title: session.subject, flashcards: flashcardGroups };
   }
 
   return undefined;
 };
-
-export { getFlashcard, getScore, getScope };

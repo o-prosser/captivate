@@ -3,7 +3,10 @@ import { intervalToDuration } from "date-fns";
 
 import { Heading } from "@/ui/typography";
 import { getScope } from "@/models/flashcard";
-import { getSessionSummary, SCORES } from "@/models/flashcard-study-session";
+import {
+  SCORES,
+  selectSessionForSummary,
+} from "@/models/flashcard-study-session";
 
 import Chart from "./chart";
 
@@ -12,7 +15,7 @@ const FlashcardSessionSummary = async ({
 }: {
   params: { subject: string; sessionId: string };
 }) => {
-  const session = await getSessionSummary(params.sessionId);
+  const session = await selectSessionForSummary({ id: params.sessionId });
   if (!session || !session.end) notFound();
 
   const length = intervalToDuration({
@@ -25,8 +28,8 @@ const FlashcardSessionSummary = async ({
   const scores = SCORES.map(({ emoji, label, short }, key) => {
     const score = key + 1;
 
-    const count = session.flashcardsStudies.filter(
-      (study) => study.score == score
+    const count = session.flashcardStudies.filter(
+      (study) => study.score == score,
     ).length;
 
     return {
@@ -67,8 +70,8 @@ const FlashcardSessionSummary = async ({
         <div>
           <p className="uppercase font-medium text-sm">Flashcards</p>
           <p className="text-muted-foreground">
-            {session.flashcardsStudies.length} card
-            {session.flashcardsStudies.length === 1 ? "" : "s"}
+            {session.flashcardStudies.length} card
+            {session.flashcardStudies.length === 1 ? "" : "s"}
           </p>
         </div>
       </div>

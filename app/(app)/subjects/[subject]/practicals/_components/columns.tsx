@@ -89,7 +89,7 @@ export const columns: ColumnDef<Practical>[] = [
       const practical = row.original;
 
       return (
-        <Button variant="ghost" iconOnly asChild>
+        <Button variant="ghost" asChild>
           <Link
             href={`/subjects/${practical.subject}/practicals/${practical.id}`}
           >

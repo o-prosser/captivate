@@ -6,8 +6,8 @@ import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";
 import { Information } from "@/components/flashcard-information";
+import { selectFlashcardGroup } from "@/models/flashcard-group";
 import { Markdown } from "@/app/_components/markdown";
-import { prisma } from "@/app/_lib/prisma";
 import { getSubject } from "@/app/_util/subjects";
 
 const FlashcardGroupPage = async ({
@@ -17,22 +17,7 @@ const FlashcardGroupPage = async ({
 }) => {
   const subject = getSubject(params.subject);
 
-  const flashcardGroup = await prisma.flashcardGroup.findUnique({
-    where: {
-      id: params.groupId,
-    },
-    select: {
-      id: true,
-      unit: true,
-      topic: true,
-      flashcards: {
-        include: {
-          studies: true,
-        },
-      },
-    },
-  });
-
+  const flashcardGroup = await selectFlashcardGroup({ id: params.groupId });
   if (!flashcardGroup) notFound();
 
   const topicName =
@@ -42,7 +27,7 @@ const FlashcardGroupPage = async ({
     <>
       <div className="flex justify-between items-start flex-col-reverse sm:flex-row mt-5">
         <Heading className="mt-0">Flashcards &mdash; {topicName}</Heading>
-        <div className="mb-3 sm:mb-0 space-x-3">
+        <div className="mb-3 sm:mb-0 space-x-3 flex">
           <Button asChild>
             <Link
               href={`/subjects/${params.subject}/flashcards/practise/${flashcardGroup.flashcards[0].id}?scope=group&groupId=${flashcardGroup.id}&type=all`}

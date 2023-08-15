@@ -73,7 +73,7 @@ export const columns: ColumnDef<FlashcardTopic>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex justify-end">
-          <Button variant="ghost" iconOnly asChild>
+          <Button variant="ghost" asChild>
             <Link
               href={`/subjects/${row.original.subject}/flashcards/${row.original.id}`}
             >

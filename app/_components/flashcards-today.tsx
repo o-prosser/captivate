@@ -1,24 +1,31 @@
-import { Subject } from "@prisma/client";
+import { flashcardStudySessionsTable } from "@/drizzle/schema";
 
-import { prisma } from "@/lib/prisma";
+import { and, db, desc, eq } from "@/lib/db";
+import { getValidSession } from "@/util/session";
 import { Callout } from "@/ui/callout";
 import { Text } from "@/ui/typography";
 
-const FlashcardsToday = async ({ subject }: { subject?: Subject }) => {
-  const flashcards = await prisma.flashcardStudySession.findMany({
-    where: {
-      subject,
-    },
-    orderBy: {
-      end: "desc",
-    },
-    take: 3,
-  });
+const FlashcardsToday = async ({ subject }: { subject?: string }) => {
+  const { user } = await getValidSession();
 
-  return flashcards.length > 0 ? (
-    flashcards.map((flashcard, key) => (
+  const sessions = await db
+    .select({ type: flashcardStudySessionsTable.type })
+    .from(flashcardStudySessionsTable)
+    .where(
+      subject
+        ? and(
+            eq(flashcardStudySessionsTable.subjectId, subject),
+            eq(flashcardStudySessionsTable.userId, user.id),
+          )
+        : eq(flashcardStudySessionsTable.userId, user.id),
+    )
+    .orderBy(desc(flashcardStudySessionsTable.end))
+    .limit(3);
+
+  return sessions.length > 0 ? (
+    sessions.map((session, key) => (
       <div key={key} className="mb-3">
-        <Text>{flashcard.type}</Text>
+        <Text>{session.type}</Text>
       </div>
     ))
   ) : (

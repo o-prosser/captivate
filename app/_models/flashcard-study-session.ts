@@ -1,32 +1,37 @@
-import { StudyType, Subject } from "@prisma/client";
+import {
+  flashcardStudySessionsTable,
+  type FlashcardStudySession,
+} from "@/drizzle/schema";
 
+import { db } from "@/lib/db";
 import { getValidSession } from "@/util/session";
-import { prisma } from "@/app/_lib/prisma";
 
-const getOrCreateSession = async ({
+export const selectOrCreateSession = async ({
   id,
   data,
 }: {
-  id?: string;
+  id?: FlashcardStudySession["id"];
   data: {
-    groupId?: string;
-    unit?: number;
-    subject?: Subject;
-    type: StudyType;
+    groupId?: FlashcardStudySession["groupId"];
+    unit?: FlashcardStudySession["unit"];
+    subject?: FlashcardStudySession["subjectId"];
+    type: FlashcardStudySession["type"];
   };
 }) => {
   if (id) {
     return {
-      session: await prisma.flashcardStudySession.findUnique({
-        where: {
-          id,
-        },
-        include: {
-          _count: {
-            select: { flashcardsStudies: true },
+      session: await db.query.flashcardStudySessionsTable.findFirst({
+        where: (fields, { eq }) => eq(fields.id, id),
+        with: {
+          flashcardStudies: {
+            columns: {
+              id: true,
+            },
           },
           group: {
-            include: { flashcards: true },
+            with: {
+              flashcards: true,
+            },
           },
         },
       }),
@@ -36,94 +41,78 @@ const getOrCreateSession = async ({
 
   const { user } = await getValidSession();
 
-  return {
-    session: await prisma.flashcardStudySession.create({
-      data: {
-        userId: user.id,
-        start: new Date(),
-        scope: data.groupId ? "Group" : data.unit ? "Unit" : "Subject",
-        ...data,
-      },
-      select: {
-        id: true,
-        scope: true,
-        unit: true,
-        subject: true,
-        _count: {
-          select: { flashcardsStudies: true },
-        },
-        group: {
-          include: { flashcards: true },
-        },
-      },
-    }),
+  const returning: {
+    session: {
+      id: FlashcardStudySession["id"];
+      scope: FlashcardStudySession["scope"];
+      unit: FlashcardStudySession["unit"];
+      subject: FlashcardStudySession["subjectId"];
+    };
+    created: boolean;
+  } = {
+    session: (
+      await db
+        .insert(flashcardStudySessionsTable)
+        .values({
+          userId: user.id,
+          start: new Date(),
+          scope: data.groupId ? "Group" : data.unit ? "Unit" : "Subject",
+          ...data,
+        })
+        .returning({
+          id: flashcardStudySessionsTable.id,
+          scope: flashcardStudySessionsTable.scope,
+          unit: flashcardStudySessionsTable.unit,
+          subject: flashcardStudySessionsTable.subjectId,
+        })
+    )[0],
     created: true,
   };
+
+  return returning;
 };
 
-const getSessionWithFlashcards = async (id: string) => {
-  return await prisma.flashcardStudySession.findUnique({
-    where: {
-      id,
-    },
-    select: {
+export const selectSessionWithFlashcards = async ({ id }: { id: string }) => {
+  return await db.query.flashcardStudySessionsTable.findFirst({
+    where: (fields, { eq }) => eq(fields.id, id),
+    columns: {
       id: true,
       scope: true,
-      group: {
-        include: { flashcards: true },
-      },
       unit: true,
-      subject: true,
-      flashcardsStudies: {
-        select: {
+      subjectId: true,
+    },
+    with: {
+      group: {
+        with: { flashcards: true },
+      },
+      flashcardStudies: {
+        columns: {
           id: true,
           flashcardId: true,
           score: true,
         },
-        orderBy: {
-          id: "asc",
-        },
+        orderBy: (fields, { asc }) => asc(fields.id),
       },
     },
   });
 };
 
-const getSessionSummary = async (id: string) => {
-  return await prisma.flashcardStudySession.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-      scope: true,
-      start: true,
-      end: true,
+export const selectSessionForSummary = async ({ id }: { id: string }) => {
+  return await db.query.flashcardStudySessionsTable.findFirst({
+    where: (fields, { eq }) => eq(fields.id, id),
+    with: {
       group: {
-        include: { flashcards: true },
+        with: { flashcards: true },
       },
-      subject: true,
-      unit: true,
-      flashcardsStudies: {
-        select: {
-          id: true,
-          score: true,
-          createdAt: true,
-          flashcard: {
-            select: {
-              front: true,
-              back: true,
-            },
-          },
-        },
-        orderBy: {
-          id: "asc",
-        },
+      flashcardStudies: {
+        with: { flashcard: true },
+        orderBy: (fields, { asc }) => asc(fields.id),
       },
     },
   });
 };
 
-const SCORES = [
+export const SCORES = [
   {
     emoji: "⏩",
     label: "Skipped",
@@ -151,7 +140,9 @@ const SCORES = [
   },
 ];
 
-const getScores = (session: { flashcardsStudies: { score: number }[] }) =>
+export const getScores = (session: {
+  flashcardsStudies: { score: number }[];
+}) =>
   SCORES.map(({ emoji, label, short }, key) => {
     const score = key + 1;
 
@@ -167,11 +158,3 @@ const getScores = (session: { flashcardsStudies: { score: number }[] }) =>
       short,
     };
   });
-
-export {
-  getOrCreateSession,
-  getSessionWithFlashcards,
-  getSessionSummary,
-  SCORES,
-  getScores,
-};

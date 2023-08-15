@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Subject } from "@prisma/client";
 import { ChevronDown } from "lucide-react";
 
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { Button } from "@/ui/button";
 import * as DropdownMenu from "@/ui/dropdown-menu";
 
@@ -10,7 +9,7 @@ const SelectPractise = async ({
   subject,
 }: {
   subject: {
-    enum: Subject;
+    id: string;
     units: {
       number: number;
       name: string;
@@ -18,28 +17,32 @@ const SelectPractise = async ({
     }[];
   };
 }) => {
-  const subjectFlashcard = await prisma.flashcard.findFirst({
-    where: {
-      group: {
-        subject: subject.enum,
+  const subjectFlashcard = await db.query.flashcardGroupsTable.findFirst({
+    where: (fields, { eq }) => eq(fields.subjectId, subject.id),
+    columns: { id: true },
+    with: {
+      flashcards: {
+        columns: { id: true },
+        limit: 1,
       },
     },
-    select: { id: true },
   });
 
   const unitFlashcards = await Promise.all(
     subject.units.map(async (unit) => {
-      const flashcard = await prisma.flashcard.findFirst({
-        where: {
-          group: {
-            unit: unit.number,
+      const flashcard = await db.query.flashcardGroupsTable.findFirst({
+        where: (fields, { eq }) => eq(fields.unit, unit.number),
+        columns: { id: true },
+        with: {
+          flashcards: {
+            columns: { id: true },
+            limit: 1,
           },
         },
-        select: { id: true },
       });
 
       return flashcard;
-    })
+    }),
   );
 
   return (
@@ -55,9 +58,10 @@ const SelectPractise = async ({
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
             <Link
-              href={`/subjects/${subject.enum.toLowerCase()}/flashcards/practise/${
-                subjectFlashcard?.id
-              }?scope=subject&subject=${subject.enum}&type=all`}
+              href={`/subjects/${subject.id.toLowerCase()}/flashcards/practise/${subjectFlashcard
+                ?.flashcards[0].id}?scope=subject&subject=${
+                subject.id
+              }&type=all`}
             >
               Subject
             </Link>
@@ -69,10 +73,10 @@ const SelectPractise = async ({
               disabled={!unitFlashcards[key]?.id}
             >
               <Link
-                href={`/subjects/${subject.enum.toLowerCase()}/flashcards/practise/${
-                  unitFlashcards[key]?.id
-                }?scope=unit&unit=${unit.number}&subject=${
-                  subject.enum
+                href={`/subjects/${subject.id.toLowerCase()}/flashcards/practise/${unitFlashcards[
+                  key
+                ]?.flashcards[0].id}?scope=unit&unit=${unit.number}&subject=${
+                  subject.id
                 }&type=all`}
               >
                 Unit {unit.number}
@@ -84,9 +88,10 @@ const SelectPractise = async ({
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
             <Link
-              href={`/subjects/${subject.enum.toLowerCase()}/flashcards/practise/${
-                subjectFlashcard?.id
-              }?scope=subject&subject=${subject.enum}&type=spaced`}
+              href={`/subjects/${subject.id.toLowerCase()}/flashcards/practise/${subjectFlashcard
+                ?.flashcards[0].id}?scope=subject&subject=${
+                subject.id
+              }&type=spaced`}
             >
               Subject
             </Link>
@@ -98,10 +103,10 @@ const SelectPractise = async ({
               disabled={!unitFlashcards[key]?.id}
             >
               <Link
-                href={`/subjects/${subject.enum.toLowerCase()}/flashcards/practise/${
-                  unitFlashcards[key]?.id
-                }?scope=unit&unit=${unit.number}&subject=${
-                  subject.enum
+                href={`/subjects/${subject.id.toLowerCase()}/flashcards/practise/${unitFlashcards[
+                  key
+                ]?.flashcards[0].id}?scope=unit&unit=${unit.number}&subject=${
+                  subject.id
                 }&type=spaced`}
               >
                 Unit {unit.number}

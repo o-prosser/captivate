@@ -25,7 +25,6 @@ export const metadata = {
 const CalendarLayout = async ({
   params,
   children,
-  modal,
 }: {
   params: { view: string; date: string };
   children: React.ReactNode;
@@ -114,7 +113,6 @@ const CalendarLayout = async ({
       <Tabs active="calendar" />
 
       {children}
-      {modal}
     </div>
   );
 };
