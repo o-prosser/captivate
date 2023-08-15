@@ -9,6 +9,8 @@ import Tabs, { Tab } from "@/ui/tabs";
 import { Heading, Text } from "@/ui/typography";
 import { TasksToday } from "@/components/tasks-today";
 
+import Weather, { WeatherIcon } from "./_components/weather";
+
 function getRandom(min: number, max: number) {
   const floatRandom = Math.random();
 
@@ -60,13 +62,13 @@ const DashboardLayout = async ({
             </Button>
           </Card.Header>
 
-          <div className="px-6 pb-3">
+          <div className="px-4 pb-3">
             <div className="bg-muted rounded-2xl py-1.5 flex items-center justify-center text-sm font-medium">
               {format(new Date(), "dd MMM, yyyy")}
             </div>
           </div>
 
-          <Tabs className="px-4">
+          <Tabs className="px-2">
             <Tab segment="calendar" active="page$">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/dashboard/">
@@ -99,16 +101,34 @@ const DashboardLayout = async ({
           <Card.Content>{tasks}</Card.Content>
         </Card.Root>
 
+        {/* Weather */}
+        <div>
+          <Card.Root>
+            <Card.Header className="flex-row justify-between space-y-0 pb-3">
+              <Card.Title className="flex items-center h-9">
+                <WeatherIcon className="text-muted-foreground h-5 w-5 mr-2" />
+                Weather
+              </Card.Title>
+            </Card.Header>
+            <Card.Content>
+              <p className="bg-muted rounded-2xl py-3 px-4 text-sm">
+                <Weather />
+              </p>
+            </Card.Content>
+          </Card.Root>
+        </div>
+
         {/* Flashcards */}
         <Card.Root>
           <Card.Header className="flex-row justify-between space-y-0 pb-3">
-            <Card.Title className="flex items-center">
+            <Card.Title className="flex items-center h-9">
               <Inbox className="text-muted-foreground h-5 w-5 mr-2" />
               Flashcards
             </Card.Title>
           </Card.Header>
           <Card.Content>{flashcards}</Card.Content>
         </Card.Root>
+
         {children}
       </div>
     </>

@@ -1,16 +1,15 @@
+import React, { cache } from "react";
+import { BanIcon } from "lucide-react";
+
 import { env } from "@/env.mjs";
-import weatherTypes from "@/data/weather-types.json";
+import weatherTypes from "@/data/weather-types";
 import * as Card from "@/ui/card";
 
-const getLocationWeather = async () => {
+const getLocationWeather = cache(async () => {
   try {
-    // const result = await fetch(
-    //   `https://api.openweathermap.org/data/2.5/weather?lat=51.512446752416146&lon=-3.145784441929501&appid=${env.WEATHER_API_KEY}&units=metric`,
-    // );
-
     const result = await fetch(
       `http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/350758?res=daily&key=${env.WEATHER_API_KEY}`,
-      { next: { revalidate: 60 * 60 * 6 } }
+      { next: { revalidate: 60 * 60 * 24 } },
     );
 
     if (result.status === 200) {
@@ -21,7 +20,7 @@ const getLocationWeather = async () => {
   } catch (error) {
     return { success: false };
   }
-};
+});
 
 const Weather = async () => {
   const weather = await getLocationWeather();
@@ -35,12 +34,26 @@ const Weather = async () => {
 
   return `You can expect a 👆 high of ${
     weather.data.SiteRep.DV.Location.Period[0].Rep[0].Dm
-  }° and a👇 low of ${
+  }° and a 👇 low of ${
     weather.data.SiteRep.DV.Location.Period[0].Rep[1].Nm
   }° with ${
     // @ts-expect-error
-    weatherTypes[weather.data.SiteRep.DV.Location.Period[0].Rep[0].W]
+    weatherTypes[weather.data.SiteRep.DV.Location.Period[0].Rep[0].W].text
   } today.`;
+};
+
+export const WeatherIcon = async (
+  props: React.ComponentPropsWithoutRef<"svg">,
+) => {
+  const weather = await getLocationWeather();
+
+  if (!weather.success) return <BanIcon />;
+
+  const Icon =
+    // @ts-expect-error
+    weatherTypes[weather.data.SiteRep.DV.Location.Period[0].Rep[0].W].icon;
+
+  return <Icon {...props} />;
 };
 
 export default Weather;

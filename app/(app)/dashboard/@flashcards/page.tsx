@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { flashcardStudySessionsTable } from "@/drizzle/schema";
 import { format, sub } from "date-fns";
 import { ExternalLink } from "lucide-react";
 
-import { and, db, desc, eq, gte } from "@/lib/db";
+import { db, gte } from "@/lib/db";
 import { createVar } from "@/util/cn";
 import { getValidSession } from "@/util/session";
 import { getSubject } from "@/util/subjects";
@@ -11,8 +10,18 @@ import { Button } from "@/ui/button";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
+function sleep(milliseconds: number) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
 const Flashcards = async () => {
   const { user } = await getValidSession();
+
+  // sleep(20000);
 
   const sessions = await db.query.flashcardStudySessionsTable.findMany({
     where: (fields, { and, eq }) =>
