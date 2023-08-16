@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { getSubject } from "@/util/subjects";
 import { Heading } from "@/ui/typography";
+import { createView } from "@/models/view";
 
 import GetMarkdown from "./_components/get-markdown";
 
@@ -11,16 +12,20 @@ export const generateMetadata = ({ params }: { params: Params }) => ({
   title: `Notes – Unit ${params.unit}.${params.topic}`,
 });
 
-const NoteTopic = ({ params }: { params: Params }) => {
+const NoteTopic = async ({ params }: { params: Params }) => {
   const subject = getSubject(params.subject);
 
   const unit = subject.units.filter(
-    (unit) => unit.number === parseInt(params.unit)
+    (unit) => unit.number === parseInt(params.unit),
   )[0];
   if (!unit) notFound();
 
   const topic = unit.topics[parseInt(params.topic) - 1];
   if (!topic) notFound();
+
+  await createView({
+    url: `/notes/${params.subject}/notes/${params.unit}/${params.topic}`,
+  });
 
   return (
     <>

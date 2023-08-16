@@ -7,6 +7,7 @@ import { Button } from "@/ui/button";
 import { LogoIcon } from "@/ui/logo-icon";
 import { Heading, Text } from "@/ui/typography";
 import { DocumentCover } from "@/components/document-cover";
+import { createView } from "@/models/view";
 
 export const generateMetadata = ({
   params,
@@ -27,9 +28,13 @@ const Practical = async ({
 }) => {
   const { science: subject, practical } = getPractical(
     params.subject,
-    params.practical
+    params.practical,
   );
   if (!practical) notFound();
+
+  await createView({
+    url: `/subjects/${params.subject}/practicals/${params.practical}`,
+  });
 
   return (
     <>

@@ -98,7 +98,7 @@ const OldDashboard = async () => {
 };
 
 const Dashboard = () => {
-  return <>Hello</>;
+  return null;
 };
 
 export default Dashboard;

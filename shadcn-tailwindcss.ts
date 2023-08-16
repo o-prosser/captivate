@@ -2,7 +2,7 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
 const shadcnPlugin = plugin(
-  ({ addBase }) => {
+  ({ addBase, addUtilities }) => {
     addBase({
       ":root": {
         "--background": "0 0% 255%", // white
@@ -36,6 +36,12 @@ const shadcnPlugin = plugin(
         // "--chemistry": "92 60% 43%", // plum11
         // "--physics": "192 85% 31%", // cyan11
       },
+    });
+
+    addUtilities({
+      ".text-wrap": { "text-wrap": "wrap" },
+      ".text-nowrap": { "text-wrap": "nowrap" },
+      ".text-balance": { "text-wrap": "balance" },
     });
   },
   {

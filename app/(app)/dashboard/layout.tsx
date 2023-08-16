@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { format } from "date-fns";
-import { Calendar, CheckCircle2, FileText, Inbox } from "lucide-react";
+import { Calendar, CheckCircle2, Clock, FileText, Inbox } from "lucide-react";
 
 import { getValidSession } from "@/util/session";
 import { Button } from "@/ui/button";
@@ -33,11 +33,13 @@ const DashboardLayout = async ({
   calendar,
   tasks,
   flashcards,
+  views,
 }: {
   children: React.ReactNode;
   calendar: React.ReactNode;
   tasks: React.ReactNode;
   flashcards: React.ReactNode;
+  views: React.ReactNode;
 }) => {
   const { user } = await getValidSession();
 
@@ -101,8 +103,8 @@ const DashboardLayout = async ({
           <Card.Content>{tasks}</Card.Content>
         </Card.Root>
 
-        {/* Weather */}
-        <div>
+        <div className="xl:row-span-2 space-y-6">
+          {/* Weather */}
           <Card.Root>
             <Card.Header className="flex-row justify-between space-y-0 pb-3">
               <Card.Title className="flex items-center h-9">
@@ -115,6 +117,17 @@ const DashboardLayout = async ({
                 <Weather />
               </p>
             </Card.Content>
+          </Card.Root>
+
+          {/* Views */}
+          <Card.Root>
+            <Card.Header className="flex-row justify-between space-y-0 pb-3">
+              <Card.Title className="flex items-center h-9">
+                <Clock className="text-muted-foreground h-5 w-5 mr-2" />
+                Recent pages
+              </Card.Title>
+            </Card.Header>
+            <Card.Content>{views}</Card.Content>
           </Card.Root>
         </div>
 
