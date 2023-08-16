@@ -1,10 +1,11 @@
 import {
   Flashcard,
   FlashcardGroup,
+  flashcardsTable,
   FlashcardStudySession,
 } from "@/drizzle/schema";
 
-import { db } from "@/lib/db";
+import { db, inArray } from "@/lib/db";
 import { getSubject } from "@/util/subjects";
 
 export const selectFlashcard = async ({ id }: { id: Flashcard["id"] }) => {
@@ -64,14 +65,19 @@ export const getScope = async (session: {
           // @ts-expect-error
           eq(fields.unit, session.unit),
         ),
-      with: {
-        flashcards: true,
+      columns: {
+        id: true,
       },
     });
+    const flashcardGroupIds = flashcardGroups.map(({ id }) => id);
+    const flashcards = await db
+      .select()
+      .from(flashcardsTable)
+      .where(inArray(flashcardsTable.groupId, flashcardGroupIds));
 
     return {
       title: subject?.units[session.unit - 1].name,
-      flashcards: flashcardGroups,
+      flashcards,
     };
   }
   if (session.scope === "Subject") {
@@ -80,12 +86,18 @@ export const getScope = async (session: {
 
     const flashcardGroups = await db.query.flashcardGroupsTable.findMany({
       // @ts-expect-error
-      where: (fields, { eq }) => eq(fields.subjectId, session.subject),
-      with: {
-        flashcards: true,
+      where: (fields, { and, eq }) => eq(fields.subjectId, session.subject),
+      columns: {
+        id: true,
       },
     });
-    return { title: session.subject, flashcards: flashcardGroups };
+    const flashcardGroupIds = flashcardGroups.map(({ id }) => id);
+    const flashcards = await db
+      .select()
+      .from(flashcardsTable)
+      .where(inArray(flashcardsTable.groupId, flashcardGroupIds));
+
+    return { title: session.subject, flashcards };
   }
 
   return undefined;
