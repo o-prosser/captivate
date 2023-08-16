@@ -18,7 +18,7 @@ const WeatherError = () => {
         <Error.Icon />
         <Error.Title>Error loading weather</Error.Title>
         <Error.Text>
-          We couldn't load the weather forecast. It will probably rain...
+          We couldn&apos;t load the weather forecast. It will probably rain...
         </Error.Text>
       </Error>
     </Card.Content>
