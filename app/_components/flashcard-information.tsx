@@ -1,6 +1,6 @@
 "use client";
 
-import { Flashcard, FlashcardStudy } from "@prisma/client";
+import { Flashcard, FlashcardStudy } from "@/drizzle/schema";
 import format from "date-fns/format";
 import { Info } from "lucide-react";
 

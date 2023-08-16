@@ -1,21 +1,17 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { tasksTable } from "@/drizzle/schema";
 
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 
 export const quickCreate = async (title: string) => {
   const { user } = await getValidSession();
 
-  const task = await prisma.task.create({
-    data: {
-      title,
-      userId: user.id,
-    },
-    select: {
-      id: true,
-    },
+  const task = await db.insert(tasksTable).values({
+    title,
+    userId: user.id,
   });
 
   revalidatePath("/tasks");
