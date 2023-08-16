@@ -2,12 +2,9 @@ import isWeekend from "date-fns/isWeekend";
 import { FileText } from "lucide-react";
 
 import timetable from "@/data/timetable.json";
-import { cn, createVar } from "@/util/cn";
-import { parseSubjectName } from "@/util/subjects";
+import { createVar } from "@/util/cn";
 import { lessonHasPassed } from "@/util/timetable";
 import { getCurrentWeek, getNextWeek } from "@/util/weeks";
-import * as Card from "@/ui/card";
-import { Checkbox } from "@/ui/checkbox";
 import { Pill } from "@/ui/pill";
 import { Placeholder } from "@/ui/placeholder";
 import { Text } from "@/ui/typography";
@@ -138,7 +135,7 @@ const TimetableToday = () => {
         <Placeholder.Title>Enjoy your half term!</Placeholder.Title>
         <Placeholder.Text>
           You&apos;ve got no lessons today. Check your calendar and tasks if
-          you're bored.
+          you&apos;re bored.
         </Placeholder.Text>
       </Placeholder>
     </div>
