@@ -25,10 +25,11 @@ export const metadata = {
 const CalendarLayout = async ({
   params,
   children,
+  modal,
 }: {
   params: { view: string; date: string };
   children: React.ReactNode;
-  modal?: React.ReactNode;
+  modal: React.ReactNode;
 }) => {
   if (params.view !== "month" && params.view !== "week") notFound();
 
@@ -113,6 +114,7 @@ const CalendarLayout = async ({
       <Tabs active="calendar" />
 
       {children}
+      {modal}
     </div>
   );
 };
