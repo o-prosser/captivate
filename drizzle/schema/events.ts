@@ -28,7 +28,7 @@ export const eventsTable = pgTable("Event", {
   date: date("date", { mode: "date" }).notNull(),
   title: text("title").notNull(),
   subjectId: text("subjectId")
-    .references(() => subjectsTable.id, { onDelete: "set null" })
+    // .references(() => subjectsTable.id, { onDelete: "set null" })
     .default(sql`NULL`),
   category: eventCategory("category").notNull().default("Other"),
   description: text("description"),

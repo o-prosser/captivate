@@ -12,12 +12,17 @@ export const metadata = {
 
 const MonthPage = async ({
   params,
+  searchParams,
 }: {
   params: { date: string; view: string };
+  searchParams: Record<string, string>;
 }) => {
-  const events = await selectEvents();
-
   const activeDate = parse(params.date, "yyyy-MM-dd", new Date());
+
+  const events = await selectEvents({
+    search: searchParams.search,
+    activeDate,
+  });
 
   if (params.view === "month")
     return (

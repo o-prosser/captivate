@@ -9,6 +9,7 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Plus,
 } from "lucide-react";
 
 import { displayCurrentWeek } from "@/util/weeks";
@@ -17,6 +18,7 @@ import * as DropdownMenu from "@/ui/dropdown-menu";
 import { Heading, Text } from "@/ui/typography";
 
 import Tabs from "../../_components/tabs";
+import Search from "./_components/search";
 
 export const metadata = {
   title: "Calendar",
@@ -107,6 +109,17 @@ const CalendarLayout = async ({
             )}/${params.view}`}
           >
             <ChevronRight />
+          </Link>
+        </Button>
+
+        <div className="flex-1" />
+
+        <Search />
+
+        <Button asChild>
+          <Link href={`/calendar/${params.date}/${params.view}/events/create`}>
+            <Plus />
+            Add event
           </Link>
         </Button>
       </div>
