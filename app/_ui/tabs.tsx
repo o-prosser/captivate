@@ -17,10 +17,10 @@ export const Tab = ({
   segment?: string;
   children: React.ReactNode;
 }) => {
+  const selectedLayoutSegment = useSelectedLayoutSegment(segment);
+
   const isActive =
-    typeof active === "boolean"
-      ? active
-      : useSelectedLayoutSegment(segment) === active;
+    typeof active === "boolean" ? active : selectedLayoutSegment === active;
 
   return (
     <Slot
