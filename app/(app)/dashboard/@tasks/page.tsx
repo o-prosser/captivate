@@ -8,7 +8,7 @@ import { Callout } from "@/ui/callout";
 import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
-const Tasks = async ({ subject }: { subject?: string }) => {
+const Tasks = async () => {
   const { user } = await getValidSession();
 
   const tasks = await db
@@ -23,7 +23,6 @@ const Tasks = async ({ subject }: { subject?: string }) => {
     .from(tasksTable)
     .where(
       and(
-        subject ? eq(tasksTable.subjectId, subject) : undefined,
         eq(tasksTable.completed, false),
         eq(tasksTable.userId, user.id),
         or(

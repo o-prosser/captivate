@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Subject } from "@prisma/client";
 import format from "date-fns/format";
 import { Calendar as CalendarIcon } from "lucide-react";
 import * as z from "zod";
@@ -23,7 +22,7 @@ const schema = z.object({
   dueDate: z.date().nullable(),
   title: z.string().min(3),
   description: z.string().nullable(),
-  subject: z.nativeEnum(Subject).nullable(),
+  subject: z.string().nullable(),
 });
 
 const AddTask = ({
@@ -134,7 +133,7 @@ const AddTask = ({
                         variant={"outline"}
                         className={cn(
                           "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
+                          !field.value && "text-muted-foreground",
                         )}
                       >
                         {field.value ? (
@@ -172,7 +171,7 @@ const AddTask = ({
                         variant={"outline"}
                         className={cn(
                           "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
+                          !field.value && "text-muted-foreground",
                         )}
                       >
                         {field.value ? (
