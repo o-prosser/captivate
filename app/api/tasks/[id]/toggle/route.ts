@@ -1,8 +1,9 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { tasksTable } from "@/drizzle/schema";
 import * as z from "zod";
 
-import { prisma } from "@/lib/prisma";
+import { db, eq } from "@/lib/db";
 
 const contextSchema = z.object({
   params: z.object({
@@ -14,16 +15,16 @@ export const PATCH = async (req: Request, context: unknown) => {
   try {
     const { params } = contextSchema.parse(context);
 
-    const { completed } = await prisma.task.findUniqueOrThrow({
-      where: params,
-    });
+    const task = await db
+      .select({ completed: tasksTable.completed })
+      .from(tasksTable)
+      .where(eq(tasksTable.id, params.id));
+    if (!task[0]) throw new Error("Not found");
 
-    await prisma.task.update({
-      where: params,
-      data: {
-        completed: !completed,
-      },
-    });
+    await db
+      .update(tasksTable)
+      .set({ completed: !task[0].completed })
+      .where(eq(tasksTable.id, params.id));
 
     revalidatePath("/tasks");
     return NextResponse.json({ task: params });

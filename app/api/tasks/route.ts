@@ -1,9 +1,9 @@
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
-import { EventCategory, Subject } from "@prisma/client";
+import { tasksTable } from "@/drizzle/schema";
 import * as z from "zod";
 
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db";
 
 const schema = z.object({
   userId: z.string(),
@@ -11,7 +11,7 @@ const schema = z.object({
   dueDate: z.string(),
   title: z.string().min(3),
   description: z.string().nullable(),
-  subject: z.nativeEnum(Subject).nullable(),
+  subject: z.string().nullable(),
 });
 
 export const POST = async (req: Request) => {
@@ -19,23 +19,21 @@ export const POST = async (req: Request) => {
     const json = await req.json();
     const body = schema.parse(json);
 
-    const task = await prisma.task.create({
-      data: {
+    const task = await db
+      .insert(tasksTable)
+      .values({
         title: body.title,
         description: body.description,
         doDate: new Date(body.doDate),
         dueDate: new Date(body.dueDate),
-        subject: body.subject as Subject,
+        subjectId: body.subject,
         userId: body.userId,
-      },
-      select: {
-        id: true,
-      },
-    });
+      })
+      .returning({ id: tasksTable.id });
 
     revalidatePath("/tasks");
-    if (!task.id) return new Response("Unable to create", { status: 500 });
-    return NextResponse.json({ task });
+    if (!task[0].id) return new Response("Unable to create", { status: 500 });
+    return NextResponse.json({ task: task[0] });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(error.issues, { status: 422 });
