@@ -10,7 +10,7 @@ import { EventsToday } from "@/components/events-today";
 import { TasksToday } from "@/components/tasks-today";
 import { TimetableToday } from "@/components/timetable-today";
 
-import Weather from "./weather";
+import Weather from "../@weather/page";
 
 const Sidebar = () => {
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { format, sub } from "date-fns";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Inbox } from "lucide-react";
 
 import { db, gte } from "@/lib/db";
 import { createVar } from "@/util/cn";
@@ -8,7 +8,10 @@ import { getValidSession } from "@/util/session";
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Pill } from "@/ui/pill";
+import { Placeholder } from "@/ui/placeholder";
 import { Text } from "@/ui/typography";
+
+import { FlashcardPlaceholder } from "./placeholder";
 
 function sleep(milliseconds: number) {
   const date = Date.now();
@@ -109,7 +112,18 @@ const Flashcards = async () => {
           })}
         </div>
       ) : (
-        <div>No recent flashcard sessions. Get studying</div>
+        <div className="relative">
+          <FlashcardPlaceholder />
+          <FlashcardPlaceholder />
+          <Placeholder>
+            <Inbox />
+            <Placeholder.Title>No recent flashcard sessions</Placeholder.Title>
+            <Placeholder.Text>
+              Come on... it&apos;s time to start practising those flashcards.
+              They won&apos;t learn themselves.
+            </Placeholder.Text>
+          </Placeholder>
+        </div>
       )}
     </div>
   );

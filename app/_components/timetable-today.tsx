@@ -1,4 +1,5 @@
 import isWeekend from "date-fns/isWeekend";
+import { FileText } from "lucide-react";
 
 import timetable from "@/data/timetable.json";
 import { cn, createVar } from "@/util/cn";
@@ -8,7 +9,10 @@ import { getCurrentWeek, getNextWeek } from "@/util/weeks";
 import * as Card from "@/ui/card";
 import { Checkbox } from "@/ui/checkbox";
 import { Pill } from "@/ui/pill";
+import { Placeholder } from "@/ui/placeholder";
 import { Text } from "@/ui/typography";
+
+import { TimetablePlaceholder } from "../(app)/dashboard/@calendar/placeholder";
 
 const lessonTimes = [
   {
@@ -125,7 +129,19 @@ const TimetableToday = () => {
       ))}
     </div>
   ) : (
-    <>It&apos;s half term!</>
+    <div className="relative">
+      <TimetablePlaceholder />
+      <TimetablePlaceholder />
+      <TimetablePlaceholder />
+      <Placeholder>
+        <FileText />
+        <Placeholder.Title>Enjoy your half term!</Placeholder.Title>
+        <Placeholder.Text>
+          You&apos;ve got no lessons today. Check your calendar and tasks if
+          you're bored.
+        </Placeholder.Text>
+      </Placeholder>
+    </div>
   );
 };
 

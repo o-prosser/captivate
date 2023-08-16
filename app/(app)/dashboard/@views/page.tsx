@@ -7,6 +7,7 @@ import { getPractical } from "@/util/pracitcals";
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Pill } from "@/ui/pill";
+import { Placeholder } from "@/ui/placeholder";
 import { Text } from "@/ui/typography";
 import { selectViews } from "@/models/view";
 
@@ -30,8 +31,6 @@ const Views = async () => {
 
             const { practical } = getPractical(subject, practicalCode);
             const subjectData = getSubject(subject);
-
-            console.log(segments);
 
             return (
               <div key={key} className="bg-muted rounded-2xl py-3 px-4">
@@ -84,16 +83,15 @@ const Views = async () => {
         <div className="relative">
           <ViewPlaceholder />
           <ViewPlaceholder />
-          <div className="absolute p-4 bg-background/50 inset-0 flex flex-col items-center justify-center text-muted-foreground">
-            <Clock className="h-6 w-6" />
-            <h4 className="font-semibold brightness-50 mt-3 mb-1">
-              No recent pages
-            </h4>
-            <p className="text-sm brightness-75 text-center text-balance">
+          <ViewPlaceholder />
+          <Placeholder>
+            <Clock />
+            <Placeholder.Title>No recent pages</Placeholder.Title>
+            <Placeholder.Text>
               When you decide to become a good student, your recent notes will
               appear here.
-            </p>
-          </div>
+            </Placeholder.Text>
+          </Placeholder>
         </div>
       )}
     </div>

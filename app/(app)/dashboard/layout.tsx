@@ -7,9 +7,6 @@ import { Button } from "@/ui/button";
 import * as Card from "@/ui/card";
 import Tabs, { Tab } from "@/ui/tabs";
 import { Heading, Text } from "@/ui/typography";
-import { TasksToday } from "@/components/tasks-today";
-
-import Weather, { WeatherIcon } from "./_components/weather";
 
 function getRandom(min: number, max: number) {
   const floatRandom = Math.random();
@@ -34,12 +31,14 @@ const DashboardLayout = async ({
   tasks,
   flashcards,
   views,
+  weather,
 }: {
   children: React.ReactNode;
   calendar: React.ReactNode;
   tasks: React.ReactNode;
   flashcards: React.ReactNode;
   views: React.ReactNode;
+  weather: React.ReactNode;
 }) => {
   const { user } = await getValidSession();
 
@@ -105,19 +104,7 @@ const DashboardLayout = async ({
 
         <div className="xl:row-span-2 space-y-6">
           {/* Weather */}
-          <Card.Root>
-            <Card.Header className="flex-row justify-between space-y-0 pb-3">
-              <Card.Title className="flex items-center h-9">
-                <WeatherIcon className="text-muted-foreground h-5 w-5 mr-2" />
-                Weather
-              </Card.Title>
-            </Card.Header>
-            <Card.Content>
-              <p className="bg-muted rounded-2xl py-3 px-4 text-sm">
-                <Weather />
-              </p>
-            </Card.Content>
-          </Card.Root>
+          {weather}
 
           {/* Views */}
           <Card.Root>

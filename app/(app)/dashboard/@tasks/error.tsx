@@ -1,20 +1,18 @@
 "use client";
 
-import { AlertCircle } from "lucide-react";
+import { Error } from "@/ui/error";
 
-const Error = () => {
+const ErrorPage = () => {
   return (
-    <div className="bg-destructive/20 rounded-2xl py-4 px-4 text-destructive">
-      <AlertCircle className="h-6 w-6" />
-      <h4 className="font-semibold brightness-50 mt-3 mb-1">
-        Error loading tasks
-      </h4>
-      <p className="text-sm brightness-75">
+    <Error>
+      <Error.Icon />
+      <Error.Title>Error loading tasks</Error.Title>
+      <Error.Text>
         There was an error loading your tasks. You can try to load them again by
         refreshing the page.
-      </p>
-    </div>
+      </Error.Text>
+    </Error>
   );
 };
 
-export default Error;
+export default ErrorPage;

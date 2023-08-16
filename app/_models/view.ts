@@ -9,7 +9,7 @@ export const selectViews = async () => {
   const views = await db
     .selectDistinctOn([viewsTable.url])
     .from(viewsTable)
-    .limit(4)
+    .limit(3)
     .where(eq(viewsTable.userId, user.id));
 
   return views;

@@ -6,10 +6,10 @@ const ErrorPage = () => {
   return (
     <Error>
       <Error.Icon />
-      <Error.Title>Error loading flashcards</Error.Title>
+      <Error.Title>Error loading timetable</Error.Title>
       <Error.Text>
-        There was an error loading your recent flashcard sessions. You can try
-        to load them again by refreshing the page.
+        There was an error loading your recent timetable. You can try to load
+        them again by refreshing the page.
       </Error.Text>
     </Error>
   );
