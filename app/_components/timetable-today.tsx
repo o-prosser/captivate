@@ -2,12 +2,11 @@ import isWeekend from "date-fns/isWeekend";
 import { FileText } from "lucide-react";
 
 import timetable from "@/data/timetable.json";
-import { createVar } from "@/util/cn";
 import { lessonHasPassed } from "@/util/timetable";
 import { getCurrentWeek, getNextWeek } from "@/util/weeks";
 import { Pill } from "@/ui/pill";
 import { Placeholder } from "@/ui/placeholder";
-import { Text } from "@/ui/typography";
+import { SubjectCard } from "@/ui/subject-card";
 
 import { TimetablePlaceholder } from "../(app)/dashboard/@calendar/placeholder";
 
@@ -53,34 +52,31 @@ const Lesson = ({
       );
 
   return (
-    <div
-      style={createVar({ "--subject": `var(--${lesson.subject})` })}
-      className="bg-gradient-to-b from-subject/30 to-subject/10 rounded-2xl py-3 px-4"
-    >
-      <Text className="font-semibold text-subject capitalize brightness-50">
-        {lesson.subject}
-      </Text>
+    <SubjectCard subject={lesson.subject}>
+      <SubjectCard.Header>
+        <SubjectCard.Title>{lesson.subject}</SubjectCard.Title>
 
-      <p className="text-subject text-sm brightness-75">
-        {lessonTimes[lesson.lesson[0] - 1].start} &ndash;{" "}
-        {
-          lessonTimes[
-            lesson.lesson.length === 2
-              ? lesson.lesson[1] - 1
-              : lesson.lesson[0] - 1
-          ].end
-        }
-      </p>
+        <SubjectCard.Description>
+          {lessonTimes[lesson.lesson[0] - 1].start} &ndash;{" "}
+          {
+            lessonTimes[
+              lesson.lesson.length === 2
+                ? lesson.lesson[1] - 1
+                : lesson.lesson[0] - 1
+            ].end
+          }
+        </SubjectCard.Description>
+      </SubjectCard.Header>
 
-      <div className="flex items-end justify-between mt-2">
-        <div className="text-subject text-sm brightness-50">
+      <SubjectCard.Footer>
+        <SubjectCard.Caption className="text-subject text-sm brightness-50">
           {lesson.teacher} &bull; {lesson.room}
-        </div>
-        <Pill outline="subject" color={null}>
+        </SubjectCard.Caption>
+        <Pill outline="subject" color={null} className="!m-0">
           Lesson {lesson.lesson.join(" & ")}
         </Pill>
-      </div>
-    </div>
+      </SubjectCard.Footer>
+    </SubjectCard>
   );
 };
 

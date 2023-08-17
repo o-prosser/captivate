@@ -2,7 +2,10 @@ import clsx from "clsx";
 import { AlertCircle } from "lucide-react";
 
 const Title = ({ className, ...props }: React.ComponentProps<"h4">) => (
-  <h4 className={clsx("font-semibold brightness-50 mt-3 mb-1")} {...props} />
+  <h4
+    className={clsx("font-semibold brightness-50 dark:brightness-25 mt-3 mb-1")}
+    {...props}
+  />
 );
 
 const Icon = () => <AlertCircle className="h-6 w-6" />;

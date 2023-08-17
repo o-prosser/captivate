@@ -8,7 +8,7 @@ import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Pill } from "@/ui/pill";
 import { Placeholder } from "@/ui/placeholder";
-import { Text } from "@/ui/typography";
+import { SubjectCard } from "@/ui/subject-card";
 import { selectViews } from "@/models/view";
 
 import { ViewPlaceholder } from "./placeholder";
@@ -33,49 +33,47 @@ const Views = async () => {
             const subjectData = getSubject(subject);
 
             return (
-              <div key={key} className="bg-muted rounded-2xl py-3 px-4">
-                <div className="flex justify-between items-start space-x-2">
+              <SubjectCard key={key} subject={null}>
+                <SubjectCard.Header>
                   <div>
-                    <Text className="font-semibold capitalize brightness-50 leading-6">
+                    <SubjectCard.Title>
                       {type === "notes"
                         ? subjectData?.units[parseInt(noteUnit) - 1].topics[
                             parseInt(noteTopic) - 1
                           ]
                         : practical?.name}
-                    </Text>
+                    </SubjectCard.Title>
 
-                    <p className="text-sm text-muted-foreground">
+                    <SubjectCard.Description>
                       {format(view.createdAt, "dd MMM, yyyy, HH:mm")}
-                    </p>
+                    </SubjectCard.Description>
                   </div>
-                  <Button
-                    className="-mr-1.5 -mt-1.5"
-                    size="icon"
-                    variant="ghost"
-                    asChild
-                  >
-                    <Link href={view.url}>
-                      <ExternalLink />
-                    </Link>
-                  </Button>
-                </div>
+                  <SubjectCard.Action>
+                    <Button size="icon" variant="ghost" asChild>
+                      <Link href={view.url}>
+                        <ExternalLink />
+                      </Link>
+                    </Button>
+                  </SubjectCard.Action>
+                </SubjectCard.Header>
 
-                <div className="flex items-end justify-between mt-2">
-                  <div className="text-sm brightness-50 text-muted-foreground">
+                <SubjectCard.Footer>
+                  <SubjectCard.Caption>
                     Unit{" "}
                     {type === "notes"
                       ? noteUnit + "." + noteTopic
                       : practical?.reference}
-                  </div>
+                  </SubjectCard.Caption>
                   <Pill
+                    className="!m-0"
                     style={createVar({ "--subject": `var(--${segments[2]})` })}
                     outline="subject"
                     color={null}
                   >
                     {segments[2]}
                   </Pill>
-                </div>
-              </div>
+                </SubjectCard.Footer>
+              </SubjectCard>
             );
           })}
         </div>

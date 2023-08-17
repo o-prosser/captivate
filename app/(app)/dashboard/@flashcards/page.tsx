@@ -3,28 +3,17 @@ import { format, sub } from "date-fns";
 import { ExternalLink, Inbox } from "lucide-react";
 
 import { db, gte } from "@/lib/db";
-import { createVar } from "@/util/cn";
 import { getValidSession } from "@/util/session";
 import { getSubject } from "@/util/subjects";
 import { Button } from "@/ui/button";
 import { Pill } from "@/ui/pill";
 import { Placeholder } from "@/ui/placeholder";
-import { Text } from "@/ui/typography";
+import { SubjectCard } from "@/ui/subject-card";
 
 import { FlashcardPlaceholder } from "./placeholder";
 
-function sleep(milliseconds: number) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-
 const Flashcards = async () => {
   const { user } = await getValidSession();
-
-  // sleep(20000);
 
   const sessions = await db.query.flashcardStudySessionsTable.findMany({
     where: (fields, { and, eq }) =>
@@ -56,16 +45,10 @@ const Flashcards = async () => {
             const subject = getSubject(subjectId);
 
             return (
-              <div
-                key={key}
-                style={createVar({
-                  "--subject": `var(--${subjectId})`,
-                })}
-                className="bg-gradient-to-b from-subject/30 to-subject/10 rounded-2xl py-3 px-4"
-              >
-                <div className="flex justify-between items-start">
+              <SubjectCard key={key} subject={subjectId}>
+                <SubjectCard.Header>
                   <div>
-                    <Text className="font-semibold text-subject capitalize brightness-50">
+                    <SubjectCard.Title>
                       {session.scope === "Group" && session.group
                         ? subject.units[session.group.unit - 1].topics[
                             session.group.topic - 1
@@ -75,39 +58,36 @@ const Flashcards = async () => {
                         : session.scope === "Unit" && session.unit
                         ? subject.units[session.unit - 1].name
                         : "Flashcard Practise"}
-                    </Text>
-                    <p className="text-subject text-sm brightness-75">
+                    </SubjectCard.Title>
+                    <SubjectCard.Description>
                       {format(session.end, "dd MMM, yyyy, HH:mm")}
-                    </p>
+                    </SubjectCard.Description>
                   </div>
-                  <Button
-                    className="-mr-1.5 -mt-1.5 hover:bg-subject/20 [&.group:hover>svg]:text-subject"
-                    size="icon"
-                    variant="ghost"
-                    asChild
-                  >
-                    <Link
-                      href={`/subjects/${subjectId}/flashcards/summary/${session.id}`}
-                    >
-                      <ExternalLink />
-                    </Link>
-                  </Button>
-                </div>
+                  <SubjectCard.Action>
+                    <Button size="icon" variant="ghost" asChild>
+                      <Link
+                        href={`/subjects/${subjectId}/flashcards/summary/${session.id}`}
+                      >
+                        <ExternalLink />
+                      </Link>
+                    </Button>
+                  </SubjectCard.Action>
+                </SubjectCard.Header>
 
-                <div className="flex items-end justify-between mt-2">
-                  <div className="text-subject text-sm brightness-50 capitalize">
+                <SubjectCard.Footer>
+                  <SubjectCard.Caption className="capitalize">
                     {subjectId} &bull;{" "}
                     {session.scope !== "Subject"
                       ? `Unit ${session.unit || session.group?.unit}${
                           session.group ? `.${session.group.topic}` : ""
                         }`
                       : ""}
-                  </div>
-                  <Pill outline="subject" color={null}>
+                  </SubjectCard.Caption>
+                  <Pill outline="subject" className="!m-0" color={null}>
                     {session.flashcardStudies.length} cards
                   </Pill>
-                </div>
-              </div>
+                </SubjectCard.Footer>
+              </SubjectCard>
             );
           })}
         </div>

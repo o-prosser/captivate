@@ -12,7 +12,10 @@ const Placeholder = ({ className, ...props }: React.ComponentProps<"div">) => (
 
 const Title = ({ className, ...props }: React.ComponentProps<"h4">) => (
   <h4
-    className={clsx("font-semibold brightness-50 mt-3 mb-1", className)}
+    className={clsx(
+      "font-semibold brightness-50 dark:brightness-100 mt-3 mb-1",
+      className,
+    )}
     {...props}
   />
 );

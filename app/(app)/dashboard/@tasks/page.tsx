@@ -8,6 +8,7 @@ import { getValidSession } from "@/util/session";
 import { Callout } from "@/ui/callout";
 import { Pill } from "@/ui/pill";
 import { Placeholder } from "@/ui/placeholder";
+import { SubjectCard } from "@/ui/subject-card";
 import { Text } from "@/ui/typography";
 
 import { TaskPlaceholder } from "./placeholder";
@@ -41,17 +42,16 @@ const Tasks = async () => {
     <div className="space-y-2">
       {tasks.length > 0 ? (
         tasks.map((task, key) => (
-          <div
-            key={key}
-            style={createVar({
-              "--subject": `var(--${task.subject || "muted"})`,
-            })}
-            className="bg-gradient-to-b from-subject/30 to-subject/10 rounded-2xl py-3 px-4"
-          >
-            <div className="flex items-start justify-between">
-              <Text className="font-semibold leading-6 text-subject capitalize brightness-50">
-                {task.title}
-              </Text>
+          <SubjectCard key={key} subject={task.subject} design="compact">
+            <SubjectCard.Header>
+              <div>
+                <SubjectCard.Title>{task.title}</SubjectCard.Title>
+                <SubjectCard.Description>
+                  {task.dueDate && isToday(task.dueDate)
+                    ? "Due today"
+                    : "Do today"}
+                </SubjectCard.Description>
+              </div>
               {task.subject ? (
                 <Pill className="!m-0" outline="subject" color={null}>
                   {task.subject}
@@ -59,11 +59,8 @@ const Tasks = async () => {
               ) : (
                 ""
               )}
-            </div>
-            <div className="text-subject text-sm brightness-50">
-              {task.dueDate && isToday(task.dueDate) ? "Due today" : "Do today"}
-            </div>
-          </div>
+            </SubjectCard.Header>
+          </SubjectCard>
         ))
       ) : (
         <div className="relative">

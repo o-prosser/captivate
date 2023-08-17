@@ -1,11 +1,10 @@
 import { format, isToday, isTomorrow } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 
-import { createVar } from "@/util/cn";
 import { isAllDay } from "@/util/time";
 import { Pill } from "@/ui/pill";
 import { Placeholder } from "@/ui/placeholder";
-import { Text } from "@/ui/typography";
+import { SubjectCard } from "@/ui/subject-card";
 import { selectEvents } from "@/models/event";
 
 import { EventPlaceholder } from "./placeholder";
@@ -16,17 +15,26 @@ const Calendar = async () => {
   return events.length > 0 ? (
     <div className="space-y-2">
       {events.map((event, key) => (
-        <div
-          key={key}
-          style={createVar({
-            "--subject": `var(--${event.subject || "muted-foreground"})`,
-          })}
-          className="bg-gradient-to-b from-subject/30 to-subject/10 rounded-2xl py-3 px-4"
-        >
-          <div className="flex items-start justify-between">
-            <Text className="font-semibold leading-6 text-subject capitalize brightness-50">
-              {event.title}
-            </Text>
+        <SubjectCard key={key} subject={event.subject}>
+          <SubjectCard.Header>
+            <div>
+              <SubjectCard.Title>{event.title}</SubjectCard.Title>
+              <SubjectCard.Description>
+                {isToday(event.start)
+                  ? "Today"
+                  : isTomorrow(event.start)
+                  ? "Tomorrow"
+                  : format(event.start, "dd MMM, yyyy")}{" "}
+                {!isAllDay(event.start, event.end) ? (
+                  <>
+                    {format(event.start, `h:mm`)} &ndash;{" "}
+                    {format(event.end, "h:mm aa")}
+                  </>
+                ) : (
+                  ""
+                )}
+              </SubjectCard.Description>
+            </div>
             {event.subject ? (
               <Pill className="!m-0" outline="subject" color={null}>
                 {event.subject}
@@ -34,23 +42,8 @@ const Calendar = async () => {
             ) : (
               ""
             )}
-          </div>
-          <div className="text-subject text-sm brightness-50">
-            {isToday(event.start)
-              ? "Today"
-              : isTomorrow(event.start)
-              ? "Tomorrow"
-              : format(event.start, "dd MMM, yyyy")}{" "}
-            {!isAllDay(event.start, event.end) ? (
-              <>
-                {format(event.start, `h:mm`)} &ndash;{" "}
-                {format(event.end, "h:mm aa")}
-              </>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
+          </SubjectCard.Header>
+        </SubjectCard>
       ))}
     </div>
   ) : (
