@@ -1,4 +1,6 @@
-import { Fragment } from "react";
+"use client";
+
+import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Clipboard,
@@ -7,9 +9,11 @@ import {
   FolderDown,
   Paperclip,
   Presentation,
+  Search,
   StickyNote,
 } from "lucide-react";
 
+import { Button } from "@/ui/button";
 import * as Command from "@/ui/command";
 
 const commands = [
@@ -160,41 +164,74 @@ const commands = [
   },
 ];
 
-const CommandBar = ({
-  open,
-  setOpen,
-}: {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const CommandBar = () => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && e.metaKey) {
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
 
   return (
-    <Command.Dialog open={open} onOpenChange={setOpen}>
-      <Command.Input placeholder="Search for notes, tasks, events and questions..." />
-      <Command.List>
-        <Command.Empty>No results found.</Command.Empty>
-        {commands.map((command, key) => (
-          <Fragment key={key}>
-            <Command.Group heading={command.heading}>
-              {command.items.map(({ href, label, icon: Icon }, key) => (
-                <Command.Item
-                  key={key}
-                  onSelect={() => {
-                    router.push(href);
-                    setOpen(false);
-                  }}
-                >
-                  <Icon className="mr-2 h-4 w-4" />
-                  <span>{label}</span>
-                </Command.Item>
-              ))}
-            </Command.Group>
-            {commands.length - 1 == key && <Command.Separator />}
-          </Fragment>
-        ))}
-      </Command.List>
-    </Command.Dialog>
+    <>
+      <Button
+        variant="outline"
+        onClick={() => setOpen(true)}
+        className="text-muted-foreground hidden md:inline-flex"
+      >
+        <Search />
+        <span className="lg:hidden">Notes, tasks, events...</span>
+        <span className="hidden lg:inline">
+          Notes, tasks, events and questions...
+        </span>
+        <span className="text-xs tracking-widest opacity-60 inline-flex -m-1 p-1 ml-2 rounded-xl bg-muted">
+          ⌘K
+        </span>
+      </Button>
+
+      <div className="flex-1" />
+
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setOpen(true)}
+        className="md:hidden"
+      >
+        <Search />
+      </Button>
+      <Command.Dialog open={open} onOpenChange={setOpen}>
+        <Command.Input placeholder="Search for notes, tasks, events and questions..." />
+        <Command.List>
+          <Command.Empty>No results found.</Command.Empty>
+          {commands.map((command, key) => (
+            <Fragment key={key}>
+              <Command.Group heading={command.heading}>
+                {command.items.map(({ href, label, icon: Icon }, key) => (
+                  <Command.Item
+                    key={key}
+                    onSelect={() => {
+                      router.push(href);
+                      setOpen(false);
+                    }}
+                  >
+                    <Icon className="mr-2 h-4 w-4" />
+                    <span>{label}</span>
+                  </Command.Item>
+                ))}
+              </Command.Group>
+              {commands.length - 1 == key && <Command.Separator />}
+            </Fragment>
+          ))}
+        </Command.List>
+      </Command.Dialog>
+    </>
   );
 };
 

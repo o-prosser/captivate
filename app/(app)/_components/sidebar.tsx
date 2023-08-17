@@ -1,8 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, m } from "framer-motion";
 import {
   Atom,
   Calendar,
@@ -14,10 +10,19 @@ import {
   Settings,
 } from "lucide-react";
 
-import { cn } from "@/util/cn";
+import { createVar } from "@/util/cn";
 import { Button } from "@/ui/button";
 import { LogoIcon } from "@/ui/logo-icon";
-import { useSubjectStyles } from "@/app/_util/subjects";
+
+import ActiveLink from "./active-link";
+
+const LinkLabel = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <span className="pl-2 group-data-[expanded=true]/expanded:opacity-1 group-data-[expanded=false]/expanded:opacity-0 transition-all duration-100">
+      {children}
+    </span>
+  );
+};
 
 const links = [
   [
@@ -76,20 +81,11 @@ const links = [
   ],
 ];
 
-const Sidebar = ({ expanded }: { expanded: boolean }) => {
-  const pathname = usePathname();
-
-  const mathsStyles = useSubjectStyles("maths");
-  const chemistryStyles = useSubjectStyles("chemistry");
-  const physicsStyles = useSubjectStyles("physics");
-
+const Sidebar = () => {
   return (
-    <m.aside
-      variants={{ expand: { width: "15rem" }, contract: { width: "5.5rem" } }}
-      initial={{ width: "15rem" }}
-      animate={expanded ? "expand" : "contract"}
-      transition={{ duration: 0.1 }}
-      className="hidden md:flex py-6 z-10 flex-col px-[15.5px] items-start bg-background fixed left-0 inset-y-0 h-[100dvh] print:!hidden overflow-hidden"
+    <aside
+      className="hidden md:flex py-6 z-10 flex-col px-[15.5px] items-start bg-background fixed left-0 inset-y-0 h-[100dvh] print:!hidden overflow-hidden
+      group-data-[expanded=true]/expanded:w-[15rem] group-data-[expanded=false]/expanded:w-[5.5rem] transition-all duration-100"
     >
       <Button variant="default" size={null} asChild>
         <Link href="/dashboard" className="p-2.5">
@@ -97,132 +93,60 @@ const Sidebar = ({ expanded }: { expanded: boolean }) => {
         </Link>
       </Button>
 
-      <m.div
-        variants={{
-          expand: { width: "100%" },
-          contract: { width: "2.75rem" },
-        }}
-        initial="expand"
-        animate={expanded ? "expand" : "contract"}
-        transition={{ duration: 0 }}
-        className="flex flex-col space-y-1 [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a>svg]:flex-shrink-0 mt-4 flex-1"
-      >
+      <div className="flex flex-col space-y-1 [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a>svg]:flex-shrink-0 mt-4 flex-1 group-data-[expanded=true]/expanded:w-full group-data-[expanded=false]/expanded:w-[2.75rem] transition-all duration-100">
         {links[0].map(({ label, icon: Icon, active, href }, key) => (
-          <Button
-            variant="ghost"
-            asChild
-            key={key}
-            className={cn(
-              pathname.startsWith(active) &&
-                "bg-muted [&>svg]:!text-foreground",
-              "justify-start p-3 [&>svg]:!mr-0",
-            )}
-          >
-            <Link href={href}>
-              <Icon />
-              <AnimatePresence initial={false}>
-                {expanded && (
-                  <m.span
-                    variants={{
-                      expand: { opacity: 1 },
-                      contract: { opacity: 0 },
-                    }}
-                    className="pl-2"
-                    transition={{ duration: 0.1 }}
-                    initial="contract"
-                    animate="expand"
-                    exit="contract"
-                  >
-                    {label}
-                  </m.span>
-                )}
-              </AnimatePresence>
-            </Link>
-          </Button>
+          <ActiveLink key={key} active={active}>
+            <Button
+              variant="ghost"
+              asChild
+              className="justify-start p-3 [&>svg]:!mr-0"
+            >
+              <Link href={href}>
+                <Icon />
+                <LinkLabel>{label}</LinkLabel>
+              </Link>
+            </Button>
+          </ActiveLink>
         ))}
 
         <div className="h-2" />
 
-        {links[1].map(({ label, icon: Icon, active, href }, key) => {
-          const styles =
-            label.toLowerCase() === "maths"
-              ? mathsStyles
-              : label.toLowerCase() === "chemistry"
-              ? chemistryStyles
-              : physicsStyles;
-
-          return (
+        {links[1].map(({ label, icon: Icon, active, href }, key) => (
+          <ActiveLink key={key} active={active}>
             <Button
               variant="ghost"
               asChild
-              key={key}
-              className={cn(
-                pathname.startsWith(active) && styles.subjectBackground,
-                pathname.startsWith(active) && styles.importantSubjectColor,
-                "justify-start p-3 [&>svg]:!mr-0",
-              )}
+              style={createVar({
+                "--subject": `var(--${label.toLowerCase()})`,
+              })}
+              className="justify-start p-3 [&>svg]:!mr-0 data-[active=true]:bg-subject/10 data-[active=true]:!text-subject  [&[data-active=true]>svg]:!text-subject"
             >
               <Link href={href}>
                 <Icon />
-                <AnimatePresence initial={false}>
-                  {expanded && (
-                    <m.span
-                      variants={{
-                        expand: { opacity: 1 },
-                        contract: { opacity: 0 },
-                      }}
-                      className="pl-2"
-                      transition={{ duration: 0.1 }}
-                      initial="contract"
-                      animate="expand"
-                      exit="contract"
-                    >
-                      {label}
-                    </m.span>
-                  )}
-                </AnimatePresence>
+                <LinkLabel>{label}</LinkLabel>
               </Link>
             </Button>
-          );
-        })}
+          </ActiveLink>
+        ))}
 
         <div className="flex-1" />
 
         {links[2].map(({ label, icon: Icon, active, href }, key) => (
-          <Button
-            variant="ghost"
-            asChild
-            key={key}
-            className={cn(
-              pathname.startsWith(active) &&
-                "bg-muted [&>svg]:!text-foreground",
-              "justify-start p-3 [&>svg]:!mr-0",
-            )}
-          >
-            <Link href={href}>
-              <Icon />
-              <AnimatePresence initial={false}>
-                {expanded && (
-                  <m.span
-                    variants={{
-                      expand: { opacity: 1 },
-                      contract: { opacity: 0 },
-                    }}
-                    className="pl-2"
-                    transition={{ duration: 0.1 }}
-                    initial="contract"
-                    animate="expand"
-                    exit="contract"
-                  >
-                    {label}
-                  </m.span>
-                )}
-              </AnimatePresence>
-            </Link>
-          </Button>
+          <ActiveLink key={key} active={active}>
+            <Button
+              variant="ghost"
+              asChild
+              className="justify-start p-3 [&>svg]:!mr-0"
+            >
+              <Link href={href}>
+                <Icon />
+                <LinkLabel>{label}</LinkLabel>
+              </Link>
+            </Button>
+          </ActiveLink>
         ))}
-      </m.div>
-    </m.aside>
+      </div>
+    </aside>
   );
 };
 

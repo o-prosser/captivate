@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { logout } from "@/actions/session";
 import {
-  Keyboard,
   Laptop,
   LifeBuoy,
   LogOut,
@@ -15,17 +13,12 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { logout } from "@/actions/session";
 import { cn } from "@/util/cn";
 import { Button } from "@/ui/button";
 import * as DropdownMenu from "@/ui/dropdown-menu";
 
-const Profile = ({
-  setCommandOpen,
-  image,
-}: {
-  setCommandOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  image?: string | null;
-}) => {
+const Profile = ({ image }: { image?: string | null }) => {
   const { setTheme } = useTheme();
 
   return (
@@ -94,11 +87,6 @@ const Profile = ({
         <DropdownMenu.Separator />
 
         <DropdownMenu.Group>
-          <DropdownMenu.Item onSelect={() => setCommandOpen(true)}>
-            <Keyboard />
-            <span>Keyboard shortcuts</span>
-            <DropdownMenu.Shortcut>⌘K</DropdownMenu.Shortcut>
-          </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
             <Link href="/profile">
               <LifeBuoy />
