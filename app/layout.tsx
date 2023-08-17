@@ -2,11 +2,14 @@ import { inter, openRunde } from "./_assets/fonts";
 
 import "./_assets/globals.css";
 
+import dynamic from "next/dynamic";
+
 import { cn } from "@/util/cn";
-import { Toaster } from "@/components/toaster";
 
 import Images from "./_assets/images";
 import Providers from "./providers";
+
+const Toaster = dynamic(() => import("@/components/toaster"));
 
 export const metadata = {
   title: {
@@ -26,7 +29,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         className={cn(
           openRunde.variable,
           inter.variable,
-          "font-sans antialiased bg-background text-foreground w-screen"
+          "font-sans antialiased bg-background text-foreground w-screen",
         )}
       >
         <Providers attribute="class" disableTransitionOnChange>
