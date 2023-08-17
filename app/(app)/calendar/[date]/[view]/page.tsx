@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { parse } from "date-fns";
 
 import { selectEvents } from "@/models/event";
@@ -29,6 +30,8 @@ const MonthPage = async ({
 
   if (params.view === "week")
     return <Week events={events} activeDate={activeDate} />;
+
+  notFound();
 };
 
 export default MonthPage;

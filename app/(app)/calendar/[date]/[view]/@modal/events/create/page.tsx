@@ -157,3 +157,4 @@ const CreateEvent = async () => {
 };
 
 export default CreateEvent;
+export const runtime = "edge";

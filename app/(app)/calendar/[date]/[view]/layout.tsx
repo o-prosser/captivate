@@ -133,3 +133,4 @@ const CalendarLayout = async ({
 };
 
 export default CalendarLayout;
+export const revalidate = "edge";
