@@ -1,8 +1,8 @@
 import { cache } from "react";
 import { Event, eventsTable } from "@/drizzle/schema";
-import { endOfMonth, startOfDay, startOfMonth } from "date-fns";
+import { addDays, endOfMonth, startOfDay, startOfMonth } from "date-fns";
 
-import { and, db, eq, gte, ilike, lte, or } from "@/lib/db";
+import { and, asc, db, eq, gte, ilike, lte, or } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 
 export const selectEvent = cache(async ({ id }: { id: Event["id"] }) => {
@@ -12,7 +12,8 @@ export const selectEvent = cache(async ({ id }: { id: Event["id"] }) => {
     await db
       .select({
         id: eventsTable.id,
-        date: eventsTable.date,
+        start: eventsTable.start,
+        end: eventsTable.end,
         title: eventsTable.title,
         subject: eventsTable.subjectId,
         category: eventsTable.category,
@@ -25,13 +26,22 @@ export const selectEvent = cache(async ({ id }: { id: Event["id"] }) => {
 });
 
 const selectEvents = cache(
-  async ({ search, activeDate }: { search?: string; activeDate: Date }) => {
+  async ({
+    search,
+    activeDate,
+    area = "month",
+  }: {
+    search?: string;
+    activeDate: Date;
+    area?: "month" | "days";
+  }) => {
     const { user } = await getValidSession();
 
     return await db
       .select({
         id: eventsTable.id,
-        date: eventsTable.date,
+        start: eventsTable.start,
+        end: eventsTable.end,
         title: eventsTable.title,
         subject: eventsTable.subjectId,
         category: eventsTable.category,
@@ -41,8 +51,18 @@ const selectEvents = cache(
       .where(
         and(
           eq(eventsTable.userId, user.id),
-          gte(eventsTable.date, startOfMonth(activeDate)),
-          lte(eventsTable.date, endOfMonth(activeDate)),
+          gte(
+            eventsTable.start,
+            area === "month"
+              ? startOfMonth(activeDate)
+              : startOfDay(activeDate),
+          ),
+          lte(
+            eventsTable.start,
+            area === "month"
+              ? endOfMonth(activeDate)
+              : addDays(startOfDay(activeDate), 3),
+          ),
           search
             ? or(
                 ilike(eventsTable.title, `%${search.toLowerCase()}%`),
@@ -50,7 +70,9 @@ const selectEvents = cache(
               )
             : undefined,
         ),
-      );
+      )
+      .orderBy(asc(eventsTable.start))
+      .limit(area === "month" ? 100 : 4);
   },
 );
 

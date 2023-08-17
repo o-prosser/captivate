@@ -10,8 +10,9 @@ import {
 import format from "date-fns/format";
 import isToday from "date-fns/isToday";
 
-import { cn } from "@/util/cn";
+import { cn, createVar } from "@/util/cn";
 import { Button } from "@/ui/button";
+import { Pill } from "@/ui/pill";
 import { Text } from "@/ui/typography";
 
 const colStartClasses = [
@@ -29,7 +30,10 @@ const Calendar = ({
   activeDate,
 }: {
   events: Array<
-    Pick<EventType, "id" | "date" | "title" | "category" | "description"> & {
+    Pick<
+      EventType,
+      "id" | "start" | "end" | "title" | "category" | "description"
+    > & {
       subject: string | null;
     }
   >;
@@ -107,35 +111,49 @@ const Calendar = ({
               {day.getDate() === 1 ? format(day, "MMM d") : day.getDate()}
             </p>
 
-            {events
-              .filter(
-                (event) => event.date.toDateString() === day.toDateString(),
-              )
-              .map((event, key) => (
-                <Button
-                  key={key}
-                  variant={null}
-                  style={
-                    {
-                      "--subject": `var(--${event.subject || "muted"}) ${
-                        event.subject ? "/ 0.2" : ""
-                      }`,
-                    } as React.CSSProperties
-                  }
-                  className="justify-start w-full py-1 px-2 text-sm text-left bg-[hsl(var(--subject))] hover:opacity-90 transition"
-                  size={null}
-                  asChild
-                >
-                  <Link
-                    href={`/calendar/${format(
-                      activeDate,
-                      "yyyy-MM-dd",
-                    )}/month/events/${event.id}`}
+            <div className="space-y-2 w-full p-1">
+              {events
+                .filter(
+                  (event) => event.start.toDateString() === day.toDateString(),
+                )
+                .map((event, key) => (
+                  <Button
+                    key={key}
+                    variant={null}
+                    style={createVar({
+                      "--subject": `var(--${
+                        event.subject || "muted-foreground"
+                      })`,
+                    })}
+                    className="bg-gradient-to-b from-subject/30 to-subject/10 py-3 px-4 hover:opacity-90 transition font-normal block w-full"
+                    size={null}
+                    asChild
                   >
-                    {event.title}
-                  </Link>
-                </Button>
-              ))}
+                    <Link
+                      href={`/calendar/${format(
+                        activeDate,
+                        "yyyy-MM-dd",
+                      )}/month/events/${event.id}`}
+                    >
+                      <Text className="font-semibold leading-6 text-subject capitalize brightness-50">
+                        {event.title}
+                      </Text>
+                      <div className="flex gap-2 items-center">
+                        {event.subject ? (
+                          <Pill className="!m-0" outline="subject" color={null}>
+                            {event.subject}
+                          </Pill>
+                        ) : (
+                          ""
+                        )}
+                        <span className="text-xs text-subject">
+                          {event.category}
+                        </span>
+                      </div>
+                    </Link>
+                  </Button>
+                ))}
+            </div>
           </div>
         ))}
       </div>
@@ -143,10 +161,10 @@ const Calendar = ({
       {/* Mobile only events */}
       <div className="sm:hidden flex flex-col p-6 border-t">
         <div>
-          {events.filter((event) => isSameDay(event.date, activeDate)).length >
+          {events.filter((event) => isSameDay(event.start, activeDate)).length >
           0 ? (
             events
-              .filter((event) => isSameDay(event.date, activeDate))
+              .filter((event) => isSameDay(event.start, activeDate))
               .map((event, key) => (
                 <Button
                   key={key}

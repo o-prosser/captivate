@@ -38,9 +38,9 @@ const CalendarLayout = async ({
   const activeDate = parse(params.date, "yyyy-MM-dd", new Date());
 
   return (
-    <div>
+    <div className="flex flex-col max-h-[calc(100dvh-13rem)] md:max-h-[calc(100dvh-8rem)]">
       <Heading>Calendar</Heading>
-      <Text className="text-muted-foreground">
+      <Text className="text-muted-foreground !mt-2">
         It&apos;s {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
         {displayCurrentWeek()}
       </Text>
@@ -126,7 +126,7 @@ const CalendarLayout = async ({
 
       <Tabs active="calendar" />
 
-      {children}
+      <div className="h-full overflow-hidden flex-1">{children}</div>
       {modal}
     </div>
   );

@@ -1,13 +1,16 @@
 import * as React from "react";
+import type { LucideIcon } from "lucide-react";
 
 import { cn } from "@/util/cn";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  icon?: LucideIcon;
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
+  ({ className, type, icon: Icon, ...props }, ref) => {
+    const inputElement = (
       <input
         type={type}
         className={cn(
@@ -17,6 +20,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ref={ref}
         {...props}
       />
+    );
+
+    return Icon ? (
+      <div className="relative [&>input]:!pl-9">
+        <Icon className="ml-3 absolute h-4 w-4 mt-3 text-muted-foreground" />
+        {inputElement}
+      </div>
+    ) : (
+      inputElement
     );
   },
 );

@@ -1,10 +1,9 @@
-import { Suspense } from "react";
 import { parse } from "date-fns";
 
-import { Loading } from "@/ui/loading";
 import { selectEvents } from "@/models/event";
 
 import Calendar from "../../_components/calendar";
+import Week from "./_components/week";
 
 export const metadata = {
   title: "Calendar",
@@ -22,14 +21,14 @@ const MonthPage = async ({
   const events = await selectEvents({
     search: searchParams.search,
     activeDate,
+    area: "month",
   });
 
   if (params.view === "month")
-    return (
-      <Suspense fallback={<Loading text="Loading calendar events..." />}>
-        <Calendar events={events} activeDate={activeDate} />
-      </Suspense>
-    );
+    return <Calendar events={events} activeDate={activeDate} />;
+
+  if (params.view === "week")
+    return <Week events={events} activeDate={activeDate} />;
 };
 
 export default MonthPage;

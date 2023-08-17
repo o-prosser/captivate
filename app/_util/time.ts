@@ -1,3 +1,5 @@
+import { isSameHour, isSameMinute } from "date-fns";
+
 const minutesToHoursAndMinutes = (totalMinutes: number) => {
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
@@ -6,3 +8,7 @@ const minutesToHoursAndMinutes = (totalMinutes: number) => {
 };
 
 export { minutesToHoursAndMinutes };
+
+export const isAllDay = (dateLeft: number | Date, dateRight: number | Date) => {
+  return isSameMinute(dateLeft, dateRight) && isSameHour(dateLeft, dateRight);
+};

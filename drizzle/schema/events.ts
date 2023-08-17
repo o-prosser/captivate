@@ -25,7 +25,8 @@ export const eventsTable = pgTable("Event", {
     .primaryKey()
     .notNull()
     .default(sql`gen_random_uuid()`),
-  date: date("date", { mode: "date" }).notNull(),
+  start: timestamp("start", { mode: "date", precision: 3 }).notNull(),
+  end: timestamp("end", { mode: "date", precision: 3 }).notNull(),
   title: text("title").notNull(),
   subjectId: text("subjectId")
     // .references(() => subjectsTable.id, { onDelete: "set null" })
