@@ -16,7 +16,7 @@ const EventsToday = async ({ subject }: { subject?: string }) => {
   const events = await db
     .select({
       id: eventsTable.id,
-      date: eventsTable.date,
+      start: eventsTable.start,
       title: eventsTable.title,
       category: eventsTable.category,
       description: eventsTable.description,
@@ -27,12 +27,12 @@ const EventsToday = async ({ subject }: { subject?: string }) => {
       and(
         subject ? eq(eventsTable.subjectId, subject) : undefined,
         subject
-          ? gte(eventsTable.date, startOfDay(new Date()))
-          : eq(eventsTable.date, startOfDay(new Date())),
+          ? gte(eventsTable.start, startOfDay(new Date()))
+          : eq(eventsTable.start, startOfDay(new Date())),
         eq(eventsTable.userId, user.id),
       ),
     )
-    .orderBy(asc(eventsTable.date))
+    .orderBy(asc(eventsTable.start))
     .limit(4);
 
   return events.length ? (
@@ -58,11 +58,11 @@ const EventsToday = async ({ subject }: { subject?: string }) => {
         <div className="text-sm text-muted-foreground">
           {subject ? (
             <>
-              {isToday(event.date)
+              {isToday(event.start)
                 ? "today"
-                : isTomorrow(event.date)
+                : isTomorrow(event.start)
                 ? "tomorrow"
-                : "in " + formatDistance(new Date(), event.date)}
+                : "in " + formatDistance(new Date(), event.start)}
             </>
           ) : (
             ""

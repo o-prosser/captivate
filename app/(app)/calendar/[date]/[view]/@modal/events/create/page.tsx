@@ -23,8 +23,6 @@ const CreateEvent = async () => {
   const action = async (formData: FormData) => {
     "use server";
 
-    console.log(Object.fromEntries(formData.entries()));
-
     const { date, ...formValues } = Object.fromEntries(formData.entries());
 
     const data = insertEventSchema
@@ -37,26 +35,6 @@ const CreateEvent = async () => {
         date: new Date(date as string),
         ...formValues,
       });
-
-    console.log(data);
-
-    console.log(
-      data.start
-        ? add(startOfDay(data.date), {
-            hours: parseInt(data.start.split(":")[0]),
-            minutes: parseInt(data.start.split(":")[1]),
-          })
-        : "No start",
-    );
-
-    console.log(
-      data.end
-        ? add(startOfDay(data.date), {
-            hours: parseInt(data.end.split(":")[0]),
-            minutes: parseInt(data.end.split(":")[1]),
-          })
-        : "No end",
-    );
 
     const event = await db
       .insert(eventsTable)

@@ -1,7 +1,9 @@
 import { revalidatePath } from "next/cache";
 import { notFound, redirect } from "next/navigation";
 import { eventsTable, insertEventSchema } from "@/drizzle/schema";
-import { format } from "date-fns";
+import { add, format, startOfDay } from "date-fns";
+import { Calendar } from "lucide-react";
+import { string, date as zDate } from "zod";
 
 import { db, eq } from "@/lib/db";
 import { Select } from "@/ui/html-select";
@@ -13,6 +15,8 @@ import { Heading } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
 import { selectEvent } from "@/models/event";
 
+import Time from "./time";
+
 const EditEventPage = async ({ params }: { params: { id: string } }) => {
   const event = await selectEvent(params);
   if (!event) notFound();
@@ -22,16 +26,46 @@ const EditEventPage = async ({ params }: { params: { id: string } }) => {
 
     const { date, ...formValues } = Object.fromEntries(formData.entries());
 
-    const data = insertEventSchema.omit({ userId: true }).parse({
-      date: new Date(date as string),
-      ...formValues,
-    });
+    const data = insertEventSchema
+      .omit({ userId: true })
+      .extend({
+        date: zDate(),
+        start: string().nullable().optional(),
+        end: string().nullable().optional(),
+      })
+      .parse({
+        date: new Date(date as string),
+        ...formValues,
+      });
 
-    await db.update(eventsTable).set(data).where(eq(eventsTable.id, event.id));
+    await db
+      .update(eventsTable)
+      .set({
+        title: data.title,
+        start: data.start
+          ? add(startOfDay(data.date), {
+              hours: parseInt(data.start.split(":")[0]),
+              minutes: parseInt(data.start.split(":")[1]),
+            })
+          : startOfDay(data.date),
+        end: data.end
+          ? add(startOfDay(data.date), {
+              hours: parseInt(data.end.split(":")[0]),
+              minutes: parseInt(data.end.split(":")[1]),
+            })
+          : startOfDay(data.date),
+        subjectId: data.subjectId,
+        category: data.category,
+        description: data.description,
+      })
+      .where(eq(eventsTable.id, event.id));
 
     revalidatePath("/calendar");
     redirect(
-      `/calendar/${format(new Date(), "yyyy-MM-dd")}/month?updated=${event.id}`,
+      `/calendar/${format(
+        new Date(date as string),
+        "yyyy-MM-dd",
+      )}/month?updated=${event.id}`,
     );
   };
 
@@ -41,7 +75,7 @@ const EditEventPage = async ({ params }: { params: { id: string } }) => {
 
       <form action={action} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="title">Title</Label>
+          {/* <Label htmlFor="title">Title</Label> */}
           <Input
             name="title"
             id="title"
@@ -59,13 +93,16 @@ const EditEventPage = async ({ params }: { params: { id: string } }) => {
         <div className="space-y-2">
           <Label htmlFor="date">Date</Label>
           <Input
+            icon={Calendar}
             name="date"
             id="date"
             type="date"
             required
-            defaultValue={format(event.date, "yyyy-MM-dd")}
+            defaultValue={format(event.start, "yyyy-MM-dd")}
           />
         </div>
+
+        <Time event={event} />
 
         <div className="space-y-2">
           <Label htmlFor="description">Description</Label>
