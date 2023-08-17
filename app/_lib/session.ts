@@ -1,10 +1,12 @@
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 import { addMonths, isPast } from "date-fns";
-import * as jose from "jose";
+import { EncryptJWT, jwtDecrypt } from "jose";
 
 import { env } from "@/env.mjs";
 import { selectSession } from "@/models/session";
+
+import { db } from "./db";
 
 // const secret = jose.base64url.decode(env.JOSE_SESSION_KEY);
 const secret = new TextEncoder().encode(env.JOSE_SESSION_KEY);
@@ -13,7 +15,7 @@ const audience = "urn:example:audience";
 const expiresAt = `${60 * 60 * 24 * 31}s`;
 
 export const encodeUserSession = async (sessionId: string) => {
-  const jwt = await new jose.EncryptJWT({ sessionId })
+  const jwt = await new EncryptJWT({ sessionId })
     .setProtectedHeader({ alg: "dir", enc: "A128CBC-HS256" })
     .setIssuedAt()
     .setIssuer(issuer)
@@ -26,7 +28,7 @@ export const encodeUserSession = async (sessionId: string) => {
 
 export const decodeUserSession = async (jwt: string) => {
   try {
-    const { payload } = await jose.jwtDecrypt(jwt, secret, {
+    const { payload } = await jwtDecrypt(jwt, secret, {
       issuer,
       audience,
     });
@@ -72,7 +74,6 @@ export const clearSession = async () => {
 export const getMiddlewareSession = async (request: NextRequest) => {
   const cookieSessionValue = request.cookies.get("session_id")?.value;
   if (!cookieSessionValue) {
-    console.log("No cookie session value");
     return {
       session: undefined,
       shouldDelete: false,
@@ -81,14 +82,20 @@ export const getMiddlewareSession = async (request: NextRequest) => {
 
   const extractedSessionId = await decodeUserSession(cookieSessionValue);
   if (!extractedSessionId || typeof extractedSessionId !== "string") {
-    console.log("Couldn't extract session id");
     return {
       session: undefined,
       shouldDelete: true,
     };
   }
 
-  const session = await selectSession({ id: extractedSessionId });
+  // const session = await selectSession({ id: extractedSessionId });
+  const session = await db.query.sessionsTable.findFirst({
+    where: (fields, { eq }) => eq(fields.id, extractedSessionId),
+    columns: {
+      id: true,
+      expiresAt: true,
+    },
+  });
 
   if (!session || isPast(session.expiresAt)) {
     return {
