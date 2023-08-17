@@ -9,17 +9,6 @@ export const openRunde = localFont({
       weight: "bold",
       style: "normal",
     },
-
-    {
-      path: "./OpenRunde-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "./OpenRunde-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
     {
       path: "./OpenRunde-Semibold.woff2",
       weight: "600",
@@ -32,19 +21,4 @@ export const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
-});
-
-export const generalSans = localFont({
-  display: "swap",
-  variable: "--font-sans",
-  src: [
-    {
-      path: "./GeneralSans-Variable.ttf",
-      style: "normal",
-    },
-    {
-      path: "./GeneralSans-VariableItalic.ttf",
-      style: "italic",
-    },
-  ],
 });
