@@ -99,3 +99,4 @@ const Views = async () => {
 };
 
 export default Views;
+export const runtime = "edge";

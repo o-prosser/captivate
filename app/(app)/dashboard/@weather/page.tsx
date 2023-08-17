@@ -56,3 +56,5 @@ const Weather = async () => {
 };
 
 export default Weather;
+export const runtime = "edge";
+export const revalidate = 60 * 60 * 24;

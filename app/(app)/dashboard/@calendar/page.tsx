@@ -9,3 +9,4 @@ const Calendar = () => {
 };
 
 export default Calendar;
+export const runtime = "edge";
