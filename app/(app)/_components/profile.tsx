@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  HelpCircle,
   Laptop,
   LifeBuoy,
   LogOut,
+  MessageSquare,
   Moon,
   Settings,
   Sun,
@@ -49,7 +51,7 @@ const Profile = ({ image }: { image?: string | null }) => {
         <DropdownMenu.Separator />
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
-            <Link href="/profile">
+            <Link href="/settings/profile">
               <User />
               <span>Profile</span>
             </Link>
@@ -77,7 +79,7 @@ const Profile = ({ image }: { image?: string | null }) => {
             </DropdownMenu.Portal>
           </DropdownMenu.Sub>
           <DropdownMenu.Item asChild>
-            <Link href="/profile">
+            <Link href="/settings">
               <Settings />
               <span>Settings</span>
             </Link>
@@ -88,8 +90,14 @@ const Profile = ({ image }: { image?: string | null }) => {
 
         <DropdownMenu.Group>
           <DropdownMenu.Item asChild>
+            <Link href="/feedback">
+              <HelpCircle />
+              <span>Feedback</span>
+            </Link>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item asChild>
             <Link href="/profile">
-              <LifeBuoy />
+              <MessageSquare />
               <span>Support</span>
             </Link>
           </DropdownMenu.Item>
