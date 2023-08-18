@@ -19,8 +19,8 @@ export const metadata = {
 const ExamsTimetable = () => {
   return (
     <>
-      <Heading>Timetable</Heading>
-      <Text className="text-muted-foreground">
+      <Heading>Exam timetable</Heading>
+      <Text className="text-muted-foreground !mt-2">
         It&apos;s {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
         {displayCurrentWeek()}
       </Text>

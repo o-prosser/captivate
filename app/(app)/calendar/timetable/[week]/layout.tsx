@@ -25,7 +25,7 @@ const TimetableLayout = ({
   return (
     <>
       <Heading>Timetable</Heading>
-      <Text className="text-muted-foreground">
+      <Text className="text-muted-foreground !mt-2">
         It&apos;s {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
         {displayCurrentWeek()}
       </Text>
