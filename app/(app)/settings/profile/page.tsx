@@ -10,6 +10,7 @@ import { Heading, Text } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
 
 import Avatar from "./avatar";
+import Delete from "./delete";
 
 const ProfilePage = async () => {
   const { user } = await getValidSession();
@@ -89,6 +90,13 @@ const ProfilePage = async () => {
 
         <FormButton>Update</FormButton>
       </form>
+
+      <div className="mt-6 pt-3 border-t">
+        <Heading level={4} className="!mb-3">
+          Danger zone
+        </Heading>
+        <Delete />
+      </div>
     </div>
   );
 };

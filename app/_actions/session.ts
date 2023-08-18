@@ -36,12 +36,8 @@ export const logout = async () => {
   const session = await getValidSession();
   // if (!session) redirect("/login");
 
-  console.log("Logging out " + session.id);
-
   // Remove cookie
   clearSession();
-
-  console.log("New cookie value" + cookies().get("session_id")?.value);
 
   // Set db entry to expire now so can't be used in future
   await db
