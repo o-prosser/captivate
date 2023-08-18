@@ -13,8 +13,7 @@ import {
 import { createVar } from "@/util/cn";
 import { Button } from "@/ui/button";
 import { LogoIcon } from "@/ui/logo-icon";
-
-import ActiveLink from "./active-link";
+import ActiveLink from "@/components/active-link";
 
 const LinkLabel = ({ children }: { children: React.ReactNode }) => {
   return (

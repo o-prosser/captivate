@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Calculator,
   Clipboard,
@@ -7,13 +5,23 @@ import {
   FlaskConical,
   FolderDown,
   LayoutDashboard,
+  LucideIcon,
   Paperclip,
   Presentation,
   StickyNote,
 } from "lucide-react";
 
 // Links auto-prefix with subject name
-const links = [
+const links: {
+  label: string;
+  links: {
+    Icon: LucideIcon;
+    href: string;
+    label: string;
+    active?: string;
+    subjects?: string[];
+  }[];
+}[] = [
   {
     label: "Information",
     links: [
