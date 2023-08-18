@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { XCircle } from "lucide-react";
 
 import * as Alert from "@/ui/alert";
 import { Button } from "@/ui/button";
@@ -25,16 +26,10 @@ const Login = ({
       <form action={action} className="space-y-6 text-left mt-6">
         {searchParams.error ? (
           <Alert.Root variant="destructive">
-            <Alert.Title>Error</Alert.Title>
+            <XCircle />
             <Alert.Description>
-              {searchParams.error === "duplicate" ? (
-                <>
-                  A user with this email address already exists. Would you like
-                  to{" "}
-                  <Button variant="link" asChild>
-                    <Link href="/login">Login</Link>
-                  </Button>
-                </>
+              {searchParams.error === "credentials" ? (
+                <>Incorrect email or password.</>
               ) : (
                 "An unknown error occured. Please try again later."
               )}
@@ -54,6 +49,7 @@ const Login = ({
             autoComplete="email"
             autoFocus
             placeholder="Email address"
+            defaultValue={searchParams.email || ""}
           />
         </div>
         <div className="space-y-2">
