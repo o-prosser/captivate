@@ -14,5 +14,3 @@ export const db = drizzle(sql, {
   schema,
   // logger: process.env.NODE_ENV === "development",
 });
-
-export const runtime = "edge";
