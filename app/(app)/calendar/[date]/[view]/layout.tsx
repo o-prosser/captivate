@@ -33,12 +33,17 @@ const CalendarLayout = async ({
   children: React.ReactNode;
   modal: React.ReactNode;
 }) => {
-  if (params.view !== "month" && params.view !== "week") notFound();
+  if (params.view !== "week" && params.view !== "month") notFound();
 
   const activeDate = parse(params.date, "yyyy-MM-dd", new Date());
 
   return (
-    <div className="flex flex-col max-h-[calc(100dvh-13rem)] md:max-h-[calc(100dvh-8rem)]">
+    <div
+      className={clsx(
+        params.view === "week" &&
+          "flex flex-col max-h-[calc(100dvh-13rem)] md:max-h-[calc(100dvh-8rem)]",
+      )}
+    >
       <Heading>Calendar</Heading>
       <Text className="text-muted-foreground !mt-2">
         It&apos;s {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
@@ -126,7 +131,13 @@ const CalendarLayout = async ({
 
       <Tabs active="calendar" />
 
-      <div className="h-full overflow-hidden flex-1">{children}</div>
+      <div
+        className={clsx(
+          params.view === "week" && "h-full overflow-hidden flex-1",
+        )}
+      >
+        {children}
+      </div>
       {modal}
     </div>
   );

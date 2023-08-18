@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { parse } from "date-fns";
 
 import { selectEvents } from "@/models/event";
@@ -8,6 +7,17 @@ import Week from "./_components/week";
 
 export const metadata = {
   title: "Calendar",
+};
+
+export const generateStaticParams = () => {
+  return [
+    {
+      view: "month",
+    },
+    {
+      view: "week",
+    },
+  ];
 };
 
 const MonthPage = async ({
@@ -30,8 +40,6 @@ const MonthPage = async ({
 
   if (params.view === "week")
     return <Week events={events} activeDate={activeDate} />;
-
-  notFound();
 };
 
 export default MonthPage;

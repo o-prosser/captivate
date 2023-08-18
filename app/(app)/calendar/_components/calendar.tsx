@@ -1,11 +1,16 @@
 import Link from "next/link";
 import type { Event as EventType } from "@/drizzle/schema";
+import clsx from "clsx";
 import {
+  addDays,
   eachDayOfInterval,
   endOfMonth,
+  endOfWeek,
   getDay,
   isSameDay,
+  isSameMonth,
   parse,
+  subDays,
 } from "date-fns";
 import format from "date-fns/format";
 import isToday from "date-fns/isToday";
@@ -50,9 +55,47 @@ const Calendar = ({
     end: endOfMonth(firstDayCurrentMonth),
   });
 
+  // Week starts on sunday - 0, but calendar stars on monday - 1;
+  const weekStartDay = getDay(days[0]);
+  const lastMondayOfMonth = subDays(
+    firstDayCurrentMonth,
+    weekStartDay === 0 ? 6 : weekStartDay - 1,
+  );
+
+  const previousMonthDays =
+    weekStartDay !== 1
+      ? eachDayOfInterval({
+          start: lastMondayOfMonth,
+          end: endOfMonth(lastMondayOfMonth),
+        })
+      : [];
+
+  const weekEndDay = getDay(days[days.length - 1]);
+  const lastDayOfWeek = addDays(endOfWeek(days[days.length - 1]), 1);
+
+  console.log(weekEndDay, lastDayOfWeek);
+  console.log(addDays(days[days.length - 1], 1), lastDayOfWeek);
+
+  const endOfMonthInterval =
+    weekEndDay !== 0
+      ? eachDayOfInterval({
+          start: addDays(days[days.length - 1], 1),
+          end: lastDayOfWeek,
+        })
+      : [];
+
+  const allDays = [...previousMonthDays, ...days, ...endOfMonthInterval];
+
   return (
     <div className="overflow-hidden rounded-2xl border">
-      <div className="grid-rows-[auto,repeat(6,1fr)] grid grid-cols-7 bg-border gap-px">
+      <div
+        className={clsx(
+          "grid grid-cols-7 bg-border gap-px",
+          allDays.length === 35
+            ? "grid-rows-[auto,repeat(5,1fr)]"
+            : "grid-rows-[auto,repeat(6,1fr)]",
+        )}
+      >
         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((value, key) => (
           <div
             key={key}
@@ -64,13 +107,13 @@ const Calendar = ({
         ))}
 
         {/* Mobile!! */}
-        {days.map((day, key) => (
+        {allDays.map((day, key) => (
           <Link
             href={`/calendar/${format(day, "yyyy-MM-dd")}/month`}
             key={key}
             className={cn(
               "flex p-1 items-center justify-center min-h-[3rem] sm:hidden",
-              key === 0 && colStartClasses[getDay(day) - 1],
+              // key === 0 && colStartClasses[getDay(day) - 1],
               isSameDay(activeDate, day)
                 ? "bg-muted"
                 : "bg-background transition hover:bg-muted",
@@ -91,12 +134,12 @@ const Calendar = ({
         ))}
 
         {/* Desktop only */}
-        {days.map((day, key) => (
+        {allDays.map((day, key) => (
           <div
             key={key}
             className={cn(
               "sm:flex flex-col p-1 items-end min-h-[6rem] hidden",
-              key === 0 && colStartClasses[getDay(day) - 1],
+              // key === 0 && colStartClasses[getDay(day) - 1],
               isToday(day) ? "bg-muted" : "bg-background",
             )}
           >
@@ -106,6 +149,7 @@ const Calendar = ({
                 isToday(day)
                   ? "text-primary font-semibold"
                   : "text-muted-foreground",
+                !isSameMonth(day, activeDate) && "text-muted-foreground/50",
               )}
             >
               {day.getDate() === 1 ? format(day, "MMM d") : day.getDate()}
