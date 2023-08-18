@@ -121,14 +121,23 @@ const Calendar = ({
           >
             <p
               className={cn(
-                "inline-flex justify-center",
+                "inline-flex justify-center flex-col items-center",
                 isToday(day)
                   ? "p-1 bg-primary/10 text-primary rounded-full h-7"
                   : "text-muted-foreground m-1",
                 day.getDate() !== 1 && "w-7",
               )}
             >
-              {day.getDate() === 1 ? format(day, "MMM d") : day.getDate()}
+              {day.getDate() === 1 ? (
+                <>
+                  <span className="text-xs uppercase">
+                    {format(day, "MMM")}
+                  </span>
+                  <span className="inline-block -mt-0.5">{day.getDate()}</span>
+                </>
+              ) : (
+                day.getDate()
+              )}
             </p>
           </Link>
         ))}
