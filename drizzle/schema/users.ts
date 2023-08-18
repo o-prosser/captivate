@@ -1,8 +1,8 @@
 import { InferModel, relations, sql } from "drizzle-orm";
-import { bigint, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
-import { subjectsTable, usersToSubjects } from "./subjects";
+import { usersToSubjects } from "./subjects";
 
 export const usersTable = pgTable("User", {
   id: text("id")
@@ -15,6 +15,7 @@ export const usersTable = pgTable("User", {
   name: text("name"),
   image: text("image"),
   token: text("token").default(sql`gen_random_uuid()`),
+  impersonation: boolean("impersonation").notNull().default(false),
   emailVerifiedAt: timestamp("emailVerifiedAt"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
 });

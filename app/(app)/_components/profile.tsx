@@ -27,7 +27,7 @@ const Profile = ({ image }: { image?: string | null }) => {
         <Button
           variant="outline"
           className={cn(
-            "[&>svg]:mr-0 mr-6 md:mr-8 rounded-full",
+            "[&>svg]:mr-0 mr-6 md:mr-8 rounded-full relative",
             image ? "p-0 relative w-10 h-10" : "px-3",
           )}
         >

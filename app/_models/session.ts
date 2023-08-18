@@ -17,6 +17,7 @@ export const selectSession = async ({ id }: { id: Session["id"] }) => {
           username: true,
           name: true,
           image: true,
+          impersonation: true,
         },
         with: {
           usersToSubjects: {
