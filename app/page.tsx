@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Balancer from "react-wrap-balancer";
 
 import { getSession } from "@/lib/session";
 import { Button } from "@/ui/button";
@@ -40,18 +39,16 @@ const Index = async () => {
         </div>
       </div>
 
-      <Heading className="text-center text-4xl lg:text-5xl !leading-[1.2] bg-gradient-to-b to-[#1A2242] from-[#1F2C5C] dark:from-[#4065DD] dark:to-primary text-transparent bg-clip-text mt-20 max-w-3xl lg:max-w-4xl mx-auto px-6">
-        <Balancer>Captivate is a better way to revise at A-level </Balancer>
+      <Heading className="text-center text-4xl lg:text-5xl text-balance !leading-[1.2] bg-gradient-to-b to-[#1A2242] from-[#1F2C5C] dark:from-[#4065DD] dark:to-primary text-transparent bg-clip-text mt-20 max-w-3xl lg:max-w-4xl mx-auto px-6">
+        Captivate is a better way to revise at A-level
       </Heading>
 
       <Heading
         level={2}
-        className="text-muted-foreground font-medium text-center leading-[1.5] mt-4 max-w-3xl lg:max-w-4xl mx-auto px-6"
+        className="text-muted-foreground text-balance font-medium text-center leading-[1.5] mt-4 max-w-3xl lg:max-w-4xl mx-auto px-6"
       >
-        <Balancer>
-          Interactive flashcards, notes, daily question practise and testing,
-          built by students.
-        </Balancer>
+        Interactive flashcards, notes, daily question practise and testing,
+        built by students.
       </Heading>
 
       <div className="flex justify-center mt-10">
