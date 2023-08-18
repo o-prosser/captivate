@@ -26,7 +26,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
         </Tab>
         <Tab active="appearance">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/appearance">Appearance</Link>
+            <Link href="/settings/appearance">Appearance</Link>
           </Button>
         </Tab>
       </Tabs>
