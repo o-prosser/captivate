@@ -77,7 +77,7 @@ const Week = ({
           {days.map((value, key) => (
             <div
               key={key}
-              className="h-10 uppercase px-4 grid place-items-center font-semibold bg-muted text-xs text-muted-foreground"
+              className="h-10 uppercase px-4 grid min-w-[9rem] place-items-center font-semibold bg-muted text-xs text-muted-foreground"
             >
               <span className="hidden sm:inline">
                 {format(value, "dd EEE")}
@@ -101,7 +101,7 @@ const Week = ({
             return (
               <div
                 key={key}
-                className="bg-background p-1 space-y-1 min-h-[2rem]"
+                className="bg-background p-1 space-y-1 min-h-[2rem] min-w-[9rem]"
               >
                 {allDayEvents.map((event, key) => {
                   return (
@@ -136,7 +136,7 @@ const Week = ({
         </div>
 
         {/* <InitialScroll initialScroll={1350}> */}
-        <div className="grid-cols-[4.75rem,repeat(5,1fr)] grid-rows-[2rem,repeat(24,6.25rem)] grid bg-border border-t gap-px h-96 overflow-auto">
+        <div className="grid-cols-[4.75rem,repeat(5,minmax(9rem,1fr))] grid-rows-[2rem,repeat(24,6.25rem)] grid bg-border border-t gap-px h-96">
           {times.map((time, key) => (
             <Fragment key={key}>
               {key !== 0 ? (
@@ -159,7 +159,10 @@ const Week = ({
                     );
 
                     return (
-                      <div key={key} className="bg-background p-1 space-y-1">
+                      <div
+                        key={key}
+                        className="bg-background p-1 space-y-1 min-w-[9rem]"
+                      >
                         {timeEvents.map((event, key) => {
                           const duration = intervalToDuration({
                             start: event.start,
