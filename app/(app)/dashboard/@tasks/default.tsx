@@ -1,3 +1,3 @@
-export default function Default() {
-  return null;
-}
+import Tasks from "./page";
+
+export default Tasks;
