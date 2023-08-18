@@ -1,7 +1,5 @@
 "use client";
 
-import "@uploadthing/react/styles.css";
-
 import { useState } from "react";
 import { Save } from "lucide-react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";

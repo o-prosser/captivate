@@ -6,18 +6,6 @@
   @apply !hidden;
 }
 
-.uploadthing div {
-  @apply items-start;
-}
-
-.uploadthing div label {
-  @apply inline-flex items-center justify-center rounded-2xl text-sm font-medium transition-colors font-sans relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background disabled:pointer-events-none bg-background text-foreground border border-border hover:bg-muted hover:text-muted-foreground h-10 disabled:opacity-50 w-full;
-}
-
-.uploadthing p {
-  @apply text-sm text-muted-foreground;
-}
-
 @layer components {
   .layout-home {
     grid-template-areas:
