@@ -7,6 +7,7 @@ import { Button } from "@/ui/button";
 import { LogoIcon } from "@/ui/logo-icon";
 
 import AddEvent from "./add-event";
+import Feedback from "./feedback";
 
 const Profile = dynamic(() => import("./profile"));
 const CommandBar = dynamic(() => import("./command"));
@@ -28,7 +29,7 @@ const Header = async () => {
         <Navigation />
         <CommandBar />
         <Add eventDialog={<AddEvent userId={user.id} />} user={user} />
-        <Profile image={user.image} />
+        <Profile feedback={<Feedback />} image={user.image} />
       </header>
 
       <header className="hidden absolute print:block left-8 top-6">
