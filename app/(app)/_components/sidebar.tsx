@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { format } from "date-fns";
 import {
   Atom,
   Calendar,
@@ -34,7 +35,7 @@ const links = [
     {
       icon: Calendar,
       label: "Calendar",
-      href: "/calendar",
+      href: `/calendar/${format(new Date(), "yyyy-MM-dd")}/month`,
       active: "/calendar",
     },
     {
