@@ -6,7 +6,7 @@ import { updateTheme } from "./actions";
 
 const Color = () => {
   return (
-    <div className="grid grid-cols-7 gap-3 mt-6 max-w-md">
+    <div className="grid grid-cols-7 gap-1.5 sm:gap-3 mt-6 max-w-md">
       {/* red-7 dark:red-9 */}
       <Button
         onClick={() => updateTheme("red")}

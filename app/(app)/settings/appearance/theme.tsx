@@ -9,11 +9,11 @@ const Theme = () => {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="grid grid-cols-3 gap-4 mt-2">
+    <div className="grid [@media(min-width:426.68px)]:grid-cols-2 sm:!grid-cols-3 gap-4 mt-2">
       <Button
         variant={null}
         size={null}
-        className="flex-col gap-2 items-stretch"
+        className="flex-col gap-2 items-stretch max-w-[16rem]"
         onClick={() => setTheme("system")}
       >
         <div
@@ -32,7 +32,7 @@ const Theme = () => {
       <Button
         variant={null}
         size={null}
-        className="flex-col gap-2 items-stretch"
+        className="flex-col gap-2 items-stretch max-w-[16rem]"
         onClick={() => setTheme("light")}
       >
         <div
@@ -46,7 +46,7 @@ const Theme = () => {
       <Button
         variant={null}
         size={null}
-        className="flex-col gap-2 items-stretch"
+        className="flex-col gap-2 items-stretch max-w-[16rem]"
         onClick={() => setTheme("dark")}
       >
         <div
