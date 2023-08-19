@@ -1,6 +1,15 @@
 import { redirect } from "next/navigation";
-import { format } from "date-fns";
+import { lightFormat } from "date-fns";
 
-export const GET = () => {
-  redirect(`/calendar/${format(new Date(), "yyyy-MM-dd")}/month`);
+import { getValidSession } from "@/util/session";
+
+export const GET = async () => {
+  const { user } = await getValidSession();
+
+  redirect(
+    `/calendar/${lightFormat(
+      new Date(),
+      "yyyy-MM-dd",
+    )}/${user.preferredCalendarView.toLowerCase()}`,
+  );
 };

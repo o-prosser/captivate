@@ -1,5 +1,9 @@
 import { redirect } from "next/navigation";
 
+import { getValidSession } from "@/util/session";
+
 export const GET = async () => {
-  redirect("/tasks/card");
+  const { user } = await getValidSession();
+
+  redirect(`/tasks/${user.preferredTaskView.toLowerCase()}`);
 };

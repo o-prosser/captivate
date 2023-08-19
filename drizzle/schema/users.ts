@@ -1,8 +1,11 @@
 import { InferModel, relations, sql } from "drizzle-orm";
-import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 
 import { usersToSubjects } from "./subjects";
+
+export const calendarViewEnum = pgEnum("CalendarView", ["Month", "Week"]);
+export const taskViewEnum = pgEnum("TaskView", ["Card", "Table"]);
 
 export const usersTable = pgTable("User", {
   id: text("id")
@@ -16,6 +19,12 @@ export const usersTable = pgTable("User", {
   image: text("image"),
   token: text("token").default(sql`gen_random_uuid()`),
   impersonation: boolean("impersonation").notNull().default(false),
+  preferredCalendarView: calendarViewEnum("preferredCalendarView")
+    .default("Month")
+    .notNull(),
+  preferredTaskView: taskViewEnum("preferredTaskView")
+    .default("Card")
+    .notNull(),
   emailVerifiedAt: timestamp("emailVerifiedAt"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
 });
