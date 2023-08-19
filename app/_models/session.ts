@@ -17,6 +17,7 @@ const prepared = db.query.sessionsTable
           username: true,
           name: true,
           image: true,
+          theme: true,
           impersonation: true,
           preferredCalendarView: true,
           preferredTaskView: true,

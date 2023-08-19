@@ -18,6 +18,7 @@ export const usersTable = pgTable("User", {
   name: text("name"),
   image: text("image"),
   token: text("token").default(sql`gen_random_uuid()`),
+  theme: text("theme").default("indigo"),
   impersonation: boolean("impersonation").notNull().default(false),
   preferredCalendarView: calendarViewEnum("preferredCalendarView")
     .default("Month")

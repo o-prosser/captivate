@@ -20,6 +20,14 @@ const shadcnPlugin = plugin(
         "--maths": "358 75% 59%", // red9
         "--chemistry": "292 45% 51%", // plum9
         "--physics": "190 95% 39%", // cyan9
+        // Theme colours
+        "--theme-red": "358 75% 59%", //red7
+        "--theme-pink": "322 65% 55%", // pink7
+        "--theme-purple": "272 51% 54%", // purple7
+        "--theme-indigo": "226 56% 35%", // indigo9
+        "--theme-blue": "206 100% 50%", //blue7
+        "--theme-teal": "173 80% 36%", //teal7
+        "--theme-grass": "131 41% 46%", // grass7
       },
       ".dark": {
         "--background": "240 10% 4%", // zinc-950
@@ -35,6 +43,14 @@ const shadcnPlugin = plugin(
         // "--maths": "358 65% 49%", // red11
         // "--chemistry": "92 60% 43%", // plum11
         // "--physics": "192 85% 31%", // cyan11
+        // Theme colours
+        "--theme-red": "354 66% 33%", //red9
+        "--theme-pink": "320 51% 32%", // pink9
+        "--theme-purple": "276 41% 35%", // purple9
+        "--theme-indigo": "226 56% 35%", // indigo9
+        "--theme-blue": "211 82% 32%", //blue9
+        "--theme-teal": "171 55% 24%", //teal9
+        "--theme-grass": "135 35% 27%", // grass9
       },
     });
 

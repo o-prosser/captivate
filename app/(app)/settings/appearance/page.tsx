@@ -7,6 +7,7 @@ import { Label } from "@/ui/label";
 import { Heading, Text } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
 
+import Color from "./color";
 import Theme from "./theme";
 
 const SecurityPage = async () => {
@@ -35,6 +36,7 @@ const SecurityPage = async () => {
       <div className="mt-6 max-w-xl">
         <h4 className="font-bold">Theme</h4>
         <Theme />
+        <Color />
       </div>
 
       <div className="mt-6 pt-6 border-t max-w-xl">

@@ -86,7 +86,7 @@ const Sidebar = () => {
   return (
     <aside
       className="hidden md:flex py-6 z-10 flex-col px-[15.5px] items-start bg-background fixed left-0 inset-y-0 h-[100dvh] print:!hidden overflow-hidden
-      group-data-[expanded=true]/expanded:w-[15rem] group-data-[expanded=false]/expanded:w-[5.5rem] transition-all duration-100"
+      group-data-[expanded=true]/expanded:w-[15rem] w-[15rem] group-data-[expanded=false]/expanded:w-[5.5rem] transition-all duration-100"
     >
       <Button variant="default" size={null} asChild>
         <Link href="/dashboard" className="p-2.5">
