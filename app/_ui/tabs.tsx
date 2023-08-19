@@ -13,7 +13,7 @@ export const Tab = ({
   segment,
   children,
 }: {
-  active: boolean | string;
+  active: boolean | string | null;
   segment?: string;
   children: React.ReactNode;
 }) => {

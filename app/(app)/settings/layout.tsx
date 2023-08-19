@@ -9,7 +9,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       <Heading>Settings</Heading>
       <Tabs className="mt-3">
-        <Tab active="settings">
+        <Tab active={null}>
           <Button variant="ghost" size="sm" asChild>
             <Link href="/settings">General</Link>
           </Button>
