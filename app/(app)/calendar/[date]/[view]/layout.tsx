@@ -50,7 +50,7 @@ const CalendarLayout = async ({
         {displayCurrentWeek()}
       </Text>
 
-      <div className="flex gap-2 my-6">
+      <div className="flex gap-2 my-6 flex-wrap">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
             <Button variant="outline" className="capitalize">
