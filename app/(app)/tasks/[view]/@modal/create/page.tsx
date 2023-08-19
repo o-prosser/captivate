@@ -17,10 +17,10 @@ const Page = async ({
 }: {
   searchParams: { [key: string]: string };
 }) => {
-  const { user } = await getValidSession();
-
   const action = async (formData: FormData) => {
     "use server";
+
+    const { user } = await getValidSession();
 
     const { doDate, dueDate, ...body } = Object.fromEntries(formData.entries());
 
@@ -57,19 +57,16 @@ const Page = async ({
       <Heading level={2}>Add task</Heading>
 
       <form action={action} className="space-y-6 mt-6">
-        <div className="space-y-2">
-          <Label htmlFor="title">Title</Label>
-          <Input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Title"
-            required
-            minLength={2}
-            autoComplete="off"
-            autoFocus
-          />
-        </div>
+        <Input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          required
+          minLength={2}
+          autoComplete="off"
+          autoFocus
+        />
 
         <div className="space-y-2">
           <Label htmlFor="doDate">Do date</Label>
@@ -95,30 +92,25 @@ const Page = async ({
           />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="description">Description</Label>
-          <Textarea
-            name="description"
-            id="description"
-            placeholder="Description"
-            className="h-24"
-          />
-        </div>
+        <Textarea
+          name="description"
+          id="description"
+          placeholder="Description"
+          className="h-24"
+        />
 
-        <div className="space-y-2">
-          <Label htmlFor="subject">Subject</Label>
-          <Select
-            name="subjectId"
-            id="subject"
-            options={{
-              DEFAULT: "Select subject",
-              maths: "Maths",
-              chemistry: "Chemistry",
-              physics: "Physics",
-            }}
-            defaultValue={searchParams.subject || ""}
-          />
-        </div>
+        <Label htmlFor="subject">Subject</Label>
+        <Select
+          name="subjectId"
+          id="subject"
+          options={{
+            DEFAULT: "Select subject",
+            maths: "Maths",
+            chemistry: "Chemistry",
+            physics: "Physics",
+          }}
+          defaultValue={searchParams.subject || ""}
+        />
 
         <FormButton>Add task</FormButton>
       </form>
