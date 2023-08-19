@@ -2,9 +2,11 @@ import Link from "next/link";
 import {
   Atom,
   Calendar,
+  CalendarDays,
   Clipboard,
   FlaskRound,
   Home,
+  ListTodo,
   MessageSquare,
   Pi,
   Settings,
@@ -32,16 +34,16 @@ const links = [
       active: "/dashboard",
     },
     {
-      icon: Calendar,
-      label: "Calendar",
-      href: "/calendar",
-      active: "/calendar",
-    },
-    {
-      icon: Clipboard,
+      icon: ListTodo,
       label: "Tasks",
       href: "/tasks",
       active: "/tasks",
+    },
+    {
+      icon: CalendarDays,
+      label: "Calendar",
+      href: "/calendar",
+      active: "/calendar",
     },
   ],
   [
@@ -98,7 +100,7 @@ const Sidebar = () => {
             <Button
               variant="ghost"
               asChild
-              className="justify-start p-3 [&>svg]:!mr-0"
+              className="justify-start p-3 [&>svg]:!mr-0 [&[data-active=true]>svg]:!text-primary"
             >
               <Link href={href}>
                 <Icon />

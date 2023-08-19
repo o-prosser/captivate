@@ -184,14 +184,11 @@ const CommandBar = () => {
       <Button
         variant="outline"
         onClick={() => setOpen(true)}
-        className="text-muted-foreground hidden md:inline-flex"
+        className="text-muted-foreground hidden md:inline-flex md:w-72"
       >
         <Search />
-        <span className="lg:hidden">Notes, tasks, events...</span>
-        <span className="hidden lg:inline">
-          Notes, tasks, events and questions...
-        </span>
-        <span className="text-xs tracking-widest opacity-60 inline-flex -m-1 p-1 ml-2 rounded-xl bg-muted">
+        <span className="flex-1 text-left">Search</span>
+        <span className="text-xs tracking-widest opacity-60 inline-flex -m-1 p-1 ml-2 rounded-md bg-muted">
           ⌘K
         </span>
       </Button>
