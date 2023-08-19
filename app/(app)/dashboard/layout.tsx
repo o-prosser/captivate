@@ -43,14 +43,14 @@ const DashboardLayout = async ({
   const { user } = await getValidSession();
 
   return (
-    <>
+    <div className="xl:min-h-[calc(100dvh-128px)] grid grid-rows-[auto,1fr]">
       <div className="mb-6">
         <Heading>Hello {user.name?.split(" ")[0]}</Heading>
         <Text className="!mt-1 text-muted-foreground">
           Welcome back to Captivate
         </Text>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:grid-rows-2 max-h-full gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:grid-rows-2 max-h-full gap-6 h-full">
         {/* Calendar */}
         <Card.Root className="xl:row-span-2">
           <Card.Header className="flex-row justify-between space-y-0 pb-3">
@@ -102,7 +102,7 @@ const DashboardLayout = async ({
           <Card.Content>{tasks}</Card.Content>
         </Card.Root>
 
-        <div className="xl:row-span-2 space-y-6">
+        <div className="xl:row-span-2 space-y-6 xl:grid grid-rows-[auto,1fr]">
           {/* Weather */}
           {weather}
 
@@ -131,7 +131,7 @@ const DashboardLayout = async ({
 
         {children}
       </div>
-    </>
+    </div>
   );
 };
 
