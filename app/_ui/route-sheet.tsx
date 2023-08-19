@@ -1,16 +1,21 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export const RouteSheet = ({ children }: { children: React.ReactNode }) => {
   const overlay = useRef<HTMLDivElement>(null);
   const wrapper = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState("open");
 
   const router = useRouter();
 
   const onDismiss = useCallback(() => {
-    router.back();
+    setOpen("closed");
+    setTimeout(() => setOpen("gone"), 250);
+    setTimeout(() => {
+      router.back();
+    }, 50);
   }, [router]);
 
   const onClick: React.MouseEventHandler = useCallback(
@@ -37,14 +42,16 @@ export const RouteSheet = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       ref={overlay}
-      className="fixed inset-0 z-50 bg-background/80"
+      className="fixed inset-0 z-50 bg-background/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=gone]:hidden"
+      data-state={open}
       onClick={onClick}
     >
       <div
         ref={wrapper}
-        className="fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out inset-y-4 rounded-2xl right-4 w-3/4 border sm:max-w-sm"
+        data-state={open}
+        className="fixed z-50 gap-4 bg-background shadow-lg transition ease-in-out inset-y-4 rounded-2xl right-4 w-3/4 border sm:max-w-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right data-[state=gone]:hidden"
       >
-        <div className="p-6">{children}</div>
+        <div className="p-6 h-full overflow-auto">{children}</div>
       </div>
     </div>
   );
