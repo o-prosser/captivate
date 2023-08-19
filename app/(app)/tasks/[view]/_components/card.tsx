@@ -27,12 +27,12 @@ const CardView = async () => {
     <>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4 mt-6">
         <Card.Root>
-          <Card.Header className="flex-row justify-between space-y-0 -mr-3 pb-3">
+          <Card.Header className="flex-row justify-between space-y-0 -mr-2.5 pb-3">
             <Card.Title className="flex items-center">
-              <div className="h-[15px] w-[15px] rounded-full bg-muted-foreground mr-2" />
+              <CheckCircle2 className="text-muted-foreground h-5 w-5 mr-2" />
               Todo
             </Card.Title>
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="h-9 w-9">
               <Link href="/tasks/card/create">
                 <Plus />
               </Link>
