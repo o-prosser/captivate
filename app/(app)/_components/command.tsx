@@ -184,7 +184,7 @@ const CommandBar = () => {
       <Button
         variant="outline"
         onClick={() => setOpen(true)}
-        className="text-muted-foreground hidden md:inline-flex md:w-72"
+        className="text-muted-foreground hidden md:inline-flex md:w-72 hover:bg-background px-3"
       >
         <Search />
         <span className="flex-1 text-left">Search</span>
