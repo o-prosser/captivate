@@ -25,55 +25,49 @@ export const selectEvent = cache(async ({ id }: { id: Event["id"] }) => {
   )[0];
 });
 
-const selectEvents = cache(
-  async ({
-    search,
-    activeDate,
-    area = "month",
-  }: {
-    search?: string;
-    activeDate: Date;
-    area?: "month" | "days";
-  }) => {
-    const { user } = await getValidSession();
+const selectEvents = async ({
+  search,
+  activeDate,
+  area = "month",
+}: {
+  search?: string;
+  activeDate: Date;
+  area?: "month" | "days";
+}) => {
+  const { user } = await getValidSession();
 
-    return await db
-      .select({
-        id: eventsTable.id,
-        start: eventsTable.start,
-        end: eventsTable.end,
-        title: eventsTable.title,
-        subject: eventsTable.subjectId,
-        category: eventsTable.category,
-        description: eventsTable.description,
-      })
-      .from(eventsTable)
-      .where(
-        and(
-          eq(eventsTable.userId, user.id),
-          gte(
-            eventsTable.start,
-            area === "month"
-              ? startOfMonth(activeDate)
-              : startOfDay(activeDate),
-          ),
-          lte(
-            eventsTable.start,
-            area === "month"
-              ? endOfMonth(activeDate)
-              : addDays(startOfDay(activeDate), 3),
-          ),
-          search
-            ? or(
-                ilike(eventsTable.title, `%${search.toLowerCase()}%`),
-                ilike(eventsTable.subjectId, `%${search.toLowerCase()}%`),
-              )
-            : undefined,
+  return await db
+    .select({
+      id: eventsTable.id,
+      start: eventsTable.start,
+      end: eventsTable.end,
+      title: eventsTable.title,
+      subject: eventsTable.subjectId,
+      category: eventsTable.category,
+      description: eventsTable.description,
+    })
+    .from(eventsTable)
+    .where(
+      and(
+        eq(eventsTable.userId, user.id),
+        gte(
+          eventsTable.start,
+          area === "month" ? startOfMonth(activeDate) : startOfDay(activeDate),
         ),
-      )
-      .orderBy(asc(eventsTable.start))
-      .limit(area === "month" ? 100 : 4);
-  },
-);
+        lte(
+          eventsTable.start,
+          area === "month"
+            ? endOfMonth(activeDate)
+            : addDays(startOfDay(activeDate), 3),
+        ),
+        or(
+          ilike(eventsTable.title, `%${search?.toLowerCase()}%`),
+          ilike(eventsTable.subjectId, `%${search?.toLowerCase()}%`),
+        ),
+      ),
+    )
+    .orderBy(asc(eventsTable.start))
+    .limit(area === "month" ? 100 : 4);
+};
 
 export { selectEvents };

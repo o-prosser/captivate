@@ -1,10 +1,10 @@
-import { Session, sessionsTable } from "@/drizzle/schema";
+import type { Session } from "@/drizzle/schema";
 
-import { db, eq } from "@/lib/db";
+import { db, placeholder } from "@/lib/db";
 
-export const selectSession = async ({ id }: { id: Session["id"] }) => {
-  const session = await db.query.sessionsTable.findFirst({
-    where: eq(sessionsTable.id, id),
+const prepared = db.query.sessionsTable
+  .findFirst({
+    where: (fields, { eq }) => eq(fields.id, placeholder("id")),
     columns: {
       id: true,
       expiresAt: true,
@@ -38,7 +38,11 @@ export const selectSession = async ({ id }: { id: Session["id"] }) => {
         },
       },
     },
-  });
+  })
+  .prepare("selectSession");
+
+export const selectSession = async ({ id }: { id: Session["id"] }) => {
+  const session = await prepared.execute({ id });
 
   return session;
 };
