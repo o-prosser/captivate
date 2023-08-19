@@ -8,6 +8,11 @@ const Images = () => {
         href="/favicon-196.png"
       />
 
+      <link
+        rel="manifest"
+        href="/site.webmanifest"
+      />
+
       <link rel="apple-touch-icon" href="/apple-icon-180.png" />
 
       <meta name="apple-mobile-web-app-capable" content="yes" />
