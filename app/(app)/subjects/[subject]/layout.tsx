@@ -82,7 +82,7 @@ const Layout = ({
         }
       />
 
-      <aside className="hidden md:block grow basis-60 self-start sticky overflow-x-hidden overflow-y-auto w-60 border rounded-2xl py-2 top-4 print:!hidden">
+      <aside className="hidden md:block grow basis-60 self-start sticky overflow-x-hidden overflow-y-auto w-60 border rounded-2xl py-2 top-4 print:!hidden min-h-[calc(100dvh-128px)]">
         <Heading level={4} className="capitalize px-4 mb-0">
           {subject.name}
         </Heading>
