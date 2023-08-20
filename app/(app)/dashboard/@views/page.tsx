@@ -14,7 +14,7 @@ import { selectViews } from "@/models/view";
 import { ViewPlaceholder } from "./placeholder";
 
 const Views = async () => {
-  const views = await selectViews();
+  const views = await selectViews({});
 
   return (
     <div>
