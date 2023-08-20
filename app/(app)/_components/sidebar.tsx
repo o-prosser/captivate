@@ -70,8 +70,8 @@ const links = [
     {
       icon: MessageSquare,
       label: "Support",
-      href: "/support",
-      active: "/support",
+      href: "/docs",
+      active: "/docs",
     },
     {
       icon: Settings,
