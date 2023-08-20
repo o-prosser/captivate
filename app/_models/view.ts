@@ -3,14 +3,17 @@ import { viewsTable, type View } from "@/drizzle/schema";
 import { db, eq } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 
-export const selectViews = async () => {
+export const selectViews = async ({ subjectId }: { subjectId?: string }) => {
   const { user } = await getValidSession();
 
   const views = await db
     .selectDistinctOn([viewsTable.url])
     .from(viewsTable)
     .limit(3)
-    .where(eq(viewsTable.userId, user.id));
+    .where(
+      eq(viewsTable.userId, user.id),
+      subjectId ? eq(viewsTable.subjectId, subjectId) : undefined,
+    );
 
   return views;
 };

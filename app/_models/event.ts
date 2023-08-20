@@ -29,10 +29,12 @@ const selectEvents = async ({
   search,
   activeDate,
   area = "month",
+  subjectId,
 }: {
   search?: string;
   activeDate: Date;
   area?: "month" | "days";
+  subjectId?: string;
 }) => {
   const { user } = await getValidSession();
 
@@ -64,6 +66,7 @@ const selectEvents = async ({
           ilike(eventsTable.title, `%${search?.toLowerCase()}%`),
           ilike(eventsTable.subjectId, `%${search?.toLowerCase()}%`),
         ),
+        subjectId ? eq(eventsTable.subjectId, subjectId) : undefined,
       ),
     )
     .orderBy(asc(eventsTable.start))
