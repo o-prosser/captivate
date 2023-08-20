@@ -19,7 +19,7 @@ const Header = async () => {
 
   return (
     <>
-      <header className="flex items-center justify-between border-b md:border-none fixed inset-x-0 top-0 md:static bg-background space-x-1 px-6 md:px-0 md:-ml-5 h-16 md:h-auto z-10 print:hidden md:pb-4">
+      <header className="flex items-center justify-between border-b md:border-none fixed inset-x-0 top-0 md:static bg-background/80 backdrop-blur-md space-x-1 px-6 md:px-0 md:-ml-5 h-16 md:h-auto z-10 print:hidden md:pb-4">
         <Button variant="default" size={null} asChild>
           <Link href="/dashboard" className="p-2.5 md:hidden">
             <LogoIcon className="h-5 w-5" />
