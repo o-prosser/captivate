@@ -29,7 +29,7 @@ const Header = async () => {
         <Navigation />
         <CommandBar />
         <Add eventDialog={<AddEvent userId={user.id} />} user={user} />
-        <Profile feedback={<Feedback />} image={user.image} />
+        <Profile feedback={<Feedback />} user={user} />
       </header>
 
       <header className="hidden absolute print:block left-8 top-6">

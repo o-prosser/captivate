@@ -23,10 +23,10 @@ import { Root as DialogRoot, Trigger as DialogTrigger } from "@/ui/dialog";
 import * as DropdownMenu from "@/ui/dropdown-menu";
 
 const Profile = ({
-  image,
+  user,
   feedback,
 }: {
-  image?: User["image"];
+  user: Pick<User, "name" | "email" | "image">;
   feedback: React.ReactNode;
 }) => {
   const { setTheme } = useTheme();
@@ -38,13 +38,13 @@ const Profile = ({
           <Button
             variant="outline"
             className={cn(
-              "[&>svg]:mr-0 mr-6 md:mr-8 rounded-full relative",
-              image ? "p-0 relative w-10 h-10" : "px-3",
+              "mr-6 md:mr-8 rounded-full relative w-10 h-10",
+              user.image ? "p-0" : "px-3",
             )}
           >
-            {image ? (
+            {user.image ? (
               <Image
-                src={image}
+                src={user.image}
                 alt="Avatar"
                 fill
                 sizes="40px"
@@ -55,8 +55,31 @@ const Profile = ({
             )}
           </Button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="w-56 mr-4">
-          <DropdownMenu.Label>My Account</DropdownMenu.Label>
+        <DropdownMenu.Content className="w-64 mr-4">
+          <DropdownMenu.Label className="flex items-center gap-2">
+            <div
+              className={cn(
+                "rounded-full relative w-10 h-10 shrink-0",
+                user.image ? "p-0" : "px-3",
+              )}
+            >
+              {user.image ? (
+                <Image
+                  src={user?.image}
+                  alt="Avatar"
+                  fill
+                  sizes="40px"
+                  className="object-cover rounded-full"
+                />
+              ) : (
+                <UserIcon />
+              )}
+            </div>
+            <div className="flex flex-col">
+              <span>{user.name}</span>
+              <span className="font-normal">{user.email}</span>
+            </div>
+          </DropdownMenu.Label>
           <DropdownMenu.Separator />
           <DropdownMenu.Group>
             <DropdownMenu.Item asChild>
