@@ -351,11 +351,11 @@ const CommandBar = () => {
                     <Laptop />
                     Change theme to system
                   </Command.Item>
-                  <Command.Item onSelect={() => setTheme("system")}>
+                  <Command.Item onSelect={() => setTheme("light")}>
                     <Sun />
                     Change theme to light
                   </Command.Item>
-                  <Command.Item onSelect={() => setTheme("system")}>
+                  <Command.Item onSelect={() => setTheme("dark")}>
                     <Moon />
                     Change theme to dark
                   </Command.Item>
