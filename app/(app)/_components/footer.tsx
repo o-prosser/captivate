@@ -1,12 +1,5 @@
 import Link from "next/link";
-import {
-  Atom,
-  CalendarDays,
-  FlaskRound,
-  Home,
-  ListTodo,
-  Pi,
-} from "lucide-react";
+import { Atom, FlaskRound, Home, Pi } from "lucide-react";
 
 import { Button } from "@/ui/button";
 
@@ -17,18 +10,6 @@ const Footer = () => {
         <Link href="/dashboard">
           <Home />
           Dashboard
-        </Link>
-      </Button>
-      <Button variant="ghost" className="px-2" asChild>
-        <Link href="/calendar">
-          <CalendarDays />
-          Calendar
-        </Link>
-      </Button>
-      <Button variant="ghost" className="px-2" asChild>
-        <Link href="/tasks">
-          <ListTodo />
-          Tasks
         </Link>
       </Button>
       <Button variant="ghost" className="px-2" asChild>
