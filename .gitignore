@@ -39,5 +39,3 @@ next-env.d.ts
 
 # public raw files
 /public/**/*.afpub
-
-drizzle.config.ts
