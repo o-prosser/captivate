@@ -49,7 +49,7 @@ const Layout = ({
           <div className="space-y-1 flex flex-col [&>a>svg]:h-5 [&>a>svg]:w-5 [&>a]:justify-start md:[&>a]:rounded-none mt-4">
             {links.map((category, key) => (
               <div className="!mb-3 flex flex-col items-stretch" key={key}>
-                <p className="pb-1 px-3 text-muted-foreground text-sm">
+                <p className="pb-1 px-3 text-muted-foreground text-sm font-medium">
                   {category.label}
                 </p>
 
@@ -82,7 +82,7 @@ const Layout = ({
         }
       />
 
-      <aside className="hidden md:block grow basis-60 self-start sticky overflow-x-hidden overflow-y-auto w-60 border rounded-2xl py-2 top-4 print:!hidden min-h-[calc(100dvh-128px)]">
+      <aside className="hidden md:block grow basis-60 self-start sticky overflow-x-hidden overflow-y-auto w-60 border rounded-2xl py-3 top-4 print:!hidden min-h-[calc(100dvh-128px)]">
         <Heading level={4} className="capitalize px-4 mb-0">
           {subject.name}
         </Heading>

@@ -4,6 +4,7 @@ import {
   FileText,
   FlaskConical,
   FolderDown,
+  Home,
   LayoutDashboard,
   LucideIcon,
   Paperclip,
@@ -26,7 +27,7 @@ const links: {
     label: "Information",
     links: [
       {
-        Icon: LayoutDashboard,
+        Icon: Home,
         href: "/",
         label: "Dashboard",
         active: "/subjects/{subject}",
