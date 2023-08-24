@@ -1,6 +1,6 @@
 import { viewsTable, type View } from "@/drizzle/schema";
 
-import { db, eq } from "@/lib/db";
+import { and, db, eq, ilike } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 
 export const selectViews = async ({ subjectId }: { subjectId?: string }) => {
@@ -11,8 +11,9 @@ export const selectViews = async ({ subjectId }: { subjectId?: string }) => {
     .from(viewsTable)
     .limit(3)
     .where(
-      eq(viewsTable.userId, user.id),
-      subjectId ? eq(viewsTable.subjectId, subjectId) : undefined,
+      subjectId
+        ? and(eq(viewsTable.userId, user.id), ilike(viewsTable.url, subjectId))
+        : eq(viewsTable.userId, user.id),
     );
 
   return views;
