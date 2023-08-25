@@ -13,18 +13,28 @@ export const middleware = async (request: NextRequest) => {
     pathname.startsWith("/subjects") ||
     pathname.startsWith("/tasks") ||
     pathname.startsWith("/files") ||
-    pathname.startsWith("/getting-started") ||
+    // pathname.startsWith("/getting-started") ||
     pathname.startsWith("/api");
 
   const guestRoute =
     pathname.startsWith("/login") ||
     pathname.startsWith("/signup") ||
-    pathname.startsWith("/verify") ||
-    pathname.startsWith("/verify-request");
+    pathname.startsWith("/verify");
+  // pathname.startsWith("/verify-request");
 
   let response = NextResponse.next();
-  if (protectedRoute && !session)
+  if ((protectedRoute || pathname.startsWith("/getting-started")) && !session)
     response = NextResponse.redirect(new URL("/login", request.url));
+  if (
+    (protectedRoute || pathname.startsWith("/getting-started")) &&
+    session &&
+    !session.user.emailVerifiedAt
+  ) {
+    response = NextResponse.redirect(new URL("/verify-request", request.url));
+    response.cookies.delete("session_id");
+  }
+  if (protectedRoute && session && !session.user.completedOnboardingAt)
+    response = NextResponse.redirect(new URL("/getting-started", request.url));
   if (guestRoute && session)
     response = NextResponse.redirect(new URL("/dashboard", request.url));
 

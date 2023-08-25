@@ -15,7 +15,7 @@ const CalendarPage = () => {
   const action = async (formData: FormData) => {
     "use server";
 
-    redirect("/timetable");
+    redirect("/getting-started/timetable");
   };
 
   return (
@@ -28,7 +28,7 @@ const CalendarPage = () => {
       <Progress step={3} />
 
       <Card.Root className="mt-6">
-        <form>
+        <form action={action}>
           <Card.Content className="pt-6 space-y-6"></Card.Content>
           <Card.Footer>
             <Button className="w-full">

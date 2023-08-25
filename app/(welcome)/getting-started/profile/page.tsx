@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { usersTable } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
+import { db, eq, sql } from "@/lib/db";
 import { getValidSession } from "@/util/session";
 import * as Card from "@/ui/card";
 import { Heading, Text } from "@/ui/typography";
@@ -17,6 +19,13 @@ const Profile = async () => {
 
   const action = async (formData: FormData) => {
     "use server";
+
+    const { user } = await getValidSession();
+
+    await db
+      .update(usersTable)
+      .set({ completedOnboardingAt: sql`now()` })
+      .where(eq(usersTable.id, user.id));
 
     redirect("/dashboard");
   };

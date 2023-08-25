@@ -15,7 +15,7 @@ const TimetablePage = () => {
   const action = async (formData: FormData) => {
     "use server";
 
-    redirect("/gettings-started/profile");
+    redirect("/getting-started/profile");
   };
 
   return (

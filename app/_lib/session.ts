@@ -95,6 +95,14 @@ export const getMiddlewareSession = async (request: NextRequest) => {
       id: true,
       expiresAt: true,
     },
+    with: {
+      user: {
+        columns: {
+          emailVerifiedAt: true,
+          completedOnboardingAt: true,
+        },
+      },
+    },
   });
 
   if (!session || isPast(session.expiresAt)) {

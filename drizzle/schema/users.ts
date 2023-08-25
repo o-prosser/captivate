@@ -27,6 +27,7 @@ export const usersTable = pgTable("User", {
     .default("Card")
     .notNull(),
   emailVerifiedAt: timestamp("emailVerifiedAt"),
+  completedOnboardingAt: timestamp("completedOnboardingAt"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
 });
 

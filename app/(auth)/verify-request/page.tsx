@@ -4,7 +4,7 @@ export const metadata = {
   title: "Check your email",
 };
 
-const VerifyRequest = () => {
+const VerifyRequest = async () => {
   return (
     <>
       <Heading className="text-center mb-8">✉️ Check your email</Heading>
