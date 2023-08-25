@@ -12,6 +12,7 @@ export const middleware = async (request: NextRequest) => {
     pathname.startsWith("/settings") ||
     pathname.startsWith("/subjects") ||
     pathname.startsWith("/tasks") ||
+    pathname.startsWith("/files") ||
     pathname.startsWith("/getting-started") ||
     pathname.startsWith("/api");
 
