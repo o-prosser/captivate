@@ -63,7 +63,7 @@ const Index = async () => {
         <Button asChild>
           <Link href={session?.user ? "/dashboard" : "/signup"}>
             {session?.user ? "Your dashboard" : "Get started"}
-            <ArrowRight className="!mr-0 !h-5 !w-5 ml-2 group-hover:translate-x-1 transition duration-100" />
+            <ArrowRight className="group-hover:translate-x-1 transition duration-100" />
           </Link>
         </Button>
       </div>
