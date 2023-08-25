@@ -5,6 +5,7 @@ import {
   CalendarDays,
   Clipboard,
   FlaskRound,
+  FolderClosed,
   Home,
   ListTodo,
   MessageSquare,
@@ -44,6 +45,12 @@ const links = [
       label: "Calendar",
       href: "/calendar",
       active: "/calendar",
+    },
+    {
+      icon: FolderClosed,
+      label: "Files",
+      href: "/files",
+      active: "/files",
     },
   ],
   [

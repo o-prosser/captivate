@@ -4,25 +4,27 @@ import { ArrowRight } from "lucide-react";
 
 import { getSession } from "@/lib/session";
 import { Button } from "@/ui/button";
+import { LogoIcon } from "@/ui/logo-icon";
 import { Heading } from "@/ui/typography";
 import { ThemeToggle } from "@/components/theme";
+
+import dashboardScreenDark from "./_assets/dashboard-screen-dark.png";
+import dashboardScreenLight from "./_assets/dashboard-screen-light.png";
 
 const Index = async () => {
   const session = await getSession();
 
   return (
-    <main className="min-h-screen w-screen">
-      <div className="flex px-6 md:px-8 items-center justify-between mt-6">
-        <Button variant="link" asChild size={null}>
-          <Link href="/" className="hover:opacity-80 dark:brightness-150">
-            <Image
-              src="/logo.svg"
-              alt="Captivate Logo"
-              height={18}
-              width={107}
-            />
-          </Link>
-        </Button>
+    <main className="min-h-screen w-full max-w-7xl mx-auto px-6 md:px-8">
+      <div className="flex items-center justify-between mt-6">
+        <div className="flex items-center gap-3">
+          <Button size={null} asChild>
+            <Link href="/" className="p-2.5">
+              <LogoIcon className="h-6 w-6" />
+            </Link>
+          </Button>
+          <span className="font-headings text-lg font-medium">Captivate</span>
+        </div>
 
         <div className="flex items-center space-x-2">
           {!session?.user && (
@@ -39,24 +41,26 @@ const Index = async () => {
         </div>
       </div>
 
-      <Heading className="text-center text-4xl lg:text-5xl text-balance !leading-[1.2] bg-gradient-to-b to-[#1A2242] from-[#1F2C5C] dark:from-[#4065DD] dark:to-primary text-transparent bg-clip-text mt-20 max-w-3xl lg:max-w-4xl mx-auto px-6">
+      <div className="flex justify-center mt-14">
+        <div className="rounded-full px-4 py-2 border bg-muted font-medium inline-flex text-sm mx-auto">
+          🎉 Version 1 released
+        </div>
+      </div>
+
+      <Heading
+        style={{ textWrap: "balance" } as React.CSSProperties}
+        className="text-center text-4xl lg:text-5xl !leading-[1.2] tracking-tighter !mt-4 max-w-3xl lg:max-w-4xl mx-auto px-6"
+      >
         Captivate is a better way to revise at A-level
       </Heading>
 
-      <Heading
-        level={2}
-        className="text-muted-foreground text-balance font-medium text-center leading-[1.5] mt-4 max-w-3xl lg:max-w-4xl mx-auto px-6"
-      >
+      <h3 className="text-muted-foreground text-balance text-center leading-[1.5] max-w-3xl text-lg font-medium mx-auto px-6 pt-8">
         Interactive flashcards, notes, daily question practise and testing,
-        built by students.
-      </Heading>
+        built by students &mdash; for students.
+      </h3>
 
       <div className="flex justify-center mt-10">
-        <Button
-          className="group bg-gradient-to-r from-primary to-[#2F4DB1]"
-          size="lg"
-          asChild
-        >
+        <Button asChild>
           <Link href={session?.user ? "/dashboard" : "/signup"}>
             {session?.user ? "Your dashboard" : "Get started"}
             <ArrowRight className="!mr-0 !h-5 !w-5 ml-2 group-hover:translate-x-1 transition duration-100" />
@@ -65,6 +69,21 @@ const Index = async () => {
       </div>
 
       <ThemeToggle />
+
+      <div className="relative w-full aspect-[1658/1037] mb-10 overflow-hidden rounded-2xl border mt-10">
+        <Image
+          src={dashboardScreenLight}
+          alt="Screenshot of dashboard"
+          fill
+          className="dark:hidden"
+        />
+        <Image
+          src={dashboardScreenDark}
+          alt="Screenshot of dashboard"
+          fill
+          className="hidden dark:block"
+        />
+      </div>
     </main>
   );
 };

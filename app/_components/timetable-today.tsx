@@ -54,7 +54,9 @@ const Lesson = ({
   return (
     <SubjectCard subject={lesson.subject}>
       <SubjectCard.Header>
-        <SubjectCard.Title>{lesson.subject}</SubjectCard.Title>
+        <SubjectCard.Title className="capitalize">
+          {lesson.subject}
+        </SubjectCard.Title>
 
         <SubjectCard.Description>
           {lessonTimes[lesson.lesson[0] - 1].start} &ndash;{" "}
