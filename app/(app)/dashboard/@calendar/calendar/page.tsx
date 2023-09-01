@@ -10,7 +10,7 @@ import { selectEvents } from "@/models/event";
 import { EventPlaceholder } from "./placeholder";
 
 const Calendar = async () => {
-  const events = await selectEvents({ activeDate: new Date(), area: "days" });
+  const events = await selectEvents({ activeDate: new Date(), area: "week" });
 
   return events.length > 0 ? (
     <div className="space-y-2">
