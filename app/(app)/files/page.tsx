@@ -14,8 +14,8 @@ const FilesPage = async () => {
         <Link href="/files/create">Upload file</Link>
       </Button>
 
-      {files.map((file) => (
-        <div>
+      {files.map((file, key) => (
+        <div key={key}>
           {file.title} &mdash;
           {file.url}
         </div>
