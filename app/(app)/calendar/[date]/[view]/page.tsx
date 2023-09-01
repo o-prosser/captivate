@@ -1,4 +1,5 @@
-import { parse } from "date-fns";
+import { notFound } from "next/navigation";
+import { endOfMonth, parse, startOfMonth } from "date-fns";
 
 import { selectEvents } from "@/models/event";
 
@@ -27,12 +28,13 @@ const MonthPage = async ({
   params: { date: string; view: string };
   searchParams: Record<string, string>;
 }) => {
+  if (params.view !== "month" && params.view !== "week") notFound();
   const activeDate = parse(params.date, "yyyy-MM-dd", new Date());
 
   const events = await selectEvents({
     search: searchParams.search,
     activeDate,
-    area: "month",
+    area: params.view,
   });
 
   if (params.view === "month")

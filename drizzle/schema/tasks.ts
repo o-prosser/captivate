@@ -15,7 +15,7 @@ export const tasksTable = pgTable("Task", {
   doDate: timestamp("doDate", { mode: "date" }),
   title: text("title").notNull(),
   subjectId: text("subjectId")
-    .references(() => subjectsTable.id, { onDelete: "set null" })
+    // .references(() => subjectsTable.id, { onDelete: "set null" })
     .default(sql`NULL`),
   description: text("description"),
   userId: text("userId")

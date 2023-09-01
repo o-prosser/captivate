@@ -73,9 +73,6 @@ const Calendar = ({
   const weekEndDay = getDay(days[days.length - 1]);
   const lastDayOfWeek = addDays(endOfWeek(days[days.length - 1]), 1);
 
-  console.log(weekEndDay, lastDayOfWeek);
-  console.log(addDays(days[days.length - 1], 1), lastDayOfWeek);
-
   const endOfMonthInterval =
     weekEndDay !== 0
       ? eachDayOfInterval({
@@ -167,7 +164,7 @@ const Calendar = ({
             <div className="space-y-2 w-full p-1">
               {events
                 .filter(
-                  (event) => event.start.toDateString() === day.toDateString(),
+                  (event) => isSameDay(event.start, day),
                 )
                 .map((event, key) => (
                   <Button

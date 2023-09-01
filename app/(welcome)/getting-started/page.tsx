@@ -27,8 +27,6 @@ const GettingStarted = async () => {
     if (typeof username !== "string" || typeof name !== "string")
       throw new Error("Invalid form data");
 
-    console.log(user, username, name);
-
     await db
       .update(usersTable)
       .set({

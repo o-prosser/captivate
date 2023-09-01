@@ -3,7 +3,6 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    DATABASE_URL: z.string(),
     DRIZZLE_DATABASE_URL: z.string(),
     WEATHER_API_KEY: z.string().min(1),
     UPLOADTHING_SECRET: z.string().min(1),

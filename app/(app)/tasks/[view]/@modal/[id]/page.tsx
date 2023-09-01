@@ -1,16 +1,24 @@
 import { revalidatePath } from "next/cache";
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { tasksTable } from "@/drizzle/schema/tasks";
 import { formatDistance, isToday, isTomorrow } from "date-fns";
 import { Calendar, Check } from "lucide-react";
 
+
+
 import { db, eq } from "@/lib/db";
+import { Button } from "@/ui/button";
 import { RouteSheet } from "@/ui/route-sheet";
 import { Heading } from "@/ui/typography";
 import { FormButton } from "@/components/form-button";
 import { selectTask } from "@/models/task";
 
-const TaskPage = async ({ params }: { params: { id: string } }) => {
+
+
+
+
+const TaskPage = async ({ params }: { params: { id: string, view: string } }) => {
   const task = await selectTask(params);
   if (!task) notFound();
 
@@ -23,9 +31,21 @@ const TaskPage = async ({ params }: { params: { id: string } }) => {
       .set({ completed: !task.completed })
       .where(eq(tasksTable.id, params.id));
 
-    revalidatePath("/tasks");
-    redirect(`/tasks?deleted=${params.id}`);
+    revalidatePath('/tasks/');
+    redirect(`/tasks/${params.view}?toggled=${params.id}`);
   };
+
+  const deleteAction = async () => {
+    "use server";
+
+    const task = await selectTask(params);
+    await db
+      .delete(tasksTable)
+      .where(eq(tasksTable.id, params.id));
+
+    revalidatePath('/tasks/');
+    redirect(`/tasks/${params.view}?deleted=${params.id}`);
+  }
 
   return (
     <RouteSheet>
@@ -89,11 +109,19 @@ const TaskPage = async ({ params }: { params: { id: string } }) => {
 
           {/* <Text className="!mt-0">{task.markdown}</Text> */}
         </div>
-        <div>
-          <form action={toggleAction}>
-            <FormButton variant="outline" className="w-full">
+        <div className="grid gap-4 grid-cols-2">
+          <form action={toggleAction} className="col-span-2">
+            <FormButton className="w-full">
               <Check />
               Mark as completed
+            </FormButton>
+          </form>
+          <Button variant="outline" asChild>
+            <Link href={`/tasks/${params.view}/${task.id}/edit`}>Edit</Link>
+          </Button>
+          <form action={deleteAction}>
+            <FormButton variant="destructive" className="w-full">
+              Delete
             </FormButton>
           </form>
         </div>

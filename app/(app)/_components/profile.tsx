@@ -55,14 +55,9 @@ const Profile = ({
             )}
           </Button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="w-64 mr-4">
+        <DropdownMenu.Content align="end" className="w-64">
           <DropdownMenu.Label className="flex items-center gap-2">
-            <div
-              className={cn(
-                "rounded-full relative w-10 h-10 shrink-0",
-                user.image ? "p-0" : "px-3",
-              )}
-            >
+            <div className="rounded-full relative w-10 h-10 shrink-0 grid bg-muted place-items-center text-muted-foreground">
               {user.image ? (
                 <Image
                   src={user?.image}
@@ -72,12 +67,14 @@ const Profile = ({
                   className="object-cover rounded-full"
                 />
               ) : (
-                <UserIcon />
+                <UserIcon className="h-5 w-5" />
               )}
             </div>
             <div className="flex flex-col">
               <span>{user.name}</span>
-              <span className="font-normal">{user.email}</span>
+              <span className="font-normal text-xs text-muted-foreground">
+                {user.email}
+              </span>
             </div>
           </DropdownMenu.Label>
           <DropdownMenu.Separator />

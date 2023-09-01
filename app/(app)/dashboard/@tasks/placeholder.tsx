@@ -8,12 +8,14 @@ export const TaskPlaceholder = ({ animate = false }: { animate?: boolean }) => {
         animate && "animate-pulse",
       )}
     >
-      <div className="flex items-start justify-between">
+      <div>
         <div>
           <div className="h-4 my-1.5 w-40 bg-muted-foreground/20 rounded-lg" />
           <div className="h-3.5 my-[3px] w-32 bg-muted-foreground/20 rounded-lg" />
         </div>
-        <div className="h-3 w-28 bg-muted-foreground/20 rounded-lg" />
+        <div className="flex justify-end mt-2">
+          <div className="h-3 w-20 bg-muted-foreground/20 rounded-lg" />
+        </div>
       </div>
     </div>
   );

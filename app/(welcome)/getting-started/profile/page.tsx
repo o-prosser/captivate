@@ -32,7 +32,7 @@ const Profile = async () => {
 
   return (
     <>
-      <Heading level={2}>Welcome to Captivate</Heading>
+      <Heading level={2}>Your public profile</Heading>
       <Text className="!mt-3 text-muted-foreground">
         We need some basic info to setup your profile. <br /> This can be edited
         later.
