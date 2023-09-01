@@ -13,7 +13,7 @@ import { EventPlaceholder } from "./placeholder";
 const Calendar = async ({ params }: SubjectPageProps) => {
   const events = await selectEvents({
     activeDate: new Date(),
-    area: "days",
+    area: "week",
     subjectId: params.subject,
   });
 
