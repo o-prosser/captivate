@@ -50,7 +50,7 @@ export const action = async (formData: FormData) => {
         <LoginEmail
           url={`${
             process.env.NODE_ENV === "production"
-              ? process.env.VERCEL_URL
+              ? "https://captivate.prossermedia.co.uk"
               : "http://localhost:3000"
           }/verify?email=${encodeURIComponent(
             user.email,
