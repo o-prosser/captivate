@@ -23,13 +23,16 @@ export const middleware = async (request: NextRequest) => {
   // pathname.startsWith("/verify-request");
 
   let response = NextResponse.next();
-  if ((protectedRoute || pathname.startsWith("/getting-started")) && !session)
+  if ((protectedRoute || pathname.startsWith("/getting-started")) && !session) {
+    console.log("Protected route with no session");
     response = NextResponse.redirect(new URL("/login", request.url));
+  }
   if (
     (protectedRoute || pathname.startsWith("/getting-started")) &&
     session &&
     !session.user.emailVerifiedAt
   ) {
+    console.log("Protected route with session but not verified");
     response = NextResponse.redirect(new URL("/verify-request", request.url));
     response.cookies.delete("session_id");
   }
