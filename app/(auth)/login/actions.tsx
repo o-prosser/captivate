@@ -70,6 +70,6 @@ export const action = async (formData: FormData) => {
     await login({ userId: user.id, redirectUser: false });
 
     if (!user.completedOnboardingAt) redirect("/getting-started");
-    redirect("/dashboard");
+    redirect("/tasks");
   }
 };
