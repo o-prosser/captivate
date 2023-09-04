@@ -39,37 +39,8 @@ export const action = async (formData: FormData) => {
   if (!correctPassword)
     redirect(`/login?error=credentials&email=${formData.get("email")}`);
 
-  if (!user.emailVerifiedAt) {
-    const userWithToken = (
-      await db
-        .update(usersTable)
-        .set({ token: sql`gen_random_uuid()` })
-        .where(eq(usersTable.id, user.id))
-        .returning({ token: usersTable.token })
-    )[0];
+  await login({ userId: user.id });
 
-    await resend.emails.send({
-      from: `${env.EMAIL_FROM_NAME} <${env.EMAIL_FROM}>`,
-      to: [email],
-      subject: "Verify your email",
-      react: (
-        <LoginEmail
-          url={`${
-            process.env.NODE_ENV === "production"
-              ? "https://captivate.prossermedia.co.uk"
-              : "http://localhost:3000"
-          }/verify?email=${encodeURIComponent(
-            email,
-          )}&token=${encodeURIComponent(userWithToken.token || "")}`}
-        />
-      ),
-    });
-
-    redirect("/verify-request");
-  } else {
-    await login({ userId: user.id, redirectUser: false });
-
-    if (!user.completedOnboardingAt) redirect("/getting-started");
-    redirect("/tasks");
-  }
+  // if (!user.completedOnboardingAt) redirect("/getting-started");
+  // redirect("/tasks");
 };
