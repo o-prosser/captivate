@@ -18,8 +18,6 @@ export const action = async (formData: FormData) => {
   if (typeof email !== "string" || typeof password !== "string")
     throw new Error("Invalid form data");
 
-  console.log("Valid form data");
-
   const user = (
     await db
       .select({
@@ -43,10 +41,6 @@ export const action = async (formData: FormData) => {
   if (!correctPassword)
     redirect(`/login?error=credentials&email=${formData.get("email")}`);
 
-  console.log("Correct password");
-
-  // await login({ userId: user.id });
-
   const session = (
     await db
       .insert(sessionsTable)
@@ -57,14 +51,8 @@ export const action = async (formData: FormData) => {
       .returning({ id: sessionsTable.id })
   )[0];
 
-  console.log("Created session entry");
-
   await createSession(session.id);
 
-  console.log("Created session cookie");
-
+  if (!user.completedOnboardingAt) redirect("/getting-started");
   redirect("/dashboard");
-
-  // if (!user.completedOnboardingAt) redirect("/getting-started");
-  // redirect("/tasks");
 };
