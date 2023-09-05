@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usersTable } from "@/drizzle/schema";
 import { ArrowRight } from "lucide-react";
 
 import { getSession } from "@/lib/session";
@@ -10,9 +11,12 @@ import { ThemeToggle } from "@/components/theme";
 
 import dashboardScreenDark from "./_assets/dashboard-screen-dark.png";
 import dashboardScreenLight from "./_assets/dashboard-screen-light.png";
+import { db } from "./_lib/db";
 
 const Index = async () => {
   const session = await getSession();
+
+  const users = await db.select().from(usersTable);
 
   return (
     <main className="min-h-screen w-full max-w-7xl mx-auto px-6 md:px-8">
@@ -46,6 +50,8 @@ const Index = async () => {
           🎉 Version 1 released
         </div>
       </div>
+
+      {users.join(", ")}
 
       <Heading
         style={{ textWrap: "balance" } as React.CSSProperties}
