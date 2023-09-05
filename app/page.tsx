@@ -51,7 +51,9 @@ const Index = async () => {
         </div>
       </div>
 
-      {users.join(", ")}
+      {users.map((user) => (
+        <p key={user.id}>{user.email}</p>
+      ))}
 
       <Heading
         style={{ textWrap: "balance" } as React.CSSProperties}
