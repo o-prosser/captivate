@@ -50,12 +50,12 @@ const Index = async () => {
 
       <Heading
         style={{ textWrap: "balance" } as React.CSSProperties}
-        className="text-center text-4xl lg:text-5xl !leading-[1.2] tracking-tighter !mt-4 max-w-3xl lg:max-w-4xl mx-auto px-6"
+        className="text-center text-4xl lg:text-5xl !leading-[1.2] tracking-tighter !mt-4 max-w-3xl md:max-w-xl mx-auto px-6"
       >
         Captivate is a better way to revise at A-level
       </Heading>
 
-      <h3 className="text-muted-foreground text-balance text-center leading-[1.5] max-w-3xl text-lg font-medium mx-auto px-6 pt-8">
+      <h3 className="text-muted-foreground text-balance text-center leading-[1.5] max-w-3xl md:max-w-lg text-lg font-medium mx-auto px-6 pt-8">
         Interactive flashcards, notes, daily question practise and testing,
         built by students &mdash; for students.
       </h3>
