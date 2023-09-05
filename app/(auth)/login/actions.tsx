@@ -57,7 +57,11 @@ export const action = async (formData: FormData) => {
       .returning({ id: sessionsTable.id })
   )[0];
 
+  console.log("Created session entry");
+
   await createSession(session.id);
+
+  console.log("Created session cookie");
 
   redirect("/dashboard");
 
