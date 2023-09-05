@@ -16,6 +16,8 @@ export const action = async (formData: FormData) => {
   if (typeof email !== "string" || typeof password !== "string")
     throw new Error("Invalid form data");
 
+    console.log("Valid form data");
+
   const user = (
     await db
       .select({
@@ -38,6 +40,8 @@ export const action = async (formData: FormData) => {
 
   if (!correctPassword)
     redirect(`/login?error=credentials&email=${formData.get("email")}`);
+
+    console.log("Correct password");
 
   await login({ userId: user.id });
 

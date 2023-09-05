@@ -27,7 +27,7 @@ export const login = async ({
   )[0];
 
   await createSession(session.id);
-  // console.log("Created session:" + cookies().get("session_id")?.value);
+  console.log("Created session:" + cookies().get("session_id")?.value);
 
   if (redirectUser) redirect("/dashboard");
 };

@@ -1,8 +1,14 @@
+import { getValidSession } from "@/util/session";
+
 export const metadata = {
   title: "Dashboard",
 };
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  const { user } = await getValidSession();
+
+  console.log("On dashboard. User: " + user.email);
+
   return null;
 };
 
