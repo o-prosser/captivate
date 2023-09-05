@@ -1,13 +1,15 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { usersTable } from "@/drizzle/schema";
+import { sessionsTable, usersTable } from "@/drizzle/schema";
+import { addMonths } from "date-fns";
 
 import { env } from "@/env.mjs";
 import { login } from "@/actions/session";
 import LoginEmail from "@/emails/login";
 import { db, eq, sql } from "@/lib/db";
 import { resend } from "@/lib/resend";
+import { createSession } from "@/lib/session";
 import { isMatchingPassword } from "@/util/password";
 
 export const action = async (formData: FormData) => {
@@ -16,7 +18,7 @@ export const action = async (formData: FormData) => {
   if (typeof email !== "string" || typeof password !== "string")
     throw new Error("Invalid form data");
 
-    console.log("Valid form data");
+  console.log("Valid form data");
 
   const user = (
     await db
@@ -41,9 +43,23 @@ export const action = async (formData: FormData) => {
   if (!correctPassword)
     redirect(`/login?error=credentials&email=${formData.get("email")}`);
 
-    console.log("Correct password");
+  console.log("Correct password");
 
-  await login({ userId: user.id });
+  // await login({ userId: user.id });
+
+  const session = (
+    await db
+      .insert(sessionsTable)
+      .values({
+        userId: user.id,
+        expiresAt: addMonths(new Date(), 1),
+      })
+      .returning({ id: sessionsTable.id })
+  )[0];
+
+  await createSession(session.id);
+
+  redirect("/dashboard");
 
   // if (!user.completedOnboardingAt) redirect("/getting-started");
   // redirect("/tasks");
