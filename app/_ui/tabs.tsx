@@ -5,7 +5,12 @@ import { Slot } from "@radix-ui/react-slot";
 import clsx from "clsx";
 
 const Tabs = ({ className, ...props }: React.ComponentProps<"div">) => {
-  return <div className={clsx("mb-6 flex  border-b", className)} {...props} />;
+  return (
+    <div
+      className={clsx("mb-6 flex print:hidden border-b", className)}
+      {...props}
+    />
+  );
 };
 
 export const Tab = ({
