@@ -125,7 +125,7 @@ const CardView = async () => {
                       asChild
                       className="text-base block"
                     >
-                      <Link href={`/tasks/${task.id}`}>
+                      <Link href={`/tasks/card/${task.id}`}>
                         <SubjectCard subject={task.subjectId} design="compact">
                           <SubjectCard.Header>
                             <div>

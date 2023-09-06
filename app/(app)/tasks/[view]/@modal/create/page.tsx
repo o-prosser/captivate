@@ -49,7 +49,7 @@ const Page = async ({
     }
 
     revalidatePath("/tasks");
-    redirect(`/tasks?created=${task.id}`);
+    redirect(`/tasks/card/${task.id}`);
   };
 
   return (
