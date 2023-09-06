@@ -24,13 +24,16 @@ const TimetableLayout = ({
 
   return (
     <>
-      <Heading>Timetable</Heading>
-      <Text className="text-muted-foreground !mt-2">
+      <Heading>
+        <span className="print:hidden">Timetable</span>
+        <span className="hidden print:inline">Week {params.week}</span>
+      </Heading>
+      <Text className="text-muted-foreground !mt-2 print:hidden">
         It&apos;s {format(new Date(), "EEEE, 'the' do 'of' MMMM y")} &mdash;{" "}
         {displayCurrentWeek()}
       </Text>
 
-      <div className="flex gap-2 my-6">
+      <div className="flex gap-2 my-6 print:hidden">
         <Button
           variant="outline"
           asChild
