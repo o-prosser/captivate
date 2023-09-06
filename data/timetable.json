@@ -3,120 +3,210 @@
     {
       "monday": [
         {
-          "lesson": [1],
-          "subject": "maths",
-          "teacher": "Ms Teacher",
-          "room": "R00"
+          "lesson": [2],
+          "subject": "physics",
+          "teacher": "Miss Barry",
+          "room": "C28"
+        },
+        {
+          "lesson": [3],
+          "subject": "chemistry",
+          "teacher": "Mrs G Bryant",
+          "room": "C211"
+        },
+        {
+          "lesson": [4],
+          "subjec": "maths",
+          "teacher": "Mr Williams",
+          "room": "D21"
         }
       ],
       "tuesday": [
         {
-          "lesson": [1],
-          "subject": "physics",
-          "teacher": "Ms Teacher",
-          "room": "R03"
-        },
-        {
-          "lesson": [3, 4],
-          "subject": "maths",
-          "teacher": "Ms Teacher",
-          "room": "R00"
-        },
-        {
-          "lesson": [5],
+          "lesson": [2],
           "subject": "chemistry",
-          "teacher": "Mr Teacher",
-          "room": "R01"
-        }
-      ],
-      "wednesday": [
-        {
-          "lesson": [3, 4],
-          "subject": "maths",
-          "teacher": "Ms Teacher",
-          "room": "R00"
-        }
-      ],
-      "thursday": [
-        {
-          "lesson": [5],
-          "subject": "maths",
-          "teacher": "Ms Teacher",
-          "room": "R00"
-        }
-      ],
-      "friday": [
-        {
-          "lesson": [1, 2],
-          "subject": "chemistry",
-          "teacher": "Mr Teacher",
-          "room": "R01"
+          "teacher": "Mrs Bryant",
+          "room": "C211"
         },
         {
           "lesson": [3],
           "subject": "maths",
-          "teacher": "Ms Teacher",
-          "room": "R02"
+          "teacher": "Mr Williams",
+          "room": "D21"
+        },
+        {
+          "lesson": [4],
+          "subject": "physics",
+          "teacher": "Miss Barry",
+          "room": "C28"
         },
         {
           "lesson": [5],
           "subject": "physics",
-          "teacher": "Mr Teacher",
-          "room": "R03"
+          "teacher": "Mrs Neill",
+          "room": "C26"
+        }
+      ],
+      "wednesday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Mr Gahan",
+          "room": ""
+        },
+        {
+          "lesson": [4],
+          "subject": "physics",
+          "teacher": "Miss Barry",
+          "room": "C28"
+        }
+      ],
+      "thursday": [
+        {
+          "lesson": [1],
+          "subject": "physics",
+          "teacher": "Mrs Neill",
+          "room": "C26"
+        },
+        {
+          "lesson": [2],
+          "subject": "maths",
+          "teacher": "Mr Jones",
+          "room": "F21"
+        },
+        {
+          "lesson": [5],
+          "subject": "maths",
+          "teacher": "Mrs Mahoney",
+          "room": "E14"
+        }
+      ],
+      "friday": [
+        {
+          "lesson": [1],
+          "subject": "maths",
+          "teacher": "Mr Jones",
+          "room": "F21"
+        },
+        {
+          "lesson": [2],
+          "subject": "physics",
+          "teacher": "Mrs Neill",
+          "room": "C26"
         }
       ]
     },
     {
       "monday": [
         {
-          "lesson": [2],
-          "subject": "physics",
-          "teacher": "Teacher",
-          "room": "R01"
+          "lesson": [3],
+          "subject": "maths",
+          "teacher": "Mr Gahan",
+          "room": "F18"
         },
         {
-          "lesson": [3, 4],
-          "subject": "maths",
-          "teacher": "Teacher",
-          "room": "R01"
+          "lesson": [4],
+          "subject": "chemistry",
+          "teacher": "Dr Rees",
+          "room": "C23"
         },
         {
           "lesson": [5],
-          "subject": "chemistry",
-          "teacher": "Teacher",
-          "room": "R01"
+          "subject": "maths",
+          "teacher": "Mr Jones",
+          "room": "F21"
         }
       ],
       "tuesday": [
         {
           "lesson": [1],
           "subject": "maths",
-          "teacher": "Teacher",
-          "room": "R00"
+          "teacher": "Mr Williams",
+          "room": "D21"
+        },
+        {
+          "lesson": [2],
+          "subject": "chemistry",
+          "teacher": "Mrs Bryant",
+          "room": "C211"
+        },
+        {
+          "lesson": [3],
+          "subject": "maths",
+          "teacher": "Mr Gahan",
+          "room": "E14a"
+        },
+        {
+          "lesson": [4],
+          "subject": "chemistry",
+          "teacher": "Mrs Bryant",
+          "room": "C211"
+        },
+        {
+          "lesson": [5],
+          "subject": "chemistry",
+          "teacher": "Dr Rees",
+          "room": "C23"
         }
       ],
       "wednesday": [
         {
           "lesson": [1],
+          "subject": "chemistry",
+          "teacher": "Dr Rees",
+          "room": "C23"
+        },
+        {
+          "lesson": [3],
+          "subject": "chemistry",
+          "teacher": "Dr Rees",
+          "room": "C23"
+        },
+        {
+          "lesson": [4],
           "subject": "maths",
-          "teacher": "Teacher",
-          "room": "R00"
+          "teacher": "Mr Gahan",
+          "room": "F18"
         }
       ],
       "thursday": [
         {
-          "lesson": [1],
+          "lesson": [1, 2],
           "subject": "maths",
-          "teacher": "Teacher",
-          "room": "R00"
+          "teacher": "Mr Jones",
+          "room": "F21"
+        },
+        {
+          "lesson": [3],
+          "subject": "physics",
+          "teacher": "Miss Barry",
+          "room": "C28"
+        },
+        {
+          "lesson": [4],
+          "subject": "maths",
+          "teacher": "Mrs Mahoney",
+          "room": "E14"
+        },
+        {
+          "lesson": [5],
+          "subject": "physics",
+          "teacher": "Mrs Neill",
+          "room": "C26"
         }
       ],
       "friday": [
         {
           "lesson": [1],
           "subject": "maths",
-          "teacher": "Teacher",
-          "room": "R00"
+          "teacher": "Mr Williams",
+          "room": "D21"
+        },
+        {
+          "lesson": [2],
+          "subject": "maths",
+          "teacher": "Mr Jones",
+          "room": "F21"
         }
       ]
     }
