@@ -13,6 +13,7 @@
           "email": "teacher2@teacher.com"
         }
       ],
+      "dbNotes": false,
       "specificationLink": "https://www.wjec.co.uk/media/gxbjl243/wjec-gce-physics-spec-from-2015-e-22-09-22.pdf",
       "units": [
         {
@@ -951,6 +952,7 @@
       "name": "Chemistry",
       "fullName": "WJEC AS Chemistry",
       "teachers": [],
+      "dbNotes": false,
       "gradeBoundaries": [
         {
           "unit": 1,

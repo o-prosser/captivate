@@ -2,6 +2,7 @@ export * from "./events";
 export * from "./feedbacks";
 export * from "./files";
 export * from "./flashcards";
+export * from "./notes";
 export * from "./subjects";
 export * from "./tasks";
 export * from "./users";

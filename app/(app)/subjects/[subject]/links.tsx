@@ -1,16 +1,8 @@
-import {
-  Calculator,
-  Clipboard,
-  FileText,
-  FlaskConical,
-  FolderDown,
-  Home,
-  LayoutDashboard,
-  LucideIcon,
-  Paperclip,
-  Presentation,
-  StickyNote,
-} from "lucide-react";
+import { Calculator, Clipboard, FileText, FlaskConical, FolderDown, Home, LayoutDashboard, LucideIcon, Paperclip, Presentation, StickyNote } from "lucide-react";
+
+
+
+
 
 // Links auto-prefix with subject name
 const links: {
@@ -61,6 +53,18 @@ const links: {
         Icon: FileText,
         href: "/notes/2",
         label: "Unit 2",
+      },
+      {
+        Icon: FileText,
+        href: "/notes/3",
+        label: "Unit 3",
+        subjects: ["Maths"],
+      },
+      {
+        Icon: FileText,
+        href: "/notes/4",
+        label: "Unit 4",
+        subjects: ["Maths"],
       },
       {
         Icon: FlaskConical,

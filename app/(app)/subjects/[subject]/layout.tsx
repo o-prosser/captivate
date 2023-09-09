@@ -30,7 +30,7 @@ const Layout = ({
 }: {
   children: React.ReactNode;
 } & SubjectPageProps) => {
-  let subject;
+  let subject: any;
   try {
     subject = getSubject(params.subject);
   } catch (error) {
@@ -53,29 +53,33 @@ const Layout = ({
                   {category.label}
                 </p>
 
-                {category.links.map((link, key) => (
-                  <ActiveLink
-                    match={link.active ? "equals" : "includes"}
-                    key={key}
-                    active={
-                      link.active
-                        ? link.active.replace("{subject}", params.subject)
-                        : link.href
-                    }
-                  >
-                    <Button
-                      variant="ghost"
-                      asChild
+                {category.links
+                  .filter((link) =>
+                    link.subjects ? link.subjects.includes(subject.enum) : true,
+                  )
+                  .map((link, key) => (
+                    <ActiveLink
+                      match={link.active ? "equals" : "includes"}
                       key={key}
-                      className="justify-start px-3 mb-0.5"
+                      active={
+                        link.active
+                          ? link.active.replace("{subject}", params.subject)
+                          : link.href
+                      }
                     >
-                      <Link href={`/subjects/${params.subject}${link.href}`}>
-                        <link.Icon />
-                        {link.label}
-                      </Link>
-                    </Button>
-                  </ActiveLink>
-                ))}
+                      <Button
+                        variant="ghost"
+                        asChild
+                        key={key}
+                        className="justify-start px-3 mb-0.5"
+                      >
+                        <Link href={`/subjects/${params.subject}${link.href}`}>
+                          <link.Icon />
+                          {link.label}
+                        </Link>
+                      </Button>
+                    </ActiveLink>
+                  ))}
               </div>
             ))}
           </div>
@@ -100,28 +104,32 @@ const Layout = ({
                 {category.label}
               </p>
 
-              {category.links.map((link, key) => (
-                <ActiveLink
-                  key={key}
-                  match={link.active ? "equals" : "includes"}
-                  active={
-                    link.active
-                      ? link.active.replace("{subject}", params.subject)
-                      : link.href
-                  }
-                >
-                  <Button
-                    variant="ghost"
-                    asChild
-                    className="justify-start px-3 mb-0.5"
+              {category.links
+                .filter((link) =>
+                  link.subjects ? link.subjects.includes(subject.enum) : true,
+                )
+                .map((link, key) => (
+                  <ActiveLink
+                    key={key}
+                    match={link.active ? "equals" : "includes"}
+                    active={
+                      link.active
+                        ? link.active.replace("{subject}", params.subject)
+                        : link.href
+                    }
                   >
-                    <Link href={`/subjects/${params.subject}${link.href}`}>
-                      <link.Icon />
-                      {link.label}
-                    </Link>
-                  </Button>
-                </ActiveLink>
-              ))}
+                    <Button
+                      variant="ghost"
+                      asChild
+                      className="justify-start px-3 mb-0.5"
+                    >
+                      <Link href={`/subjects/${params.subject}${link.href}`}>
+                        <link.Icon />
+                        {link.label}
+                      </Link>
+                    </Button>
+                  </ActiveLink>
+                ))}
             </div>
           ))}
         </div>
