@@ -318,7 +318,42 @@
       "title": "Vectors",
       "paper": "https://www.dropbox.com/s/qbk8abb1mn6imv1/109-vectors.pdf?dl=1",
       "markscheme": "https://www.dropbox.com/s/u422yg7f1i29lwn/109-vectors-ms.pdf?dl=1"
-    }
+    },
+    {
+      "unit": 2,
+      "topic": 8,
+      "title": "Connected particles",
+      "paper": "https://www.dropbox.com/scl/fi/1wh5hw5ekm0sx578eok7z/208-connected-particles.pdf?rlkey=hpc4yhtkevaawriseen62gpi5&dl=1",
+      "markscheme": "https://www.dropbox.com/scl/fi/hlv22shm7gu7woytufb6v/208-connected-particles-ms.pdf?rlkey=cjzxyce6et97t7tk4xpcq4n8h&dl=1"
+    },
+    {
+      "unit": 2,
+      "topic": 7,
+      "title": "Variable acceleration",
+      "paper": "https://www.dropbox.com/scl/fi/do7zcegplviu0zmk3gw71/207-variable-acceleration.pdf?rlkey=jtiqigjao5308luzdz6efjgd6&dl=1",
+      "markscheme": "https://www.dropbox.com/scl/fi/m3xp4khafoqetrr14qjqn/207-variable-acceleration-ms.pdf?rlkey=j5q7amqsneiydfhkj63hbdr07&dl=1"
+    },
+    {
+      "unit": 2,
+      "topic": 8,
+      "title": "Vertical motion under gravity",
+      "paper": "https://www.dropbox.com/scl/fi/1b4kvlm76gskj0kxef5uq/208-vertical-motion-under-gravity.pdf?rlkey=77ga4dvufjxq1fai80p1p38qv&dl=1",
+      "markscheme": "https://www.dropbox.com/scl/fi/jgtzlbxp1tqo5s7168yub/208-vertical-motion-under-gravity-ms.pdf?rlkey=h1ybyaospk5xbqy9j0p8jaaqm&dl=1"
+    },
+    {
+      "unit": 2,
+      "topic": 8,
+      "title": "Lifts",
+      "paper": "https://www.dropbox.com/scl/fi/o4stee8kuvxrnc633oymx/208-lifts.pdf?rlkey=507c22vmfxt2io48dec8pl8l3&dl=1",
+      "markscheme": "https://www.dropbox.com/scl/fi/ywv6ia3jrgp8ebzyc3aeb/208-lifts-ms.pdf?rlkey=2lkcn1d8xuxvxxrvz7p64dx47&dl=1"
+    },
+    {
+      "unit": 2,
+      "topic": 7,
+      "title": "Kinematics",
+      "paper": "https://www.dropbox.com/scl/fi/oqxezuo2hlr3ujz4nlejg/207-kinematics.pdf?rlkey=8pu5s2znfraouxrom8dzw2lb6&dl=1",
+      "markscheme": "https://www.dropbox.com/scl/fi/4adjhw1jvvvf7lwxcyyog/207-kinematics-ms.pdf?rlkey=vfaxcncdsitbvy2vzujpm1cbt&dl=1"
+    },
   ],
   "resources": [],
   "practicals": null
