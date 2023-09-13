@@ -1,8 +1,16 @@
-import { Calculator, Clipboard, FileText, FlaskConical, FolderDown, Home, LayoutDashboard, LucideIcon, Paperclip, Presentation, StickyNote } from "lucide-react";
-
-
-
-
+import {
+  Calculator,
+  Clipboard,
+  FileText,
+  FlaskConical,
+  FolderDown,
+  Home,
+  LayoutDashboard,
+  LucideIcon,
+  Paperclip,
+  Presentation,
+  StickyNote,
+} from "lucide-react";
 
 // Links auto-prefix with subject name
 const links: {
@@ -91,7 +99,7 @@ const links: {
         Icon: StickyNote,
         href: "/flashcards",
         label: "Flashcards",
-        subjects: ["Chemistry, Physics"],
+        subjects: ["Chemistry", "Physics"],
       },
     ],
   },

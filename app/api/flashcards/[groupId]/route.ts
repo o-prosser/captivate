@@ -35,7 +35,7 @@ export const PATCH = async (
 
     // Flashcards already in DB
     const flashcardsToUpdate = body.flashcards.filter(
-      (flashcard) => flashcard.id !== "" || flashcard.id !== null,
+      (flashcard) => typeof flashcard.id === 'string',
     );
     flashcardsToUpdate.forEach(async (flashcard) => {
       if (!flashcard.id)

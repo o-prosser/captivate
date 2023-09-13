@@ -116,7 +116,8 @@ const CreateFlashcardForm = ({
               input={{}}
               render={() => (
                 <Form.Item>
-                  <Form.Label>Fronts</Form.Label>
+                  <Form.Label>Front
+                  </Form.Label>
                   <Form.Control>
                     <Textarea
                       className="h-24"
