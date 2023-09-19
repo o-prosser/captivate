@@ -1532,7 +1532,29 @@
           "markscheme": "https://www.dropbox.com/s/sw66s41gnk2quy3/w14-chemistry2-ms.pdf?dl=1"
         }
       ],
-      "topicPapers": [],
+      "topicPapers": [
+        {
+          "unit": 2,
+          "topic": 1,
+          "title": "Thermochemistry (WJEC)",
+          "paper": "https://pmt.physicsandmathstutor.com/download/Chemistry/A-level/Topic-Qs/WJEC-Wales/Unit-2/Set-F/2.1.%20Thermochemistry%20QP.pdf",
+          "markscheme": "https://pmt.physicsandmathstutor.com/download/Chemistry/A-level/Topic-Qs/WJEC-Wales/Unit-2/Set-F/2.1.%20Thermochemistry%20MS.pdf"
+        },
+        {
+          "unit": 2,
+          "topic": 2,
+          "title": "Rates of Reaction (WJEC)",
+          "paper": "https://pmt.physicsandmathstutor.com/download/Chemistry/A-level/Topic-Qs/WJEC-Wales/Unit-2/Set-F/2.2.%20Rates%20of%20Reaction%20QP.pdf",
+          "markscheme": "https://pmt.physicsandmathstutor.com/download/Chemistry/A-level/Topic-Qs/WJEC-Wales/Unit-2/Set-F/2.2.%20Rates%20of%20Reaction%20MS.pdf"
+        },
+        {
+          "unit": 2,
+          "topic": 3,
+          "title": "The Wider Impact of Chemistry (WJEC)",
+          "paper": "https://pmt.physicsandmathstutor.com/download/Chemistry/A-level/Topic-Qs/WJEC-Wales/Unit-2/Set-F/2.3.%20The%20Wider%20Impact%20of%20Chemistry%20QP.pdf",
+          "markscheme": "https://pmt.physicsandmathstutor.com/download/Chemistry/A-level/Topic-Qs/WJEC-Wales/Unit-2/Set-F/2.3.%20The%20Wider%20Impact%20of%20Chemistry%20MS.pdf"
+        }
+      ],
       "resources": []
     }
   }

@@ -21,27 +21,29 @@ const Flashcards = async ({ params }: SubjectPageProps) => {
   const flashcardGroups = await selectFlashcardGroups(params);
 
   return (
-    <>
-      <div className="flex justify-between items-start flex-col-reverse sm:flex-row">
+    <div className="max-w-full">
+      <div className="flex justify-between items-start">
         <Heading className="mb-8">Flashcards</Heading>
         <SelectPractise subject={{ id: params.subject, ...subject }} />
       </div>
 
-      <DataTable
-        data={flashcardGroups.map((flashcardGroup) => {
-          const topicName =
-            subject.units[flashcardGroup.unit - 1].topics[
-              flashcardGroup.topic - 1
-            ];
-          return {
-            title: topicName,
-            subject: params.subject,
-            number: flashcardGroup.flashcards.length,
-            ...flashcardGroup,
-          };
-        })}
-        columns={columns}
-      />
+      <div className="overflow-hidden max-w-[calc(100vw-3rem)]">
+        <DataTable
+          data={flashcardGroups.map((flashcardGroup) => {
+            const topicName =
+              subject.units[flashcardGroup.unit - 1].topics[
+                flashcardGroup.topic - 1
+              ];
+            return {
+              title: topicName,
+              subject: params.subject,
+              number: flashcardGroup.flashcards.length,
+              ...flashcardGroup,
+            };
+          })}
+          columns={columns}
+        />
+      </div>
 
       <Button className="mt-6" variant="outline" asChild>
         <Link href={`/subjects/${params.subject}/flashcards/create`}>
@@ -49,7 +51,7 @@ const Flashcards = async ({ params }: SubjectPageProps) => {
           Add flashcard group
         </Link>
       </Button>
-    </>
+    </div>
   );
 };
 
